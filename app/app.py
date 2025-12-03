@@ -85,14 +85,99 @@ check_chrome_installation()
 active_browsers = {}
 download_queue = {}
 
+# Utility functions for resolution parsing
+def fetch_master_playlist(url):
+    """Fetch and return master playlist content"""
+    try:
+        import requests
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            return response.text
+        return None
+    except Exception as e:
+        logger.error(f"Failed to fetch master playlist: {e}")
+        return None
+
+def parse_master_playlist(content):
+    """Parse master playlist and extract resolution information"""
+    resolutions = []
+    lines = content.split('\n')
+
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+
+        # Look for stream info lines
+        if line.startswith('#EXT-X-STREAM-INF:'):
+            # Parse attributes
+            attrs = {}
+            for attr in line.split(','):
+                if '=' in attr:
+                    key, value = attr.split('=', 1)
+                    attrs[key.strip()] = value.strip('"')
+
+            # Get the URL from next line
+            if i + 1 < len(lines):
+                stream_url = lines[i + 1].strip()
+
+                if stream_url and not stream_url.startswith('#'):
+                    resolution_info = {
+                        'url': stream_url,
+                        'bandwidth': int(attrs.get('BANDWIDTH', 0)),
+                        'resolution': attrs.get('RESOLUTION', ''),
+                        'framerate': attrs.get('FRAME-RATE', ''),
+                        'codecs': attrs.get('CODECS', ''),
+                        'name': attrs.get('IVS-NAME', attrs.get('STABLE-VARIANT-ID', ''))
+                    }
+
+                    resolutions.append(resolution_info)
+
+        i += 1
+
+    # Sort by bandwidth (highest first)
+    resolutions.sort(key=lambda x: x['bandwidth'], reverse=True)
+
+    return resolutions
+
+def match_resolution(resolutions, preferred):
+    """Find best matching resolution"""
+    if not resolutions:
+        return None
+
+    preferred_lower = preferred.lower()
+
+    # Try exact match first
+    for res in resolutions:
+        if res['name'].lower() == preferred_lower:
+            logger.info(f"Found exact match for {preferred}: {res['name']}")
+            return res
+
+    # Try partial match (e.g., "1080p" matches "1080p60")
+    for res in resolutions:
+        if preferred_lower in res['name'].lower():
+            logger.info(f"Found partial match for {preferred}: {res['name']}")
+            return res
+
+    # Special case: "source" means highest quality
+    if preferred_lower == 'source':
+        logger.info(f"Source requested, returning highest quality: {resolutions[0]['name']}")
+        return resolutions[0]
+
+    logger.warning(f"No match found for {preferred}")
+    return None
+
 class StreamDetector:
-    def __init__(self, browser_id):
+    def __init__(self, browser_id, preferred_resolution='1080p60'):
         self.browser_id = browser_id
         self.driver = None
         self.detected_streams = []
         self.is_running = False
         self.download_started = False
         self.thumbnail_data = None
+        self.preferred_resolution = preferred_resolution
+        self.awaiting_resolution_selection = False
+        self.available_resolutions = []
+        self.selected_stream_url = None
 
     def start_browser(self, url):
         """Start Chrome with DevTools Protocol enabled"""
@@ -211,8 +296,8 @@ class StreamDetector:
                                     self.detected_streams.append(stream_info)
 
                                     # Start download for the first valid stream
-                                    if not self.download_started:
-                                        self._start_download(stream_info)
+                                    if not self.download_started and not self.awaiting_resolution_selection:
+                                        self._handle_stream_detection(stream_info)
 
                     except json.JSONDecodeError:
                         continue
@@ -254,9 +339,61 @@ class StreamDetector:
         else:
             return 'UNKNOWN'
 
+    def _handle_stream_detection(self, stream_info):
+        """Handle detected stream - check if it's a master playlist"""
+        stream_url = stream_info['url']
+
+        # Check if this is an HLS stream
+        if '.m3u8' in stream_url.lower():
+            logger.info(f"Detected .m3u8 stream, checking if it's a master playlist...")
+
+            # Fetch and check if it's a master playlist
+            content = fetch_master_playlist(stream_url)
+
+            if content and '#EXT-X-STREAM-INF:' in content:
+                logger.info("This is a master playlist! Parsing resolutions...")
+
+                # Parse available resolutions
+                resolutions = parse_master_playlist(content)
+
+                if resolutions:
+                    logger.info(f"Found {len(resolutions)} resolutions")
+
+                    # Try to match preferred resolution
+                    matched = match_resolution(resolutions, self.preferred_resolution)
+
+                    if matched:
+                        # Found preferred resolution, start download
+                        logger.info(f"Matched preferred resolution: {matched['name']}")
+                        self._start_download_with_url(matched['url'], matched['name'])
+                    else:
+                        # No match, prompt user to select
+                        logger.info(f"Preferred resolution {self.preferred_resolution} not found, awaiting user selection")
+                        self.awaiting_resolution_selection = True
+                        self.available_resolutions = resolutions
+                else:
+                    # Couldn't parse resolutions, just download the master URL
+                    logger.warning("Could not parse resolutions from master playlist")
+                    self._start_download(stream_info)
+            else:
+                # Not a master playlist, proceed with direct download
+                logger.info("Not a master playlist, downloading directly")
+                self._start_download(stream_info)
+        else:
+            # Not HLS, download directly
+            self._start_download(stream_info)
+
     def _start_download(self, stream_info):
         """Start downloading the detected stream"""
+        self._start_download_with_url(stream_info['url'], stream_info['type'])
+
+    def _start_download_with_url(self, stream_url, resolution_name):
+        """Start download with specific URL and resolution name"""
         self.download_started = True
+        self.selected_stream_url = stream_url
+
+        logger.info(f"Starting download for resolution: {resolution_name}")
+        logger.info(f"Stream URL: {stream_url}")
 
         # Wait a moment for video to start playing
         logger.info("Waiting 3 seconds for video to load...")
@@ -267,13 +404,13 @@ class StreamDetector:
 
         # Generate filename
         timestamp = int(time.time())
-        filename = f"video_{timestamp}.mp4"
+        filename = f"video_{resolution_name}_{timestamp}.mp4"
         output_path = os.path.join(DOWNLOAD_DIR, filename)
 
         # Start FFmpeg download in background
         threading.Thread(
             target=self._download_with_ffmpeg,
-            args=(stream_info['url'], output_path),
+            args=(stream_url, output_path),
             daemon=True
         ).start()
 
@@ -365,14 +502,18 @@ class StreamDetector:
 
     def get_status(self):
         """Get current status"""
-        return {
+        status = {
             'browser_id': self.browser_id,
             'is_running': self.is_running,
             'download_started': self.download_started,
             'detected_streams': len(self.detected_streams),
             'thumbnail': self.thumbnail_data,
-            'latest_stream': self.detected_streams[-1] if self.detected_streams else None
+            'latest_stream': self.detected_streams[-1] if self.detected_streams else None,
+            'awaiting_resolution_selection': self.awaiting_resolution_selection,
+            'available_resolutions': self.available_resolutions
         }
+
+        return status
 
 
 @app.route('/')
@@ -459,15 +600,18 @@ def start_browser():
     try:
         data = request.json
         url = data.get('url')
+        preferred_resolution = data.get('preferred_resolution', '1080p60')
 
         if not url:
             return jsonify({'error': 'No URL provided'}), 400
 
+        logger.info(f"Starting browser with preferred resolution: {preferred_resolution}")
+
         # Generate browser ID
         browser_id = f"browser_{int(time.time())}"
 
-        # Create and start detector
-        detector = StreamDetector(browser_id)
+        # Create and start detector with preferred resolution
+        detector = StreamDetector(browser_id, preferred_resolution)
         active_browsers[browser_id] = detector
 
         if detector.start_browser(url):
@@ -524,6 +668,42 @@ def close_browser(browser_id):
 
     except Exception as e:
         logger.error(f"Browser close error: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/browser/select-resolution', methods=['POST'])
+def select_resolution():
+    """User manually selected a resolution"""
+    try:
+        data = request.json
+        browser_id = data.get('browser_id')
+        stream_url = data.get('stream_url')
+        resolution_name = data.get('resolution_name')
+
+        if not all([browser_id, stream_url, resolution_name]):
+            return jsonify({'error': 'Missing required parameters'}), 400
+
+        if browser_id not in active_browsers:
+            return jsonify({'error': 'Browser not found'}), 404
+
+        detector = active_browsers[browser_id]
+
+        logger.info(f"User selected resolution: {resolution_name}")
+        logger.info(f"Stream URL: {stream_url}")
+
+        # Clear awaiting state
+        detector.awaiting_resolution_selection = False
+
+        # Start download with selected resolution
+        detector._start_download_with_url(stream_url, resolution_name)
+
+        return jsonify({
+            'success': True,
+            'message': f'Starting download for {resolution_name}'
+        })
+
+    except Exception as e:
+        logger.error(f"Resolution selection error: {e}")
         return jsonify({'error': str(e)}), 500
 
 
