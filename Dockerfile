@@ -16,22 +16,21 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Chrome
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+RUN wget -q -O /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && apt-get update \
-    && apt-get install -y google-chrome-stable \
+    && apt-get install -y /tmp/google-chrome-stable_current_amd64.deb \
+    && rm /tmp/google-chrome-stable_current_amd64.deb \
     && rm -rf /var/lib/apt/lists/*
 
-# Install ChromeDriver
-RUN CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f 1) \
-    && wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${CHROME_VERSION}.0.6613.86/linux64/chromedriver-linux64.zip" -O /tmp/chromedriver.zip || \
-       wget -q "https://chromedriver.storage.googleapis.com/LATEST_RELEASE" -O /tmp/version \
-    && CHROMEDRIVER_VERSION=$(cat /tmp/version 2>/dev/null || echo "114.0.5735.90") \
-    && wget -q "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O /tmp/chromedriver.zip \
-    && unzip /tmp/chromedriver.zip -d /tmp/ \
-    && mv /tmp/chromedriver* /usr/local/bin/chromedriver || mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
+# Install ChromeDriver - using a recent stable version
+RUN CHROMEDRIVER_VERSION="131.0.6778.87" \
+    && wget -q "https://storage.googleapis.com/chrome-for-testing-public/${CHROMEDRIVER_VERSION}/linux64/chromedriver-linux64.zip" -O /tmp/chromedriver.zip \
+    && unzip -q /tmp/chromedriver.zip -d /tmp/ \
+    && mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
     && chmod +x /usr/local/bin/chromedriver \
-    && rm -rf /tmp/chromedriver*
+    && rm -rf /tmp/chromedriver* \
+    && echo "Chrome version:" && google-chrome --version \
+    && echo "ChromeDriver version:" && chromedriver --version
 
 # Set up working directory
 WORKDIR /app
