@@ -313,14 +313,24 @@ class StreamDetector:
     def _is_video_stream(self, url, mime_type):
         """Check if URL is a video stream"""
         video_extensions = ['.m3u8', '.mpd', '.mp4', '.ts', '.m4s']
-        video_mime_types = ['video/', 'application/vnd.apple.mpegurl', 'application/dash+xml']
+        video_mime_types = ['video/', 'application/vnd.apple.mpegurl', 'application/dash+xml',
+                            'application/x-mpegurl', 'vnd.apple.mpegurl']
+
+        # Twitch-specific detection (usher.ttvnw.net is their HLS endpoint)
+        twitch_patterns = ['usher.ttvnw.net', 'video-weaver', 'video-edge', '.ttvnw.net']
 
         # Check URL extension
         if any(url.lower().endswith(ext) or ext in url.lower() for ext in video_extensions):
-            # Filter out ads and tracking
-            if any(keyword in url.lower() for keyword in ['ad', 'doubleclick', 'analytics', 'tracking']):
+            # Filter out ads and tracking (but not Twitch ad insertion endpoints)
+            if any(keyword in url.lower() for keyword in ['doubleclick', 'analytics', 'tracking']):
                 return False
             return True
+
+        # Check for Twitch-specific patterns
+        if any(pattern in url.lower() for pattern in twitch_patterns):
+            if '.m3u8' in url.lower() or 'playlist' in url.lower():
+                logger.info(f"Detected Twitch stream URL: {url[:100]}...")
+                return True
 
         # Check MIME type
         if any(mime in mime_type.lower() for mime in video_mime_types):
@@ -742,31 +752,65 @@ def clear_cookies():
                 logger.info(f"Clearing Chrome data directory: {CHROME_USER_DATA_DIR}")
                 import shutil
 
-                # Try to remove the directory with retries
-                max_retries = 3
-                for attempt in range(max_retries):
+                # Instead of removing the directory itself (which is a Docker volume mount),
+                # remove all contents inside it
+                cleared_count = 0
+                failed_count = 0
+
+                for item in os.listdir(CHROME_USER_DATA_DIR):
+                    item_path = os.path.join(CHROME_USER_DATA_DIR, item)
                     try:
-                        logger.info(f"Removal attempt {attempt + 1}/{max_retries}")
-                        shutil.rmtree(CHROME_USER_DATA_DIR)
-                        logger.info("Chrome data directory removed")
-                        break
-                    except OSError as e:
-                        if attempt < max_retries - 1:
-                            logger.warning(f"Attempt {attempt + 1} failed: {e}, retrying...")
-                            time.sleep(2)
-                        else:
-                            raise
+                        if os.path.isfile(item_path) or os.path.islink(item_path):
+                            os.unlink(item_path)
+                            cleared_count += 1
+                            logger.debug(f"Removed file: {item}")
+                        elif os.path.isdir(item_path):
+                            # Try to remove directory, ignore if busy
+                            try:
+                                shutil.rmtree(item_path)
+                                cleared_count += 1
+                                logger.debug(f"Removed directory: {item}")
+                            except OSError as dir_error:
+                                # If directory is locked, try to remove its contents
+                                logger.warning(f"Cannot remove {item}, trying to clear contents: {dir_error}")
+                                try:
+                                    for root, dirs, files in os.walk(item_path, topdown=False):
+                                        for name in files:
+                                            try:
+                                                os.remove(os.path.join(root, name))
+                                            except:
+                                                pass
+                                        for name in dirs:
+                                            try:
+                                                os.rmdir(os.path.join(root, name))
+                                            except:
+                                                pass
+                                    cleared_count += 1
+                                except Exception as walk_error:
+                                    logger.error(f"Failed to clear contents of {item}: {walk_error}")
+                                    failed_count += 1
+                    except Exception as item_error:
+                        logger.error(f"Failed to remove {item}: {item_error}")
+                        failed_count += 1
 
-                # Recreate the directory
-                os.makedirs(CHROME_USER_DATA_DIR, exist_ok=True)
-                logger.info("Chrome data directory recreated")
+                logger.info(f"Chrome data cleared: {cleared_count} items removed, {failed_count} items failed")
 
-                return jsonify({
-                    'success': True,
-                    'message': 'Cookies and browser data cleared successfully'
-                })
+                if cleared_count > 0 or failed_count == 0:
+                    return jsonify({
+                        'success': True,
+                        'message': f'Cookies cleared: {cleared_count} items removed' +
+                                  (f', {failed_count} items could not be removed (may be in use)' if failed_count > 0 else '')
+                    })
+                else:
+                    return jsonify({
+                        'success': False,
+                        'error': 'Could not clear any Chrome data - files may be locked'
+                    }), 500
+
             except Exception as e:
                 logger.error(f"Error clearing Chrome data: {e}")
+                import traceback
+                logger.error(traceback.format_exc())
                 return jsonify({
                     'success': False,
                     'error': f'Failed to clear Chrome data: {str(e)}'
