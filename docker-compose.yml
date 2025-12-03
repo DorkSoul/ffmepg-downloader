@@ -4,24 +4,20 @@ services:
   video-downloader:
     build: .
     container_name: video-downloader
+    user: 1000:100
     restart: unless-stopped
-    ports:
-      - "5000:5000"  # Web interface
-      - "6080:6080"  # noVNC for Chrome viewing
-    volumes:
-      - ./downloads:/downloads
-      - ./chrome-data:/home/appuser/.config/google-chrome
-      - /dev/shm:/dev/shm  # Shared memory for Chrome
     environment:
+      - TZ=Europe/Dublin
       - DOWNLOAD_PATH=/downloads
       - CHROME_TIMEOUT=15
       - DEFAULT_QUALITY=1080
       - DISPLAY=:99
-    privileged: false
-    shm_size: '2gb'
-    networks:
-      - video-downloader-net
-
-networks:
-  video-downloader-net:
-    driver: bridge
+    volumes:
+      - /volume2/Dockerssd/video-downloader/chrome-data:/home/appuser/.config/google-chrome:rw
+      - /volume1/downloads:/downloads:rw
+      - /dev/shm:/dev/shm
+    ports:
+      - 5000:5000
+      - 6080:6080
+    shm_size: 2gb
+    restart: unless-stopped
