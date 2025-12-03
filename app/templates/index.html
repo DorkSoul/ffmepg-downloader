@@ -388,6 +388,20 @@
                     <input type="text" id="browser-url" placeholder="https://example.com/watch/video123">
                 </div>
 
+                <div class="input-group">
+                    <label for="preferred-resolution">Preferred Resolution</label>
+                    <select id="preferred-resolution">
+                        <option value="source">Source/Highest Quality</option>
+                        <option value="1080p60" selected>1080p 60fps</option>
+                        <option value="1080p30">1080p 30fps</option>
+                        <option value="720p60">720p 60fps</option>
+                        <option value="720p30">720p 30fps</option>
+                        <option value="480p30">480p 30fps</option>
+                        <option value="360p30">360p 30fps</option>
+                        <option value="160p30">160p 30fps</option>
+                    </select>
+                </div>
+
                 <button class="btn" id="browser-start-btn" onclick="startBrowser()">
                     Open Browser & Detect
                 </button>
@@ -435,6 +449,16 @@
             <button class="btn" onclick="closePopup()">Close Now</button>
             <button class="btn btn-secondary" onclick="keepOpen()">Keep Open</button>
         </div>
+    </div>
+
+    <!-- Resolution Selection Popup -->
+    <div class="download-popup" id="resolution-popup">
+        <h3>📺 Select Resolution</h3>
+        <p style="margin-bottom: 20px;">Your preferred resolution isn't available. Choose one:</p>
+        <div id="resolution-options" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px;">
+            <!-- Resolution buttons will be added here dynamically -->
+        </div>
+        <button class="btn btn-secondary" onclick="closeResolutionPopup()">Cancel</button>
     </div>
 
     <script>
@@ -495,6 +519,7 @@
         // Start browser mode
         async function startBrowser() {
             const url = document.getElementById('browser-url').value.trim();
+            const preferredResolution = document.getElementById('preferred-resolution').value;
             const statusBox = document.getElementById('browser-status');
             const btn = document.getElementById('browser-start-btn');
 
@@ -510,14 +535,14 @@
                 const response = await fetch('/api/browser/start', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ url })
+                    body: JSON.stringify({ url, preferred_resolution: preferredResolution })
                 });
 
                 const data = await response.json();
 
                 if (data.success) {
                     currentBrowserId = data.browser_id;
-                    showStatus(statusBox, '✓ Browser started! Loading in viewer below...', 'success');
+                    showStatus(statusBox, `✓ Browser started! Looking for ${preferredResolution}...`, 'success');
 
                     // Show VNC viewer with auto-connect
                     const vncContainer = document.getElementById('vnc-container');
@@ -558,6 +583,13 @@
                 try {
                     const response = await fetch(`/api/browser/status/${currentBrowserId}`);
                     const data = await response.json();
+
+                    // Check if resolution selection is needed
+                    if (data.awaiting_resolution_selection && !document.getElementById('resolution-popup').classList.contains('active')) {
+                        showResolutionPopup(data.available_resolutions);
+                        const statusBox = document.getElementById('browser-status');
+                        showStatus(statusBox, '⚠️ Choose your preferred resolution above', 'error');
+                    }
 
                     if (data.download_started && !document.getElementById('download-popup').classList.contains('active')) {
                         showDownloadPopup(data);
@@ -647,6 +679,66 @@
 
             const statusBox = document.getElementById('browser-status');
             showStatus(statusBox, 'Browser kept open. Close manually when done.', 'success');
+        }
+
+        // Show resolution selection popup
+        function showResolutionPopup(resolutions) {
+            const popup = document.getElementById('resolution-popup');
+            const overlay = document.getElementById('popup-overlay');
+            const optionsContainer = document.getElementById('resolution-options');
+
+            // Clear existing options
+            optionsContainer.innerHTML = '';
+
+            // Add resolution buttons
+            resolutions.forEach(res => {
+                const button = document.createElement('button');
+                button.className = 'btn';
+                button.style.marginBottom = '10px';
+                button.innerHTML = `${res.name} (${res.resolution || 'N/A'}) - ${res.bandwidth ? Math.round(res.bandwidth/1000) + ' kbps' : 'Unknown bitrate'}`;
+                button.onclick = () => selectResolution(res.url, res.name);
+                optionsContainer.appendChild(button);
+            });
+
+            // Show popup
+            popup.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        // Select a resolution
+        async function selectResolution(streamUrl, resolutionName) {
+            closeResolutionPopup();
+
+            const statusBox = document.getElementById('browser-status');
+            showStatus(statusBox, `✓ Starting download for ${resolutionName}...`, 'success');
+
+            try {
+                const response = await fetch('/api/browser/select-resolution', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        browser_id: currentBrowserId,
+                        stream_url: streamUrl,
+                        resolution_name: resolutionName
+                    })
+                });
+
+                const data = await response.json();
+                if (!data.success) {
+                    showStatus(statusBox, `Error: ${data.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(statusBox, `Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Close resolution popup
+        function closeResolutionPopup() {
+            const popup = document.getElementById('resolution-popup');
+            const overlay = document.getElementById('popup-overlay');
+
+            popup.classList.remove('active');
+            overlay.classList.remove('active');
         }
 
         // Close browser
