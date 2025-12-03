@@ -104,7 +104,6 @@ class StreamDetector:
             chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument('--disable-setuid-sandbox')
             chrome_options.add_argument('--disable-dev-shm-usage')
-            chrome_options.add_argument('--single-process')
 
             # GPU and rendering
             chrome_options.add_argument('--disable-gpu')
@@ -116,10 +115,12 @@ class StreamDetector:
             chrome_options.add_argument('--disable-sync')
             chrome_options.add_argument('--disable-translate')
             chrome_options.add_argument('--disable-default-apps')
+            chrome_options.add_argument('--disable-notifications')
 
-            # Debugging
-            chrome_options.add_argument('--remote-debugging-port=9222')
+            # User data directory for cookie persistence
             chrome_options.add_argument(f'--user-data-dir={CHROME_USER_DATA_DIR}')
+
+            # Logging
             chrome_options.add_argument('--enable-logging')
             chrome_options.add_argument('--v=1')
 
@@ -636,9 +637,9 @@ def test_chrome():
         except Exception as e:
             logger.error(f"ldd check failed: {e}")
 
-        # Test 6: Try to create minimal Chrome instance with Selenium
+        # Test 6: Try Chrome without user-data-dir first
         try:
-            logger.info("Attempting to create minimal Chrome instance...")
+            logger.info("Test 6a: Attempting minimal Chrome (no user-data-dir)...")
             from selenium.webdriver.chrome.options import Options
             from selenium.webdriver.chrome.service import Service
 
@@ -646,19 +647,45 @@ def test_chrome():
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-dev-shm-usage')
             options.add_argument('--disable-gpu')
-            options.add_argument('--headless')
-            options.add_argument('--single-process')
-            options.add_argument('--disable-setuid-sandbox')
+            options.add_argument('--headless=new')
 
-            service = Service('/usr/local/bin/chromedriver')
+            service = Service('/usr/local/bin/chromedriver', log_output='/app/logs/chromedriver_test.log')
             test_driver = webdriver.Chrome(service=service, options=options)
 
             logger.info("✓ Chrome instance created successfully!")
             test_driver.get('about:blank')
             logger.info("✓ Navigated to about:blank")
 
+            results['chrome_test_minimal'] = 'SUCCESS'
+
+            test_driver.quit()
+            logger.info("✓ Chrome instance closed")
+
+        except Exception as e:
+            results['chrome_test_minimal'] = 'FAILED'
+            results['chrome_test_minimal_error'] = str(e)
+            logger.error(f"✗ Minimal Chrome test failed: {e}")
+
+        # Test 6b: Try Chrome WITH user-data-dir
+        try:
+            logger.info("Test 6b: Attempting Chrome with user-data-dir...")
+
+            options = Options()
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--disable-gpu')
+            options.add_argument('--headless=new')
+            options.add_argument(f'--user-data-dir={CHROME_USER_DATA_DIR}')
+
+            service = Service('/usr/local/bin/chromedriver', log_output='/app/logs/chromedriver_userdata_test.log')
+            test_driver = webdriver.Chrome(service=service, options=options)
+
+            logger.info("✓ Chrome with user-data-dir created successfully!")
+            test_driver.get('about:blank')
+            logger.info("✓ Navigated to about:blank")
+
             results['chrome_test'] = 'SUCCESS'
-            results['chrome_test_message'] = 'Chrome can be instantiated'
+            results['chrome_test_message'] = 'Chrome can be instantiated with user-data-dir'
 
             test_driver.quit()
             logger.info("✓ Chrome instance closed")
@@ -666,7 +693,7 @@ def test_chrome():
         except Exception as e:
             results['chrome_test'] = 'FAILED'
             results['chrome_test_error'] = str(e)
-            logger.error(f"✗ Chrome test failed: {e}")
+            logger.error(f"✗ Chrome with user-data-dir test failed: {e}")
             import traceback
             logger.error(traceback.format_exc())
 
