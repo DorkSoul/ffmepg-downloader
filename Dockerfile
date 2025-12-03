@@ -45,15 +45,17 @@ RUN wget -q -O /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com
     && rm /tmp/google-chrome-stable_current_amd64.deb \
     && rm -rf /var/lib/apt/lists/*
 
-# Install ChromeDriver - using a recent stable version
-RUN CHROMEDRIVER_VERSION="131.0.6778.87" \
-    && wget -q "https://storage.googleapis.com/chrome-for-testing-public/${CHROMEDRIVER_VERSION}/linux64/chromedriver-linux64.zip" -O /tmp/chromedriver.zip \
+# Install ChromeDriver - match the installed Chrome version
+RUN CHROME_VERSION=$(google-chrome --version | awk '{print $3}') \
+    && echo "Detected Chrome version: ${CHROME_VERSION}" \
+    && wget -q "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chromedriver-linux64.zip" -O /tmp/chromedriver.zip \
     && unzip -q /tmp/chromedriver.zip -d /tmp/ \
     && mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
     && chmod +x /usr/local/bin/chromedriver \
     && rm -rf /tmp/chromedriver* \
-    && echo "Chrome version:" && google-chrome --version \
-    && echo "ChromeDriver version:" && chromedriver --version
+    && echo "Installed versions:" \
+    && google-chrome --version \
+    && chromedriver --version
 
 # Set up working directory
 WORKDIR /app
