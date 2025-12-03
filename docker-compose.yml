@@ -5,7 +5,6 @@ services:
     build: .
     container_name: video-downloader
     user: 1000:100
-    restart: unless-stopped
     environment:
       - TZ=Europe/Dublin
       - DOWNLOAD_PATH=/downloads
