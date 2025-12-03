@@ -45,32 +45,52 @@ class StreamDetector:
     def start_browser(self, url):
         """Start Chrome with DevTools Protocol enabled"""
         try:
+            logger.info(f"Starting Chrome browser for {url}")
+
             chrome_options = Options()
             chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument('--disable-dev-shm-usage')
             chrome_options.add_argument('--disable-gpu')
+            chrome_options.add_argument('--disable-software-rasterizer')
+            chrome_options.add_argument('--disable-extensions')
+            chrome_options.add_argument('--disable-background-networking')
+            chrome_options.add_argument('--disable-sync')
+            chrome_options.add_argument('--disable-translate')
+            chrome_options.add_argument('--disable-default-apps')
+            chrome_options.add_argument('--remote-debugging-port=9222')
             chrome_options.add_argument(f'--user-data-dir={CHROME_USER_DATA_DIR}')
             chrome_options.add_argument('--enable-logging')
             chrome_options.add_argument('--v=1')
             chrome_options.add_experimental_option('w3c', True)
+            chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
             # Enable performance logging to capture network events
             chrome_options.set_capability('goog:loggingPrefs', {'performance': 'ALL'})
 
+            logger.info("Initializing ChromeDriver service")
             service = Service('/usr/local/bin/chromedriver')
+
+            logger.info("Creating Chrome webdriver instance")
             self.driver = webdriver.Chrome(service=service, options=chrome_options)
             self.driver.set_window_size(1920, 1080)
 
-            logger.info(f"Browser {self.browser_id} started, navigating to {url}")
+            logger.info(f"Browser {self.browser_id} started successfully, navigating to {url}")
             self.driver.get(url)
             self.is_running = True
 
             # Start monitoring network traffic
             threading.Thread(target=self._monitor_network, daemon=True).start()
 
+            logger.info(f"Browser {self.browser_id} fully initialized")
             return True
+        except WebDriverException as e:
+            logger.error(f"WebDriver error starting browser: {e}")
+            logger.error(f"Error details: {str(e)}")
+            return False
         except Exception as e:
-            logger.error(f"Failed to start browser: {e}")
+            logger.error(f"Unexpected error starting browser: {type(e).__name__}: {e}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
             return False
 
     def _monitor_network(self):

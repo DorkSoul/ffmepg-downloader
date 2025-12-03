@@ -95,9 +95,21 @@
             transition: border-color 0.3s;
         }
 
-        .input-group input:focus {
+        .input-group input:focus,
+        .input-group select:focus {
             outline: none;
             border-color: #667eea;
+        }
+
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background: white;
+            cursor: pointer;
         }
 
         .btn {
@@ -339,12 +351,24 @@
 
                 <div class="input-group">
                     <label for="direct-url">Stream URL</label>
-                    <input type="text" id="direct-url" placeholder="https://example.com/stream.m3u8">
+                    <input type="text" id="direct-url" placeholder="https://example.com/stream.m3u8" required>
                 </div>
 
                 <div class="input-group">
-                    <label for="direct-filename">Filename (optional)</label>
-                    <input type="text" id="direct-filename" placeholder="my_video.mp4">
+                    <label for="direct-filename">Filename (required)</label>
+                    <input type="text" id="direct-filename" placeholder="my_video" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="direct-format">Output Format</label>
+                    <select id="direct-format">
+                        <option value="mp4">MP4 (recommended)</option>
+                        <option value="mkv">MKV</option>
+                        <option value="avi">AVI</option>
+                        <option value="webm">WebM</option>
+                        <option value="ts">TS (Transport Stream)</option>
+                        <option value="mov">MOV</option>
+                    </select>
                 </div>
 
                 <button class="btn" id="direct-download-btn" onclick="startDirectDownload()">
@@ -419,13 +443,24 @@
         // Start direct download
         async function startDirectDownload() {
             const url = document.getElementById('direct-url').value.trim();
-            const filename = document.getElementById('direct-filename').value.trim();
+            let filename = document.getElementById('direct-filename').value.trim();
+            const format = document.getElementById('direct-format').value;
             const statusBox = document.getElementById('direct-status');
             const btn = document.getElementById('direct-download-btn');
 
             if (!url) {
                 showStatus(statusBox, 'Please enter a stream URL', 'error');
                 return;
+            }
+
+            if (!filename) {
+                showStatus(statusBox, 'Please enter a filename', 'error');
+                return;
+            }
+
+            // Auto-append extension if not present
+            if (!filename.includes('.')) {
+                filename = filename + '.' + format;
             }
 
             btn.disabled = true;
