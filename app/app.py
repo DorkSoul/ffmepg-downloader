@@ -100,19 +100,29 @@ class StreamDetector:
             logger.info(f"Starting Chrome browser for {url}")
 
             chrome_options = Options()
+            # Essential flags for Docker
             chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument('--disable-setuid-sandbox')
             chrome_options.add_argument('--disable-dev-shm-usage')
+            chrome_options.add_argument('--single-process')
+
+            # GPU and rendering
             chrome_options.add_argument('--disable-gpu')
             chrome_options.add_argument('--disable-software-rasterizer')
+
+            # Optimization flags
             chrome_options.add_argument('--disable-extensions')
             chrome_options.add_argument('--disable-background-networking')
             chrome_options.add_argument('--disable-sync')
             chrome_options.add_argument('--disable-translate')
             chrome_options.add_argument('--disable-default-apps')
+
+            # Debugging
             chrome_options.add_argument('--remote-debugging-port=9222')
             chrome_options.add_argument(f'--user-data-dir={CHROME_USER_DATA_DIR}')
             chrome_options.add_argument('--enable-logging')
             chrome_options.add_argument('--v=1')
+
             chrome_options.add_experimental_option('w3c', True)
             chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
@@ -580,7 +590,53 @@ def test_chrome():
         results['display'] = display
         logger.info(f"DISPLAY={display}")
 
-        # Test 4: Try to create minimal Chrome instance
+        # Test 4: Try running Chrome binary directly
+        try:
+            logger.info("Testing Chrome binary directly...")
+            chrome_direct = subprocess.run(
+                ['google-chrome', '--no-sandbox', '--headless', '--disable-gpu', '--dump-dom', 'about:blank'],
+                capture_output=True,
+                text=True,
+                timeout=10
+            )
+            if chrome_direct.returncode == 0:
+                logger.info("✓ Chrome binary runs successfully!")
+                results['chrome_direct_test'] = 'SUCCESS'
+            else:
+                logger.error(f"✗ Chrome binary failed with exit code {chrome_direct.returncode}")
+                logger.error(f"Chrome stdout: {chrome_direct.stdout[:500]}")
+                logger.error(f"Chrome stderr: {chrome_direct.stderr[:500]}")
+                results['chrome_direct_test'] = 'FAILED'
+                results['chrome_direct_stdout'] = chrome_direct.stdout[:500]
+                results['chrome_direct_stderr'] = chrome_direct.stderr[:500]
+        except subprocess.TimeoutExpired:
+            logger.error("✗ Chrome binary timed out")
+            results['chrome_direct_test'] = 'TIMEOUT'
+        except Exception as e:
+            logger.error(f"✗ Chrome binary test error: {e}")
+            results['chrome_direct_test'] = 'ERROR'
+            results['chrome_direct_error'] = str(e)
+
+        # Test 5: Check ldd on Chrome binary
+        try:
+            logger.info("Checking Chrome library dependencies...")
+            ldd_result = subprocess.run(
+                ['ldd', '/opt/google/chrome/chrome'],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            missing_libs = [line for line in ldd_result.stdout.split('\n') if 'not found' in line]
+            if missing_libs:
+                logger.error(f"✗ Missing libraries: {missing_libs}")
+                results['missing_libraries'] = missing_libs
+            else:
+                logger.info("✓ All Chrome libraries found")
+                results['missing_libraries'] = []
+        except Exception as e:
+            logger.error(f"ldd check failed: {e}")
+
+        # Test 6: Try to create minimal Chrome instance with Selenium
         try:
             logger.info("Attempting to create minimal Chrome instance...")
             from selenium.webdriver.chrome.options import Options
@@ -591,6 +647,8 @@ def test_chrome():
             options.add_argument('--disable-dev-shm-usage')
             options.add_argument('--disable-gpu')
             options.add_argument('--headless')
+            options.add_argument('--single-process')
+            options.add_argument('--disable-setuid-sandbox')
 
             service = Service('/usr/local/bin/chromedriver')
             test_driver = webdriver.Chrome(service=service, options=options)
