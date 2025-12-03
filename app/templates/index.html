@@ -403,6 +403,9 @@
                         Close Browser
                     </button>
                 </div>
+                <p style="color: #666; margin-bottom: 10px; font-size: 0.9rem;">
+                    💡 <strong>Tip:</strong> If you see "Connect" button, it will auto-connect. Any HTTP warnings can be ignored - they're normal for local networks.
+                </p>
                 <iframe id="vnc-frame" class="vnc-frame" src=""></iframe>
             </div>
 
@@ -514,13 +517,21 @@
 
                 if (data.success) {
                     currentBrowserId = data.browser_id;
-                    showStatus(statusBox, '✓ Browser started! Monitoring for video streams...', 'success');
+                    showStatus(statusBox, '✓ Browser started! Loading in viewer below...', 'success');
 
-                    // Show VNC viewer
+                    // Show VNC viewer with auto-connect
                     const vncContainer = document.getElementById('vnc-container');
                     const vncFrame = document.getElementById('vnc-frame');
-                    vncFrame.src = 'http://' + window.location.hostname + ':6080/vnc.html';
+
+                    // Auto-connect to VNC and hide toolbar
+                    const vncUrl = 'http://' + window.location.hostname + ':6080/vnc.html?autoconnect=true&resize=scale';
+                    vncFrame.src = vncUrl;
                     vncContainer.classList.add('active');
+
+                    // Scroll to VNC viewer
+                    setTimeout(() => {
+                        vncContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 500);
 
                     // Start status polling
                     startStatusPolling();

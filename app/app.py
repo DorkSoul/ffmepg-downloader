@@ -258,6 +258,10 @@ class StreamDetector:
         """Start downloading the detected stream"""
         self.download_started = True
 
+        # Wait a moment for video to start playing
+        logger.info("Waiting 3 seconds for video to load...")
+        time.sleep(3)
+
         # Capture thumbnail
         self._capture_thumbnail()
 
