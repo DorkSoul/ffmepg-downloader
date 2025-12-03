@@ -707,6 +707,65 @@ def select_resolution():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/api/clear-cookies', methods=['POST'])
+def clear_cookies():
+    """Clear Chrome cookies and profile data"""
+    try:
+        logger.info("Clear cookies requested")
+
+        # Close all active browser sessions first
+        browsers_to_close = list(active_browsers.keys())
+        for browser_id in browsers_to_close:
+            try:
+                detector = active_browsers[browser_id]
+                detector.close()
+                logger.info(f"Closed browser {browser_id}")
+            except Exception as e:
+                logger.error(f"Error closing browser {browser_id}: {e}")
+
+        # Wait a moment for browsers to fully close
+        time.sleep(2)
+
+        # Delete Chrome user data directory contents
+        if os.path.exists(CHROME_USER_DATA_DIR):
+            try:
+                logger.info(f"Clearing Chrome data directory: {CHROME_USER_DATA_DIR}")
+                import shutil
+
+                # Remove the directory and all its contents
+                shutil.rmtree(CHROME_USER_DATA_DIR)
+                logger.info("Chrome data directory removed")
+
+                # Recreate the directory
+                os.makedirs(CHROME_USER_DATA_DIR, exist_ok=True)
+                logger.info("Chrome data directory recreated")
+
+                return jsonify({
+                    'success': True,
+                    'message': 'Cookies and browser data cleared successfully'
+                })
+            except Exception as e:
+                logger.error(f"Error clearing Chrome data: {e}")
+                return jsonify({
+                    'success': False,
+                    'error': f'Failed to clear Chrome data: {str(e)}'
+                }), 500
+        else:
+            logger.warning(f"Chrome data directory does not exist: {CHROME_USER_DATA_DIR}")
+            # Create it anyway
+            os.makedirs(CHROME_USER_DATA_DIR, exist_ok=True)
+            return jsonify({
+                'success': True,
+                'message': 'Chrome data directory created (was not present)'
+            })
+
+    except Exception as e:
+        logger.error(f"Clear cookies error: {e}")
+        import traceback
+        logger.error(traceback.format_exc())
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/api/downloads/list', methods=['GET'])
 def list_downloads():
     """List all downloads"""

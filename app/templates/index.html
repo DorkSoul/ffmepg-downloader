@@ -406,6 +406,10 @@
                     Open Browser & Detect
                 </button>
 
+                <button class="btn btn-secondary" id="clear-cookies-btn" onclick="clearCookies()">
+                    🗑️ Clear Cookies
+                </button>
+
                 <div class="status-box" id="browser-status"></div>
             </div>
 
@@ -762,6 +766,49 @@
                 loadDownloads();
             } catch (error) {
                 console.error('Close browser error:', error);
+            }
+        }
+
+        // Clear cookies and Chrome profile data
+        async function clearCookies() {
+            const statusBox = document.getElementById('browser-status');
+            const btn = document.getElementById('clear-cookies-btn');
+
+            // Confirmation dialog
+            if (!confirm('This will close all browser sessions and clear all cookies and login data. Continue?')) {
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Clearing...';
+            showStatus(statusBox, 'Closing browsers and clearing cookies...', 'error');
+
+            try {
+                const response = await fetch('/api/clear-cookies', {
+                    method: 'POST'
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showStatus(statusBox, '✓ ' + data.message, 'success');
+
+                    // Close VNC viewer if open
+                    const vncContainer = document.getElementById('vnc-container');
+                    vncContainer.classList.remove('active');
+                    currentBrowserId = null;
+
+                    if (statusCheckInterval) {
+                        clearInterval(statusCheckInterval);
+                    }
+                } else {
+                    showStatus(statusBox, `Error: ${data.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(statusBox, `Error: ${error.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '🗑️ Clear Cookies';
             }
         }
 
