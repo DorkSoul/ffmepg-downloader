@@ -14,7 +14,7 @@ services:
       - DISPLAY=:99
     volumes:
       - /volume2/Dockerssd/video-downloader/chrome-data:/home/appuser/.config/google-chrome:rw
-      - /volume1/downloads:/downloads:rw
+      - /volume1/media/downloads:/downloads:rw
       - /dev/shm:/dev/shm
     ports:
       - 5000:5000
