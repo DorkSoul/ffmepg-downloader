@@ -3,19 +3,21 @@ version: '3.8'
 services:
   video-downloader:
     build: .
-    container_name: video-downloader
+    container_name: nas-video-downloader
     restart: unless-stopped
-    environment:
-      - TZ=Europe/Dublin
-      - DOWNLOAD_PATH=/downloads
-      - CHROME_TIMEOUT=15
-      - DEFAULT_QUALITY=1080
-      - DISPLAY=:99
-    volumes:
-      - /volume2/Dockerssd/video-downloader/chrome-data:/home/appuser/.config/google-chrome:rw
-      - /volume1/media/downloads:/downloads:rw
-      - /dev/shm:/dev/shm
     ports:
-      - 5000:5000
-      - 6080:6080
-    shm_size: 2gb
+      - "5000:5000"   # Flask web interface
+      - "6080:6080"   # noVNC
+    volumes:
+      - /volume1/media/downloads:/app/downloads          # HDD for downloaded videos
+      - /volume2/Dockerssd/video-downloader/chrome-data:/app/chrome-data  # SSD for Chrome data
+      - /volume2/Dockerssd/video-downloader/logs:/app/logs  # SSD for logs
+    environment:
+      - DISPLAY=:99
+      - CHROME_USER_DATA_DIR=/app/chrome-data
+      - DOWNLOAD_DIR=/app/downloads
+      - AUTO_CLOSE_DELAY=15
+      - FLASK_ENV=production
+    shm_size: 2gb  # Increase shared memory for Chrome
+    security_opt:
+      - seccomp:unconfined  # Required for Chrome sandbox

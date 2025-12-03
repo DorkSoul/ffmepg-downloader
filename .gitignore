@@ -4,9 +4,6 @@ __pycache__/
 *$py.class
 *.so
 .Python
-env/
-venv/
-ENV/
 build/
 develop-eggs/
 dist/
@@ -23,18 +20,10 @@ wheels/
 .installed.cfg
 *.egg
 
-# Docker
-.dockerignore
-
-# Downloads
-downloads/
-*.mp4
-*.mkv
-*.avi
-*.m3u8
-
-# Chrome data
-chrome-data/
+# Virtual Environment
+venv/
+ENV/
+env/
 
 # IDE
 .vscode/
@@ -47,8 +36,17 @@ chrome-data/
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
+# Application specific
+app/downloads/
+chrome-data/
+logs/
+*.mp4
+*.m3u8
+*.ts
 
-# Temporary files
-app/static/thumb_*.jpg
+# Environment variables
+.env
+.env.local
+
+# Docker
+docker-compose.override.yml

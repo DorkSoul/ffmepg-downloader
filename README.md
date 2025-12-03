@@ -1,106 +1,138 @@
 # NAS Video Downloader
 
-A Docker-based video downloader for UGREEN NAS that uses FFmpeg to download streams and videos from websites. Features an interactive browser for cookie-based authentication and automatic stream detection.
+A self-hosted video downloader designed for UGREEN NAS that downloads videos and streams using FFmpeg with browser-based authentication support.
 
 ## Features
 
-- **Direct Download**: Download videos directly from .m3u8, .mpd, or direct video URLs
-- **Smart Browser Mode**: Opens a Chrome window for sites requiring login/authentication
-- **Cookie Persistence**: Saves cookies so subsequent downloads work automatically
-- **Visual Confirmation**: Shows video thumbnail before closing browser
-- **Network Accessible**: Access from any device on your local network
-- **Portainer Compatible**: Easy deployment via Docker Compose
+- **Dual Download Modes**
+  - Direct Download: Download from known stream URLs (.m3u8, .mpd, .mp4)
+  - Browser Mode: Automated stream detection with Chrome browser
+
+- **Cookie Persistence** - Log in once, stay logged in forever
+- **Visual Confirmation** - See thumbnail before download completes
+- **Stream Detection** - Automatically detects HLS, DASH, and MP4 streams
+- **Network Accessible** - Access from any device on your network
+- **Modern Web Interface** - Clean, responsive design
 
 ## Quick Start
 
 ### Deploy with Portainer
 
-1. In Portainer, go to **Stacks** → **Add Stack**
-2. Name it `video-downloader`
-3. Upload the `docker-compose.yml` file or paste its contents
-4. Click **Deploy the stack**
-5. Access the interface at `http://your-nas-ip:5000`
+1. In Portainer, go to **Stacks** > **Add Stack**
+2. Choose **Repository** deployment method
+3. Enter your GitHub repository URL
+4. Set the compose path: `docker-compose.yml`
+5. Click **Deploy the stack**
 
 ### Manual Docker Compose
 
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+cd ffmepg-downloader
+
+# Start the container
 docker-compose up -d
+
+# Check logs
+docker-compose logs -f
 ```
+
+## Access
+
+- **Web Interface**: http://your-nas-ip:5000
+- **noVNC Browser**: http://your-nas-ip:6080 (embedded in interface)
 
 ## Usage
 
 ### Direct Download Mode
 
-1. Select "Direct Download"
-2. Paste a direct video URL (e.g., .m3u8 stream URL)
-3. Choose quality preference
-4. Click "Download"
+1. Open the web interface
+2. Paste a direct stream URL (e.g., `https://example.com/stream.m3u8`)
+3. Optionally enter a custom filename
+4. Click "Download Now"
 
-### Browser Mode (for sites requiring login)
+### Browser Mode (Find Link)
 
-1. Select "Find Link"
-2. Paste the webpage URL
-3. A Chrome window opens via noVNC in your browser
-4. Log in if needed - cookies are saved automatically
+**First time on a new site:**
+
+1. Select "Find Link" mode
+2. Paste the webpage URL (e.g., `https://videosite.com/watch/12345`)
+3. Click "Open Browser & Detect"
+4. Chrome window appears - log in to the site
 5. Navigate to the video and play it
-6. The app detects the stream and starts downloading
-7. A popup shows a thumbnail for confirmation
-8. Chrome closes after 15 seconds (or click to close earlier)
+6. Download starts automatically when stream is detected
+7. Popup shows thumbnail and confirms download
+8. Browser closes after 15 seconds
+
+**Next time on the same site:**
+
+1. Paste a new video URL from the same site
+2. Click "Open Browser & Detect"
+3. You're already logged in (cookies saved!)
+4. Video plays automatically
+5. Download starts immediately
+
+## Volume Mapping
+
+The docker-compose.yml maps:
+
+- `/volume1/media/downloads` - Downloaded videos (HDD)
+- `/volume2/Dockerssd/video-downloader/chrome-data` - Chrome cookies & session (SSD)
+- `/volume2/Dockerssd/video-downloader/logs` - Application logs (SSD)
 
 ## Configuration
 
-### Environment Variables
+Environment variables in `docker-compose.yml`:
 
-Edit these in `docker-compose.yml`:
-
-- `DOWNLOAD_PATH`: Where videos are saved (default: `/downloads`)
-- `CHROME_TIMEOUT`: Seconds before auto-closing Chrome (default: `15`)
-- `DEFAULT_QUALITY`: Preferred video quality (default: `1080`)
-
-### Volumes
-
-- `./downloads`: Downloaded videos
-- `./chrome-data`: Chrome profile (cookies, cache)
-- `./app`: Application code
-
-## Default Settings
-
-- **Web Interface**: http://your-nas-ip:5000
-- **VNC Interface**: http://your-nas-ip:6080
-- **Download Location**: `./downloads`
-
-## Requirements
-
-- Docker and Docker Compose
-- At least 2GB RAM available
-- Network access to your NAS
+- `AUTO_CLOSE_DELAY` - Seconds before auto-closing browser (default: 15)
+- `DOWNLOAD_DIR` - Where to save videos
+- `CHROME_USER_DATA_DIR` - Chrome profile location
 
 ## Troubleshooting
 
-### Chrome window doesn't open
-- Check if port 6080 is available
-- Verify Chrome container is running: `docker ps`
+### Browser doesn't open
+- Check that port 6080 is not blocked
+- Verify Chrome installed: `docker exec -it nas-video-downloader google-chrome --version`
 
-### Downloads fail
-- Check FFmpeg logs in the web interface
-- Verify the stream URL is accessible
-- Some DRM-protected content cannot be downloaded
+### Stream not detected
+- Ensure video is actually playing in the browser
+- Some sites use protected streams that can't be detected
+- Check logs: `docker-compose logs -f`
 
-### Cookies not persisting
-- Ensure `./chrome-data` volume has write permissions
-- Check Docker volume mounts in Portainer
+### Downloads not appearing
+- Verify volume mount exists: `/volume1/media/downloads`
+- Check container logs for FFmpeg errors
+- Ensure sufficient disk space
+
+### Cookie persistence not working
+- Check `/volume2/Dockerssd/video-downloader/chrome-data` exists and is writable
+- Don't use incognito/private mode in the browser view
 
 ## Architecture
 
-- **Backend**: Python Flask
-- **Browser**: Chrome with Remote Debugging + noVNC
-- **Downloader**: FFmpeg
-- **Container**: Docker with Ubuntu base
+- **Flask** - Web server and API
+- **Selenium** - Chrome automation
+- **Chrome DevTools Protocol** - Network traffic monitoring
+- **FFmpeg** - Video downloading
+- **noVNC** - Browser embedding
+- **Xvfb** - Virtual display
+- **Supervisor** - Process management
+
+## Security Notes
+
+- This tool is designed for **personal use on a local network**
+- Do not expose ports to the internet without proper authentication
+- Respect copyright laws and terms of service
+- Only download content you have rights to
+
+## Support
+
+For issues, please create a GitHub issue with:
+- Error messages from logs
+- Steps to reproduce
+- Browser/OS information
 
 ## License
 
-MIT License - feel free to modify and use as needed!
-
-## Contributing
-
-This is a personal project, but suggestions and improvements are welcome via GitHub issues.
+MIT License - See LICENSE file for details

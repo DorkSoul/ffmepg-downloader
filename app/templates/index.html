@@ -10,188 +10,212 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
         }
-        
+
         .container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 800px;
-            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2em;
-        }
-        
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-        }
-        
-        .mode-selector {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .mode-btn {
-            flex: 1;
-            padding: 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s;
+
+        header {
             text-align: center;
+            color: white;
+            margin-bottom: 30px;
         }
-        
-        .mode-btn:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-        
-        .mode-btn.active {
-            border-color: #667eea;
-            background: #f0f4ff;
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
-        
-        .mode-btn h3 {
-            color: #333;
-            margin-bottom: 5px;
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
         }
-        
-        .mode-btn p {
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
             color: #666;
-            font-size: 0.9em;
-        }
-        
-        .input-group {
             margin-bottom: 20px;
+            line-height: 1.5;
         }
-        
-        label {
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
             display: block;
-            color: #333;
             margin-bottom: 8px;
+            color: #333;
             font-weight: 500;
         }
-        
-        input[type="text"],
-        input[type="url"],
-        select {
+
+        .input-group input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 12px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
-            font-size: 1em;
+            font-size: 1rem;
             transition: border-color 0.3s;
         }
-        
-        input:focus,
-        select:focus {
+
+        .input-group input:focus {
             outline: none;
             border-color: #667eea;
         }
-        
+
         .btn {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1.1em;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            color: white;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        
+
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
-        
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
         .btn:disabled {
-            background: #ccc;
+            opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
-        
-        .status {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
+
+        .btn-secondary {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .status-section {
+            grid-column: 1 / -1;
+        }
+
+        .status-box {
             display: none;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
         }
-        
-        .status.info {
-            background: #e3f2fd;
-            color: #1976d2;
+
+        .status-box.active {
             display: block;
         }
-        
-        .status.success {
-            background: #e8f5e9;
-            color: #388e3c;
-            display: block;
+
+        .status-box.success {
+            border-color: #28a745;
+            background: #d4edda;
         }
-        
-        .status.error {
-            background: #ffebee;
-            color: #d32f2f;
-            display: block;
+
+        .status-box.error {
+            border-color: #dc3545;
+            background: #f8d7da;
         }
-        
+
+        .status-box h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
         .vnc-container {
-            margin-top: 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
+            grid-column: 1 / -1;
             display: none;
         }
-        
+
         .vnc-container.active {
             display: block;
         }
-        
-        iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
+
+        .vnc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
-        
+
+        .vnc-header h2 {
+            margin: 0;
+        }
+
+        .vnc-frame {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            background: #000;
+        }
+
         .download-popup {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scale(0.9);
             background: white;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             max-width: 500px;
             width: 90%;
-            display: none;
             z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
         }
-        
+
         .download-popup.active {
-            display: block;
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
         }
-        
+
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -199,384 +223,454 @@
             right: 0;
             bottom: 0;
             background: rgba(0,0,0,0.5);
-            display: none;
             z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
         }
-        
+
         .popup-overlay.active {
-            display: block;
+            opacity: 1;
+            pointer-events: all;
         }
-        
-        .popup-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+
+        .download-popup h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
-        
-        .checkmark {
-            width: 40px;
-            height: 40px;
-            background: #4caf50;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            margin-right: 15px;
-        }
-        
-        .popup-header h2 {
-            color: #333;
-        }
-        
-        .thumbnail-container {
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .thumbnail-container img {
-            max-width: 100%;
+
+        .download-popup .thumbnail {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
             border-radius: 8px;
+            margin-bottom: 15px;
             border: 2px solid #e0e0e0;
         }
-        
-        .download-info {
-            background: #f5f5f5;
+
+        .download-popup .info {
+            background: #f8f9fa;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        
-        .download-info p {
-            margin: 5px 0;
-            color: #666;
+
+        .download-popup .info p {
+            margin-bottom: 8px;
+            color: #333;
         }
-        
+
         .countdown {
             text-align: center;
             color: #666;
             margin-bottom: 15px;
-            font-size: 0.9em;
+            font-size: 1.1rem;
         }
-        
+
         .popup-buttons {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
-        
-        .popup-btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
+
+        .downloads-list {
+            grid-column: 1 / -1;
+        }
+
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .download-item {
+            background: #f8f9fa;
+            padding: 15px;
             border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+            border: 2px solid #e0e0e0;
         }
-        
-        .popup-btn.primary {
-            background: #667eea;
-            color: white;
-        }
-        
-        .popup-btn.secondary {
-            background: #e0e0e0;
+
+        .download-item h4 {
             color: #333;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            word-break: break-all;
         }
-        
-        .popup-btn:hover {
-            transform: translateY(-2px);
+
+        .download-item p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
         }
-        
-        .hidden {
-            display: none;
+
+        .icon {
+            font-size: 1.3rem;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎬 Video Downloader</h1>
-        <p class="subtitle">Download videos from the web using direct links or browser detection</p>
-        
-        <div class="mode-selector">
-            <div class="mode-btn active" onclick="selectMode('direct')" id="direct-mode">
-                <h3>Direct Download</h3>
-                <p>Paste a direct video URL (.m3u8, .mp4, etc.)</p>
+        <header>
+            <h1>🎬 NAS Video Downloader</h1>
+            <p>Download videos with browser-based authentication and stream detection</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Direct Download Mode -->
+            <div class="card">
+                <h2><span class="icon">⚡</span> Direct Download</h2>
+                <p>Download directly from a known stream URL (.m3u8, .mpd, .mp4)</p>
+
+                <div class="input-group">
+                    <label for="direct-url">Stream URL</label>
+                    <input type="text" id="direct-url" placeholder="https://example.com/stream.m3u8">
+                </div>
+
+                <div class="input-group">
+                    <label for="direct-filename">Filename (optional)</label>
+                    <input type="text" id="direct-filename" placeholder="my_video.mp4">
+                </div>
+
+                <button class="btn" id="direct-download-btn" onclick="startDirectDownload()">
+                    Download Now
+                </button>
+
+                <div class="status-box" id="direct-status"></div>
             </div>
-            <div class="mode-btn" onclick="selectMode('browser')" id="browser-mode">
-                <h3>Find Link</h3>
-                <p>Open browser to detect streams (saves cookies)</p>
+
+            <!-- Browser Mode -->
+            <div class="card">
+                <h2><span class="icon">🔍</span> Find Link (Browser Mode)</h2>
+                <p>Open a webpage in Chrome, detect and download the video stream</p>
+
+                <div class="input-group">
+                    <label for="browser-url">Webpage URL</label>
+                    <input type="text" id="browser-url" placeholder="https://example.com/watch/video123">
+                </div>
+
+                <button class="btn" id="browser-start-btn" onclick="startBrowser()">
+                    Open Browser & Detect
+                </button>
+
+                <div class="status-box" id="browser-status"></div>
             </div>
-        </div>
-        
-        <div id="direct-form">
-            <div class="input-group">
-                <label for="direct-url">Video URL</label>
-                <input type="url" id="direct-url" placeholder="https://example.com/video.m3u8">
+
+            <!-- VNC Container -->
+            <div class="card vnc-container" id="vnc-container">
+                <div class="vnc-header">
+                    <h2><span class="icon">🖥️</span> Browser View</h2>
+                    <button class="btn btn-secondary" style="width: auto; padding: 10px 20px;" onclick="closeBrowser()">
+                        Close Browser
+                    </button>
+                </div>
+                <iframe id="vnc-frame" class="vnc-frame" src=""></iframe>
             </div>
-            
-            <div class="input-group">
-                <label for="quality">Preferred Quality</label>
-                <select id="quality">
-                    <option value="1080">1080p</option>
-                    <option value="720">720p</option>
-                    <option value="480">480p</option>
-                    <option value="best">Best Available</option>
-                </select>
+
+            <!-- Downloads List -->
+            <div class="card downloads-list">
+                <h2><span class="icon">📥</span> Recent Downloads</h2>
+                <div class="downloads-grid" id="downloads-grid">
+                    <p style="color: #666;">Loading downloads...</p>
+                </div>
             </div>
-            
-            <button class="btn" onclick="startDirectDownload()">Download Video</button>
-        </div>
-        
-        <div id="browser-form" class="hidden">
-            <div class="input-group">
-                <label for="page-url">Webpage URL</label>
-                <input type="url" id="page-url" placeholder="https://example.com/watch?v=...">
-            </div>
-            
-            <button class="btn" onclick="startBrowserDownload()">Open Browser & Detect</button>
-        </div>
-        
-        <div id="status" class="status"></div>
-        
-        <div id="vnc-container" class="vnc-container">
-            <iframe id="vnc-frame" src=""></iframe>
         </div>
     </div>
-    
-    <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
-    
+
+    <!-- Download Success Popup -->
+    <div class="popup-overlay" id="popup-overlay"></div>
     <div class="download-popup" id="download-popup">
-        <div class="popup-header">
-            <div class="checkmark">✓</div>
-            <h2>Download Started</h2>
+        <h3>✓ Download Started!</h3>
+        <img class="thumbnail" id="popup-thumbnail" src="" alt="Video thumbnail">
+        <div class="info">
+            <p><strong>Stream Type:</strong> <span id="popup-stream-type"></span></p>
+            <p><strong>Saving to:</strong> <span id="popup-filename"></span></p>
         </div>
-        
-        <div class="thumbnail-container" id="thumbnail-container">
-            <img id="thumbnail-img" src="" alt="Video thumbnail">
+        <div class="countdown" id="popup-countdown">
+            Window closing in <strong>15</strong> seconds...
         </div>
-        
-        <div class="download-info">
-            <p><strong>Quality:</strong> <span id="video-quality">1080p</span></p>
-            <p><strong>File:</strong> <span id="video-filename">video.mp4</span></p>
-        </div>
-        
-        <div class="countdown" id="countdown">
-            Window closing in <span id="countdown-timer">15</span> seconds...
-        </div>
-        
         <div class="popup-buttons">
-            <button class="popup-btn secondary" onclick="closeNow()">Close Now</button>
-            <button class="popup-btn primary" onclick="keepOpen()">Keep Open</button>
+            <button class="btn" onclick="closePopup()">Close Now</button>
+            <button class="btn btn-secondary" onclick="keepOpen()">Keep Open</button>
         </div>
     </div>
-    
+
     <script>
-        let currentMode = 'direct';
-        let currentSessionId = null;
+        let currentBrowserId = null;
         let statusCheckInterval = null;
         let countdownInterval = null;
         let countdownValue = 15;
-        
-        function selectMode(mode) {
-            currentMode = mode;
-            
-            // Update button states
-            document.getElementById('direct-mode').classList.remove('active');
-            document.getElementById('browser-mode').classList.remove('active');
-            
-            if (mode === 'direct') {
-                document.getElementById('direct-mode').classList.add('active');
-                document.getElementById('direct-form').classList.remove('hidden');
-                document.getElementById('browser-form').classList.add('hidden');
-            } else {
-                document.getElementById('browser-mode').classList.add('active');
-                document.getElementById('direct-form').classList.add('hidden');
-                document.getElementById('browser-form').classList.remove('hidden');
-            }
-            
-            // Hide VNC if switching modes
-            document.getElementById('vnc-container').classList.remove('active');
-        }
-        
-        function showStatus(message, type) {
-            const statusEl = document.getElementById('status');
-            statusEl.textContent = message;
-            statusEl.className = 'status ' + type;
-        }
-        
+
+        // Start direct download
         async function startDirectDownload() {
             const url = document.getElementById('direct-url').value.trim();
-            const quality = document.getElementById('quality').value;
-            
+            const filename = document.getElementById('direct-filename').value.trim();
+            const statusBox = document.getElementById('direct-status');
+            const btn = document.getElementById('direct-download-btn');
+
             if (!url) {
-                showStatus('Please enter a video URL', 'error');
+                showStatus(statusBox, 'Please enter a stream URL', 'error');
                 return;
             }
-            
-            showStatus('Starting download...', 'info');
-            
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Starting download...';
+
             try {
-                const response = await fetch('/api/direct-download', {
+                const response = await fetch('/api/download/direct', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({url, quality})
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url, filename })
                 });
-                
+
                 const data = await response.json();
-                
-                if (data.error) {
-                    showStatus('Error: ' + data.error, 'error');
+
+                if (data.success) {
+                    showStatus(statusBox, `✓ Download started! Saving to: ${data.output_path}`, 'success');
+                    setTimeout(() => loadDownloads(), 2000);
                 } else {
-                    currentSessionId = data.session_id;
-                    startStatusCheck();
+                    showStatus(statusBox, `Error: ${data.error}`, 'error');
                 }
             } catch (error) {
-                showStatus('Error: ' + error.message, 'error');
+                showStatus(statusBox, `Error: ${error.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Download Now';
             }
         }
-        
-        async function startBrowserDownload() {
-            const url = document.getElementById('page-url').value.trim();
-            
+
+        // Start browser mode
+        async function startBrowser() {
+            const url = document.getElementById('browser-url').value.trim();
+            const statusBox = document.getElementById('browser-status');
+            const btn = document.getElementById('browser-start-btn');
+
             if (!url) {
-                showStatus('Please enter a webpage URL', 'error');
+                showStatus(statusBox, 'Please enter a webpage URL', 'error');
                 return;
             }
-            
-            showStatus('Opening browser...', 'info');
-            
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Starting browser...';
+
             try {
-                const response = await fetch('/api/browser-download', {
+                const response = await fetch('/api/browser/start', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({url})
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url })
                 });
-                
+
                 const data = await response.json();
-                
-                if (data.error) {
-                    showStatus('Error: ' + data.error, 'error');
+
+                if (data.success) {
+                    currentBrowserId = data.browser_id;
+                    showStatus(statusBox, '✓ Browser started! Monitoring for video streams...', 'success');
+
+                    // Show VNC viewer
+                    const vncContainer = document.getElementById('vnc-container');
+                    const vncFrame = document.getElementById('vnc-frame');
+                    vncFrame.src = 'http://' + window.location.hostname + ':6080/vnc.html';
+                    vncContainer.classList.add('active');
+
+                    // Start status polling
+                    startStatusPolling();
                 } else {
-                    currentSessionId = data.session_id;
-                    
-                    // Show VNC
-                    const vncUrl = `/vnc.html?autoconnect=true`;
-                    document.getElementById('vnc-frame').src = 'http://' + window.location.hostname + ':6080' + vncUrl;
-                    document.getElementById('vnc-container').classList.add('active');
-                    
-                    showStatus('Browser opened. Log in if needed and play the video.', 'info');
-                    startStatusCheck();
+                    showStatus(statusBox, `Error: ${data.error}`, 'error');
                 }
             } catch (error) {
-                showStatus('Error: ' + error.message, 'error');
+                showStatus(statusBox, `Error: ${error.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Open Browser & Detect';
             }
         }
-        
-        function startStatusCheck() {
+
+        // Poll browser status
+        function startStatusPolling() {
             if (statusCheckInterval) {
                 clearInterval(statusCheckInterval);
             }
-            
+
             statusCheckInterval = setInterval(async () => {
-                if (!currentSessionId) return;
-                
+                if (!currentBrowserId) return;
+
                 try {
-                    const response = await fetch('/api/status/' + currentSessionId);
+                    const response = await fetch(`/api/browser/status/${currentBrowserId}`);
                     const data = await response.json();
-                    
-                    if (data.status === 'downloading') {
-                        showStatus('Downloading: ' + (data.filename || 'video.mp4'), 'info');
-                        
-                        // Check if thumbnail is ready
-                        if (data.thumbnail && !document.getElementById('download-popup').classList.contains('active')) {
-                            showDownloadPopup(data);
-                        }
-                    } else if (data.status === 'completed') {
-                        showStatus('✓ Download completed: ' + data.filename, 'success');
+
+                    if (data.download_started && !document.getElementById('download-popup').classList.contains('active')) {
+                        showDownloadPopup(data);
+                    }
+
+                    if (!data.is_running) {
                         clearInterval(statusCheckInterval);
-                        hideVNC();
-                    } else if (data.status === 'failed') {
-                        showStatus('✗ Download failed: ' + (data.error || 'Unknown error'), 'error');
-                        clearInterval(statusCheckInterval);
+                        loadDownloads();
                     }
                 } catch (error) {
                     console.error('Status check error:', error);
                 }
             }, 2000);
         }
-        
+
+        // Show download popup
         function showDownloadPopup(data) {
-            // Set thumbnail
+            const popup = document.getElementById('download-popup');
+            const overlay = document.getElementById('popup-overlay');
+            const thumbnail = document.getElementById('popup-thumbnail');
+            const streamType = document.getElementById('popup-stream-type');
+            const filename = document.getElementById('popup-filename');
+
+            // Set data
             if (data.thumbnail) {
-                document.getElementById('thumbnail-img').src = '/static/' + data.thumbnail;
-                document.getElementById('thumbnail-container').style.display = 'block';
-            } else {
-                document.getElementById('thumbnail-container').style.display = 'none';
+                thumbnail.src = 'data:image/png;base64,' + data.thumbnail;
             }
-            
-            // Set filename
-            document.getElementById('video-filename').textContent = data.filename || 'video.mp4';
-            
+
+            if (data.latest_stream) {
+                streamType.textContent = data.latest_stream.type;
+            }
+
+            if (data.download) {
+                filename.textContent = data.download.output_path;
+            }
+
             // Show popup
-            document.getElementById('popup-overlay').classList.add('active');
-            document.getElementById('download-popup').classList.add('active');
-            
+            popup.classList.add('active');
+            overlay.classList.add('active');
+
             // Start countdown
             startCountdown();
         }
-        
+
+        // Start countdown
         function startCountdown() {
             countdownValue = 15;
-            document.getElementById('countdown-timer').textContent = countdownValue;
-            
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-            }
-            
+            updateCountdown();
+
             countdownInterval = setInterval(() => {
                 countdownValue--;
-                document.getElementById('countdown-timer').textContent = countdownValue;
-                
+                updateCountdown();
+
                 if (countdownValue <= 0) {
                     clearInterval(countdownInterval);
                     closePopup();
-                    hideVNC();
+                    closeBrowser();
                 }
             }, 1000);
         }
-        
+
+        // Update countdown display
+        function updateCountdown() {
+            const countdown = document.getElementById('popup-countdown');
+            countdown.innerHTML = `Window closing in <strong>${countdownValue}</strong> seconds...`;
+        }
+
+        // Close popup
         function closePopup() {
-            document.getElementById('popup-overlay').classList.remove('active');
-            document.getElementById('download-popup').classList.remove('active');
-            
+            const popup = document.getElementById('download-popup');
+            const overlay = document.getElementById('popup-overlay');
+
+            popup.classList.remove('active');
+            overlay.classList.remove('active');
+
             if (countdownInterval) {
                 clearInterval(countdownInterval);
             }
         }
-        
-        function closeNow() {
-            closePopup();
-            hideVNC();
-            
-            // Send close request to backend
-            if (currentSessionId) {
-                fetch('/api/close-browser/' + currentSessionId, {method: 'POST'});
-            }
-        }
-        
+
+        // Keep browser open
         function keepOpen() {
-            closePopup();
-            
             if (countdownInterval) {
                 clearInterval(countdownInterval);
             }
+            closePopup();
+
+            const statusBox = document.getElementById('browser-status');
+            showStatus(statusBox, 'Browser kept open. Close manually when done.', 'success');
         }
-        
-        function hideVNC() {
-            document.getElementById('vnc-container').classList.remove('active');
+
+        // Close browser
+        async function closeBrowser() {
+            if (!currentBrowserId) return;
+
+            try {
+                await fetch(`/api/browser/close/${currentBrowserId}`, {
+                    method: 'POST'
+                });
+
+                const vncContainer = document.getElementById('vnc-container');
+                vncContainer.classList.remove('active');
+
+                currentBrowserId = null;
+
+                if (statusCheckInterval) {
+                    clearInterval(statusCheckInterval);
+                }
+
+                loadDownloads();
+            } catch (error) {
+                console.error('Close browser error:', error);
+            }
         }
+
+        // Load downloads list
+        async function loadDownloads() {
+            try {
+                const response = await fetch('/api/downloads/list');
+                const data = await response.json();
+
+                const grid = document.getElementById('downloads-grid');
+                grid.innerHTML = '';
+
+                if (data.downloads && data.downloads.length > 0) {
+                    data.downloads.forEach(download => {
+                        const item = document.createElement('div');
+                        item.className = 'download-item';
+
+                        const size = (download.size / (1024 * 1024)).toFixed(2);
+                        const date = new Date(download.created * 1000).toLocaleString();
+
+                        item.innerHTML = `
+                            <h4>${download.filename}</h4>
+                            <p><strong>Size:</strong> ${size} MB</p>
+                            <p><strong>Date:</strong> ${date}</p>
+                        `;
+
+                        grid.appendChild(item);
+                    });
+                } else {
+                    grid.innerHTML = '<p style="color: #666;">No downloads yet</p>';
+                }
+            } catch (error) {
+                console.error('Load downloads error:', error);
+            }
+        }
+
+        // Show status message
+        function showStatus(element, message, type) {
+            element.textContent = message;
+            element.className = 'status-box active ' + type;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDownloads();
+            setInterval(loadDownloads, 10000); // Refresh every 10 seconds
+        });
     </script>
 </body>
 </html>

@@ -1,131 +1,109 @@
 # Quick Start Guide
 
-Get your video downloader running in 5 minutes!
+Get up and running in 5 minutes!
 
-## For Portainer Users (Easiest)
+## 1. Deploy to Your NAS
 
-### 1. Upload to your NAS
-- Download/clone this repository to your NAS
-- Or use Git: `git clone <your-repo-url>`
+### Using Portainer (Easiest)
 
-### 2. Open Portainer
-- Navigate to **Stacks** → **Add Stack**
+1. Push this code to your GitHub repository
+2. In Portainer: **Stacks** → **Add Stack** → **Repository**
+3. Enter your repo URL and compose path: `docker-compose.yml`
+4. Click **Deploy**
 
-### 3. Deploy
-- Name: `video-downloader`
-- Build method: **Upload** → select `docker-compose.yml`
-- Click **Deploy the stack**
-
-### 4. Done!
-- Access at: `http://your-nas-ip:5000`
-- VNC at: `http://your-nas-ip:6080`
-
-## For Command Line Users
+### Using SSH
 
 ```bash
-# 1. Navigate to project directory
-cd /path/to/video-downloader
-
-# 2. Create required directories
-mkdir -p downloads chrome-data
-
-# 3. Deploy
+git clone <your-repo>
+cd nas-video-downloader
 docker-compose up -d
-
-# 4. Check status
-docker-compose logs -f
 ```
 
-## First Use
+## 2. Access the Interface
 
-### Direct Download Mode
-1. Select **Direct Download**
-2. Paste your video URL (e.g., `.m3u8` link)
-3. Choose quality
-4. Click **Download Video**
+Open in your browser: **http://your-nas-ip:5000**
 
-### Browser Mode (For Sites Requiring Login)
-1. Select **Find Link**
-2. Paste the webpage URL
-3. Chrome opens in the browser window
-4. Log in if needed (cookies saved automatically!)
-5. Play the video
-6. App detects stream and starts downloading
-7. See thumbnail confirmation
-8. Chrome closes after 15 seconds
+## 3. Try Your First Download
 
-## What You'll See
+### Option A: Direct Download (Simple Test)
 
-**Direct Download:**
-- Status updates as download progresses
-- Completion notification
-- Files saved to `./downloads/`
+1. Find a test .m3u8 URL (search "sample m3u8 url" online)
+2. Paste it in the **Direct Download** box
+3. Click **Download Now**
+4. Check `/volume1/media/downloads` for your video!
 
-**Browser Mode:**
-- Chrome window embedded in page (via noVNC)
-- Login if needed (first time only)
-- Popup with video thumbnail when download starts
-- "Closing in 15 seconds" countdown
-- Options to close now or keep open
+### Option B: Browser Mode (The Cool Feature)
 
-## Configuration
+1. Go to any video website (YouTube, Vimeo, etc.)
+2. Copy the video page URL
+3. Paste it in **Find Link** mode
+4. Click **Open Browser & Detect**
+5. An embedded Chrome browser appears
+6. Play the video
+7. Magic! Download starts automatically
+8. See the thumbnail confirmation
+9. Browser closes after 15 seconds
 
-Edit `docker-compose.yml` to customize:
+## 4. Log In Once, Stay Logged In
 
-```yaml
-environment:
-  - CHROME_TIMEOUT=15    # Seconds before auto-close
-  - DEFAULT_QUALITY=1080 # Preferred quality
-  - DOWNLOAD_PATH=/downloads
+The next time you visit the same website:
+
+1. Paste any video URL from that site
+2. You're already logged in (cookies saved!)
+3. Download starts immediately
+4. No login required again!
+
+## Common Use Cases
+
+### Download from a Site Requiring Login
+
+```
+1. Paste: https://premium-site.com/watch/video123
+2. Click "Open Browser & Detect"
+3. Log in manually when Chrome opens
+4. Navigate to video and play
+5. Download starts → Done!
+
+Next video from same site:
+1. Paste: https://premium-site.com/watch/video456
+2. Click "Open Browser & Detect"
+3. Already logged in → Auto-downloads!
 ```
 
-## Troubleshooting
+### Download Multiple Videos
 
-**Ports already in use?**
-- Change `5000:5000` to `5001:5000` (use port 5001)
-- Change `6080:6080` to `6081:6080` (use port 6081)
+Just repeat the process - each download runs independently!
 
-**Container won't start?**
-```bash
-docker-compose logs video-downloader
-```
+### Keep Browser Open Longer
 
-**Need to restart?**
-```bash
-docker-compose restart
-```
-
-**Need to stop?**
-```bash
-docker-compose down
-```
-
-## Where Are My Videos?
-
-Downloaded videos are saved to: `./downloads/`
+When the countdown popup appears, click **Keep Open** instead of letting it auto-close.
 
 ## Tips
 
-- **First-time logins**: The browser mode saves cookies, so you only need to log in once per site
-- **Stream detection**: Works best with standard video players (HTML5, JWPlayer, etc.)
-- **Quality**: The app tries to download the closest match to your preference
-- **DRM content**: Cannot download DRM-protected videos (Netflix, Disney+, etc.)
+- **Downloads save to**: `/volume1/media/downloads`
+- **Cookies save to**: `/volume2/Dockerssd/video-downloader/chrome-data`
+- **Auto-close delay**: 15 seconds (configurable in docker-compose.yml)
+- **View logs**: `docker-compose logs -f`
+
+## Troubleshooting
+
+**Browser doesn't appear?**
+- Check http://your-nas-ip:6080 directly
+- Ensure port 6080 is not blocked
+
+**Stream not detected?**
+- Make sure video is playing
+- Some protected streams can't be detected
+- Try direct download mode instead
+
+**Downloads not appearing?**
+- Check volume exists: `/volume1/media/downloads`
+- View logs: `docker-compose logs -f`
 
 ## Next Steps
 
-- Read [INSTALL.md](INSTALL.md) for detailed setup
-- Read [README.md](README.md) for full documentation
-- Check [CHANGELOG.md](CHANGELOG.md) for version history
+- Read [README.md](README.md) for detailed features
+- Check [INSTALL.md](INSTALL.md) for advanced setup
+- Customize `docker-compose.yml` environment variables
 
-## Need Help?
-
-Run the test script first:
-```bash
-./test-setup.sh
-```
-
-This checks your setup and identifies any issues.
-
----
-
-**Enjoy your new video downloader!** 🎬
+Enjoy your video downloader! 🎬

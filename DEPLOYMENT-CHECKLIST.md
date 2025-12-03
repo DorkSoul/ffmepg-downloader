@@ -1,208 +1,255 @@
 # Deployment Checklist
 
-Use this checklist to ensure a smooth deployment of your video downloader.
+Use this checklist when deploying to your NAS for the first time.
 
 ## Pre-Deployment
 
-### System Requirements
+### 1. GitHub Repository Setup
+
+- [ ] Create new GitHub repository
+- [ ] Add repository description: "Self-hosted video downloader for NAS with browser-based authentication"
+- [ ] Set repository to Public (or Private if preferred)
+- [ ] Initialize with README (optional, will be overwritten)
+
+### 2. Local Repository Setup
+
+```bash
+# Initialize git
+cd ffmepg-downloader
+git init
+
+# Add all files
+git add .
+
+# Initial commit
+git commit -m "Initial commit - NAS video downloader"
+
+# Link to GitHub
+git remote add origin https://github.com/YOUR_USERNAME/nas-video-downloader.git
+git branch -M main
+git push -u origin main
+```
+
+- [ ] Repository pushed to GitHub
+- [ ] Verify all files visible on GitHub
+
+### 3. NAS Prerequisites
+
+Check your UGREEN NAS setup:
+
 - [ ] Docker installed and running
-- [ ] Docker Compose installed (if using command line)
-- [ ] At least 2GB RAM available
-- [ ] At least 10GB free disk space
-- [ ] Ports 5000 and 6080 are free
+- [ ] Portainer installed and accessible
+- [ ] SSH access available (optional but recommended)
+- [ ] Sufficient storage space:
+  - [ ] At least 50GB free on /volume1 (HDD)
+  - [ ] At least 5GB free on /volume2 (SSD)
 
-### File Verification
-- [ ] All project files extracted/uploaded to NAS
-- [ ] docker-compose.yml is present
-- [ ] Dockerfile is present
-- [ ] app/ directory with app.py exists
-- [ ] requirements.txt is present
-- [ ] supervisord.conf is present
+### 4. Volume Preparation
 
-### Directory Setup
-- [ ] Created `downloads/` directory
-- [ ] Created `chrome-data/` directory
-- [ ] Set correct permissions (755 or rwxr-xr-x)
+Via SSH or File Manager:
 
-## Deployment Steps
+- [ ] Create `/volume1/media/downloads` directory
+- [ ] Create `/volume2/Dockerssd/video-downloader` directory
+- [ ] Verify write permissions on both directories
+- [ ] Test write access: `touch /volume1/media/downloads/test.txt`
 
-### Option A: Portainer (Recommended)
+### 5. Port Availability
 
-- [ ] Logged into Portainer web interface
-- [ ] Navigated to Stacks → Add Stack
-- [ ] Named stack "video-downloader"
-- [ ] Uploaded docker-compose.yml OR pasted contents
-- [ ] Clicked "Deploy the stack"
-- [ ] Stack shows as "Running" in Portainer
+Check ports are not in use:
 
-### Option B: Command Line
+```bash
+# Check port 5000
+netstat -tuln | grep :5000
 
-- [ ] Opened terminal/SSH to NAS
-- [ ] Changed to project directory
-- [ ] Ran: `docker-compose up -d`
-- [ ] Checked status: `docker-compose ps`
-- [ ] All containers show "Up"
+# Check port 6080
+netstat -tuln | grep :6080
+```
+
+- [ ] Port 5000 available
+- [ ] Port 6080 available
+- [ ] If ports in use, plan to modify docker-compose.yml
+
+## Deployment via Portainer
+
+### 6. Stack Creation
+
+- [ ] Open Portainer web interface
+- [ ] Navigate to **Stacks**
+- [ ] Click **Add Stack**
+- [ ] Enter stack name: `video-downloader`
+
+### 7. Repository Configuration
+
+- [ ] Select **Repository** build method
+- [ ] Enter repository URL: `https://github.com/YOUR_USERNAME/nas-video-downloader`
+- [ ] Repository reference: `refs/heads/main`
+- [ ] Compose path: `docker-compose.yml`
+- [ ] Authentication: None (if public repo)
+
+### 8. Environment Variables (Optional)
+
+Add custom variables if needed:
+
+- [ ] `AUTO_CLOSE_DELAY=15` (or custom value)
+- [ ] Other environment variables as needed
+
+### 9. Deploy
+
+- [ ] Click **Deploy the stack**
+- [ ] Wait for deployment to complete
+- [ ] Check for any error messages
 
 ## Post-Deployment Verification
 
-### Container Health
-- [ ] Container is running: `docker ps | grep video-downloader`
-- [ ] No error logs: `docker-compose logs --tail=50`
-- [ ] All services started (check logs for Xvfb, VNC, noVNC, Flask)
+### 10. Container Health
 
-### Network Access
-- [ ] Web interface accessible: `http://YOUR-NAS-IP:5000`
-- [ ] noVNC accessible: `http://YOUR-NAS-IP:6080`
-- [ ] Both ports respond (not connection refused/timeout)
-
-### Functionality Tests
-
-#### Test 1: Web Interface
-- [ ] Web page loads correctly
-- [ ] Can switch between Direct Download and Find Link modes
-- [ ] Forms are visible and interactive
-
-#### Test 2: Direct Download (Optional)
-- [ ] Paste a test .m3u8 URL
-- [ ] Click "Download Video"
-- [ ] Status shows "Starting download..."
-- [ ] Check if file appears in ./downloads/
-
-#### Test 3: Browser Mode
-- [ ] Paste any webpage URL
-- [ ] Click "Open Browser & Detect"
-- [ ] noVNC window appears showing Chrome
-- [ ] Can see and interact with the webpage
-
-## Configuration (Optional)
-
-### Change Ports
-If ports 5000 or 6080 are in use:
-
-- [ ] Edit docker-compose.yml
-- [ ] Change port mappings:
-  ```yaml
-  ports:
-    - "5001:5000"  # Use 5001 instead of 5000
-    - "6081:6080"  # Use 6081 instead of 6080
+- [ ] Stack shows status: "running" in Portainer
+- [ ] Check container logs for errors:
+  ```bash
+  docker logs nas-video-downloader
   ```
-- [ ] Redeploy: `docker-compose up -d`
+- [ ] No critical errors in logs
 
-### Adjust Settings
-- [ ] Edit CHROME_TIMEOUT if needed (default: 15 seconds)
-- [ ] Edit DEFAULT_QUALITY if needed (default: 1080)
-- [ ] Change DOWNLOAD_PATH if needed (default: /downloads)
+### 11. Service Accessibility
 
-### Volume Paths
-- [ ] Verify downloads location is accessible
-- [ ] Ensure chrome-data persists between restarts
+- [ ] Web interface loads: `http://YOUR_NAS_IP:5000`
+- [ ] noVNC loads: `http://YOUR_NAS_IP:6080/vnc.html`
+- [ ] Both services respond without errors
+
+### 12. Functional Testing
+
+#### Direct Download Test
+
+- [ ] Open web interface
+- [ ] Find a test .m3u8 URL (search online for "sample m3u8 stream")
+- [ ] Paste in Direct Download section
+- [ ] Click "Download Now"
+- [ ] Check download starts without errors
+- [ ] Verify file appears in `/volume1/media/downloads/`
+- [ ] Check file is not corrupted (can be played)
+
+#### Browser Mode Test
+
+- [ ] Open web interface
+- [ ] Paste any video website URL
+- [ ] Click "Open Browser & Detect"
+- [ ] Embedded Chrome browser appears
+- [ ] Can interact with the browser
+- [ ] Try playing a video
+- [ ] Check if stream is detected
+
+### 13. Volume Verification
+
+- [ ] Downloads appear in `/volume1/media/downloads/`
+- [ ] Chrome data created in `/volume2/Dockerssd/video-downloader/chrome-data/`
+- [ ] Logs created in `/volume2/Dockerssd/video-downloader/logs/`
+- [ ] File permissions correct (can read/write)
+
+### 14. Cookie Persistence Test
+
+- [ ] Visit a site requiring login
+- [ ] Log in manually via browser mode
+- [ ] Complete a download
+- [ ] Close browser
+- [ ] Start new browser session to same site
+- [ ] Verify already logged in (cookies persisted)
 
 ## Troubleshooting
 
 ### Container Won't Start
-- [ ] Check logs: `docker-compose logs`
-- [ ] Verify all required files are present
-- [ ] Check port conflicts: `netstat -tulpn | grep -E '5000|6080'`
-- [ ] Verify Docker has sufficient resources
 
-### Can't Access Web Interface
-- [ ] Ping NAS IP from your computer
+- [ ] Check Docker daemon status
+- [ ] Verify volume paths exist
+- [ ] Check port conflicts
+- [ ] Review container logs
+- [ ] Try: `docker-compose down && docker-compose up -d --build`
+
+### Web Interface Not Loading
+
+- [ ] Ping NAS IP from your device
 - [ ] Check firewall rules on NAS
-- [ ] Verify container is running: `docker ps`
-- [ ] Try accessing from NAS itself: `curl http://localhost:5000`
+- [ ] Verify port 5000 not blocked
+- [ ] Check Flask logs: `docker logs nas-video-downloader | grep flask`
 
-### Chrome Won't Open
-- [ ] Check Xvfb is running in logs
-- [ ] Verify x11vnc is running in logs
-- [ ] Check shared memory: `docker exec video-downloader df -h /dev/shm`
-- [ ] Increase shm_size in docker-compose.yml if needed
+### Browser Not Appearing
 
-### Downloads Fail
-- [ ] Check FFmpeg logs in web interface
-- [ ] Verify stream URL is accessible
-- [ ] Test manually: `docker exec video-downloader ffmpeg -i "URL" test.mp4`
+- [ ] Check port 6080 accessible
+- [ ] Verify Xvfb running: `docker exec nas-video-downloader ps aux | grep Xvfb`
+- [ ] Check x11vnc logs: `docker exec nas-video-downloader cat /app/logs/x11vnc.log`
+- [ ] Try accessing noVNC directly: `http://YOUR_NAS_IP:6080/vnc.html`
+
+### Downloads Not Saving
+
+- [ ] Check volume mount: `docker inspect nas-video-downloader | grep Mounts -A 20`
+- [ ] Verify directory exists: `ls -la /volume1/media/downloads`
+- [ ] Check permissions: `docker exec nas-video-downloader ls -la /app/downloads`
 - [ ] Check disk space: `df -h`
 
-### Cookies Not Saving
-- [ ] Verify chrome-data volume is mounted
-- [ ] Check directory permissions: `ls -la chrome-data/`
-- [ ] Ensure container has write access
+### Stream Not Detected
 
-## Maintenance
+- [ ] Ensure video is playing in browser
+- [ ] Check browser console for errors
+- [ ] Some sites use DRM (can't be downloaded)
+- [ ] Try direct download mode instead
+- [ ] Check Flask logs for detection attempts
 
-### Regular Tasks
-- [ ] Monitor disk space in ./downloads/
-- [ ] Periodically clean old downloads
-- [ ] Check container logs for errors
-- [ ] Update Docker images when available
+## Security Hardening (Optional)
 
-### Updating the Application
-- [ ] Stop container: `docker-compose down`
-- [ ] Pull latest code (if using Git)
-- [ ] Rebuild: `docker-compose build`
-- [ ] Start: `docker-compose up -d`
+- [ ] Change default ports in docker-compose.yml
+- [ ] Add authentication to Flask (custom implementation needed)
+- [ ] Set up reverse proxy with SSL (nginx/Caddy)
+- [ ] Restrict access to local network only
+- [ ] Regular backups of chrome-data (for cookies)
 
-### Backup
-- [ ] Backup docker-compose.yml
-- [ ] Backup chrome-data/ (if cookies are important)
-- [ ] Backup any customized configuration
+## Maintenance Tasks
 
-## Security Checklist
+Set up regular maintenance:
 
-- [ ] Not exposed to internet (local network only)
-- [ ] Consider VPN if remote access needed
-- [ ] Review cookies stored in chrome-data/
-- [ ] Keep Docker and host system updated
-- [ ] Monitor access logs periodically
+- [ ] Weekly: Check disk space
+- [ ] Weekly: Review logs for errors
+- [ ] Monthly: Update container: `docker-compose pull && docker-compose up -d`
+- [ ] Monthly: Clean old downloads
+- [ ] Quarterly: Backup chrome-data directory
 
-## Performance Optimization
+## Documentation
 
-- [ ] Monitor RAM usage: `docker stats video-downloader`
-- [ ] Check CPU usage during downloads
-- [ ] Verify disk I/O is acceptable
-- [ ] Consider SSD for better performance
-- [ ] Adjust shm_size if Chrome crashes frequently
+- [ ] Bookmark web interface URL
+- [ ] Save NAS access credentials securely
+- [ ] Document any custom configurations made
+- [ ] Share access instructions with household members
 
-## Final Verification
+## Completion
 
-- [ ] Can access web interface from any device on network
-- [ ] Direct download mode works
-- [ ] Browser mode opens Chrome successfully
-- [ ] Can log into test site and cookies persist
-- [ ] Downloads complete successfully
-- [ ] Thumbnails appear in browser mode
-- [ ] Countdown timer works
-- [ ] Downloaded files are accessible in ./downloads/
+- [ ] All checklist items completed
+- [ ] System running smoothly for 24 hours
+- [ ] At least one successful download completed
+- [ ] No errors in logs
+- [ ] Cookie persistence verified
 
-## Support Resources
+## Rollback Plan
 
-If issues persist:
+If something goes wrong:
 
-1. Review logs: `docker-compose logs -f`
-2. Check TROUBLESHOOTING section in README.md
-3. Run test script: `./test-setup.sh`
-4. Review TECHNICAL.md for architecture details
-5. Check GitHub issues (if repository is public)
+```bash
+# Stop and remove container
+docker-compose down
 
-## Success Criteria
+# Remove volumes (careful!)
+rm -rf /volume2/Dockerssd/video-downloader
 
-✅ Container running without errors
-✅ Web interface accessible
-✅ Can download direct URLs
-✅ Browser mode opens Chrome
-✅ Cookies persist between sessions
-✅ Downloads complete successfully
-
-## Deployment Complete! 🎉
-
-Once all items are checked, your video downloader is ready for production use!
+# Redeploy from scratch
+# Follow checklist from step 6
+```
 
 ---
 
-**Date Deployed:** _______________
-**Deployed By:** _______________
-**NAS IP Address:** _______________
-**Notes:** 
+**Deployment Date**: _______________
+
+**Deployed By**: _______________
+
+**NAS IP**: _______________
+
+**Notes**:
 _______________________________________________
 _______________________________________________
 _______________________________________________

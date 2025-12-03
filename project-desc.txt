@@ -1,0 +1,108 @@
+NAS Video Downloader - Complete Project Description
+What Is This?
+A self-hosted video downloader designed specifically for your UGREEN NAS that downloads videos and streams from websites using FFmpeg. Unlike tools like yt-dlp or MeTube, this uses a browser-based approach with persistent cookie authentication, making it work with sites that require login or have complex authentication.
+
+The Problem It Solves
+You want to download videos from various websites, but:
+
+Some sites require you to log in first
+yt-dlp and MeTube fail on certain sites/links
+You don't want to enter credentials every single time
+You want to see what you're downloading before it completes
+
+This tool solves all of that.
+
+How It Works
+Two Download Modes:
+1. Direct Download Mode (Simple)
+
+You have a direct video URL (like .m3u8 stream link)
+Paste it in
+FFmpeg downloads it immediately
+No browser needed
+
+Use case: When you already know the exact stream URL
+2. Browser Mode (The Smart Feature)
+This is the unique part:
+
+You paste a webpage URL (e.g., https://somesite.com/watch/video123)
+Chrome opens in your browser via noVNC (embedded viewer)
+You can see and control Chrome right from the web interface
+First time: You log in manually, navigate to the video, play it
+Magic happens: The app monitors Chrome's network traffic and detects the actual video stream URL
+Visual confirmation: Shows you a thumbnail of the video to confirm it's the right one
+Auto-download: FFmpeg starts downloading the stream
+15-second countdown: Chrome stays open for 15 seconds (configurable), then closes automatically
+Next time: Just paste the same URL → cookies are saved, so you're already logged in → video loads → auto-downloads → done!
+
+Use case: Sites requiring login, complex authentication, or when you don't know the direct stream URL
+
+Key Features
+🍪 Cookie Persistence (The Game Changer)
+
+Log in once per site
+Cookies saved to /volume2/Dockerssd/video-downloader/chrome-data/
+Every subsequent visit uses your saved session
+Works forever until you clear cookies or the site logs you out
+
+🖼️ Visual Confirmation
+
+Before Chrome closes, shows you a thumbnail of the video
+Confirms you're downloading the correct content
+Prevents wasting bandwidth on wrong videos
+
+⏱️ Smart Auto-Close
+
+Chrome window stays open for 15 seconds after download starts (configurable)
+Gives you time to verify
+Options: "Close Now" or "Keep Open"
+Minimal resource usage (Chrome only runs during detection)
+
+🌐 Network Accessible
+
+Access from any device on your local network
+Web interface at http://nas-ip:5000
+Modern, responsive UI
+Works on desktop, tablet, mobile
+
+🎯 Stream Detection
+Uses Chrome DevTools Protocol to monitor network traffic:
+
+Detects .m3u8 (HLS streams)
+Detects .mpd (DASH streams)
+Detects direct .mp4 URLs
+Filters out ads and irrelevant requests
+Prioritizes adaptive streaming formats
+
+User Experience Flow
+First Time Using a New Site:
+
+Open http://your-nas-ip:5000
+Select "Find Link"
+Paste: https://videosite.com/watch/12345
+Click "Open Browser & Detect"
+Chrome window appears (embedded in the page)
+You see the site's login page
+You log in manually
+Navigate to the video if needed
+Click play on the video
+Popup appears: "Download Started! ✓" with thumbnail
+Shows: "1080p stream - downloading to: video_1234567890.mp4"
+Countdown: "Window closing in 15 seconds..."
+Chrome closes, download continues in background
+Video saved to /volume1/media/downloads/
+
+Next Time (Same Site):
+
+Open http://your-nas-ip:5000
+Select "Find Link"
+Paste: https://videosite.com/watch/67890 (different video)
+Click "Open Browser & Detect"
+Chrome opens, already logged in (cookies!)
+Video loads automatically
+Popup with thumbnail appears
+Downloads automatically
+Done!
+
+No login required again - cookies saved!
+

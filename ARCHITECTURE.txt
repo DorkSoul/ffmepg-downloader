@@ -1,263 +1,272 @@
-================================================================================
-                    VIDEO DOWNLOADER ARCHITECTURE
-================================================================================
+NAS Video Downloader - Architecture Overview
 
-SYSTEM OVERVIEW
-===============
+===========================================
+SYSTEM ARCHITECTURE
+===========================================
 
-┌─────────────────────────────────────────────────────────────────┐
-│                         User's Browser                          │
-│                    (Any device on network)                      │
-└────────────────┬───────────────────────┬────────────────────────┘
-                 │                       │
-                 │ Port 5000             │ Port 6080
-                 │ (Web UI)              │ (noVNC - Chrome viewer)
-                 ▼                       ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      Docker Container                           │
-│  ┌───────────────────────────────────────────────────────────┐ │
-│  │                    Supervisor                             │ │
-│  │              (Process Manager)                            │ │
-│  └─┬────────┬────────┬────────┬────────────────────────────┬─┘ │
-│    │        │        │        │                            │   │
-│    ▼        ▼        ▼        ▼                            ▼   │
-│  ┌────┐  ┌────┐  ┌──────┐  ┌──────┐                    ┌────┐ │
-│  │Xvfb│  │VNC │  │noVNC │  │Flask │                    │    │ │
-│  │:99 │  │    │  │      │  │ App  │                    │    │ │
-│  └────┘  └────┘  └──────┘  └──┬───┘                    │    │ │
-│                                │                        │    │ │
-│                                ├─── Direct Mode ────────┤    │ │
-│                                │    • Get URL           │    │ │
-│                                │    • Call FFmpeg       │    │ │
-│                                │    • Save to /downloads│    │ │
-│                                │                        │    │ │
-│                                ├─── Browser Mode ───────┤    │ │
-│                                │    • Launch Chrome     │ FF │ │
-│                                │    • Monitor Network   │ mp │ │
-│                                │    • Detect Stream     │ eg │ │
-│                                │    • Generate Thumb    │    │ │
-│                                ▼    • Call FFmpeg       │    │ │
-│                           ┌────────┐                    │    │ │
-│                           │ Chrome │                    │    │ │
-│                           │ + CDP  │────────────────────┤    │ │
-│                           │        │  Stream URL        │    │ │
-│                           └────────┘                    └────┘ │
-│                                │                               │
-└────────────────────────────────┼───────────────────────────────┘
-                                 │
-                                 ▼
-                    ┌────────────────────────┐
-                    │   Docker Volumes       │
-                    ├────────────────────────┤
-                    │ ./downloads/           │ ← Downloaded videos
-                    │ ./chrome-data/         │ ← Cookies & profile
-                    └────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                        USER ACCESS                          │
+│  http://nas-ip:5000 (Web UI) | http://nas-ip:6080 (noVNC) │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                     DOCKER CONTAINER                        │
+│                                                             │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │              SUPERVISOR (Process Manager)            │  │
+│  │  ┌──────────┬──────────┬──────────┬────────────┐   │  │
+│  │  │  Xvfb    │ Fluxbox  │ x11vnc   │  noVNC     │   │  │
+│  │  │ :99      │  (WM)    │ :5900    │  :6080     │   │  │
+│  │  └──────────┴──────────┴──────────┴────────────┘   │  │
+│  │                                                       │  │
+│  │  ┌──────────────────────────────────────────────┐   │  │
+│  │  │     Flask Web Server (:5000)                 │   │  │
+│  │  │  - Web UI serving                            │   │  │
+│  │  │  - REST API endpoints                        │   │  │
+│  │  │  - Stream detection orchestration            │   │  │
+│  │  └──────────────────────────────────────────────┘   │  │
+│  └──────────────────────────────────────────────────────┘  │
+│                                                             │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │           Chrome + Selenium WebDriver                │  │
+│  │  - Browser automation                                │  │
+│  │  - Cookie persistence                                │  │
+│  │  - Network traffic monitoring (CDP)                  │  │
+│  │  - Screenshot capture                                │  │
+│  └──────────────────────────────────────────────────────┘  │
+│                                                             │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │                    FFmpeg                            │  │
+│  │  - HLS/DASH stream downloading                       │  │
+│  │  - Video format conversion                           │  │
+│  │  - Stream copying                                    │  │
+│  └──────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    VOLUME MOUNTS                            │
+│                                                             │
+│  /volume1/media/downloads     ← Downloaded videos (HDD)    │
+│  /volume2/.../chrome-data     ← Cookies & sessions (SSD)   │
+│  /volume2/.../logs            ← Application logs (SSD)     │
+└─────────────────────────────────────────────────────────────┘
 
+===========================================
+COMPONENT DETAILS
+===========================================
 
-DATA FLOW - DIRECT DOWNLOAD
-============================
+1. DISPLAY STACK (Virtual Desktop)
+   - Xvfb: Virtual X11 display server
+   - Fluxbox: Lightweight window manager
+   - x11vnc: VNC server for display access
+   - noVNC: Web-based VNC client
 
-User Input
-    │
-    ▼
-┌──────────────┐
-│ Paste URL    │ .m3u8, .mp4, .mpd, etc.
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│ Flask API    │ /api/direct-download
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│   FFmpeg     │ Downloads stream
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│ /downloads/  │ video_timestamp.mp4
-└──────────────┘
+2. WEB APPLICATION (Flask)
 
+   app/app.py - Main application
+   ├── Routes:
+   │   ├── GET  /                       → Web interface
+   │   ├── POST /api/download/direct    → Direct FFmpeg download
+   │   ├── POST /api/browser/start      → Start Chrome session
+   │   ├── GET  /api/browser/status/:id → Check detection status
+   │   ├── POST /api/browser/close/:id  → Close Chrome
+   │   └── GET  /api/downloads/list     → List completed downloads
+   │
+   └── Classes:
+       └── StreamDetector
+           ├── start_browser()          → Launch Chrome with CDP
+           ├── _monitor_network()       → Parse performance logs
+           ├── _is_video_stream()       → Filter video URLs
+           ├── _start_download()        → Trigger FFmpeg
+           ├── _capture_thumbnail()     → Screenshot for confirmation
+           └── _auto_close_browser()    → Cleanup after delay
 
-DATA FLOW - BROWSER MODE
-=========================
+3. STREAM DETECTION PIPELINE
 
-User Input
-    │
-    ▼
-┌──────────────────┐
-│ Paste Webpage    │ https://site.com/watch?v=...
-└────────┬─────────┘
-         │
-         ▼
-┌────────────────────┐
-│ Flask API          │ /api/browser-download
-└────────┬───────────┘
-         │
-         ├───────────────────────┐
-         │                       │
-         ▼                       ▼
-┌────────────────┐      ┌───────────────┐
-│ Launch Chrome  │      │ Show noVNC    │
-│ Open URL       │      │ User can see  │
-└────────┬───────┘      │ and interact  │
-         │              └───────────────┘
-         │ User logs in (first time)
-         │ or video loads (cached cookies)
-         │
-         ▼
-┌────────────────────────┐
-│ Monitor Network (CDP)  │
-│ • Capture all requests │
-│ • Filter for video     │
-│ • Detect .m3u8/.mpd    │
-└────────┬───────────────┘
-         │
-         ▼
-┌────────────────┐
-│ Stream Found!  │ https://cdn.com/stream.m3u8
-└────────┬───────┘
-         │
-         ├─────────────────┬─────────────────┐
-         │                 │                 │
-         ▼                 ▼                 ▼
-    ┌─────────┐    ┌──────────────┐  ┌──────────┐
-    │ FFmpeg  │    │ Generate     │  │ Show     │
-    │Download │    │ Thumbnail    │  │ Popup    │
-    └────┬────┘    └──────┬───────┘  └────┬─────┘
-         │                │               │
-         │                │               │ 15 sec countdown
-         │                │               │ or user closes
-         ▼                ▼               ▼
-    ┌──────────────────────────────────────┐
-    │ Close Chrome                         │
-    └──────────────────────────────────────┘
+   User URL → Chrome opens → Page loads → Video plays
+                                              │
+                                              ▼
+                                    Network requests logged
+                                              │
+                                              ▼
+                              Filter by extension & MIME type
+                                    (.m3u8, .mpd, .mp4)
+                                              │
+                                              ▼
+                                      Exclude ads/tracking
+                                              │
+                                              ▼
+                                    First valid stream found
+                                              │
+                                              ▼
+                      ┌────────────────────────────────────┐
+                      │                                    │
+                      ▼                                    ▼
+              Capture thumbnail                   Start FFmpeg download
+                      │                                    │
+                      └───────────────┬────────────────────┘
+                                      ▼
+                              Show confirmation popup
+                                      │
+                                      ▼
+                            Wait 15 seconds (configurable)
+                                      │
+                                      ▼
+                                 Close Chrome
 
+4. COOKIE PERSISTENCE
 
-COOKIE PERSISTENCE
-==================
+   Chrome User Data Dir: /volume2/.../chrome-data/
+   ├── Default/
+   │   ├── Cookies           ← Session cookies
+   │   ├── Local Storage     ← Site data
+   │   ├── Preferences       ← Browser settings
+   │   └── History           ← Browsing history
+   │
+   Persistence Strategy:
+   - Same user-data-dir for all sessions
+   - Cookies survive container restarts
+   - No need to re-authenticate
 
-First Visit:
-  User logs in manually
-       │
-       ▼
-  Chrome saves to /home/appuser/.config/google-chrome
-       │
-       ▼
-  Docker volume: ./chrome-data/
+5. DOWNLOAD MODES
 
-Subsequent Visits:
-  Chrome loads from ./chrome-data/
-       │
-       ▼
-  Session already authenticated
-       │
-       ▼
-  Video loads immediately
+   A) DIRECT MODE
+      User → Paste stream URL → FFmpeg downloads directly
 
+      Use case: Known .m3u8/.mpd URL
+      Latency: Immediate
+      Authentication: None
 
-COMPONENT RESPONSIBILITIES
-===========================
+   B) BROWSER MODE
+      User → Paste page URL → Chrome detects stream → FFmpeg downloads
 
-┌─────────────┬──────────────────────────────────────────┐
-│ Component   │ Role                                     │
-├─────────────┼──────────────────────────────────────────┤
-│ Flask       │ • Web server                             │
-│             │ • REST API                               │
-│             │ • Session management                     │
-├─────────────┼──────────────────────────────────────────┤
-│ Selenium    │ • Chrome automation                      │
-│             │ • Browser control                        │
-├─────────────┼──────────────────────────────────────────┤
-│ Chrome CDP  │ • Network monitoring                     │
-│             │ • Stream detection                       │
-├─────────────┼──────────────────────────────────────────┤
-│ FFmpeg      │ • Stream downloading                     │
-│             │ • Thumbnail generation                   │
-│             │ • Format handling                        │
-├─────────────┼──────────────────────────────────────────┤
-│ Xvfb        │ • Virtual display                        │
-│             │ • Headless X server                      │
-├─────────────┼──────────────────────────────────────────┤
-│ x11vnc      │ • VNC server                             │
-│             │ • Screen sharing                         │
-├─────────────┼──────────────────────────────────────────┤
-│ noVNC       │ • Web VNC client                         │
-│             │ • Browser-based viewing                  │
-├─────────────┼──────────────────────────────────────────┤
-│ Supervisor  │ • Process management                     │
-│             │ • Auto-restart services                  │
-└─────────────┴──────────────────────────────────────────┘
+      Use case: Unknown stream URL or login required
+      Latency: ~5-30 seconds (depends on page load)
+      Authentication: Manual login (first time only)
 
+===========================================
+DATA FLOW
+===========================================
 
-NETWORK DIAGRAM
-===============
+BROWSER MODE FLOW:
 
-        Internet
-            │
-            ▼
-    ┌───────────────┐
-    │ Video Sites   │ Streams, Auth, Content
-    └───────┬───────┘
-            │
-            ▼
-    ┌────────────────────────────────┐
-    │ Your Network                   │
-    │  ┌──────────┐  ┌─────────────┐│
-    │  │ Your PC  │  │ UGREEN NAS  ││
-    │  │          │  │             ││
-    │  │ Browser  │  │  Docker     ││
-    │  │  :5000 ──┼──┤  Container  ││
-    │  │  :6080 ──┼──┤             ││
-    │  └──────────┘  └─────────────┘│
-    └────────────────────────────────┘
+1. POST /api/browser/start
+   └→ Create StreamDetector instance
+      └→ Launch Chrome with Selenium
+         └→ Enable performance logging
+            └→ Navigate to URL
+               └→ Start _monitor_network() thread
 
+2. _monitor_network() loop (every 0.5s)
+   └→ driver.get_log('performance')
+      └→ Parse JSON log entries
+         └→ Filter Network.responseReceived events
+            └→ Check if URL is video stream
+               └→ If match: _start_download()
 
-SECURITY MODEL
-==============
+3. _start_download()
+   ├→ _capture_thumbnail()
+   │  └→ driver.get_screenshot_as_png()
+   │     └→ Resize and encode base64
+   │
+   ├→ subprocess.Popen(['ffmpeg', ...])
+   │  └→ Store in download_queue{}
+   │
+   └→ _auto_close_browser() after delay
 
-┌─────────────────────────────────────┐
-│ Container Isolation                 │
-│ • Non-root user (appuser)          │
-│ • No --privileged mode             │
-│ • Minimal exposed ports            │
-└─────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────┐
-│ Network Security                    │
-│ • Local network only (default)     │
-│ • No internet exposure             │
-│ • Recommend VPN for remote access  │
-└─────────────────────────────────────┘
-              │
-              ▼
-┌─────────────────────────────────────┐
-│ Data Security                       │
-│ • Cookies stored locally           │
-│ • No cloud services                │
-│ • Volume-based persistence         │
-└─────────────────────────────────────┘
+4. Client polls /api/browser/status/:id
+   └→ Receives thumbnail and download info
+      └→ Shows confirmation popup
+         └→ Countdown from 15 seconds
 
+DIRECT MODE FLOW:
 
-RESOURCE USAGE
-==============
+1. POST /api/download/direct
+   └→ subprocess.Popen(['ffmpeg', ...])
+      └→ Store in download_queue{}
+         └→ Download completes in background
 
-Memory Timeline:
-  Idle:     ~500 MB
-  Chrome:   +500-800 MB
-  Download: +100-300 MB
-  Peak:     ~1.5-2 GB
+===========================================
+SECURITY CONSIDERATIONS
+===========================================
 
-CPU Timeline:
-  Idle:     <5%
-  Chrome:   10-30%
-  Download: 20-50%
+1. Chrome Sandbox
+   - Requires --no-sandbox flag in container
+   - seccomp:unconfined in docker-compose
+   - Acceptable for local network use only
 
-Disk I/O:
-  Streaming: High (continuous write)
-  Optimal:   SSD or fast HDD
+2. Volume Permissions
+   - Container runs as default user
+   - Volumes must be writable
+   - Logs contain no sensitive data
 
+3. Network Exposure
+   - Ports 5000, 6080 exposed
+   - No authentication by default
+   - NOT suitable for public internet
 
-================================================================================
+4. Cookie Storage
+   - Cookies saved in plaintext
+   - Volume stored on SSD
+   - Contains authentication tokens
+
+===========================================
+PERFORMANCE OPTIMIZATIONS
+===========================================
+
+1. SSD vs HDD Usage
+   - Chrome data on SSD (fast random access)
+   - Downloads on HDD (sequential writes)
+   - Logs on SSD (frequent small writes)
+
+2. Memory Management
+   - shm_size: 2gb for Chrome
+   - Downloads stream to disk (no RAM buffering)
+   - Background threads for downloads
+
+3. Network Monitoring
+   - Polling interval: 0.5s (balance latency/CPU)
+   - Log parsing: JSON decode only
+   - Filters applied early
+
+4. Browser Lifecycle
+   - Auto-close after download starts
+   - User can keep open if needed
+   - Cleanup removes from active_browsers{}
+
+===========================================
+ERROR HANDLING
+===========================================
+
+1. Browser Failures
+   - Selenium exceptions logged
+   - Browser marked as not running
+   - Cleanup automatic
+
+2. FFmpeg Errors
+   - stderr captured and logged
+   - Download process tracked
+   - Exit code checked
+
+3. Stream Detection Failures
+   - No stream found = no action
+   - User can manually close browser
+   - Try direct mode as fallback
+
+===========================================
+FUTURE ENHANCEMENTS
+===========================================
+
+Potential improvements:
+- Multiple simultaneous browser sessions
+- Download queue management UI
+- Progress bar for downloads
+- Video format selection
+- Scheduled downloads
+- User authentication
+- Download history database
+- Webhook notifications
+- Custom FFmpeg parameters
+- Mobile app companion

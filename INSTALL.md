@@ -2,204 +2,232 @@
 
 ## Prerequisites
 
-- Docker and Docker Compose installed on your NAS
-- Portainer (optional, but recommended for easier management)
-- At least 2GB of available RAM
-- Network access to your NAS
+- UGREEN NAS with Docker support
+- Portainer installed (recommended) or Docker Compose CLI access
+- Sufficient storage space on volumes
 
-## Method 1: Deploy with Portainer (Recommended)
+## Method 1: Portainer Repository Deployment (Recommended)
 
-### Step 1: Clone or Download Repository
+This is the easiest method for deploying to your UGREEN NAS.
 
-If you have Git on your NAS:
-```bash
-git clone https://github.com/yourusername/video-downloader.git
-cd video-downloader
-```
-
-Or download and extract the ZIP file to your NAS.
-
-### Step 2: Create Required Directories
+### Step 1: Push to GitHub
 
 ```bash
-mkdir -p downloads chrome-data
-chmod 755 downloads chrome-data
+# Initialize git repository (if not already done)
+git init
+git add .
+git commit -m "Initial commit - video downloader project"
+
+# Add your GitHub repository
+git remote add origin https://github.com/yourusername/nas-video-downloader.git
+git branch -M main
+git push -u origin main
 ```
 
-### Step 3: Deploy via Portainer
+### Step 2: Deploy in Portainer
 
-1. Open Portainer web interface
-2. Go to **Stacks** → **Add Stack**
-3. Give it a name: `video-downloader`
-4. Choose **Upload** and select `docker-compose.yml`
-   - OR choose **Web editor** and paste the contents of `docker-compose.yml`
-5. Click **Deploy the stack**
+1. Open Portainer web interface on your NAS
+2. Navigate to **Stacks** in the sidebar
+3. Click **Add Stack** button
+4. Enter stack details:
+   - **Name**: `video-downloader`
+   - **Build method**: Select **Repository**
+   - **Repository URL**: `https://github.com/yourusername/nas-video-downloader`
+   - **Repository reference**: `refs/heads/main`
+   - **Compose path**: `docker-compose.yml`
+5. Scroll down to **Environment variables** (optional):
+   - Add any custom variables if needed
+6. Click **Deploy the stack**
+7. Wait for deployment to complete
 
-### Step 4: Access the Application
+### Step 3: Verify Installation
 
-Once deployed, access the web interface at:
-```
-http://your-nas-ip:5000
-```
+1. Check stack status in Portainer - should show "running"
+2. Open http://your-nas-ip:5000 in your browser
+3. You should see the Video Downloader interface
 
-The noVNC browser interface will be at:
-```
-http://your-nas-ip:6080
-```
+## Method 2: Docker Compose CLI
 
-## Method 2: Manual Docker Compose Deployment
-
-### Step 1: Navigate to Project Directory
+If you have SSH access to your NAS:
 
 ```bash
-cd /path/to/video-downloader
-```
+# Clone your repository
+git clone https://github.com/yourusername/nas-video-downloader.git
+cd nas-video-downloader
 
-### Step 2: Build and Start
+# Create required directories
+mkdir -p /volume1/media/downloads
+mkdir -p /volume2/Dockerssd/video-downloader/chrome-data
+mkdir -p /volume2/Dockerssd/video-downloader/logs
 
-```bash
+# Start the container
 docker-compose up -d
-```
 
-### Step 3: Check Status
-
-```bash
-docker-compose ps
+# Check logs
 docker-compose logs -f
-```
 
-### Step 4: Stop the Service
-
-```bash
+# Stop the container
 docker-compose down
 ```
 
-## Method 3: Docker Build and Run (Advanced)
+## Volume Setup
 
-### Build the Image
-
-```bash
-docker build -t video-downloader:latest .
-```
-
-### Run the Container
+Before deployment, ensure these directories exist on your NAS:
 
 ```bash
-docker run -d \
-  --name video-downloader \
-  -p 5000:5000 \
-  -p 6080:6080 \
-  -v $(pwd)/downloads:/downloads \
-  -v $(pwd)/chrome-data:/home/appuser/.config/google-chrome \
-  -e DOWNLOAD_PATH=/downloads \
-  -e CHROME_TIMEOUT=15 \
-  -e DEFAULT_QUALITY=1080 \
-  --shm-size=2gb \
-  video-downloader:latest
+# HDD storage for downloaded videos
+/volume1/media/downloads
+
+# SSD storage for Chrome data and logs
+/volume2/Dockerssd/video-downloader/chrome-data
+/volume2/Dockerssd/video-downloader/logs
 ```
 
-## Configuration
+### Creating Directories via SSH
 
-### Environment Variables
+```bash
+# Connect to your NAS
+ssh admin@your-nas-ip
 
-You can customize these in `docker-compose.yml`:
+# Create directories
+mkdir -p /volume1/media/downloads
+mkdir -p /volume2/Dockerssd/video-downloader/chrome-data
+mkdir -p /volume2/Dockerssd/video-downloader/logs
 
-- **DOWNLOAD_PATH**: Directory where videos are saved (default: `/downloads`)
-- **CHROME_TIMEOUT**: Seconds to wait before closing Chrome after download starts (default: `15`)
-- **DEFAULT_QUALITY**: Preferred video quality (default: `1080`)
+# Set permissions
+chmod 755 /volume1/media/downloads
+chmod 755 /volume2/Dockerssd/video-downloader/chrome-data
+chmod 755 /volume2/Dockerssd/video-downloader/logs
+```
 
-### Port Configuration
+## Port Configuration
 
-If ports 5000 or 6080 are already in use, modify the port mappings in `docker-compose.yml`:
+The application uses these ports:
+
+- **5000**: Web interface
+- **6080**: noVNC (browser view)
+
+Ensure these ports are not used by other applications:
+
+```bash
+# Check if ports are available
+netstat -tuln | grep -E ':5000|:6080'
+```
+
+If ports are in use, modify `docker-compose.yml`:
 
 ```yaml
 ports:
-  - "5001:5000"  # Change 5001 to your preferred port
-  - "6081:6080"  # Change 6081 to your preferred port
+  - "5001:5000"   # Change external port
+  - "6081:6080"   # Change external port
 ```
 
-### Volume Paths
+## First Run
 
-To change where downloads are stored, modify the volumes section:
+After successful deployment:
 
-```yaml
-volumes:
-  - /path/to/your/downloads:/downloads
-  - /path/to/chrome-data:/home/appuser/.config/google-chrome
-```
+1. Access web interface: http://your-nas-ip:5000
+2. Test direct download:
+   - Find a sample .m3u8 URL online
+   - Paste it in Direct Download mode
+   - Click "Download Now"
+   - Check `/volume1/media/downloads` for the file
+
+3. Test browser mode:
+   - Paste any video website URL
+   - Click "Open Browser & Detect"
+   - The embedded browser should appear
+   - Try playing a video
 
 ## Updating
 
 ### Via Portainer
 
-1. Go to **Stacks** → Select `video-downloader`
-2. Click **Stop**
-3. Update the code/configuration
-4. Click **Deploy the stack** again
+1. Go to **Stacks** > Your stack
+2. Click **Editor**
+3. Enable **Pull latest image**
+4. Click **Update the stack**
 
-### Via Docker Compose
+### Via CLI
 
 ```bash
+cd nas-video-downloader
+git pull origin main
 docker-compose down
-git pull  # If using Git
-docker-compose build
-docker-compose up -d
+docker-compose up -d --build
 ```
 
-## Troubleshooting
-
-### Container won't start
-
-Check logs:
-```bash
-docker-compose logs video-downloader
-```
-
-### Port conflicts
-
-Change port mappings in `docker-compose.yml` as shown above.
-
-### Permission issues
-
-Ensure directories are writable:
-```bash
-chmod 755 downloads chrome-data
-```
-
-### Chrome crashes or won't open
-
-Increase shared memory:
-```yaml
-shm_size: '4gb'  # Increase from 2gb
-```
-
-### Downloads fail
-
-- Verify FFmpeg is working: `docker exec video-downloader ffmpeg -version`
-- Check the stream URL is accessible
-- Some DRM-protected content cannot be downloaded
-
-## Uninstalling
+## Uninstallation
 
 ### Via Portainer
 
-1. Go to **Stacks** → Select `video-downloader`
-2. Click **Delete**
+1. Go to **Stacks**
+2. Select your stack
+3. Click **Delete**
+4. Optionally delete volumes:
+   ```bash
+   rm -rf /volume2/Dockerssd/video-downloader
+   ```
 
-### Via Docker Compose
+### Via CLI
 
 ```bash
-docker-compose down -v  # -v removes volumes
-rm -rf downloads chrome-data  # Optional: remove downloaded files
+cd nas-video-downloader
+docker-compose down
+docker rmi nas-video-downloader_video-downloader
+
+# Remove data (optional)
+rm -rf /volume2/Dockerssd/video-downloader
 ```
 
-## Security Notes
+## Troubleshooting Installation
 
-- This service is designed for local network use only
-- Do not expose ports 5000 or 6080 to the internet without proper security
-- Cookies are stored locally in the `chrome-data` directory
-- Only use with content you have rights to download
+### Build Fails
+
+```bash
+# Check Docker logs
+docker-compose logs
+
+# Try building manually
+docker-compose build --no-cache
+```
+
+### Volume Permission Issues
+
+```bash
+# Fix permissions
+sudo chown -R 1000:1000 /volume1/media/downloads
+sudo chown -R 1000:1000 /volume2/Dockerssd/video-downloader
+```
+
+### Port Already in Use
+
+```bash
+# Find what's using the port
+sudo netstat -tulpn | grep :5000
+
+# Kill the process or change port in docker-compose.yml
+```
+
+### Container Won't Start
+
+```bash
+# Check container status
+docker ps -a
+
+# View full logs
+docker logs nas-video-downloader
+
+# Restart container
+docker restart nas-video-downloader
+```
 
 ## Support
 
-For issues and questions, please open an issue on the GitHub repository.
+If you encounter issues:
+
+1. Check the logs: `docker-compose logs -f`
+2. Verify all directories exist and are writable
+3. Ensure ports 5000 and 6080 are available
+4. Check Docker version: `docker --version` (recommend 20.10+)
+5. Create a GitHub issue with error details
