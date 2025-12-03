@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAS Video Downloader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .mode-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .mode-btn {
+            flex: 1;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .mode-btn:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .mode-btn.active {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .mode-btn h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .mode-btn p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="url"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .status.info {
+            background: #e3f2fd;
+            color: #1976d2;
+            display: block;
+        }
+        
+        .status.success {
+            background: #e8f5e9;
+            color: #388e3c;
+            display: block;
+        }
+        
+        .status.error {
+            background: #ffebee;
+            color: #d32f2f;
+            display: block;
+        }
+        
+        .vnc-container {
+            margin-top: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .vnc-container.active {
+            display: block;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        
+        .download-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+            display: none;
+            z-index: 1000;
+        }
+        
+        .download-popup.active {
+            display: block;
+        }
+        
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+        
+        .popup-overlay.active {
+            display: block;
+        }
+        
+        .popup-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .checkmark {
+            width: 40px;
+            height: 40px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .popup-header h2 {
+            color: #333;
+        }
+        
+        .thumbnail-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .thumbnail-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .download-info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .download-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+        
+        .countdown {
+            text-align: center;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .popup-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .popup-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .popup-btn.primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .popup-btn.secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        
+        .popup-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Video Downloader</h1>
+        <p class="subtitle">Download videos from the web using direct links or browser detection</p>
+        
+        <div class="mode-selector">
+            <div class="mode-btn active" onclick="selectMode('direct')" id="direct-mode">
+                <h3>Direct Download</h3>
+                <p>Paste a direct video URL (.m3u8, .mp4, etc.)</p>
+            </div>
+            <div class="mode-btn" onclick="selectMode('browser')" id="browser-mode">
+                <h3>Find Link</h3>
+                <p>Open browser to detect streams (saves cookies)</p>
+            </div>
+        </div>
+        
+        <div id="direct-form">
+            <div class="input-group">
+                <label for="direct-url">Video URL</label>
+                <input type="url" id="direct-url" placeholder="https://example.com/video.m3u8">
+            </div>
+            
+            <div class="input-group">
+                <label for="quality">Preferred Quality</label>
+                <select id="quality">
+                    <option value="1080">1080p</option>
+                    <option value="720">720p</option>
+                    <option value="480">480p</option>
+                    <option value="best">Best Available</option>
+                </select>
+            </div>
+            
+            <button class="btn" onclick="startDirectDownload()">Download Video</button>
+        </div>
+        
+        <div id="browser-form" class="hidden">
+            <div class="input-group">
+                <label for="page-url">Webpage URL</label>
+                <input type="url" id="page-url" placeholder="https://example.com/watch?v=...">
+            </div>
+            
+            <button class="btn" onclick="startBrowserDownload()">Open Browser & Detect</button>
+        </div>
+        
+        <div id="status" class="status"></div>
+        
+        <div id="vnc-container" class="vnc-container">
+            <iframe id="vnc-frame" src=""></iframe>
+        </div>
+    </div>
+    
+    <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
+    
+    <div class="download-popup" id="download-popup">
+        <div class="popup-header">
+            <div class="checkmark">✓</div>
+            <h2>Download Started</h2>
+        </div>
+        
+        <div class="thumbnail-container" id="thumbnail-container">
+            <img id="thumbnail-img" src="" alt="Video thumbnail">
+        </div>
+        
+        <div class="download-info">
+            <p><strong>Quality:</strong> <span id="video-quality">1080p</span></p>
+            <p><strong>File:</strong> <span id="video-filename">video.mp4</span></p>
+        </div>
+        
+        <div class="countdown" id="countdown">
+            Window closing in <span id="countdown-timer">15</span> seconds...
+        </div>
+        
+        <div class="popup-buttons">
+            <button class="popup-btn secondary" onclick="closeNow()">Close Now</button>
+            <button class="popup-btn primary" onclick="keepOpen()">Keep Open</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentMode = 'direct';
+        let currentSessionId = null;
+        let statusCheckInterval = null;
+        let countdownInterval = null;
+        let countdownValue = 15;
+        
+        function selectMode(mode) {
+            currentMode = mode;
+            
+            // Update button states
+            document.getElementById('direct-mode').classList.remove('active');
+            document.getElementById('browser-mode').classList.remove('active');
+            
+            if (mode === 'direct') {
+                document.getElementById('direct-mode').classList.add('active');
+                document.getElementById('direct-form').classList.remove('hidden');
+                document.getElementById('browser-form').classList.add('hidden');
+            } else {
+                document.getElementById('browser-mode').classList.add('active');
+                document.getElementById('direct-form').classList.add('hidden');
+                document.getElementById('browser-form').classList.remove('hidden');
+            }
+            
+            // Hide VNC if switching modes
+            document.getElementById('vnc-container').classList.remove('active');
+        }
+        
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = 'status ' + type;
+        }
+        
+        async function startDirectDownload() {
+            const url = document.getElementById('direct-url').value.trim();
+            const quality = document.getElementById('quality').value;
+            
+            if (!url) {
+                showStatus('Please enter a video URL', 'error');
+                return;
+            }
+            
+            showStatus('Starting download...', 'info');
+            
+            try {
+                const response = await fetch('/api/direct-download', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({url, quality})
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    showStatus('Error: ' + data.error, 'error');
+                } else {
+                    currentSessionId = data.session_id;
+                    startStatusCheck();
+                }
+            } catch (error) {
+                showStatus('Error: ' + error.message, 'error');
+            }
+        }
+        
+        async function startBrowserDownload() {
+            const url = document.getElementById('page-url').value.trim();
+            
+            if (!url) {
+                showStatus('Please enter a webpage URL', 'error');
+                return;
+            }
+            
+            showStatus('Opening browser...', 'info');
+            
+            try {
+                const response = await fetch('/api/browser-download', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({url})
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    showStatus('Error: ' + data.error, 'error');
+                } else {
+                    currentSessionId = data.session_id;
+                    
+                    // Show VNC
+                    const vncUrl = `/vnc.html?autoconnect=true`;
+                    document.getElementById('vnc-frame').src = 'http://' + window.location.hostname + ':6080' + vncUrl;
+                    document.getElementById('vnc-container').classList.add('active');
+                    
+                    showStatus('Browser opened. Log in if needed and play the video.', 'info');
+                    startStatusCheck();
+                }
+            } catch (error) {
+                showStatus('Error: ' + error.message, 'error');
+            }
+        }
+        
+        function startStatusCheck() {
+            if (statusCheckInterval) {
+                clearInterval(statusCheckInterval);
+            }
+            
+            statusCheckInterval = setInterval(async () => {
+                if (!currentSessionId) return;
+                
+                try {
+                    const response = await fetch('/api/status/' + currentSessionId);
+                    const data = await response.json();
+                    
+                    if (data.status === 'downloading') {
+                        showStatus('Downloading: ' + (data.filename || 'video.mp4'), 'info');
+                        
+                        // Check if thumbnail is ready
+                        if (data.thumbnail && !document.getElementById('download-popup').classList.contains('active')) {
+                            showDownloadPopup(data);
+                        }
+                    } else if (data.status === 'completed') {
+                        showStatus('✓ Download completed: ' + data.filename, 'success');
+                        clearInterval(statusCheckInterval);
+                        hideVNC();
+                    } else if (data.status === 'failed') {
+                        showStatus('✗ Download failed: ' + (data.error || 'Unknown error'), 'error');
+                        clearInterval(statusCheckInterval);
+                    }
+                } catch (error) {
+                    console.error('Status check error:', error);
+                }
+            }, 2000);
+        }
+        
+        function showDownloadPopup(data) {
+            // Set thumbnail
+            if (data.thumbnail) {
+                document.getElementById('thumbnail-img').src = '/static/' + data.thumbnail;
+                document.getElementById('thumbnail-container').style.display = 'block';
+            } else {
+                document.getElementById('thumbnail-container').style.display = 'none';
+            }
+            
+            // Set filename
+            document.getElementById('video-filename').textContent = data.filename || 'video.mp4';
+            
+            // Show popup
+            document.getElementById('popup-overlay').classList.add('active');
+            document.getElementById('download-popup').classList.add('active');
+            
+            // Start countdown
+            startCountdown();
+        }
+        
+        function startCountdown() {
+            countdownValue = 15;
+            document.getElementById('countdown-timer').textContent = countdownValue;
+            
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+            
+            countdownInterval = setInterval(() => {
+                countdownValue--;
+                document.getElementById('countdown-timer').textContent = countdownValue;
+                
+                if (countdownValue <= 0) {
+                    clearInterval(countdownInterval);
+                    closePopup();
+                    hideVNC();
+                }
+            }, 1000);
+        }
+        
+        function closePopup() {
+            document.getElementById('popup-overlay').classList.remove('active');
+            document.getElementById('download-popup').classList.remove('active');
+            
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+        }
+        
+        function closeNow() {
+            closePopup();
+            hideVNC();
+            
+            // Send close request to backend
+            if (currentSessionId) {
+                fetch('/api/close-browser/' + currentSessionId, {method: 'POST'});
+            }
+        }
+        
+        function keepOpen() {
+            closePopup();
+            
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+        }
+        
+        function hideVNC() {
+            document.getElementById('vnc-container').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

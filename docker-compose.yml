@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  video-downloader:
+    build: .
+    container_name: video-downloader
+    restart: unless-stopped
+    ports:
+      - "5000:5000"  # Web interface
+      - "6080:6080"  # noVNC for Chrome viewing
+    volumes:
+      - ./downloads:/downloads
+      - ./chrome-data:/home/appuser/.config/google-chrome
+      - /dev/shm:/dev/shm  # Shared memory for Chrome
+    environment:
+      - DOWNLOAD_PATH=/downloads
+      - CHROME_TIMEOUT=15
+      - DEFAULT_QUALITY=1080
+      - DISPLAY=:99
+    privileged: false
+    shm_size: '2gb'
+    networks:
+      - video-downloader-net
+
+networks:
+  video-downloader-net:
+    driver: bridge
