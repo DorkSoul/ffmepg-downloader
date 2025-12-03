@@ -723,8 +723,18 @@ def clear_cookies():
             except Exception as e:
                 logger.error(f"Error closing browser {browser_id}: {e}")
 
-        # Wait a moment for browsers to fully close
-        time.sleep(2)
+        # Force kill any remaining Chrome/ChromeDriver processes
+        try:
+            logger.info("Force killing Chrome and ChromeDriver processes...")
+            subprocess.run(['pkill', '-9', 'chrome'], check=False, timeout=5)
+            subprocess.run(['pkill', '-9', 'chromedriver'], check=False, timeout=5)
+            logger.info("Process kill commands executed")
+        except Exception as e:
+            logger.warning(f"Error killing processes: {e}")
+
+        # Wait for processes to die and file handles to release
+        logger.info("Waiting for processes to terminate...")
+        time.sleep(3)
 
         # Delete Chrome user data directory contents
         if os.path.exists(CHROME_USER_DATA_DIR):
@@ -732,9 +742,20 @@ def clear_cookies():
                 logger.info(f"Clearing Chrome data directory: {CHROME_USER_DATA_DIR}")
                 import shutil
 
-                # Remove the directory and all its contents
-                shutil.rmtree(CHROME_USER_DATA_DIR)
-                logger.info("Chrome data directory removed")
+                # Try to remove the directory with retries
+                max_retries = 3
+                for attempt in range(max_retries):
+                    try:
+                        logger.info(f"Removal attempt {attempt + 1}/{max_retries}")
+                        shutil.rmtree(CHROME_USER_DATA_DIR)
+                        logger.info("Chrome data directory removed")
+                        break
+                    except OSError as e:
+                        if attempt < max_retries - 1:
+                            logger.warning(f"Attempt {attempt + 1} failed: {e}, retrying...")
+                            time.sleep(2)
+                        else:
+                            raise
 
                 # Recreate the directory
                 os.makedirs(CHROME_USER_DATA_DIR, exist_ok=True)
