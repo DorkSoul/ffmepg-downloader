@@ -4,7 +4,7 @@ services:
   video-downloader:
     build: .
     container_name: video-downloader
-    user: 1000:100
+    restart: unless-stopped
     environment:
       - TZ=Europe/Dublin
       - DOWNLOAD_PATH=/downloads
@@ -19,4 +19,3 @@ services:
       - 5000:5000
       - 6080:6080
     shm_size: 2gb
-    restart: unless-stopped
