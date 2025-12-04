@@ -196,6 +196,9 @@ class StreamDetector:
             chrome_options.add_argument('--disable-setuid-sandbox')
             chrome_options.add_argument('--disable-dev-shm-usage')
 
+            # Enable remote debugging for CDP WebSocket (port 0 = auto-assign)
+            chrome_options.add_argument('--remote-debugging-port=0')
+
             # GPU and rendering
             chrome_options.add_argument('--disable-gpu')
             chrome_options.add_argument('--disable-software-rasterizer')
@@ -433,9 +436,9 @@ class StreamDetector:
                 logs = self.driver.get_log('performance')
                 loop_count += 1
 
-                # DEBUG: Log every 20 iterations to show we're alive
-                if loop_count % 20 == 0:
-                    logger.info(f"[MONITORING ALIVE] Loop #{loop_count}, got {len(logs)} log entries")
+                # Log every 2 minutes (240 loops × 0.5s) to show we're alive
+                if loop_count % 240 == 0:
+                    logger.info(f"[LEGACY-POLL] Loop #{loop_count}, monitoring active")
 
                 for entry in logs:
                     try:
@@ -453,7 +456,7 @@ class StreamDetector:
                             if 'mpegurl' in content_type.lower() or 'm3u8' in content_type.lower():
                                 logger.info(f"[EXTRA_INFO] Found HLS content-type! RequestID: {request_id}, Content-Type: {content_type}")
 
-                        # DEBUG: Log ALL Network.responseReceived events to see what we're getting
+                        # Check Network.responseReceived events (legacy polling backup)
                         if method == 'Network.responseReceived':
                             params = message.get('params', {})
                             response = params.get('response', {})
@@ -461,15 +464,9 @@ class StreamDetector:
                             mime_type = response.get('mimeType', '')
                             request_id = params.get('requestId', '')
 
-                            # Log EVERY responseReceived to see what URLs we're getting
-                            if url:
-                                logger.info(f"[RESPONSE] RequestID: {request_id}, URL: {url[:150]}... | MIME: {mime_type}")
-                            else:
-                                logger.warning(f"[RESPONSE] URL IS EMPTY! RequestID: {request_id}, Response keys: {response.keys()}")
-
-                            # DEBUG: Log ALL .m3u8 URLs (high priority for debugging)
-                            if '.m3u8' in url.lower():
-                                logger.info(f"🔍 CHECKING .m3u8 URL: {url[:200]}... (mime: {mime_type})")
+                            # Only log .m3u8 files (reduce noise)
+                            if '.m3u8' in url.lower() or 'mpegurl' in mime_type.lower():
+                                logger.info(f"[LEGACY-POLL] 🔍 Found .m3u8: {url[:200]}... | MIME: {mime_type}")
 
                             # DEBUG: Log all video-related URLs being checked
                             if any(ext in url.lower() for ext in ['.mpd', '.mp4', '.ts', '.m4s', 'ttvnw']):
