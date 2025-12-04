@@ -298,7 +298,6 @@ class StreamDetector:
 
             # Start WebSocket CDP listener BEFORE navigating to catch initial requests
             if self.ws_url:
-                logger.info("Starting WebSocket CDP listener BEFORE navigation...")
                 threading.Thread(target=self._cdp_websocket_listener, daemon=True).start()
                 # Give WebSocket a moment to connect
                 import time
@@ -309,11 +308,9 @@ class StreamDetector:
             # Start monitoring network traffic (legacy polling as backup)
             threading.Thread(target=self._monitor_network, daemon=True).start()
 
-            logger.info(f"Browser {self.browser_id} ready, now navigating to {url}")
+            logger.info(f"Loading {url}...")
             self.driver.get(url)
             self.is_running = True
-
-            logger.info(f"Browser {self.browser_id} fully initialized")
             return True
         except WebDriverException as e:
             logger.error(f"WebDriver error starting browser: {e}")
@@ -326,8 +323,7 @@ class StreamDetector:
             return False
 
     def _cdp_websocket_listener(self):
-        """Real-time CDP WebSocket listener - exactly like DevTools does"""
-        logger.info(f"[CDP-WS] Starting WebSocket listener for {self.ws_url[:80]}...")
+        """Real-time CDP WebSocket listener"""
 
         def on_message(ws, message):
             """Handle incoming CDP messages - capture ALL network activity like DevTools"""
@@ -409,14 +405,10 @@ class StreamDetector:
 
                     # Check for m3u8 playlists
                     if 'm3u8' in url.lower():
-                        # Log ALL m3u8 requests for debugging
-                        logger.info(f"[CDP-WS] 🔍 m3u8 URL detected: {url[:200]}")
-
                         # Check if this is likely a master playlist (not a media playlist)
-                        # Master playlists typically come from different domains/paths than media playlists
                         # Common patterns:
                         # - Twitch: usher.ttvnw.net (master) vs *.playlist.ttvnw.net (media)
-                        # - Generic: /master.m3u8, /playlist.m3u8 vs /chunklist_*.m3u8, /media_*.m3u8
+                        # - Generic: /master.m3u8 vs /chunklist_*.m3u8
                         is_likely_master = (
                             'usher' in url.lower() or           # Twitch master playlists
                             'master' in url.lower() or          # Common master playlist naming
@@ -432,11 +424,9 @@ class StreamDetector:
                             '/segment' in url.lower()
                         )
 
-                        if is_likely_media:
-                            logger.info(f"[CDP-WS]   └─ Skipping (media playlist, not master)")
-                        elif is_likely_master or not self.detected_streams:  # Process masters OR first stream if no masters found yet
-                            logger.info(f"[CDP-WS] 🎯 MASTER PLAYLIST detected: {url[:150]}...")
-                            logger.info(f"[CDP-WS]   └─ RequestID: {request_id}")
+                        # Only process master playlists
+                        if not is_likely_media and (is_likely_master or not self.detected_streams):
+                            logger.info(f"Detected master playlist: {url[:100]}...")
 
                             # Process this as a detected stream
                             mime_type = 'application/vnd.apple.mpegurl'
@@ -449,15 +439,11 @@ class StreamDetector:
                                 }
 
                                 if stream_info not in self.detected_streams:
-                                    logger.info(f"[CDP-WS] ✓✓✓ PROCESSING MASTER PLAYLIST: {url[:100]}...")
                                     self.detected_streams.append(stream_info)
 
                                     # Start download for the first valid stream
                                     if not self.download_started and not self.awaiting_resolution_selection:
-                                        logger.info(f"[CDP-WS] Processing master playlist...")
                                         self._handle_stream_detection(stream_info)
-                        else:
-                            logger.info(f"[CDP-WS]   └─ Skipping (not identified as master playlist)")
 
                     # Continue the request (don't block it)
                     try:
@@ -480,27 +466,23 @@ class StreamDetector:
             logger.error(f"[CDP-WS] WebSocket error: {error}")
 
         def on_close(ws, close_status_code, close_msg):
-            logger.info(f"[CDP-WS] WebSocket closed: {close_status_code} - {close_msg}")
+            pass  # WebSocket closed - no need to log for normal operation
 
         def on_open(ws):
-            logger.info(f"[CDP-WS] ✓ WebSocket connected!")
-
             # Enable all CDP domains that DevTools uses to capture network activity
             try:
                 # Network domain - CRITICAL for capturing network requests
-                # Enable with max buffer size to capture everything
                 enable_cmd = {
                     "id": self.cdp_session_id,
                     "method": "Network.enable",
                     "params": {
-                        "maxTotalBufferSize": 100000000,  # 100MB buffer
-                        "maxResourceBufferSize": 50000000,  # 50MB per resource
-                        "maxPostDataSize": 50000000  # 50MB for POST data
+                        "maxTotalBufferSize": 100000000,
+                        "maxResourceBufferSize": 50000000,
+                        "maxPostDataSize": 50000000
                     }
                 }
                 self.cdp_session_id += 1
                 ws.send(json.dumps(enable_cmd))
-                logger.info("[CDP-WS] ✓ Sent Network.enable with large buffer sizes")
 
                 # Page domain - catches page lifecycle events
                 page_enable_cmd = {
@@ -510,7 +492,6 @@ class StreamDetector:
                 }
                 self.cdp_session_id += 1
                 ws.send(json.dumps(page_enable_cmd))
-                logger.info("[CDP-WS] ✓ Sent Page.enable")
 
                 # Fetch domain - catches fetch/XHR requests (used by modern video players)
                 fetch_enable_cmd = {
@@ -522,7 +503,6 @@ class StreamDetector:
                 }
                 self.cdp_session_id += 1
                 ws.send(json.dumps(fetch_enable_cmd))
-                logger.info("[CDP-WS] ✓ Sent Fetch.enable to intercept fetch/XHR")
 
                 # Runtime domain - catches console messages and JS execution
                 runtime_enable_cmd = {
@@ -532,9 +512,8 @@ class StreamDetector:
                 }
                 self.cdp_session_id += 1
                 ws.send(json.dumps(runtime_enable_cmd))
-                logger.info("[CDP-WS] ✓ Sent Runtime.enable")
 
-                logger.info("[CDP-WS] ✓✓✓ All CDP domains enabled - monitoring ALL network activity")
+                logger.info("Network monitoring started")
 
             except Exception as e:
                 logger.error(f"[CDP-WS] Error sending enable commands: {e}")
@@ -549,7 +528,6 @@ class StreamDetector:
                 on_open=on_open
             )
 
-            logger.info("[CDP-WS] Starting WebSocket run_forever loop...")
             # Run forever (blocking call in this thread)
             self.ws.run_forever()
 
@@ -559,8 +537,7 @@ class StreamDetector:
             logger.error(traceback.format_exc())
 
     def _monitor_network(self):
-        """Monitor network traffic for video streams"""
-        logger.info(f"Starting network monitoring for browser {self.browser_id}")
+        """Monitor network traffic for video streams (legacy backup)"""
         loop_count = 0
 
         while self.is_running and self.driver:
@@ -702,8 +679,7 @@ class StreamDetector:
                 if resolutions:
                     logger.info(f"Found {len(resolutions)} resolutions")
 
-                    # DEBUG MODE: Always show resolution selection instead of auto-matching
-                    logger.info(f"DEBUG: Showing all resolutions for user selection")
+                    # Always show resolution selection for user to choose
                     self.awaiting_resolution_selection = True
                     self.available_resolutions = resolutions
                 else:
