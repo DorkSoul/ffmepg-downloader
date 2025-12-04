@@ -404,10 +404,29 @@ class StreamDetector:
                     url = request.get('url', '')
                     request_id = params.get('requestId', '')
 
-                    # Log ALL fetch requests containing m3u8
+                    # Check for m3u8 playlists
                     if 'm3u8' in url.lower():
-                        logger.info(f"[CDP-WS] 🔍 FETCH REQUEST (m3u8): {url}")
+                        logger.info(f"[CDP-WS] 🎯 FETCH DETECTED (m3u8): {url[:150]}...")
                         logger.info(f"[CDP-WS]   └─ RequestID: {request_id}")
+
+                        # Process this as a detected stream
+                        mime_type = 'application/vnd.apple.mpegurl'
+                        if self._is_video_stream(url, mime_type):
+                            stream_info = {
+                                'url': url,
+                                'type': 'HLS',
+                                'mime_type': mime_type,
+                                'timestamp': time.time()
+                            }
+
+                            if stream_info not in self.detected_streams:
+                                logger.info(f"[CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: {url[:100]}...")
+                                self.detected_streams.append(stream_info)
+
+                                # Start download for the first valid stream
+                                if not self.download_started and not self.awaiting_resolution_selection:
+                                    logger.info(f"[CDP-WS] Processing detected stream...")
+                                    self._handle_stream_detection(stream_info)
 
                     # Continue the request (don't block it)
                     try:
