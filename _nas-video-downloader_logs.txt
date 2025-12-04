@@ -1,87 +1,100 @@
-2025-12-04 15:19:57,997 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
-2025-12-04 15:19:57,999 INFO supervisord started with pid 1
-2025-12-04 15:19:59,002 INFO spawned: 'xvfb' with pid 7
-2025-12-04 15:19:59,004 INFO spawned: 'fluxbox' with pid 8
-2025-12-04 15:19:59,007 INFO spawned: 'x11vnc' with pid 9
-2025-12-04 15:19:59,009 INFO spawned: 'novnc' with pid 10
-2025-12-04 15:19:59,012 INFO spawned: 'flask' with pid 11
-2025-12-04 15:19:59,250 - __main__ - INFO - ================================================================================
-2025-12-04 15:19:59,250 - __main__ - INFO - NAS VIDEO DOWNLOADER STARTING
-2025-12-04 15:19:59,250 - __main__ - INFO - ================================================================================
-2025-12-04 15:19:59,250 - __main__ - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
-2025-12-04 15:19:59,250 - __main__ - INFO - Working directory: /app
-2025-12-04 15:19:59,250 - __main__ - INFO - DISPLAY: :99
-2025-12-04 15:19:59,250 - __main__ - INFO - Download dir: /app/downloads
-2025-12-04 15:19:59,251 - __main__ - INFO - Chrome data dir: /app/chrome-data
-2025-12-04 15:19:59,251 - __main__ - INFO - Checking Chrome installation...
-2025-12-04 15:19:59,286 - __main__ - INFO - Chrome: Google Chrome 143.0.7499.40
-2025-12-04 15:19:59,286 INFO reaped unknown pid 30 (exit status 0)
-2025-12-04 15:19:59,286 INFO reaped unknown pid 31 (exit status 0)
-2025-12-04 15:19:59,288 - __main__ - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
-2025-12-04 15:19:59,289 - __main__ - INFO - DISPLAY environment: :99
-2025-12-04 15:19:59,293 - __main__ - INFO - Xvfb is running ✓
-2025-12-04 15:19:59,293 - __main__ - INFO - Download dir exists: True
-2025-12-04 15:19:59,294 - __main__ - INFO - Chrome data dir exists: True
-2025-12-04 15:19:59,297 - __main__ - INFO - ================================================================================
-2025-12-04 15:19:59,297 - __main__ - INFO - Starting NAS Video Downloader
-2025-12-04 15:19:59,297 - __main__ - INFO - Download directory: /app/downloads
-2025-12-04 15:19:59,297 - __main__ - INFO - Chrome data directory: /app/chrome-data
-2025-12-04 15:19:59,298 - __main__ - INFO - ================================================================================
- * Serving Flask app 'app'
- * Debug mode: off
-2025-12-04 15:19:59,300 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.208.2:5000
-2025-12-04 15:19:59,300 - werkzeug - INFO - Press CTRL+C to quit
-2025-12-04 15:19:59,380 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:19:59] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:20:00,029 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:20:00,029 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:20:00,029 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:20:00,029 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:20:00,029 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:20:01,608 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:01] "GET / HTTP/1.1" 200 -
-2025-12-04 15:20:01,739 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:01] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:20:03,231 - __main__ - INFO - Clear cookies requested
-2025-12-04 15:20:03,231 - __main__ - INFO - Force killing Chrome and ChromeDriver processes...
-2025-12-04 15:20:03,248 - __main__ - INFO - Process kill commands executed
-2025-12-04 15:20:03,248 - __main__ - INFO - Waiting for processes to terminate...
-2025-12-04 15:20:06,248 - __main__ - INFO - Clearing Chrome data directory: /app/chrome-data
-2025-12-04 15:20:06,294 - __main__ - INFO - Chrome data cleared: 42 items removed, 0 items failed
-2025-12-04 15:20:06,294 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:06] "POST /api/clear-cookies HTTP/1.1" 200 -
-2025-12-04 15:20:07,003 - __main__ - INFO - Starting browser with preferred resolution: 1080p60
-2025-12-04 15:20:07,003 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/chocobred_
-2025-12-04 15:20:07,003 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 15:20:07,004 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 15:20:07,908 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 15:20:08,319 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 15:20:08,319 - __main__ - INFO - Chrome debugger address: localhost:46133
-2025-12-04 15:20:08,324 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:46133/devtools/page/2ABD49FDF14D3E47A7C11CE22C57F836...
-2025-12-04 15:20:08,324 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 15:20:08,327 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 15:20:08,327 - __main__ - INFO - Browser browser_1764861607 started successfully, navigating to https://www.twitch.tv/chocobred_
-2025-12-04 15:20:11,708 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:11] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:20:13,189 - __main__ - INFO - Starting WebSocket CDP listener...
-2025-12-04 15:20:13,189 - __main__ - INFO - [CDP-WS] Starting WebSocket listener for ws://localhost:46133/devtools/page/2ABD49FDF14D3E47A7C11CE22C57F836...
-2025-12-04 15:20:13,189 - __main__ - INFO - [CDP-WS] Starting WebSocket run_forever loop...
-2025-12-04 15:20:13,190 - __main__ - INFO - Starting network monitoring for browser browser_1764861607
-2025-12-04 15:20:13,190 - __main__ - INFO - Browser browser_1764861607 fully initialized
-2025-12-04 15:20:13,191 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:13] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 15:20:13,192 - __main__ - INFO - [CDP-WS] ✓ WebSocket connected!
-2025-12-04 15:20:13,192 - __main__ - INFO - [CDP-WS] Sent Network.enable command
-2025-12-04 15:20:13,192 - __main__ - INFO - [CDP-WS] Sent Page.enable command
-2025-12-04 15:20:15,209 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:15] "GET /api/browser/status/browser_1764861607 HTTP/1.1" 200 -
-2025-12-04 15:20:17,216 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:17] "GET /api/browser/status/browser_1764861607 HTTP/1.1" 200 -
-2025-12-04 15:20:19,208 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:19] "GET /api/browser/status/browser_1764861607 HTTP/1.1" 200 -
-2025-12-04 15:20:21,216 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:21] "GET /api/browser/status/browser_1764861607 HTTP/1.1" 200 -
-2025-12-04 15:20:21,705 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:21] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:20:23,210 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:23] "GET /api/browser/status/browser_1764861607 HTTP/1.1" 200 -
-2025-12-04 15:20:23,271 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 15:20:23,271 - __main__ - INFO - [CDP-WS] WebSocket closed: None - None
-2025-12-04 15:20:23,444 - __main__ - INFO - Browser browser_1764861607 closed
-2025-12-04 15:20:23,444 INFO reaped unknown pid 60 (exit status 0)
-2025-12-04 15:20:23,444 INFO reaped unknown pid 62 (exit status 0)
-2025-12-04 15:20:23,444 INFO reaped unknown pid 67 (exit status 0)
-2025-12-04 15:20:23,444 INFO reaped unknown pid 68 (exit status 0)
-2025-12-04 15:20:23,444 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:23] "POST /api/browser/close/browser_1764861607 HTTP/1.1" 200 -
-2025-12-04 15:20:23,450 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:20:23] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:23:36,988 - werkzeug - INFO - Press CTRL+C to quit
+2025-12-04 15:23:37,668 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:23:37,669 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:23:37,669 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:23:37,669 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:23:37,669 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:23:37,908 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:37] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:23:40,355 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:40] "GET / HTTP/1.1" 200 -
+2025-12-04 15:23:40,467 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:40] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:23:41,972 - __main__ - INFO - Clear cookies requested
+2025-12-04 15:23:41,973 - __main__ - INFO - Force killing Chrome and ChromeDriver processes...
+2025-12-04 15:23:41,989 - __main__ - INFO - Process kill commands executed
+2025-12-04 15:23:41,990 - __main__ - INFO - Waiting for processes to terminate...
+2025-12-04 15:23:44,990 - __main__ - INFO - Clearing Chrome data directory: /app/chrome-data
+2025-12-04 15:23:45,035 - __main__ - INFO - Chrome data cleared: 42 items removed, 0 items failed
+2025-12-04 15:23:45,035 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:45] "POST /api/clear-cookies HTTP/1.1" 200 -
+2025-12-04 15:23:45,687 - __main__ - INFO - Starting browser with preferred resolution: 1080p60
+2025-12-04 15:23:45,688 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/chocobred_
+2025-12-04 15:23:45,688 - __main__ - INFO - Initializing ChromeDriver service
+2025-12-04 15:23:45,688 - __main__ - INFO - Creating Chrome webdriver instance...
+2025-12-04 15:23:46,652 - __main__ - INFO - Chrome webdriver created successfully!
+2025-12-04 15:23:47,046 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
+2025-12-04 15:23:47,046 - __main__ - INFO - Chrome debugger address: localhost:44551
+2025-12-04 15:23:47,050 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:44551/devtools/page/DBE3D75AE4A7DD03DBB878D050D24389...
+2025-12-04 15:23:47,050 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
+2025-12-04 15:23:47,054 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
+2025-12-04 15:23:47,055 - __main__ - INFO - Browser browser_1764861825 started successfully, navigating to https://www.twitch.tv/chocobred_
+2025-12-04 15:23:50,444 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:50] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:23:50,759 - __main__ - INFO - Starting WebSocket CDP listener...
+2025-12-04 15:23:50,759 - __main__ - INFO - [CDP-WS] Starting WebSocket listener for ws://localhost:44551/devtools/page/DBE3D75AE4A7DD03DBB878D050D24389...
+2025-12-04 15:23:50,760 - __main__ - INFO - Starting network monitoring for browser browser_1764861825
+2025-12-04 15:23:50,760 - __main__ - INFO - Browser browser_1764861825 fully initialized
+2025-12-04 15:23:50,760 - __main__ - INFO - [CDP-WS] Starting WebSocket run_forever loop...
+2025-12-04 15:23:50,761 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:50] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-04 15:23:50,762 - __main__ - INFO - [CDP-WS] ✓ WebSocket connected!
+2025-12-04 15:23:50,762 - __main__ - INFO - [CDP-WS] Sent Network.enable command
+2025-12-04 15:23:50,763 - __main__ - INFO - [CDP-WS] Sent Page.enable command
+2025-12-04 15:23:51,138 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://video-edge-dead02.pdx01.abs.hls.ttvnw.net/v1/segment/Cl-XxZIriqWOYOR0SzUeaWrHkjdnvpEPmPcuo7II5g5sdZ0ZFIbnaIO-IHds--MM4nY2PMKa4fa5LR9KzMKvD9nGOkqI7hVQgf8PMltCd63e6MZvkv2cofvPIiYZH1bhsjyJ8iALtReJ3J4SBYhKQzn2eEan6Juo0aVHT5mg0WJm8xsAnZjlp8KBXpweN | MIME: text/plain
+2025-12-04 15:23:52,028 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.stream-display-ad.pushdown.portal-cd648bbdab64fdd513a9.css
+2025-12-04 15:23:52,029 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.stream-display-ad.pushdown.portal-25eae2f40bac44f40c16.js
+2025-12-04 15:23:52,036 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.pushdown-sda-eligibility-7e9e14cba82dadc348db.js
+2025-12-04 15:23:52,052 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.content-metadata.stream-metadata-2f5bbaf4a2b0f5b63ac9.css
+2025-12-04 15:23:52,053 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.content-metadata.stream-metadata-4e28d1c1af6b2224421f.js
+2025-12-04 15:23:52,109 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.audio-ad-overlay.component-d74158bfd9ea923ff5c4.css
+2025-12-04 15:23:52,110 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.audio-ad-overlay.component-d0e6f33a27dad1764c48.js
+2025-12-04 15:23:52,124 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.stream-display-ad.pushdown.portal-cd648bbdab64fdd513a9.css | MIME: text/css
+2025-12-04 15:23:52,129 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.content-metadata.stream-metadata-2f5bbaf4a2b0f5b63ac9.css | MIME: text/css
+2025-12-04 15:23:52,137 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.audio-ad-overlay.component-d74158bfd9ea923ff5c4.css | MIME: text/css
+2025-12-04 15:23:52,203 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.stream-display-ad.pushdown.portal-25eae2f40bac44f40c16.js | MIME: application/x-javascript
+2025-12-04 15:23:52,209 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.pushdown-sda-eligibility-7e9e14cba82dadc348db.js | MIME: application/x-javascript
+2025-12-04 15:23:52,226 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.content-metadata.stream-metadata-4e28d1c1af6b2224421f.js | MIME: application/x-javascript
+2025-12-04 15:23:52,249 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.audio-ad-overlay.component-d0e6f33a27dad1764c48.js | MIME: application/x-javascript
+2025-12-04 15:23:52,779 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:52] "GET /api/browser/status/browser_1764861825 HTTP/1.1" 200 -
+2025-12-04 15:23:53,388 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://prod.ivs-device-config.live-video.net/player-web-v1.json?version=1.0
+2025-12-04 15:23:53,637 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://prod.ivs-device-config.live-video.net/player-web-v1.json?version=1.0 | MIME: application/json
+2025-12-04 15:23:53,986 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.costream-button-eab2b946135b9b5cdd12.js
+2025-12-04 15:23:54,018 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.costream-button-eab2b946135b9b5cdd12.js | MIME: application/x-javascript
+2025-12-04 15:23:54,779 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:54] "GET /api/browser/status/browser_1764861825 HTTP/1.1" 200 -
+2025-12-04 15:23:56,777 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:56] "GET /api/browser/status/browser_1764861825 HTTP/1.1" 200 -
+2025-12-04 15:23:57,804 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://video-edge-dead02.pdx01.abs.hls.ttvnw.net/v1/segment/Cl-XxZIriqWOYOR0SzUeaWrHkjdnvpEPmPcuo7II5g5sdZ0ZFIbnaIO-IHds--MM4nY2PMKa4fa5LR9KzMKvD9nGOkqI7hVQgf8PMltCd63e6MZvkv2cofvPIiYZH1bhsjyJ8iALtReJ3J4SBYhKQzn2eEan6Juo0aVHT5mg0WJm8xsAnZjlp8KBXpweN
+2025-12-04 15:23:57,992 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://video-edge-dead02.pdx01.abs.hls.ttvnw.net/v1/segment/Cl-XxZIriqWOYOR0SzUeaWrHkjdnvpEPmPcuo7II5g5sdZ0ZFIbnaIO-IHds--MM4nY2PMKa4fa5LR9KzMKvD9nGOkqI7hVQgf8PMltCd63e6MZvkv2cofvPIiYZH1bhsjyJ8iALtReJ3J4SBYhKQzn2eEan6Juo0aVHT5mg0WJm8xsAnZjlp8KBXpweN | MIME: text/plain
+2025-12-04 15:23:58,301 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.channel-skins.video-overlay-287e9c7eac94d7606c41.css
+2025-12-04 15:23:58,302 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.channel-skins.video-overlay-287e9c7eac94d7606c41.css | MIME: text/css
+2025-12-04 15:23:58,303 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.channel-skins.video-overlay-de5b0ff6d36a87eeb84c.js
+2025-12-04 15:23:58,304 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.channel-skins.video-overlay-de5b0ff6d36a87eeb84c.js | MIME: application/x-javascript
+2025-12-04 15:23:58,306 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.ads.components.client-side-video-ads.instream-and-vertical-video-ad-player-2a55e4bca435919f392a.css
+2025-12-04 15:23:58,307 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.ads.components.client-side-video-ads.instream-and-vertical-video-ad-player-2a55e4bca435919f392a.css | MIME: text/css
+2025-12-04 15:23:58,308 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.ads.components.client-side-video-ads.instream-and-vertical-video-ad-player-3e7e0826bdacc45b7f18.js
+2025-12-04 15:23:58,308 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.ads.components.client-side-video-ads.instream-and-vertical-video-ad-player-3e7e0826bdacc45b7f18.js | MIME: application/x-javascript
+2025-12-04 15:23:58,784 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:23:58] "GET /api/browser/status/browser_1764861825 HTTP/1.1" 200 -
+2025-12-04 15:24:00,442 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:24:00] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:24:00,509 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.stream-display-ad.pushdown.portal-cd648bbdab64fdd513a9.css
+2025-12-04 15:24:00,510 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.stream-display-ad.pushdown.portal-25eae2f40bac44f40c16.js
+2025-12-04 15:24:00,515 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.audio-ad-overlay.component-d74158bfd9ea923ff5c4.css
+2025-12-04 15:24:00,516 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.audio-ad-overlay.component-d0e6f33a27dad1764c48.js
+2025-12-04 15:24:00,518 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.pushdown-sda-eligibility-7e9e14cba82dadc348db.js
+2025-12-04 15:24:00,526 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.content-metadata.stream-metadata-2f5bbaf4a2b0f5b63ac9.css
+2025-12-04 15:24:00,526 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.content-metadata.stream-metadata-4e28d1c1af6b2224421f.js
+2025-12-04 15:24:00,545 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.stream-display-ad.pushdown.portal-cd648bbdab64fdd513a9.css | MIME: text/css
+2025-12-04 15:24:00,547 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.audio-ad-overlay.component-d74158bfd9ea923ff5c4.css | MIME: text/css
+2025-12-04 15:24:00,549 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.content-metadata.stream-metadata-2f5bbaf4a2b0f5b63ac9.css | MIME: text/css
+2025-12-04 15:24:00,782 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.stream-display-ad.pushdown.portal-25eae2f40bac44f40c16.js | MIME: application/x-javascript
+2025-12-04 15:24:00,793 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.audio-ad-overlay.component-d0e6f33a27dad1764c48.js | MIME: application/x-javascript
+2025-12-04 15:24:00,801 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:24:00] "GET /api/browser/status/browser_1764861825 HTTP/1.1" 200 -
+2025-12-04 15:24:00,806 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/features.video-player-core.components.video-ads.pushdown-sda-eligibility-7e9e14cba82dadc348db.js | MIME: application/x-javascript
+2025-12-04 15:24:00,820 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.content-metadata.stream-metadata-4e28d1c1af6b2224421f.js | MIME: application/x-javascript
+2025-12-04 15:24:01,354 - __main__ - INFO - [CDP-WS] 🔍 REQUEST: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.costream-button-eab2b946135b9b5cdd12.js
+2025-12-04 15:24:01,394 - __main__ - INFO - [CDP-WS] 🔍 RESPONSE: https://assets.twitch.tv/assets/pages.channel.components.channel-shell.components.costream-button-eab2b946135b9b5cdd12.js | MIME: application/x-javascript
+2025-12-04 15:24:02,780 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:24:02] "GET /api/browser/status/browser_1764861825 HTTP/1.1" 200 -
+2025-12-04 15:24:04,781 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:24:04] "GET /api/browser/status/browser_1764861825 HTTP/1.1" 200 -
+2025-12-04 15:24:04,918 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
+2025-12-04 15:24:04,919 - __main__ - INFO - [CDP-WS] WebSocket closed: None - None
+2025-12-04 15:24:05,087 - __main__ - INFO - Browser browser_1764861825 closed
+2025-12-04 15:24:05,087 INFO reaped unknown pid 60 (exit status 0)
+2025-12-04 15:24:05,087 INFO reaped unknown pid 62 (exit status 0)
+2025-12-04 15:24:05,087 INFO reaped unknown pid 67 (exit status 0)
+2025-12-04 15:24:05,088 INFO reaped unknown pid 68 (exit status 0)
+2025-12-04 15:24:05,088 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:24:05] "POST /api/browser/close/browser_1764861825 HTTP/1.1" 200 -
+2025-12-04 15:24:05,092 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:24:05] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:24:11,184 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:24:11] "GET /api/downloads/list HTTP/1.1" 200 -
