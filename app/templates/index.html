@@ -588,18 +588,42 @@
                     const response = await fetch(`/api/browser/status/${currentBrowserId}`);
                     const data = await response.json();
 
+                    // DEBUG: Log status data
+                    console.log('=== BROWSER STATUS UPDATE ===');
+                    console.log('Browser ID:', currentBrowserId);
+                    console.log('Is Running:', data.is_running);
+                    console.log('Download Started:', data.download_started);
+                    console.log('Detected Streams Count:', data.detected_streams);
+                    console.log('Awaiting Resolution Selection:', data.awaiting_resolution_selection);
+
+                    if (data.awaiting_resolution_selection) {
+                        console.log('=== AVAILABLE RESOLUTIONS ===');
+                        console.log('Count:', data.available_resolutions?.length || 0);
+                        data.available_resolutions?.forEach((res, index) => {
+                            console.log(`--- Stream ${index + 1} ---`);
+                            console.log('Name:', res.name);
+                            console.log('Resolution:', res.resolution);
+                            console.log('Framerate:', res.framerate);
+                            console.log('Bandwidth:', res.bandwidth);
+                            console.log('URL:', res.url);
+                        });
+                    }
+
                     // Check if resolution selection is needed
                     if (data.awaiting_resolution_selection && !document.getElementById('resolution-popup').classList.contains('active')) {
+                        console.log('!!! SHOWING RESOLUTION POPUP !!!');
                         showResolutionPopup(data.available_resolutions);
                         const statusBox = document.getElementById('browser-status');
                         showStatus(statusBox, '⚠️ Choose your preferred resolution above', 'error');
                     }
 
                     if (data.download_started && !document.getElementById('download-popup').classList.contains('active')) {
+                        console.log('!!! SHOWING DOWNLOAD POPUP !!!');
                         showDownloadPopup(data);
                     }
 
                     if (!data.is_running) {
+                        console.log('!!! BROWSER STOPPED !!!');
                         clearInterval(statusCheckInterval);
                         loadDownloads();
                     }

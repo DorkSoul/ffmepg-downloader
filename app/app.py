@@ -282,6 +282,10 @@ class StreamDetector:
                             url = response.get('url', '')
                             mime_type = response.get('mimeType', '')
 
+                            # DEBUG: Log all video-related URLs being checked
+                            if any(ext in url.lower() for ext in ['.m3u8', '.mpd', '.mp4', '.ts', '.m4s', 'ttvnw']):
+                                logger.debug(f"Checking potential video URL: {url[:150]}... (mime: {mime_type})")
+
                             # Detect video streams
                             if self._is_video_stream(url, mime_type):
                                 stream_info = {
@@ -292,11 +296,12 @@ class StreamDetector:
                                 }
 
                                 if stream_info not in self.detected_streams:
-                                    logger.info(f"Detected stream: {url}")
+                                    logger.info(f"✓ DETECTED STREAM: type={stream_info['type']}, url={url[:100]}...")
                                     self.detected_streams.append(stream_info)
 
                                     # Start download for the first valid stream
                                     if not self.download_started and not self.awaiting_resolution_selection:
+                                        logger.info(f"Processing first detected stream...")
                                         self._handle_stream_detection(stream_info)
 
                     except json.JSONDecodeError:
@@ -323,17 +328,20 @@ class StreamDetector:
         if any(url.lower().endswith(ext) or ext in url.lower() for ext in video_extensions):
             # Filter out ads and tracking (but not Twitch ad insertion endpoints)
             if any(keyword in url.lower() for keyword in ['doubleclick', 'analytics', 'tracking']):
+                logger.debug(f"Rejected (ads/tracking): {url[:80]}...")
                 return False
+            logger.debug(f"Accepted (video extension): {url[:80]}...")
             return True
 
         # Check for Twitch-specific patterns
         if any(pattern in url.lower() for pattern in twitch_patterns):
             if '.m3u8' in url.lower() or 'playlist' in url.lower():
-                logger.info(f"Detected Twitch stream URL: {url[:100]}...")
+                logger.info(f"Accepted (Twitch pattern): {url[:100]}...")
                 return True
 
         # Check MIME type
         if any(mime in mime_type.lower() for mime in video_mime_types):
+            logger.debug(f"Accepted (MIME type {mime_type}): {url[:80]}...")
             return True
 
         return False
