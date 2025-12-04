@@ -20,7 +20,7 @@ import requests as req_lib
 
 # Configure logging to stdout/stderr for Docker logs
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.StreamHandler(sys.stdout),
@@ -28,6 +28,11 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+
+# Silence noisy third-party loggers
+logging.getLogger('selenium').setLevel(logging.WARNING)
+logging.getLogger('urllib3').setLevel(logging.WARNING)
+logging.getLogger('websocket').setLevel(logging.WARNING)
 
 # Log startup information
 logger.info("=" * 80)
@@ -327,12 +332,6 @@ class StreamDetector:
                 data = json.loads(message)
                 method = data.get('method', '')
                 params = data.get('params', {})
-
-                # Log that we're receiving messages
-                if method:
-                    # Only log network-related events to reduce noise
-                    if method.startswith('Network.'):
-                        logger.debug(f"[CDP-WS] Received: {method}")
 
                 # Check for network request events
                 if method == 'Network.requestWillBeSent':
