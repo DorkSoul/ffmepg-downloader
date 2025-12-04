@@ -316,32 +316,34 @@ class StreamDetector:
                 break
 
     def _is_video_stream(self, url, mime_type):
-        """Check if URL is a video stream"""
-        video_extensions = ['.m3u8', '.mpd', '.mp4', '.ts', '.m4s']
-        video_mime_types = ['video/', 'application/vnd.apple.mpegurl', 'application/dash+xml',
-                            'application/x-mpegurl', 'vnd.apple.mpegurl']
+        """Check if URL is a video stream - ONLY playlists, not segments"""
+        # ONLY accept playlist files (.m3u8, .mpd), NOT individual segments (.ts, .m4s)
+        playlist_extensions = ['.m3u8', '.mpd']
+        playlist_mime_types = ['application/vnd.apple.mpegurl', 'application/dash+xml',
+                               'application/x-mpegurl', 'vnd.apple.mpegurl']
 
-        # Twitch-specific detection (usher.ttvnw.net is their HLS endpoint)
-        twitch_patterns = ['usher.ttvnw.net', 'video-weaver', 'video-edge', '.ttvnw.net']
+        # Filter out individual segment files (.ts, .m4s, individual .mp4)
+        if url.lower().endswith('.ts') or url.lower().endswith('.m4s') or '/segment/' in url.lower():
+            logger.debug(f"Rejected (segment file): {url[:80]}...")
+            return False
 
-        # Check URL extension
-        if any(url.lower().endswith(ext) or ext in url.lower() for ext in video_extensions):
-            # Filter out ads and tracking (but not Twitch ad insertion endpoints)
+        # Check for playlist extensions
+        if any(url.lower().endswith(ext) or f'{ext}?' in url.lower() for ext in playlist_extensions):
+            # Filter out ads and tracking
             if any(keyword in url.lower() for keyword in ['doubleclick', 'analytics', 'tracking']):
                 logger.debug(f"Rejected (ads/tracking): {url[:80]}...")
                 return False
-            logger.debug(f"Accepted (video extension): {url[:80]}...")
+            logger.info(f"✓ Accepted (playlist): {url[:120]}...")
             return True
 
-        # Check for Twitch-specific patterns
-        if any(pattern in url.lower() for pattern in twitch_patterns):
-            if '.m3u8' in url.lower() or 'playlist' in url.lower():
-                logger.info(f"Accepted (Twitch pattern): {url[:100]}...")
-                return True
+        # Check for playlist in path (e.g., /playlist/, /master.m3u8)
+        if 'playlist' in url.lower() and '.m3u8' in url.lower():
+            logger.info(f"✓ Accepted (playlist path): {url[:120]}...")
+            return True
 
-        # Check MIME type
-        if any(mime in mime_type.lower() for mime in video_mime_types):
-            logger.debug(f"Accepted (MIME type {mime_type}): {url[:80]}...")
+        # Check MIME type for playlists
+        if any(mime in mime_type.lower() for mime in playlist_mime_types):
+            logger.info(f"✓ Accepted (playlist MIME {mime_type}): {url[:120]}...")
             return True
 
         return False
