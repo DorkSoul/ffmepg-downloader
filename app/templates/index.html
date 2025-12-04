@@ -746,14 +746,19 @@
                         vncContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 500);
 
+                    // Update button to show browser is running
+                    btn.disabled = false;
+                    btn.innerHTML = '✓ Browser Running';
+
                     // Start status polling
                     startStatusPolling();
                 } else {
                     showStatus(statusBox, `Error: ${data.error}`, 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = 'Open Browser & Detect';
                 }
             } catch (error) {
                 showStatus(statusBox, `Error: ${error.message}`, 'error');
-            } finally {
                 btn.disabled = false;
                 btn.innerHTML = 'Open Browser & Detect';
             }
@@ -810,6 +815,16 @@
                     if (!data.is_running) {
                         console.log('!!! BROWSER STOPPED !!!');
                         clearInterval(statusCheckInterval);
+
+                        // Reset button and hide VNC
+                        const btn = document.getElementById('browser-start-btn');
+                        btn.disabled = false;
+                        btn.innerHTML = 'Open Browser & Detect';
+
+                        const vncContainer = document.getElementById('vnc-container');
+                        vncContainer.classList.remove('active');
+
+                        currentBrowserId = null;
                         loadDownloads();
                     }
                 } catch (error) {
@@ -1051,6 +1066,11 @@
                 if (statusCheckInterval) {
                     clearInterval(statusCheckInterval);
                 }
+
+                // Reset the button
+                const btn = document.getElementById('browser-start-btn');
+                btn.disabled = false;
+                btn.innerHTML = 'Open Browser & Detect';
 
                 loadDownloads();
             } catch (error) {

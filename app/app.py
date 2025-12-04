@@ -254,18 +254,10 @@ class StreamDetector:
 
                     # If this is the first attempt and error mentions "Chrome instance exited"
                     if retry_count == 0 and "Chrome instance exited" in str(driver_error):
-                        logger.warning("Chrome failed to start with user-data-dir, cleaning and retrying...")
+                        logger.warning("Chrome failed to start with user-data-dir, cleaning lock files and retrying...")
                         retry_count += 1
 
-                        # Force kill any remaining Chrome processes
-                        try:
-                            subprocess.run(['pkill', '-9', 'chrome'], check=False, timeout=5)
-                            subprocess.run(['pkill', '-9', 'chromedriver'], check=False, timeout=5)
-                            time.sleep(2)
-                        except Exception as kill_error:
-                            logger.warning(f"Error killing processes: {kill_error}")
-
-                        # Clean up problematic lock files in user-data-dir
+                        # Clean up problematic lock files in user-data-dir (DO NOT kill other browser sessions)
                         try:
                             import glob
                             lock_files = glob.glob(os.path.join(CHROME_USER_DATA_DIR, '**/SingletonLock'), recursive=True)
@@ -280,6 +272,8 @@ class StreamDetector:
                         except Exception as cleanup_error:
                             logger.warning(f"Error during lock file cleanup: {cleanup_error}")
 
+                        # Small delay to let file system catch up
+                        time.sleep(1)
                         continue  # Retry
                     else:
                         # Try to get more details
