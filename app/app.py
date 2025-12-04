@@ -282,8 +282,12 @@ class StreamDetector:
                             url = response.get('url', '')
                             mime_type = response.get('mimeType', '')
 
+                            # DEBUG: Log ALL .m3u8 URLs (high priority for debugging)
+                            if '.m3u8' in url.lower():
+                                logger.info(f"🔍 CHECKING .m3u8 URL: {url[:200]}... (mime: {mime_type})")
+
                             # DEBUG: Log all video-related URLs being checked
-                            if any(ext in url.lower() for ext in ['.m3u8', '.mpd', '.mp4', '.ts', '.m4s', 'ttvnw']):
+                            if any(ext in url.lower() for ext in ['.mpd', '.mp4', '.ts', '.m4s', 'ttvnw']):
                                 logger.debug(f"Checking potential video URL: {url[:150]}... (mime: {mime_type})")
 
                             # Detect video streams
@@ -326,6 +330,11 @@ class StreamDetector:
         if url.lower().endswith('.ts') or url.lower().endswith('.m4s') or '/segment/' in url.lower():
             logger.debug(f"Rejected (segment file): {url[:80]}...")
             return False
+
+        # HIGH PRIORITY: Twitch HLS API endpoint (usher.ttvnw.net)
+        if 'usher.ttvnw.net' in url.lower() and '.m3u8' in url.lower():
+            logger.info(f"✓✓✓ TWITCH HLS API DETECTED: {url[:150]}...")
+            return True
 
         # Check for playlist extensions
         if any(url.lower().endswith(ext) or f'{ext}?' in url.lower() for ext in playlist_extensions):
