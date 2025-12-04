@@ -128,13 +128,25 @@ def parse_master_playlist(content):
                 stream_url = lines[i + 1].strip()
 
                 if stream_url and not stream_url.startswith('#'):
+                    # Get base name and framerate
+                    base_name = attrs.get('IVS-NAME', attrs.get('STABLE-VARIANT-ID', ''))
+                    framerate = attrs.get('FRAME-RATE', '')
+
+                    # Normalize name to always include framerate
+                    if framerate and base_name:
+                        # Extract numeric framerate (e.g., "60.000" -> "60")
+                        fps_numeric = framerate.split('.')[0] if '.' in str(framerate) else str(framerate)
+                        # Only append if not already in name
+                        if not any(fps in base_name for fps in ['60', '30', '24', '25', '50']):
+                            base_name = f"{base_name}{fps_numeric}"
+
                     resolution_info = {
                         'url': stream_url,
                         'bandwidth': int(attrs.get('BANDWIDTH', 0)),
                         'resolution': attrs.get('RESOLUTION', ''),
-                        'framerate': attrs.get('FRAME-RATE', ''),
+                        'framerate': framerate,
                         'codecs': attrs.get('CODECS', ''),
-                        'name': attrs.get('IVS-NAME', attrs.get('STABLE-VARIANT-ID', ''))
+                        'name': base_name
                     }
 
                     resolutions.append(resolution_info)
@@ -734,38 +746,29 @@ class StreamDetector:
 
         # Now filter by framerate
         if self.framerate == 'any':
-            # Prefer 60fps, fallback to 30fps
-            fps_60 = [r for r in matching_res if '60' in str(r.get('framerate', ''))]
-            if fps_60:
-                logger.info("Found 60fps stream (framerate='any' prefers 60fps)")
-                return fps_60[0]
-
-            fps_30 = [r for r in matching_res if '30' in str(r.get('framerate', ''))]
-            if fps_30:
-                logger.info("No 60fps found, using 30fps stream (framerate='any' fallback)")
-                return fps_30[0]
-
-            # If no specific framerate found, return highest bandwidth of matching resolution
-            logger.info("No specific framerate found, returning highest bandwidth stream")
+            # Return highest bandwidth (already sorted)
+            logger.info(f"Framerate='any', selecting highest bandwidth: {matching_res[0].get('name')}")
             return matching_res[0]
 
         elif self.framerate == '60':
-            # Only accept 60fps
+            # Only accept 60fps - NO FALLBACK
             fps_60 = [r for r in matching_res if '60' in str(r.get('framerate', ''))]
             if fps_60:
                 logger.info("Found 60fps stream")
                 return fps_60[0]
-            logger.warning("No 60fps stream found, returning highest bandwidth of matching resolution")
-            return matching_res[0]
+            # Return None if specific framerate not found
+            logger.warning(f"No 60fps stream found for {self.resolution}, showing all streams for manual selection")
+            return None
 
         elif self.framerate == '30':
-            # Only accept 30fps
+            # Only accept 30fps - NO FALLBACK
             fps_30 = [r for r in matching_res if '30' in str(r.get('framerate', ''))]
             if fps_30:
                 logger.info("Found 30fps stream")
                 return fps_30[0]
-            logger.warning("No 30fps stream found, returning highest bandwidth of matching resolution")
-            return matching_res[0]
+            # Return None if specific framerate not found
+            logger.warning(f"No 30fps stream found for {self.resolution}, showing all streams for manual selection")
+            return None
 
         # Default: return highest bandwidth of matching resolution
         return matching_res[0]
@@ -867,16 +870,8 @@ class StreamDetector:
 
     def _start_download_with_stream(self, stream):
         """Start download with stream object (contains all metadata)"""
-        # Normalize filename to always include framerate
-        resolution_name = stream.get('name', '')
-        framerate = stream.get('framerate', '')
-
-        # If framerate is provided and not already in the name, append it
-        if framerate and not any(fps in resolution_name for fps in ['60', '30', '24', '25', '50']):
-            # Extract numeric framerate (e.g., "60.000" -> "60")
-            fps_numeric = framerate.split('.')[0] if '.' in str(framerate) else str(framerate)
-            resolution_name = f"{resolution_name}{fps_numeric}"
-
+        # Use the normalized name from the stream (already includes framerate from parse_master_playlist)
+        resolution_name = stream.get('name', 'video')
         self._start_download_with_url(stream['url'], resolution_name, stream)
 
     def _start_download_with_url(self, stream_url, resolution_name, stream_metadata=None):
