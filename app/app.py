@@ -136,8 +136,10 @@ def parse_master_playlist(content):
                     if framerate and base_name:
                         # Extract numeric framerate (e.g., "60.000" -> "60")
                         fps_numeric = framerate.split('.')[0] if '.' in str(framerate) else str(framerate)
-                        # Only append if not already in name
-                        if not any(fps in base_name for fps in ['60', '30', '24', '25', '50']):
+                        # Only append if not already at the end (e.g., "1080p60" already has 60)
+                        # Check for pattern like "720p60" or "1080p30" (ends with fps number)
+                        import re
+                        if not re.search(r'p\d+$', base_name):  # If doesn't end with 'p' followed by digits
                             base_name = f"{base_name}{fps_numeric}"
 
                     resolution_info = {
