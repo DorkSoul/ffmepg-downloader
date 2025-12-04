@@ -617,9 +617,13 @@
                         showStatus(statusBox, '⚠️ Choose your preferred resolution above', 'error');
                     }
 
-                    if (data.download_started && !document.getElementById('download-popup').classList.contains('active')) {
-                        console.log('!!! SHOWING DOWNLOAD POPUP !!!');
-                        showDownloadPopup(data);
+                    // DEBUG: Download popup disabled for debugging
+                    // if (data.download_started && !document.getElementById('download-popup').classList.contains('active')) {
+                    //     console.log('!!! SHOWING DOWNLOAD POPUP !!!');
+                    //     showDownloadPopup(data);
+                    // }
+                    if (data.download_started) {
+                        console.log('!!! DOWNLOAD STARTED (popup disabled for debugging) !!!');
                     }
 
                     if (!data.is_running) {
