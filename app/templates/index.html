@@ -609,13 +609,13 @@
                         });
                     }
 
-                    // Check if resolution selection is needed
-                    if (data.awaiting_resolution_selection && !document.getElementById('resolution-popup').classList.contains('active')) {
-                        console.log('!!! SHOWING RESOLUTION POPUP !!!');
-                        showResolutionPopup(data.available_resolutions);
-                        const statusBox = document.getElementById('browser-status');
-                        showStatus(statusBox, '⚠️ Choose your preferred resolution above', 'error');
-                    }
+                    // DEBUG: Resolution popup disabled for debugging - check console logs only
+                    // if (data.awaiting_resolution_selection && !document.getElementById('resolution-popup').classList.contains('active')) {
+                    //     console.log('!!! SHOWING RESOLUTION POPUP !!!');
+                    //     showResolutionPopup(data.available_resolutions);
+                    //     const statusBox = document.getElementById('browser-status');
+                    //     showStatus(statusBox, '⚠️ Choose your preferred resolution above', 'error');
+                    // }
 
                     // DEBUG: Download popup disabled for debugging
                     // if (data.download_started && !document.getElementById('download-popup').classList.contains('active')) {
