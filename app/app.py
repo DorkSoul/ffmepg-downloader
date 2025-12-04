@@ -873,6 +873,15 @@ class StreamDetector:
         logger.info(f"Starting download for resolution: {resolution_name}")
         logger.info(f"Stream URL: {stream_url}")
 
+        # Start download process in background thread to avoid blocking driver operations
+        threading.Thread(
+            target=self._process_download,
+            args=(stream_url, resolution_name),
+            daemon=True
+        ).start()
+
+    def _process_download(self, stream_url, resolution_name):
+        """Process download in background thread"""
         # Wait a moment for video to start playing
         logger.info("Waiting 3 seconds for video to load...")
         time.sleep(3)
