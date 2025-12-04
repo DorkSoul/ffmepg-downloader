@@ -339,8 +339,9 @@ class StreamDetector:
                     url = request.get('url', '')
                     request_id = params.get('requestId', '')
 
-                    if '.m3u8' in url.lower() or 'playlist' in url.lower():
-                        logger.info(f"[CDP-WS] 🎯 REQUEST: {url[:200]}...")
+                    # TEMP DEBUG: Log ALL video-related URLs to see what we're getting
+                    if any(keyword in url.lower() for keyword in ['m3u8', 'playlist', 'usher', 'ttvnw', 'video', 'stream', 'mpd']):
+                        logger.info(f"[CDP-WS] 🔍 REQUEST: {url[:250]}")
 
                 # Check for network response events
                 elif method == 'Network.responseReceived':
@@ -349,8 +350,13 @@ class StreamDetector:
                     mime_type = response.get('mimeType', '')
                     request_id = params.get('requestId', '')
 
+                    # TEMP DEBUG: Log ALL video-related URLs to see what we're getting
+                    if any(keyword in url.lower() for keyword in ['m3u8', 'playlist', 'usher', 'ttvnw', 'video', 'stream', 'mpd']) or 'mpegurl' in mime_type.lower():
+                        logger.info(f"[CDP-WS] 🔍 RESPONSE: {url[:250]} | MIME: {mime_type}")
+
+                    # Still check for actual detection
                     if '.m3u8' in url.lower() or 'mpegurl' in mime_type.lower():
-                        logger.info(f"[CDP-WS] 🎯 RESPONSE: {url[:200]}... | MIME: {mime_type}")
+                        logger.info(f"[CDP-WS] 🎯 DETECTED: {url[:200]}... | MIME: {mime_type}")
 
                         # Process this stream
                         if self._is_video_stream(url, mime_type):
