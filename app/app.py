@@ -15,6 +15,8 @@ from selenium.common.exceptions import WebDriverException
 from PIL import Image
 import io
 import base64
+import websocket
+import requests as req_lib
 
 # Configure logging to stdout/stderr for Docker logs
 logging.basicConfig(
@@ -178,6 +180,10 @@ class StreamDetector:
         self.awaiting_resolution_selection = False
         self.available_resolutions = []
         self.selected_stream_url = None
+        # WebSocket CDP connection
+        self.ws = None
+        self.ws_url = None
+        self.cdp_session_id = 1
 
     def start_browser(self, url):
         """Start Chrome with DevTools Protocol enabled"""
@@ -242,19 +248,56 @@ class StreamDetector:
                 raise
             self.driver.set_window_size(1920, 1080)
 
-            # Enable Network domain via Chrome DevTools Protocol
+            # Get CDP WebSocket URL for real-time event monitoring
             try:
-                logger.info("Enabling Chrome DevTools Protocol Network domain...")
+                logger.info("Getting Chrome DevTools Protocol WebSocket URL...")
+
+                # Get the debugger address from Chrome
+                debugger_address = None
+                if 'goog:chromeOptions' in self.driver.capabilities:
+                    debugger_address = self.driver.capabilities['goog:chromeOptions'].get('debuggerAddress')
+
+                if debugger_address:
+                    logger.info(f"Chrome debugger address: {debugger_address}")
+                    # Query the debugger to get WebSocket URL
+                    debugger_url = f"http://{debugger_address}/json"
+                    try:
+                        response = req_lib.get(debugger_url, timeout=5)
+                        if response.status_code == 200:
+                            pages = response.json()
+                            if pages and len(pages) > 0:
+                                # Get the first page's WebSocket URL
+                                self.ws_url = pages[0].get('webSocketDebuggerUrl')
+                                logger.info(f"✓ Got CDP WebSocket URL: {self.ws_url[:80]}...")
+                            else:
+                                logger.warning("No pages found in CDP debugger response")
+                        else:
+                            logger.warning(f"CDP debugger returned status {response.status_code}")
+                    except Exception as e:
+                        logger.warning(f"Could not query CDP debugger: {e}")
+                else:
+                    logger.warning("No debugger address in Chrome capabilities")
+
+                # Also enable Network domain via execute_cdp_cmd as backup
+                logger.info("Enabling Network domain via execute_cdp_cmd...")
                 self.driver.execute_cdp_cmd('Network.enable', {})
-                logger.info("Network domain enabled successfully")
+                logger.info("Network domain enabled via execute_cdp_cmd")
+
             except Exception as e:
-                logger.warning(f"Could not enable Network domain: {e}")
+                logger.warning(f"Could not set up CDP: {e}")
 
             logger.info(f"Browser {self.browser_id} started successfully, navigating to {url}")
             self.driver.get(url)
             self.is_running = True
 
-            # Start monitoring network traffic
+            # Start WebSocket CDP listener for real-time network events
+            if self.ws_url:
+                logger.info("Starting WebSocket CDP listener...")
+                threading.Thread(target=self._cdp_websocket_listener, daemon=True).start()
+            else:
+                logger.warning("No WebSocket URL available, falling back to polling only")
+
+            # Start monitoring network traffic (legacy polling as backup)
             threading.Thread(target=self._monitor_network, daemon=True).start()
 
             logger.info(f"Browser {self.browser_id} fully initialized")
@@ -268,6 +311,117 @@ class StreamDetector:
             import traceback
             logger.error(f"Traceback: {traceback.format_exc()}")
             return False
+
+    def _cdp_websocket_listener(self):
+        """Real-time CDP WebSocket listener - exactly like DevTools does"""
+        logger.info(f"[CDP-WS] Starting WebSocket listener for {self.ws_url[:80]}...")
+
+        def on_message(ws, message):
+            """Handle incoming CDP messages"""
+            try:
+                data = json.loads(message)
+                method = data.get('method', '')
+                params = data.get('params', {})
+
+                # Log that we're receiving messages
+                if method:
+                    # Only log network-related events to reduce noise
+                    if method.startswith('Network.'):
+                        logger.debug(f"[CDP-WS] Received: {method}")
+
+                # Check for network request events
+                if method == 'Network.requestWillBeSent':
+                    request = params.get('request', {})
+                    url = request.get('url', '')
+                    request_id = params.get('requestId', '')
+
+                    if '.m3u8' in url.lower() or 'playlist' in url.lower():
+                        logger.info(f"[CDP-WS] 🎯 REQUEST: {url[:200]}...")
+
+                # Check for network response events
+                elif method == 'Network.responseReceived':
+                    response = params.get('response', {})
+                    url = response.get('url', '')
+                    mime_type = response.get('mimeType', '')
+                    request_id = params.get('requestId', '')
+
+                    if '.m3u8' in url.lower() or 'mpegurl' in mime_type.lower():
+                        logger.info(f"[CDP-WS] 🎯 RESPONSE: {url[:200]}... | MIME: {mime_type}")
+
+                        # Process this stream
+                        if self._is_video_stream(url, mime_type):
+                            stream_info = {
+                                'url': url,
+                                'type': self._get_stream_type(url),
+                                'mime_type': mime_type,
+                                'timestamp': time.time()
+                            }
+
+                            if stream_info not in self.detected_streams:
+                                logger.info(f"[CDP-WS] ✓✓✓ DETECTED STREAM: type={stream_info['type']}, url={url[:100]}...")
+                                self.detected_streams.append(stream_info)
+
+                                # Start download for the first valid stream
+                                if not self.download_started and not self.awaiting_resolution_selection:
+                                    logger.info(f"[CDP-WS] Processing first detected stream...")
+                                    self._handle_stream_detection(stream_info)
+
+            except json.JSONDecodeError as e:
+                logger.error(f"[CDP-WS] JSON decode error: {e}")
+            except Exception as e:
+                logger.error(f"[CDP-WS] Error processing message: {e}")
+
+        def on_error(ws, error):
+            logger.error(f"[CDP-WS] WebSocket error: {error}")
+
+        def on_close(ws, close_status_code, close_msg):
+            logger.info(f"[CDP-WS] WebSocket closed: {close_status_code} - {close_msg}")
+
+        def on_open(ws):
+            logger.info(f"[CDP-WS] ✓ WebSocket connected!")
+
+            # Send Network.enable command via WebSocket
+            try:
+                enable_cmd = {
+                    "id": self.cdp_session_id,
+                    "method": "Network.enable",
+                    "params": {}
+                }
+                self.cdp_session_id += 1
+                ws.send(json.dumps(enable_cmd))
+                logger.info("[CDP-WS] Sent Network.enable command")
+
+                # Also enable Page domain to catch all page events
+                page_enable_cmd = {
+                    "id": self.cdp_session_id,
+                    "method": "Page.enable",
+                    "params": {}
+                }
+                self.cdp_session_id += 1
+                ws.send(json.dumps(page_enable_cmd))
+                logger.info("[CDP-WS] Sent Page.enable command")
+
+            except Exception as e:
+                logger.error(f"[CDP-WS] Error sending enable commands: {e}")
+
+        try:
+            # Create WebSocket connection
+            self.ws = websocket.WebSocketApp(
+                self.ws_url,
+                on_message=on_message,
+                on_error=on_error,
+                on_close=on_close,
+                on_open=on_open
+            )
+
+            logger.info("[CDP-WS] Starting WebSocket run_forever loop...")
+            # Run forever (blocking call in this thread)
+            self.ws.run_forever()
+
+        except Exception as e:
+            logger.error(f"[CDP-WS] Fatal error in WebSocket listener: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
 
     def _monitor_network(self):
         """Monitor network traffic for video streams"""
@@ -563,6 +717,15 @@ class StreamDetector:
     def close(self):
         """Close the browser"""
         self.is_running = False
+
+        # Close WebSocket connection
+        if self.ws:
+            try:
+                logger.info(f"[CDP-WS] Closing WebSocket connection...")
+                self.ws.close()
+            except Exception as e:
+                logger.error(f"[CDP-WS] Error closing WebSocket: {e}")
+
         if self.driver:
             try:
                 self.driver.quit()
