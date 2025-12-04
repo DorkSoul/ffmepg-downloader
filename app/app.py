@@ -369,29 +369,43 @@ class StreamDetector:
                 if resolutions:
                     logger.info(f"Found {len(resolutions)} resolutions")
 
-                    # Try to match preferred resolution
-                    matched = match_resolution(resolutions, self.preferred_resolution)
-
-                    if matched:
-                        # Found preferred resolution, start download
-                        logger.info(f"Matched preferred resolution: {matched['name']}")
-                        self._start_download_with_url(matched['url'], matched['name'])
-                    else:
-                        # No match, prompt user to select
-                        logger.info(f"Preferred resolution {self.preferred_resolution} not found, awaiting user selection")
-                        self.awaiting_resolution_selection = True
-                        self.available_resolutions = resolutions
+                    # DEBUG MODE: Always show resolution selection instead of auto-matching
+                    logger.info(f"DEBUG: Showing all resolutions for user selection")
+                    self.awaiting_resolution_selection = True
+                    self.available_resolutions = resolutions
                 else:
-                    # Couldn't parse resolutions, just download the master URL
+                    # Couldn't parse resolutions, show single stream
                     logger.warning("Could not parse resolutions from master playlist")
-                    self._start_download(stream_info)
+                    self.awaiting_resolution_selection = True
+                    self.available_resolutions = [{
+                        'url': stream_url,
+                        'bandwidth': 0,
+                        'resolution': 'Unknown',
+                        'framerate': 'Unknown',
+                        'name': 'Master Playlist (unparsed)'
+                    }]
             else:
-                # Not a master playlist, proceed with direct download
-                logger.info("Not a master playlist, downloading directly")
-                self._start_download(stream_info)
+                # Not a master playlist, show as single stream
+                logger.info("Not a master playlist, showing as single stream")
+                self.awaiting_resolution_selection = True
+                self.available_resolutions = [{
+                    'url': stream_url,
+                    'bandwidth': 0,
+                    'resolution': 'Unknown',
+                    'framerate': 'Unknown',
+                    'name': stream_info['type']
+                }]
         else:
-            # Not HLS, download directly
-            self._start_download(stream_info)
+            # Not HLS, show as single stream
+            logger.info("Not HLS stream, showing as single stream")
+            self.awaiting_resolution_selection = True
+            self.available_resolutions = [{
+                'url': stream_url,
+                'bandwidth': 0,
+                'resolution': 'Unknown',
+                'framerate': 'Unknown',
+                'name': stream_info['type']
+            }]
 
     def _start_download(self, stream_info):
         """Start downloading the detected stream"""
@@ -424,11 +438,11 @@ class StreamDetector:
             daemon=True
         ).start()
 
-        # Schedule auto-close
-        threading.Thread(
-            target=self._auto_close_browser,
-            daemon=True
-        ).start()
+        # DEBUG MODE: Auto-close disabled for debugging
+        # threading.Thread(
+        #     target=self._auto_close_browser,
+        #     daemon=True
+        # ).start()
 
     def _capture_thumbnail(self):
         """Capture screenshot of current video"""
