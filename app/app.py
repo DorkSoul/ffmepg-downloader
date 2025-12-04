@@ -296,19 +296,22 @@ class StreamDetector:
             except Exception as e:
                 logger.warning(f"Could not set up CDP: {e}")
 
-            logger.info(f"Browser {self.browser_id} started successfully, navigating to {url}")
-            self.driver.get(url)
-            self.is_running = True
-
-            # Start WebSocket CDP listener for real-time network events
+            # Start WebSocket CDP listener BEFORE navigating to catch initial requests
             if self.ws_url:
-                logger.info("Starting WebSocket CDP listener...")
+                logger.info("Starting WebSocket CDP listener BEFORE navigation...")
                 threading.Thread(target=self._cdp_websocket_listener, daemon=True).start()
+                # Give WebSocket a moment to connect
+                import time
+                time.sleep(0.5)
             else:
                 logger.warning("No WebSocket URL available, falling back to polling only")
 
             # Start monitoring network traffic (legacy polling as backup)
             threading.Thread(target=self._monitor_network, daemon=True).start()
+
+            logger.info(f"Browser {self.browser_id} ready, now navigating to {url}")
+            self.driver.get(url)
+            self.is_running = True
 
             logger.info(f"Browser {self.browser_id} fully initialized")
             return True
@@ -406,27 +409,55 @@ class StreamDetector:
 
                     # Check for m3u8 playlists
                     if 'm3u8' in url.lower():
-                        logger.info(f"[CDP-WS] 🎯 FETCH DETECTED (m3u8): {url[:150]}...")
-                        logger.info(f"[CDP-WS]   └─ RequestID: {request_id}")
+                        # Log ALL m3u8 requests for debugging
+                        logger.info(f"[CDP-WS] 🔍 m3u8 URL detected: {url[:200]}")
 
-                        # Process this as a detected stream
-                        mime_type = 'application/vnd.apple.mpegurl'
-                        if self._is_video_stream(url, mime_type):
-                            stream_info = {
-                                'url': url,
-                                'type': 'HLS',
-                                'mime_type': mime_type,
-                                'timestamp': time.time()
-                            }
+                        # Check if this is likely a master playlist (not a media playlist)
+                        # Master playlists typically come from different domains/paths than media playlists
+                        # Common patterns:
+                        # - Twitch: usher.ttvnw.net (master) vs *.playlist.ttvnw.net (media)
+                        # - Generic: /master.m3u8, /playlist.m3u8 vs /chunklist_*.m3u8, /media_*.m3u8
+                        is_likely_master = (
+                            'usher' in url.lower() or           # Twitch master playlists
+                            'master' in url.lower() or          # Common master playlist naming
+                            '/playlist.m3u8' in url.lower() or  # Generic master naming
+                            '/index.m3u8' in url.lower() or     # Generic index
+                            'api' in url.lower()                # API endpoints often serve master playlists
+                        )
 
-                            if stream_info not in self.detected_streams:
-                                logger.info(f"[CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: {url[:100]}...")
-                                self.detected_streams.append(stream_info)
+                        # Exclude obvious media playlists
+                        is_likely_media = (
+                            '/chunklist' in url.lower() or
+                            '/media_' in url.lower() or
+                            '/segment' in url.lower()
+                        )
 
-                                # Start download for the first valid stream
-                                if not self.download_started and not self.awaiting_resolution_selection:
-                                    logger.info(f"[CDP-WS] Processing detected stream...")
-                                    self._handle_stream_detection(stream_info)
+                        if is_likely_media:
+                            logger.info(f"[CDP-WS]   └─ Skipping (media playlist, not master)")
+                        elif is_likely_master or not self.detected_streams:  # Process masters OR first stream if no masters found yet
+                            logger.info(f"[CDP-WS] 🎯 MASTER PLAYLIST detected: {url[:150]}...")
+                            logger.info(f"[CDP-WS]   └─ RequestID: {request_id}")
+
+                            # Process this as a detected stream
+                            mime_type = 'application/vnd.apple.mpegurl'
+                            if self._is_video_stream(url, mime_type):
+                                stream_info = {
+                                    'url': url,
+                                    'type': 'HLS',
+                                    'mime_type': mime_type,
+                                    'timestamp': time.time()
+                                }
+
+                                if stream_info not in self.detected_streams:
+                                    logger.info(f"[CDP-WS] ✓✓✓ PROCESSING MASTER PLAYLIST: {url[:100]}...")
+                                    self.detected_streams.append(stream_info)
+
+                                    # Start download for the first valid stream
+                                    if not self.download_started and not self.awaiting_resolution_selection:
+                                        logger.info(f"[CDP-WS] Processing master playlist...")
+                                        self._handle_stream_detection(stream_info)
+                        else:
+                            logger.info(f"[CDP-WS]   └─ Skipping (not identified as master playlist)")
 
                     # Continue the request (don't block it)
                     try:
