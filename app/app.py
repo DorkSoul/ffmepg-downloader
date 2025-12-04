@@ -242,6 +242,14 @@ class StreamDetector:
                 raise
             self.driver.set_window_size(1920, 1080)
 
+            # Enable Network domain via Chrome DevTools Protocol
+            try:
+                logger.info("Enabling Chrome DevTools Protocol Network domain...")
+                self.driver.execute_cdp_cmd('Network.enable', {})
+                logger.info("Network domain enabled successfully")
+            except Exception as e:
+                logger.warning(f"Could not enable Network domain: {e}")
+
             logger.info(f"Browser {self.browser_id} started successfully, navigating to {url}")
             self.driver.get(url)
             self.is_running = True
