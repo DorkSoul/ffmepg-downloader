@@ -1,546 +1,100 @@
-2025-12-04 18:47:10,340 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
-2025-12-04 18:47:10,341 INFO supervisord started with pid 1
-2025-12-04 18:47:11,344 INFO spawned: 'xvfb' with pid 7
-2025-12-04 18:47:11,346 INFO spawned: 'fluxbox' with pid 8
-2025-12-04 18:47:11,348 INFO spawned: 'x11vnc' with pid 9
-2025-12-04 18:47:11,349 INFO spawned: 'novnc' with pid 10
-2025-12-04 18:47:11,350 INFO spawned: 'flask' with pid 11
-2025-12-04 18:47:11,605 - __main__ - INFO - ================================================================================
-2025-12-04 18:47:11,605 - __main__ - INFO - NAS VIDEO DOWNLOADER STARTING
-2025-12-04 18:47:11,606 - __main__ - INFO - ================================================================================
-2025-12-04 18:47:11,606 - __main__ - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
-2025-12-04 18:47:11,606 - __main__ - INFO - Working directory: /app
-2025-12-04 18:47:11,606 - __main__ - INFO - DISPLAY: :99
-2025-12-04 18:47:11,606 - __main__ - INFO - Download dir: /app/downloads
-2025-12-04 18:47:11,606 - __main__ - INFO - Chrome data dir: /app/chrome-data
-2025-12-04 18:47:11,606 - __main__ - INFO - Checking Chrome installation...
-2025-12-04 18:47:11,632 - __main__ - INFO - Chrome: Google Chrome 143.0.7499.40
-2025-12-04 18:47:11,632 INFO reaped unknown pid 30 (exit status 0)
-2025-12-04 18:47:11,632 INFO reaped unknown pid 31 (exit status 0)
-2025-12-04 18:47:11,635 - __main__ - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
-2025-12-04 18:47:11,635 - __main__ - INFO - DISPLAY environment: :99
-2025-12-04 18:47:11,640 - __main__ - INFO - Xvfb is running ✓
-2025-12-04 18:47:11,640 - __main__ - INFO - Download dir exists: True
-2025-12-04 18:47:11,640 - __main__ - INFO - Chrome data dir exists: True
-2025-12-04 18:47:11,644 - __main__ - INFO - ================================================================================
-2025-12-04 18:47:11,644 - __main__ - INFO - Starting NAS Video Downloader
-2025-12-04 18:47:11,644 - __main__ - INFO - Download directory: /app/downloads
-2025-12-04 18:47:11,644 - __main__ - INFO - Chrome data directory: /app/chrome-data
-2025-12-04 18:47:11,644 - __main__ - INFO - ================================================================================
- * Serving Flask app 'app'
- * Debug mode: off
-2025-12-04 18:47:11,647 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://172.27.0.2:5000
-2025-12-04 18:47:11,647 - werkzeug - INFO - Press CTRL+C to quit
-2025-12-04 18:47:12,361 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 18:47:12,361 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 18:47:12,361 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 18:47:12,361 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 18:47:12,361 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 18:47:16,960 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:16] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:47:19,582 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:19] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:47:23,408 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:23] "GET / HTTP/1.1" 200 -
-2025-12-04 18:47:23,526 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:23] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:47:25,400 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 18:47:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:47:33,570 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:33] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:47:43,530 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:43] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:47:44,497 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:44] "GET / HTTP/1.1" 200 -
-2025-12-04 18:47:44,578 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:44] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:47:52,088 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: False
-2025-12-04 18:47:52,089 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:47:52,089 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:47:52,089 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:47:52,721 - __main__ - ERROR - Failed to create Chrome webdriver: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.
-Stacktrace:
-#0 0x55f90033716a <unknown>
-#1 0x55f8ffdb4c4b <unknown>
-#2 0x55f8ffdeed1d <unknown>
-#3 0x55f8ffdea6d3 <unknown>
-#4 0x55f8ffe3a24c <unknown>
-#5 0x55f8ffe3996c <unknown>
-#6 0x55f8ffdf8c42 <unknown>
-#7 0x55f8ffdf98f1 <unknown>
-#8 0x55f9002fff09 <unknown>
-#9 0x55f900302e4d <unknown>
-#10 0x55f9002e8c51 <unknown>
-#11 0x55f900303a2b <unknown>
-#12 0x55f9002cfa20 <unknown>
-#13 0x55f900324a78 <unknown>
-#14 0x55f900324c49 <unknown>
-#15 0x55f9003364c3 <unknown>
-#16 0x7f97ad80ab7b <unknown>
-2025-12-04 18:47:52,722 INFO reaped unknown pid 63 (exit status 0)
-2025-12-04 18:47:52,722 INFO reaped unknown pid 65 (exit status 0)
-2025-12-04 18:47:52,722 INFO reaped unknown pid 70 (exit status 0)
-2025-12-04 18:47:52,722 INFO reaped unknown pid 71 (exit status 0)
-2025-12-04 18:47:52,722 - __main__ - WARNING - Chrome failed to start with user-data-dir, cleaning lock files and retrying...
-2025-12-04 18:47:52,730 - __main__ - INFO - Removed lock file: /app/chrome-data/SingletonLock
-2025-12-04 18:47:53,731 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:47:53,731 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:47:53,732 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:47:54,586 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:47:54] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:47:54,749 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 18:47:55,202 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 18:47:55,202 - __main__ - INFO - Chrome debugger address: localhost:36661
-2025-12-04 18:47:55,206 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:36661/devtools/page/A9D79344223656CFDE2DB6AB3054F104...
-2025-12-04 18:47:55,206 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 18:47:55,210 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 18:47:55,213 - __main__ - INFO - Network monitoring started
-2025-12-04 18:47:55,712 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
-2025-12-04 18:47:56,820 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:47:56,820 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:47:56,820 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 18:47:56,927 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 18:47:56,928 - __main__ - INFO - Found 5 resolutions
-2025-12-04 18:47:56,928 - __main__ - INFO - Manual mode, showing all available streams
-2025-12-04 18:47:56,928 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/Cp4Gk_Y0ZBFbDmzLDqlgnDDx_d-hvsu6sRgoTHKxgl9CJLjjebbTqag...
-2025-12-04 18:47:56,928 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CpYG-66FdO6brZSVQGlPXhKpT0t1ljZ9Qxc5YuGUM2mrQXCKmL0-bQx...
-2025-12-04 18:47:56,929 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/Co4GxsAbthkNNJjZHVkvECUKFr2nVCioKZpuJGJeU33U_82YRnaPSZu...
-2025-12-04 18:47:56,929 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CrAGN2HSuzzp01PvYbOy8r-2JqIRwQknbtSXuw-_bSI_49c2DpgNbA1...
-2025-12-04 18:47:56,929 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CqYG2UDyttaJgqI3sKHtboMNresO0JJlFf5cK0hx0ejUweFyp9hLRgg...
-2025-12-04 18:47:58,027 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:47:58,027 - __main__ - INFO - Added thumbnail to stream: 360p
-2025-12-04 18:47:58,030 - __main__ - WARNING - Thumbnail file not created
-2025-12-04 18:47:58,176 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:47:58,176 - __main__ - INFO - Added thumbnail to stream: 480p
-2025-12-04 18:47:58,439 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:47:58,441 - __main__ - INFO - Added thumbnail to stream: 720p60
-2025-12-04 18:47:58,603 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:47:58,604 - __main__ - INFO - Added thumbnail to stream: 1080p60
-2025-12-04 18:48:00,771 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:00] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 18:48:02,803 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:02] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:04,585 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:04] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:04,952 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:04] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:06,895 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:06] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:09,038 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:09] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:11,013 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:11] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:13,012 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:13] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:14,581 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:14] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:15,034 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:15] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:15,034 - __main__ - INFO - User selected stream from modal
-2025-12-04 18:48:15,035 - __main__ - INFO - Stream URL: https://euw12.playlist.ttvnw.net/v1/playlist/Co4GxsAbthkNNJjZHVkvECUKFr2nVCioKZpuJGJeU33U_82YRnaPSZuc53nalxEXHADamIDySlhGJwXO8-8LyGWT6cGiWcB5-iEJxbpabeSU4aVMRNbee83ewijO-v15MVVHAKORhcH1v3LvG4nig9VIiInGpB48RlhnufIu50OA8W2HySAzQWgvYa2WkBFVubWmPQ6CGZT7aWZhgyt29syoeWNEoAhoJcoOMcZo0zAYtvFimaEdVP-Dt3VU57ug68xTWPrVtGetkc4Xaf6Z0eogor-lUlPi96gl0c7mdJbMts7H5zZMAk7G0J6fpbqV54JZebJt1Y6HE4_8MZcFR4KJeXz2BdnyBHMhRcIMjRkgL2rBqkyIzNOgFOYRqqCoDtkz_pM0PtExrn32RkVU9jSf4hy4FB8hZcrwxRwjtJs7G63bEvQQOtXnlPGc9fKry6W1zRRVJYOpKSjUqlRapY5j4-WG_POK3h3GQ3LBV--vd_F7MYkgeDZhJ0s_TUhXpaPJKuZlopYK9bF4XWv3DhKCcCtUdOICyCWmEvS8OfzxfFbxoxx-cwkPxunN1iuIBunCBN3v2RUCayToFkFEBpbqyKwkc66oLV6edXZMU4sNkNE__RdnA_e8_cEx4TYfgqhVkjWnZfgCyeZFhIxQS2ptTaI7MTtsvd7cqr7eFOoVJV4sR75DS-zAIl1YFoZDx4BaJEW8dggTs73PdtKVootCJ3U-WBAKz_I1Luh_do-bTjrEJMS1POmr69nx5Mply7IoaGNm_KcJg9YPV248LsvdzOe449Lp0lscIL0m7Z48f-s7dZuf0jFgvq4FqwdXLYpyv7OeBzdaVcbVtoRjIB9nHFmZUSMVi4-m1XlxZglxy9hPfR9Ez5Xw5ToVxiLFajXn0h4s6LNCgUx9hXJDcKvyxMm0MxJP-FbANzP-fBBGKIa6YyAOcQjrQ1Qo4cD8Cqgxuj4tmzlnuABcE8OBHAgE-xLeBjl3jPS84L15wvRU_j9O6geu9L_vrcvRxn1qu48xD3K-oRJBzSC81WPh5AsaDP2Lmk7dpUHBwLlU-iABKglldS13ZXN0LTIw7w0.m3u8
-2025-12-04 18:48:15,035 - __main__ - INFO - Starting download for resolution: 160p
-2025-12-04 18:48:15,035 - __main__ - INFO - Stream URL: https://euw12.playlist.ttvnw.net/v1/playlist/Co4GxsAbthkNNJjZHVkvECUKFr2nVCioKZpuJGJeU33U_82YRnaPSZuc53nalxEXHADamIDySlhGJwXO8-8LyGWT6cGiWcB5-iEJxbpabeSU4aVMRNbee83ewijO-v15MVVHAKORhcH1v3LvG4nig9VIiInGpB48RlhnufIu50OA8W2HySAzQWgvYa2WkBFVubWmPQ6CGZT7aWZhgyt29syoeWNEoAhoJcoOMcZo0zAYtvFimaEdVP-Dt3VU57ug68xTWPrVtGetkc4Xaf6Z0eogor-lUlPi96gl0c7mdJbMts7H5zZMAk7G0J6fpbqV54JZebJt1Y6HE4_8MZcFR4KJeXz2BdnyBHMhRcIMjRkgL2rBqkyIzNOgFOYRqqCoDtkz_pM0PtExrn32RkVU9jSf4hy4FB8hZcrwxRwjtJs7G63bEvQQOtXnlPGc9fKry6W1zRRVJYOpKSjUqlRapY5j4-WG_POK3h3GQ3LBV--vd_F7MYkgeDZhJ0s_TUhXpaPJKuZlopYK9bF4XWv3DhKCcCtUdOICyCWmEvS8OfzxfFbxoxx-cwkPxunN1iuIBunCBN3v2RUCayToFkFEBpbqyKwkc66oLV6edXZMU4sNkNE__RdnA_e8_cEx4TYfgqhVkjWnZfgCyeZFhIxQS2ptTaI7MTtsvd7cqr7eFOoVJV4sR75DS-zAIl1YFoZDx4BaJEW8dggTs73PdtKVootCJ3U-WBAKz_I1Luh_do-bTjrEJMS1POmr69nx5Mply7IoaGNm_KcJg9YPV248LsvdzOe449Lp0lscIL0m7Z48f-s7dZuf0jFgvq4FqwdXLYpyv7OeBzdaVcbVtoRjIB9nHFmZUSMVi4-m1XlxZglxy9hPfR9Ez5Xw5ToVxiLFajXn0h4s6LNCgUx9hXJDcKvyxMm0MxJP-FbANzP-fBBGKIa6YyAOcQjrQ1Qo4cD8Cqgxuj4tmzlnuABcE8OBHAgE-xLeBjl3jPS84L15wvRU_j9O6geu9L_vrcvRxn1qu48xD3K-oRJBzSC81WPh5AsaDP2Lmk7dpUHBwLlU-iABKglldS13ZXN0LTIw7w0.m3u8
-2025-12-04 18:48:15,035 - __main__ - INFO - Waiting 3 seconds for video to load...
-2025-12-04 18:48:17,009 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:17] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:18,517 - __main__ - INFO - Thumbnail captured successfully
-2025-12-04 18:48:18,518 - __main__ - INFO - Starting FFmpeg download: https://euw12.playlist.ttvnw.net/v1/playlist/Co4GxsAbthkNNJjZHVkvECUKFr2nVCioKZpuJGJeU33U_82YRnaPSZuc53nalxEXHADamIDySlhGJwXO8-8LyGWT6cGiWcB5-iEJxbpabeSU4aVMRNbee83ewijO-v15MVVHAKORhcH1v3LvG4nig9VIiInGpB48RlhnufIu50OA8W2HySAzQWgvYa2WkBFVubWmPQ6CGZT7aWZhgyt29syoeWNEoAhoJcoOMcZo0zAYtvFimaEdVP-Dt3VU57ug68xTWPrVtGetkc4Xaf6Z0eogor-lUlPi96gl0c7mdJbMts7H5zZMAk7G0J6fpbqV54JZebJt1Y6HE4_8MZcFR4KJeXz2BdnyBHMhRcIMjRkgL2rBqkyIzNOgFOYRqqCoDtkz_pM0PtExrn32RkVU9jSf4hy4FB8hZcrwxRwjtJs7G63bEvQQOtXnlPGc9fKry6W1zRRVJYOpKSjUqlRapY5j4-WG_POK3h3GQ3LBV--vd_F7MYkgeDZhJ0s_TUhXpaPJKuZlopYK9bF4XWv3DhKCcCtUdOICyCWmEvS8OfzxfFbxoxx-cwkPxunN1iuIBunCBN3v2RUCayToFkFEBpbqyKwkc66oLV6edXZMU4sNkNE__RdnA_e8_cEx4TYfgqhVkjWnZfgCyeZFhIxQS2ptTaI7MTtsvd7cqr7eFOoVJV4sR75DS-zAIl1YFoZDx4BaJEW8dggTs73PdtKVootCJ3U-WBAKz_I1Luh_do-bTjrEJMS1POmr69nx5Mply7IoaGNm_KcJg9YPV248LsvdzOe449Lp0lscIL0m7Z48f-s7dZuf0jFgvq4FqwdXLYpyv7OeBzdaVcbVtoRjIB9nHFmZUSMVi4-m1XlxZglxy9hPfR9Ez5Xw5ToVxiLFajXn0h4s6LNCgUx9hXJDcKvyxMm0MxJP-FbANzP-fBBGKIa6YyAOcQjrQ1Qo4cD8Cqgxuj4tmzlnuABcE8OBHAgE-xLeBjl3jPS84L15wvRU_j9O6geu9L_vrcvRxn1qu48xD3K-oRJBzSC81WPh5AsaDP2Lmk7dpUHBwLlU-iABKglldS13ZXN0LTIw7w0.m3u8 -> /app/downloads/video_160p_1764874098.mp4
-2025-12-04 18:48:18,518 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:18] "POST /api/browser/select-stream HTTP/1.1" 200 -
-2025-12-04 18:48:19,048 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:19] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:19,052 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:19] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:20,544 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:20] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:20,800 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:20] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:21,091 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:21] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:22,805 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:22] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:22,842 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:22] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:24,583 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:24] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:24,804 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:24] "GET /api/browser/status/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:24,853 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:24] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:25,102 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 18:48:25,274 - __main__ - INFO - Browser browser_1764874072 closed
-2025-12-04 18:48:25,274 INFO reaped unknown pid 80 (exit status 0)
-2025-12-04 18:48:25,275 INFO reaped unknown pid 82 (exit status 0)
-2025-12-04 18:48:25,275 INFO reaped unknown pid 87 (exit status 0)
-2025-12-04 18:48:25,275 INFO reaped unknown pid 88 (exit status 0)
-2025-12-04 18:48:25,275 INFO reaped unknown pid 186 (exit status 0)
-2025-12-04 18:48:25,274 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:25] "POST /api/browser/close/browser_1764874072 HTTP/1.1" 200 -
-2025-12-04 18:48:25,288 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:25,397 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 18:48:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:26,855 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:26] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:32,524 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: True
-2025-12-04 18:48:32,524 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:48:32,524 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:48:32,525 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:48:33,444 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 18:48:33,852 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 18:48:33,852 - __main__ - INFO - Chrome debugger address: localhost:43283
-2025-12-04 18:48:33,855 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:43283/devtools/page/2FB556BF318E366CAEB782646701732D...
-2025-12-04 18:48:33,855 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 18:48:33,858 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 18:48:33,860 - __main__ - INFO - Network monitoring started
-2025-12-04 18:48:34,360 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
-2025-12-04 18:48:34,588 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:34] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:35,539 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:48:35,539 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:48:35,539 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 18:48:35,618 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 18:48:35,619 - __main__ - INFO - Found 5 resolutions
-2025-12-04 18:48:35,619 - __main__ - INFO - Auto-download enabled, finding matching stream...
-2025-12-04 18:48:35,619 - __main__ - INFO - Matching stream - Resolution: 1080p, Framerate: any
-2025-12-04 18:48:35,619 - __main__ - INFO - Found 1 streams matching resolution 1080p
-2025-12-04 18:48:35,619 - __main__ - INFO - Found 60fps stream (framerate='any' prefers 60fps)
-2025-12-04 18:48:35,619 - __main__ - INFO - Matched stream: 1080p60 - 1920x1080 @ 60.000fps
-2025-12-04 18:48:35,619 - __main__ - INFO - Starting download for resolution: 1080p60
-2025-12-04 18:48:35,619 - __main__ - INFO - Stream URL: https://euw12.playlist.ttvnw.net/v1/playlist/Cq8GsmuA_JRNawE2QCjtYMSFqij2jARuduSxYeZuEOleIXelqyn8htmQKujJFhRHxNS07KHOhTYB2fIg4MQ2y64y6swoE6nmD9cKBQr1y2X4FdAO9UZlveBEqomvwLtQbfj9XcZt8ACilNWy2vFQbDzmMZb3k0b5HABxVPlg_1Jv6HyN4kk5mFlLR2lf7DGDuXbRwdUfORLeJlcr4-Il5zIWpyECfcrTBTWkOpCp-xejqXnMWIDoqMVEFv1m5IXzaa20xDx9Vam3B5CQoL0fRjhKK1JQlprXvkuRf8KumERF2PepckXkl3w_uLEgGPSLpTdG8YOmpj85mYEZnWefMnpOhWhwt4ZZmI1vHXOhJbw3725yXMmKNwFlrbBklaJ0Mw-2bEOl15pEqqNxv5_Eg7J6aFVViFxu8YfHS9MjLE5fXZ_GsFk4texQx18W2jSZt2h2w6HNuOxwYeYzWsCSIadSkcy4gSV8gBMbnGWOHcZyxevxE73uliXGOBFjp6Hk3B-2VPlQgS5iVpPPZ8oi-Vz8Xuv-f9sDHEY7sWU0rHZhQ1TRYQPnsOWV3xkHNUMsAdKWgs7XHI3fjLbk5I0XqB3AZQvIbUskG4eJUdGdbTOO7ZKgTXlg1qxJj9ZBwdLPvCcZG5gIBXDx02sCv8MSU2m5pw3MZHuT5gxaY_idTsspuLH7j0bQ4mAPyebcrBmLOwcVLFHpvtq38biP1sBSMZZMlrzRhJttNd4dFy8nJoNePQ5GFR41wa1rgE0Lc3eoWbaS8W_6tfTkIK5qvusPiWaXXnm3lrx3MypAk37jdwsLcvCHfghxCWHCA65o3yrf-0evQVjDlxPlMzrJNwuKo2dQ9i-w8MuEFPGGzGywB1aGJ3HR8_VuTUrCEx_4xfg24BMu-XAQK7TL8QFngVQinNFBBBpJrj2lSX2sAiCmgWONWs7iY1Tw9SR5iTN6t6gQwUvlAoYnrDesj2L7oq1ILbgT4Wa-MUSAkYTgenDsyRFFOQGMNB1k07qY4SRqdJMVtEiBxxC5dXHxARpv7xBNG-6xdSgjt_Z_ZNyP-NUsKhDXkU0stWGpOIkmiDoZVdhV2aYaDEu9PYSmXeQhnoe0OCABKglldS13ZXN0LTIw7w0.m3u8
-2025-12-04 18:48:35,619 - __main__ - INFO - Waiting 3 seconds for video to load...
-2025-12-04 18:48:44,588 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:44] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:48:55,578 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:48:55] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:49:04,588 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:04] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:49:05,367 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:05] "GET / HTTP/1.1" 200 -
-2025-12-04 18:49:05,563 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:05] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:49:11,597 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: True
-2025-12-04 18:49:11,597 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:49:11,597 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:49:11,597 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:49:12,220 - __main__ - ERROR - Failed to create Chrome webdriver: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.
-Stacktrace:
-#0 0x564155e4716a <unknown>
-#1 0x5641558c4c4b <unknown>
-#2 0x5641558fed1d <unknown>
-#3 0x5641558fa6d3 <unknown>
-#4 0x56415594a24c <unknown>
-#5 0x56415594996c <unknown>
-#6 0x564155908c42 <unknown>
-#7 0x5641559098f1 <unknown>
-#8 0x564155e0ff09 <unknown>
-#9 0x564155e12e4d <unknown>
-#10 0x564155df8c51 <unknown>
-#11 0x564155e13a2b <unknown>
-#12 0x564155ddfa20 <unknown>
-#13 0x564155e34a78 <unknown>
-#14 0x564155e34c49 <unknown>
-#15 0x564155e464c3 <unknown>
-#16 0x7f10608c1b7b <unknown>
-2025-12-04 18:49:12,220 INFO reaped unknown pid 576 (exit status 0)
-2025-12-04 18:49:12,221 INFO reaped unknown pid 578 (exit status 0)
-2025-12-04 18:49:12,221 INFO reaped unknown pid 583 (exit status 0)
-2025-12-04 18:49:12,221 INFO reaped unknown pid 584 (exit status 0)
-2025-12-04 18:49:12,220 - __main__ - WARNING - Chrome failed to start with user-data-dir, cleaning lock files and retrying...
-2025-12-04 18:49:12,231 - __main__ - INFO - Removed lock file: /app/chrome-data/SingletonLock
-2025-12-04 18:49:13,231 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:49:13,232 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:49:13,232 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:49:14,139 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 18:49:14,562 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 18:49:14,563 - __main__ - INFO - Chrome debugger address: localhost:35063
-2025-12-04 18:49:14,566 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:35063/devtools/page/CBA9FE0D5929906E01469971134B757F...
-2025-12-04 18:49:14,566 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 18:49:14,571 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 18:49:14,574 - __main__ - INFO - Network monitoring started
-2025-12-04 18:49:15,072 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
-2025-12-04 18:49:15,568 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:15] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:49:20,021 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=679.217, Error=net::ERR_ABORTED
-2025-12-04 18:49:20,072 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:49:20,072 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:49:20,073 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 18:49:20,162 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 18:49:20,162 - __main__ - INFO - Found 5 resolutions
-2025-12-04 18:49:20,162 - __main__ - INFO - Auto-download enabled, finding matching stream...
-2025-12-04 18:49:20,162 - __main__ - INFO - Matching stream - Resolution: 1080p, Framerate: any
-2025-12-04 18:49:20,162 - __main__ - INFO - Found 1 streams matching resolution 1080p
-2025-12-04 18:49:20,162 - __main__ - INFO - Found 60fps stream (framerate='any' prefers 60fps)
-2025-12-04 18:49:20,162 - __main__ - INFO - Matched stream: 1080p60 - 1920x1080 @ 60.000fps
-2025-12-04 18:49:20,162 - __main__ - INFO - Starting download for resolution: 1080p60
-2025-12-04 18:49:20,162 - __main__ - INFO - Stream URL: https://euw11.playlist.ttvnw.net/v1/playlist/Cq8Gof0zi1Bwh_dQFjbyznQIP4eAFVrlY0DiizCRXuJue8ZkUcb7EWNyuVbUt7fBmCfzhRhA48uWiVG4h-XDTTaWr7prfkkuVcFRE9Bmi_b5XaQSlSXwM8pdFnAkuqAKKBVjYXGIVyOfKIZylMDK9LQYl2TWpVsEAmvW4j553oooTtai105bF_jznxdXGigeVQ6_mza3K4tgkSU06Q2x9KG5FcL_WN6ceSLeAjY3046c-W9ibxZUQfN7hBm5O9yX60wVniySxTTYC26YpqTpWXKWpIB7o50Av0NkrcXFsq6t3MxpcFCUSz8Y0iCETbY7BQ5i-AVUiIUwli6E1GXWmwZRhk3aDFAZx-fp8hO4QjyWVWdFKy3CENbuOgU0S1N1I_oN3TwkqVFq-uuLC6O5st5RUNChYAp1jWozQ8ekf8SmP98Qjq-DQCeL4A9jlWlf1aPk-HmkE3q8Q5kgA-jPYc7NCMFwPJQbaN_a6e-LWgfdwectBLdIO8x2y-FYKVlMxQWvFdHQkwcgQxQHCH0_ZAUGfa5Hz9tXMqUrVWrhLXJfsFsS996p6GFfa_iG8cElTOfsprVcJct64FFffo0UoA8ADQF5y2UqmK5Gf_Jj3uokaZswJsdhB3sOWGSBLIsTazIFGXvf8YWg06ARLRbyySVG465dsw65m7vQbqFDQ8AFWIDmX_Bu0KjsbQbHOsWtJ42FA7_yAzkbeALs1dCT6_NKDRpnGUYzLV_KA__umB6ZCym5DfqqAD7DKgKsnVA-61ky8h_rS3rq2dsG6p1onTj9T1uG0M0KlwUH0Uf3k3Gk6g5RS0nApflXw_q2MX-14mkANy3kIwS8dE0b5ieslWOhnSv4cjhUpukDGuGtjA4SJAcAd-G8juTETdIBz-MczTPH-yJ_FDITt9xsjccl8GpPf844PQKXrc3FUYxIZu120Kw3dRiKj1FUJjzeadFFnFDfuMuKuLidHgbLro9EgVZZkAa5mh_LbeiV_t9RG9WNzMSx5OkpsBUFTg1MAgn68Ep0QYoMasI56a3jsr5mj9gn-iT_VeO8Qg1viL419KxDTsQedkLizmAOC-a9vtCm8AgaDH9vbAOMqJNqIRjpViABKglldS13ZXN0LTIw7w0.m3u8
-2025-12-04 18:49:20,162 - __main__ - INFO - Waiting 3 seconds for video to load...
-2025-12-04 18:49:25,396 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 18:49:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:49:25,568 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:49:35,567 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:35] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:49:45,427 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:45] "GET / HTTP/1.1" 200 -
-2025-12-04 18:49:45,545 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:45] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:49:51,821 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: False
-2025-12-04 18:49:51,821 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:49:51,821 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:49:51,821 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:49:52,446 - __main__ - ERROR - Failed to create Chrome webdriver: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.
-Stacktrace:
-#0 0x55b48baf616a <unknown>
-#1 0x55b48b573c4b <unknown>
-#2 0x55b48b5add1d <unknown>
-#3 0x55b48b5a96d3 <unknown>
-#4 0x55b48b5f924c <unknown>
-#5 0x55b48b5f896c <unknown>
-#6 0x55b48b5b7c42 <unknown>
-#7 0x55b48b5b88f1 <unknown>
-#8 0x55b48babef09 <unknown>
-#9 0x55b48bac1e4d <unknown>
-#10 0x55b48baa7c51 <unknown>
-#11 0x55b48bac2a2b <unknown>
-#12 0x55b48ba8ea20 <unknown>
-#13 0x55b48bae3a78 <unknown>
-#14 0x55b48bae3c49 <unknown>
-#15 0x55b48baf54c3 <unknown>
-#16 0x7f5f659bdb7b <unknown>
-2025-12-04 18:49:52,446 INFO reaped unknown pid 732 (exit status 0)
-2025-12-04 18:49:52,447 INFO reaped unknown pid 734 (exit status 0)
-2025-12-04 18:49:52,447 INFO reaped unknown pid 739 (exit status 0)
-2025-12-04 18:49:52,447 INFO reaped unknown pid 740 (exit status 0)
-2025-12-04 18:49:52,446 - __main__ - WARNING - Chrome failed to start with user-data-dir, cleaning lock files and retrying...
-2025-12-04 18:49:52,460 - __main__ - INFO - Removed lock file: /app/chrome-data/SingletonLock
-2025-12-04 18:49:53,461 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:49:53,461 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:49:53,461 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:49:54,342 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 18:49:54,776 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 18:49:54,776 - __main__ - INFO - Chrome debugger address: localhost:42003
-2025-12-04 18:49:54,779 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:42003/devtools/page/E6A9F9EAF716D7EAA29DBB28AC508428...
-2025-12-04 18:49:54,779 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 18:49:54,784 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 18:49:54,786 - __main__ - INFO - Network monitoring started
-2025-12-04 18:49:55,285 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
-2025-12-04 18:49:55,523 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:49:55] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:00,312 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=835.217, Error=net::ERR_ABORTED
-2025-12-04 18:50:00,368 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:50:00,369 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:50:00,369 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 18:50:00,455 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 18:50:00,456 - __main__ - INFO - Found 5 resolutions
-2025-12-04 18:50:00,456 - __main__ - INFO - Manual mode, showing all available streams
-2025-12-04 18:50:00,456 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CrAGJJaerTF8TnI1ZIXgSqsakIrAEPwE2DXdPYo3MFFna8K1cniCvkj...
-2025-12-04 18:50:00,457 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CqYGwsArqPuLmeQtRBwb54KXYFomLjFYzy-tvbvE_pznH48xUVa6oU2...
-2025-12-04 18:50:00,457 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/Cp4Gvu9ZA3kWhiN0K5UC9EjWkYvyEYEVSns22z5isvbCe487Ok1BmFU...
-2025-12-04 18:50:00,458 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CpYGJWNehLSHOaoEU1p8UtBNbl4mrDrZ3xPK2DMnvTAjhdqsbqUpvuM...
-2025-12-04 18:50:00,459 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/Co4G0qEcAsMy8N7_Bd0AHFEn_uf4lpn30Uf3W__LPihEheT2czy4CH_...
-2025-12-04 18:50:01,497 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:01,498 - __main__ - INFO - Added thumbnail to stream: 360p
-2025-12-04 18:50:01,548 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:01,549 - __main__ - INFO - Added thumbnail to stream: 160p
-2025-12-04 18:50:01,636 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:01,636 - __main__ - INFO - Added thumbnail to stream: 480p
-2025-12-04 18:50:01,755 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=6F96E980BF40EE23899BEE8604899385, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:01,762 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:01,762 - __main__ - INFO - Added thumbnail to stream: 720p60
-2025-12-04 18:50:01,970 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:01,970 - __main__ - INFO - Added thumbnail to stream: 1080p60
-2025-12-04 18:50:02,080 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=46DDCA41A1F6A95626FAFB07D575CDF9, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:02,122 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=835.272, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:02,131 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=835.273, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:02,895 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:02] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 18:50:04,941 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:04] "GET /api/browser/status/browser_1764874191 HTTP/1.1" 200 -
-2025-12-04 18:50:05,857 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:05] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:07,007 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:07] "GET /api/browser/status/browser_1764874191 HTTP/1.1" 200 -
-2025-12-04 18:50:08,926 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:08] "GET /api/browser/status/browser_1764874191 HTTP/1.1" 200 -
-2025-12-04 18:50:10,791 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=04D80378F3F1C96CD2902729069B843A, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:11,167 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:11] "GET /api/browser/status/browser_1764874191 HTTP/1.1" 200 -
-2025-12-04 18:50:13,207 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:13] "GET /api/browser/status/browser_1764874191 HTTP/1.1" 200 -
-2025-12-04 18:50:13,439 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 18:50:13,603 - __main__ - INFO - Browser browser_1764874191 closed
-2025-12-04 18:50:13,604 INFO reaped unknown pid 749 (exit status 0)
-2025-12-04 18:50:13,604 INFO reaped unknown pid 751 (exit status 0)
-2025-12-04 18:50:13,604 INFO reaped unknown pid 756 (exit status 0)
-2025-12-04 18:50:13,604 INFO reaped unknown pid 757 (exit status 0)
-2025-12-04 18:50:13,604 INFO reaped unknown pid 848 (exit status 0)
-2025-12-04 18:50:13,604 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:13] "POST /api/browser/close/browser_1764874191 HTTP/1.1" 200 -
-2025-12-04 18:50:13,621 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:13] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:15,512 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:15] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:16,566 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: False
-2025-12-04 18:50:16,567 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:50:16,567 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:50:16,567 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:50:17,528 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 18:50:17,902 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 18:50:17,902 - __main__ - INFO - Chrome debugger address: localhost:33853
-2025-12-04 18:50:17,907 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:33853/devtools/page/46EEE0374C0CA32C3661DEE10D5665BE...
-2025-12-04 18:50:17,907 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 18:50:17,914 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 18:50:17,917 - __main__ - INFO - Network monitoring started
-2025-12-04 18:50:18,415 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
-2025-12-04 18:50:22,300 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:50:22,300 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:50:22,301 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 18:50:22,403 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 18:50:22,404 - __main__ - INFO - Found 5 resolutions
-2025-12-04 18:50:22,404 - __main__ - INFO - Manual mode, showing all available streams
-2025-12-04 18:50:22,404 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CrAGM_dr96h9J53_L5hD-KajD4K_wUt0l0v1hcUO_dUvXLH13ZtciDp...
-2025-12-04 18:50:22,404 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CqYGgzn7sC0yCwcgiLwqpMMMxBgE5qRKPmmJLxMpHRzHYhDQKSc-IuG...
-2025-12-04 18:50:22,405 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/Cp4GlVgsjHEHfKhgAUKPsMbKLR1O7LJZmXHe8-Xev9UFz6rLJqZo_Dr...
-2025-12-04 18:50:22,408 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CpYGXYFz1oPNE2YhcbSwXfAj5T4bJGrJaqZ8bopQRbk5gPYI7aomIj_...
-2025-12-04 18:50:22,410 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/Co4GpMkxMHiHdPoVFAvdAI55t9iMUcbqdmRNf1EVjJldmAJBFKWVfbx...
-2025-12-04 18:50:22,918 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=F7A62345E80177EB1B7372645389943C, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:23,348 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:23] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 18:50:23,436 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:23,436 - __main__ - INFO - Added thumbnail to stream: 160p
-2025-12-04 18:50:23,462 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1185.258, Error=net::ERR_ABORTED
-2025-12-04 18:50:23,472 - __main__ - WARNING - Thumbnail file not created
-2025-12-04 18:50:23,484 - __main__ - WARNING - Thumbnail file not created
-2025-12-04 18:50:23,923 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:23,923 - __main__ - INFO - Added thumbnail to stream: 720p60
-2025-12-04 18:50:24,086 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:24,087 - __main__ - INFO - Added thumbnail to stream: 1080p60
-2025-12-04 18:50:24,838 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=76B1F83502FEC0A6471FEB7073A67DAB, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:25,277 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=F3ED6BC8D7C36F3A123AEAE68B8028CB, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:25,358 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1185.385, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:25,387 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:25] "GET /api/browser/status/browser_1764874216 HTTP/1.1" 200 -
-2025-12-04 18:50:25,403 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 18:50:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:25,430 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1185.386, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:25,515 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:26,805 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=ED8A5F2CBE1CF99E9DEB425E2F1B601C, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:27,383 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:27] "GET /api/browser/status/browser_1764874216 HTTP/1.1" 200 -
-2025-12-04 18:50:29,378 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:29] "GET /api/browser/status/browser_1764874216 HTTP/1.1" 200 -
-2025-12-04 18:50:31,143 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 18:50:31,309 - __main__ - INFO - Browser browser_1764874216 closed
-2025-12-04 18:50:31,309 INFO reaped unknown pid 1095 (exit status 0)
-2025-12-04 18:50:31,309 INFO reaped unknown pid 1097 (exit status 0)
-2025-12-04 18:50:31,309 INFO reaped unknown pid 1102 (exit status 0)
-2025-12-04 18:50:31,310 INFO reaped unknown pid 1103 (exit status 0)
-2025-12-04 18:50:31,310 INFO reaped unknown pid 1240 (exit status 0)
-2025-12-04 18:50:31,310 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:31] "POST /api/browser/close/browser_1764874216 HTTP/1.1" 200 -
-2025-12-04 18:50:31,321 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:31] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:34,490 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: False
-2025-12-04 18:50:34,490 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:50:34,490 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:50:34,491 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:50:35,447 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 18:50:35,512 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:35] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:35,869 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 18:50:35,869 - __main__ - INFO - Chrome debugger address: localhost:38733
-2025-12-04 18:50:35,872 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:38733/devtools/page/2DEA1B6DA5DD06575FA52B785F9888A7...
-2025-12-04 18:50:35,872 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 18:50:35,875 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 18:50:35,878 - __main__ - INFO - Network monitoring started
-2025-12-04 18:50:36,376 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
-2025-12-04 18:50:40,223 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:50:40,223 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:50:40,223 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 18:50:40,294 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 18:50:40,295 - __main__ - INFO - Found 5 resolutions
-2025-12-04 18:50:40,295 - __main__ - INFO - Manual mode, showing all available streams
-2025-12-04 18:50:40,295 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/Co4GUuyqjIQ56DLXneoAbgd-TZnUYYACSOsigizJTyucq6HZOiSSDzu...
-2025-12-04 18:50:40,295 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CrAGOeBRtpZEewQZ7--Ux4QuHCKq0_znLLghD7Xw9f5Bf6xfKWMrHje...
-2025-12-04 18:50:40,296 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CqYGPBh_HphlbqN21-GC9gyczR44KPiYE9VO3SJQF0Pv-WwVKlFZ_Fx...
-2025-12-04 18:50:40,296 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/Cp4GBrwCaIKMug-LxNrD2jOJTJCCHocBspHVag-pkCAZbw6xVNmNfjX...
-2025-12-04 18:50:40,296 - __main__ - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CpYG73k9aiisbn1b6YsMuaFai2CG78bN1Yhj8_ULYQf6ZjBmE_FQKhI...
-2025-12-04 18:50:40,887 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=84D0250D0AB9FF4C206066CE86C7CFD0, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:41,225 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:41,225 - __main__ - INFO - Added thumbnail to stream: 360p
-2025-12-04 18:50:41,356 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:41,357 - __main__ - INFO - Added thumbnail to stream: 480p
-2025-12-04 18:50:41,369 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:41] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 18:50:41,375 - __main__ - WARNING - Thumbnail file not created
-2025-12-04 18:50:41,526 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:41,528 - __main__ - INFO - Added thumbnail to stream: 720p60
-2025-12-04 18:50:41,578 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.259, Error=net::ERR_ABORTED
-2025-12-04 18:50:41,758 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:50:41,758 - __main__ - INFO - Added thumbnail to stream: 1080p60
-2025-12-04 18:50:43,264 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=E049044A9E3DC0FDA053268A6F17B16F, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:43,316 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.429, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:43,398 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:43] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:50:43,858 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=12FFEAC1FA91C8EEE367735B8DEF4E30, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:44,389 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=A226706945302C2F33FC0F9552C3FFCE, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:44,413 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.465, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:45,395 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:45] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:50:45,512 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:45] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:47,409 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:47] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:50:49,397 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:49] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:50:51,402 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:51] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:50:53,395 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:53] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:50:55,404 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:55] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:50:55,519 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:55] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:50:56,960 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.598, Error=net::ERR_ABORTED
-2025-12-04 18:50:56,964 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.602, Error=net::ERR_ABORTED
-2025-12-04 18:50:56,964 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.603, Error=net::ERR_ABORTED
-2025-12-04 18:50:56,965 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.599, Error=net::ERR_ABORTED
-2025-12-04 18:50:56,965 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.600, Error=net::ERR_ABORTED
-2025-12-04 18:50:56,965 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.601, Error=net::ERR_ABORTED
-2025-12-04 18:50:57,394 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:57] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:50:57,954 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:50:57,954 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:50:58,319 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=9EC880D2E28A39E223133AD0FC778D26, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:58,746 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.853, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:59,024 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=5E8646B9BD25C84A044EC499A0539F23, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:59,053 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=2D29A5528513CEF46A3A7740FAE4415D, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:59,337 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1537.882, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:50:59,488 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:50:59] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:51:01,336 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=A44D5125AEE490CD2FA899DE2F926AE2, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:51:01,401 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:01] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:51:03,405 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:03] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:51:05,404 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:05] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:51:05,518 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:05] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:51:07,400 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:07] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:51:09,410 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:09] "GET /api/browser/status/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:51:10,340 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 18:51:10,506 - __main__ - INFO - Browser browser_1764874234 closed
-2025-12-04 18:51:10,506 INFO reaped unknown pid 1448 (exit status 0)
-2025-12-04 18:51:10,506 INFO reaped unknown pid 1450 (exit status 0)
-2025-12-04 18:51:10,506 INFO reaped unknown pid 1455 (exit status 0)
-2025-12-04 18:51:10,506 INFO reaped unknown pid 1456 (exit status 0)
-2025-12-04 18:51:10,506 INFO reaped unknown pid 1800 (exit status 0)
-2025-12-04 18:51:10,506 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:10] "POST /api/browser/close/browser_1764874234 HTTP/1.1" 200 -
-2025-12-04 18:51:10,519 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:10] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:51:12,044 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:12] "GET / HTTP/1.1" 200 -
-2025-12-04 18:51:12,237 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:12] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:51:15,188 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: False
-2025-12-04 18:51:15,188 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:51:15,188 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:51:15,188 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:51:16,132 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 18:51:16,568 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 18:51:16,568 - __main__ - INFO - Chrome debugger address: localhost:35419
-2025-12-04 18:51:16,570 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:35419/devtools/page/F911954515E3C2F2983BE48AF38F81AC...
-2025-12-04 18:51:16,570 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 18:51:16,574 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 18:51:16,576 - __main__ - INFO - Network monitoring started
-2025-12-04 18:51:17,075 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
-2025-12-04 18:51:20,827 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:51:20,827 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:51:20,827 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 18:51:20,924 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 18:51:20,925 - __main__ - INFO - Found 5 resolutions
-2025-12-04 18:51:20,925 - __main__ - INFO - Manual mode, showing all available streams
-2025-12-04 18:51:20,925 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CrAGN6G8v3456DZlNq1JMMyXImtscY3UNsgxmrI8oCm9Q5TKJbZAW9H...
-2025-12-04 18:51:20,925 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CqYGiDPOElYfO2FnGrWQFFluO5rxnwdm0vGce4oxqExWOUz0fr7fcEo...
-2025-12-04 18:51:20,925 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/Cp4GglxSyQShSwjAyHByByIF82NtqjdrKT2HVhGUgS9q_680dkyWuzU...
-2025-12-04 18:51:20,926 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CpYGVuJR1wTMKF6pKZgs5GNcJOHYYjGXenv61CImV4dhMmSiCPw0qDh...
-2025-12-04 18:51:20,926 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/Co4GHGSG79mYgIq7XjdEvktQ9uJVrzduzgmrgZTH2SRlYGq2fUoRQ2n...
-2025-12-04 18:51:21,468 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=E344809B25CE9A1704E28CCFC4DD0043, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:51:21,635 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:21] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 18:51:21,869 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1947.257, Error=net::ERR_ABORTED
-2025-12-04 18:51:21,926 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:51:21,927 - __main__ - INFO - Added thumbnail to stream: 160p
-2025-12-04 18:51:21,953 - __main__ - WARNING - Thumbnail file not created
-2025-12-04 18:51:22,051 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:51:22,051 - __main__ - INFO - Added thumbnail to stream: 480p
-2025-12-04 18:51:22,248 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:22] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:51:22,380 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:51:22,380 - __main__ - INFO - Added thumbnail to stream: 720p60
-2025-12-04 18:51:22,520 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 18:51:22,522 - __main__ - INFO - Added thumbnail to stream: 1080p60
-2025-12-04 18:51:23,341 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=F4808935709D5D1543A47CB70A39EDF8, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:51:23,643 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=7C14DA32544187F4596FE1168BA8D66E, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:51:23,670 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:23] "GET /api/browser/status/browser_1764874275 HTTP/1.1" 200 -
-2025-12-04 18:51:23,826 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1947.373, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:51:23,870 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1947.378, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:51:25,122 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=34370B7335917D059B51EBF8DE85D6B1, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 18:51:25,396 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 18:51:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:51:25,660 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:25] "GET /api/browser/status/browser_1764874275 HTTP/1.1" 200 -
-2025-12-04 18:51:27,664 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:27] "GET /api/browser/status/browser_1764874275 HTTP/1.1" 200 -
-2025-12-04 18:51:29,436 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 18:51:29,641 - __main__ - INFO - Browser browser_1764874275 closed
-2025-12-04 18:51:29,641 INFO reaped unknown pid 1850 (exit status 0)
-2025-12-04 18:51:29,641 INFO reaped unknown pid 1852 (exit status 0)
-2025-12-04 18:51:29,642 INFO reaped unknown pid 1857 (exit status 0)
-2025-12-04 18:51:29,642 INFO reaped unknown pid 1858 (exit status 0)
-2025-12-04 18:51:29,642 INFO reaped unknown pid 1989 (exit status 0)
-2025-12-04 18:51:29,642 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:29] "POST /api/browser/close/browser_1764874275 HTTP/1.1" 200 -
-2025-12-04 18:51:29,659 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:29] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:51:32,245 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:32] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:51:33,653 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:33] "GET / HTTP/1.1" 200 -
-2025-12-04 18:51:33,848 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:33] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 18:51:37,503 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: True
-2025-12-04 18:51:37,504 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
-2025-12-04 18:51:37,504 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 18:51:37,504 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 18:51:38,439 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 18:51:38,884 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 18:51:38,884 - __main__ - INFO - Chrome debugger address: localhost:39589
-2025-12-04 18:51:38,887 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:39589/devtools/page/01A5E37DCA4455E5CFBF3D0594893682...
-2025-12-04 18:51:38,887 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 18:51:38,891 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 18:51:38,893 - __main__ - INFO - Network monitoring started
-2025-12-04 18:51:39,392 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
-2025-12-04 18:51:43,246 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
-2025-12-04 18:51:43,246 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
-2025-12-04 18:51:43,246 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 18:51:43,341 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 18:51:43,342 - __main__ - INFO - Found 5 resolutions
-2025-12-04 18:51:43,342 - __main__ - INFO - Auto-download enabled, finding matching stream...
-2025-12-04 18:51:43,342 - __main__ - INFO - Matching stream - Resolution: 1080p, Framerate: any
-2025-12-04 18:51:43,342 - __main__ - INFO - Found 1 streams matching resolution 1080p
-2025-12-04 18:51:43,342 - __main__ - INFO - Found 60fps stream (framerate='any' prefers 60fps)
-2025-12-04 18:51:43,342 - __main__ - INFO - Matched stream: 1080p60 - 1920x1080 @ 60.000fps
-2025-12-04 18:51:43,342 - __main__ - INFO - Starting download for resolution: 1080p60
-2025-12-04 18:51:43,342 - __main__ - INFO - Stream URL: https://euw13.playlist.ttvnw.net/v1/playlist/Cq0GQ8WavXHOmbpQT5IIo6n3E1Y9Y86-VWiAoGGK38MVoAYj4YsNsbSyGSWDwNE_O0s3tGHwLISZW2ho4BxX9uj_K985ov4Xy3xR8gmt4Bj1Mrxsg35kWkHgFVosD1au-8tX14o8gArk4KR4L44Lc6w5PD5gDAeJ_fCgGUH5o5LSa153p7EMMzPqNfKL_ro8vcph4GmIapUZgjCWokbsl7sxR9YTwYTqX4Mxuqe1gWgEBeUG0svkOTPHqouA6ENZynopQWA_JvGtyoOCXhAsJFJTtbIkMLd6OWK6lTlJYacItqJ-dRpxWOZN8hwK20K2P5Tjv-pU63ZRB-CQv5TKNd31_BNODadsxe6KRqcKOQq1rIRsTsnjAs-ajLBixLfP-AStBkO6DFA4AClKxMWK3hV7TH1H0Zl6DoeUFNnHrwz9hHdRUnrGwyfNDCOfThcndAC8E0K0n4_7BXpR1WV1YiEMtMO1mQGjryzQ_F_sEYl9YyXo4MsYbg2LrgO4eXMxcjK0KKoKHbwo35n_Xn8CpIML2rUEod_mYOwnoFGZtFiai5Lo382r-QW8s8qUiNQQViV5XtFw1p2FKys4AzHrgFZTqmI94p1ypdV-qze8A07dzxmWTFpzfNCRFI6GQHn8iAyLj7FQ1ItQTwuoAAQ63V0X05TkisVKnkZhDo0Pu_csQqEATIe2j3AAIETdhmuFMIejFZrNQUWFIEltfKNFxRlen5sFoTpsWuQfZimFGPHOnGY7cce1cTQFQgtxlnSeROi35_BQoX1waS4XUyARLdcLwl0maWUwxjzMFrVj6hQL6d-DH5J7UKy72c5ajD8NIm55XY_yZu3ivqveq0gIEglbeL34VRHCpfKcBDSNiT4zJRl-x4-cRBtcD_tKIg62Do7aU-5WFH_XtypPjL8rWLqV6YAyQ55sAy-9ht5lkCYFUbvp638CAlRaiFbX1r4GcXKWuvoto4_AlHBSsXqciWhIUnciWDBo-vEpMLje9yAF007nJXfo6rsL1z5hvIXr7FgK7dkJStYARWdvRQF24QZoqncXUVmBBnTNdxTRiLhb7X8i0Xchj1EfgJJYOSlLGgxrCfn51QdesXd2s3MgASoJZXUtd2VzdC0yMO8N.m3u8
-2025-12-04 18:51:43,342 - __main__ - INFO - Waiting 3 seconds for video to load...
-2025-12-04 18:51:43,852 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 18:51:43] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:16:44,616 - __main__ - INFO - Chrome webdriver created successfully!
+2025-12-04 19:16:45,051 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
+2025-12-04 19:16:45,051 - __main__ - INFO - Chrome debugger address: localhost:41089
+2025-12-04 19:16:45,054 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:41089/devtools/page/4C9584B9F0533480C55A2EC50DD51ABA...
+2025-12-04 19:16:45,054 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
+2025-12-04 19:16:45,057 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
+2025-12-04 19:16:45,059 - __main__ - INFO - Network monitoring started
+2025-12-04 19:16:45,558 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
+2025-12-04 19:16:46,741 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
+2025-12-04 19:16:46,741 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
+2025-12-04 19:16:46,741 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
+2025-12-04 19:16:46,844 - __main__ - INFO - This is a master playlist! Parsing resolutions...
+2025-12-04 19:16:46,845 - __main__ - INFO - Found 5 resolutions
+2025-12-04 19:16:46,845 - __main__ - INFO - Auto-download enabled, finding matching stream...
+2025-12-04 19:16:46,845 - __main__ - INFO - Matching stream - Resolution: 720p, Framerate: 30
+2025-12-04 19:16:46,845 - __main__ - INFO - Found 1 streams matching resolution 720p
+2025-12-04 19:16:46,845 - __main__ - WARNING - No 30fps stream found, returning highest bandwidth of matching resolution
+2025-12-04 19:16:46,845 - __main__ - INFO - Matched stream: 720p60 - 1280x720 @ 60.000fps
+2025-12-04 19:16:46,845 - __main__ - INFO - Starting download for resolution: 720p60
+2025-12-04 19:16:46,845 - __main__ - INFO - Stream URL: https://euw12.playlist.ttvnw.net/v1/playlist/CqUG0NPP9HViEBOCH3tj2OJ3RC9FIV1UPaaJxdhiAd3TjkmR6LVzssrW-Xux57dvHg9FWa9XBWU-QiNp86VdPWGFyKxORr5NV5s7K3XOoo0hA8imSRLZ2UXBgtnoFCWvIMiuWau7oyQl1JHYUEXxXe_FdCf6zYkW2QLkTNmhGgr-2FMQsMDS5NxMfluf-fSlcL8ax170vDf3u3Ag3vI_bgfJjZPUXtVPqAS32lrdU0Rt6t97qvIIDSWOKKEpewnf4ZY75qxoARaW5iQmdzipvVrPTJdB95FNgWMk_WS5BgVIskRYVu9Su_p9P9P7Ms4gkAT1-XTcpmjjE1R9zoW135b82dQwVCkesA9F3DmjdEF7lEoIXCQojpJUnP4Vr4VMT280URDHpmhOn7qcgHXAFIZb4e-0qrZlJly6XBcf1PBrA0BFuJXJNyU9UUNIPiXelarKDjWTbj6CNZ-AqgZh3tF-hRQpK4xmCrpROM6rPzfyGwA-WC-DSzTzJOGb1KDK94oQMx81q1C0kWo2HW9Sqr5zYOBxsS4AJI3l2Pv6JoGS3qnB4QS_LTTZZ2xP2KJ9WvOyv4xdhMLOcL5GiXZjHumoUlQd6BBNTF9x0ebWlOUEnFwMnkgc3MxOoB_TXi3O2EG3GNkR0M9wUvoVNrDghnWyVdsTkoCwIN_EiasRVyPHlSifXfxaAsxWQZR1_fFiAe7-ByDOudiet-_2tocxC-Abu7R1kxbYGCeRpogBS15GDYGtO8tkHtUsYV3g7GpYRmqHfpM7Fhbi8Diuof6KZF4D1hzi1AXiOvvwB8XMRpSaGvMjmS7Ctx60ouy_552IQYURERcjgAKXpEkwlVfjKWNcoTnQA42SHjGaP2zOeIA6k6VS2OBsBofxUjX87rYztcz_rDXBAuqjXC7GraR9gNIRDBPZxUnJTIiJNxGvs13XEBxmYx6T1ukAEk1T0_RLz5TRDO-3g5JO9p0jla_micqB8lhjFRYU_ehVBYHB7FKwbQCCvrc31vMiFQqwRSSOabc_VuZgK6fFEz0gRjqjxqiASwM9CfFAChzbqdM6RGujNuYR8XJkshoM7ywY2rgT5adPhKr2IAEqCWV1LXdlc3QtMjDvDQ.m3u8
+2025-12-04 19:16:46,845 - __main__ - INFO - Waiting 3 seconds for video to load...
+2025-12-04 19:16:47,372 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=EBD57782238C658859285DD777953E9B, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:16:48,600 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=0C25A0D8FD6A68A630027C16D25E492C, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:16:48,853 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=00FA68EC37D2BCB7ABE7BC9D4E8A23CA, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:16:48,881 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1104.383, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:16:49,039 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1104.385, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:16:50,256 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:16:50] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-04 19:16:50,420 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=F91521D9162B787A5B1829E1B5881FF5, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:16:50,833 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-04 19:16:50,943 - __main__ - INFO - Thumbnail captured successfully
+2025-12-04 19:16:50,944 - __main__ - INFO - Starting FFmpeg download: https://euw12.playlist.ttvnw.net/v1/playlist/CqUG0NPP9HViEBOCH3tj2OJ3RC9FIV1UPaaJxdhiAd3TjkmR6LVzssrW-Xux57dvHg9FWa9XBWU-QiNp86VdPWGFyKxORr5NV5s7K3XOoo0hA8imSRLZ2UXBgtnoFCWvIMiuWau7oyQl1JHYUEXxXe_FdCf6zYkW2QLkTNmhGgr-2FMQsMDS5NxMfluf-fSlcL8ax170vDf3u3Ag3vI_bgfJjZPUXtVPqAS32lrdU0Rt6t97qvIIDSWOKKEpewnf4ZY75qxoARaW5iQmdzipvVrPTJdB95FNgWMk_WS5BgVIskRYVu9Su_p9P9P7Ms4gkAT1-XTcpmjjE1R9zoW135b82dQwVCkesA9F3DmjdEF7lEoIXCQojpJUnP4Vr4VMT280URDHpmhOn7qcgHXAFIZb4e-0qrZlJly6XBcf1PBrA0BFuJXJNyU9UUNIPiXelarKDjWTbj6CNZ-AqgZh3tF-hRQpK4xmCrpROM6rPzfyGwA-WC-DSzTzJOGb1KDK94oQMx81q1C0kWo2HW9Sqr5zYOBxsS4AJI3l2Pv6JoGS3qnB4QS_LTTZZ2xP2KJ9WvOyv4xdhMLOcL5GiXZjHumoUlQd6BBNTF9x0ebWlOUEnFwMnkgc3MxOoB_TXi3O2EG3GNkR0M9wUvoVNrDghnWyVdsTkoCwIN_EiasRVyPHlSifXfxaAsxWQZR1_fFiAe7-ByDOudiet-_2tocxC-Abu7R1kxbYGCeRpogBS15GDYGtO8tkHtUsYV3g7GpYRmqHfpM7Fhbi8Diuof6KZF4D1hzi1AXiOvvwB8XMRpSaGvMjmS7Ctx60ouy_552IQYURERcjgAKXpEkwlVfjKWNcoTnQA42SHjGaP2zOeIA6k6VS2OBsBofxUjX87rYztcz_rDXBAuqjXC7GraR9gNIRDBPZxUnJTIiJNxGvs13XEBxmYx6T1ukAEk1T0_RLz5TRDO-3g5JO9p0jla_micqB8lhjFRYU_ehVBYHB7FKwbQCCvrc31vMiFQqwRSSOabc_VuZgK6fFEz0gRjqjxqiASwM9CfFAChzbqdM6RGujNuYR8XJkshoM7ywY2rgT5adPhKr2IAEqCWV1LXdlc3QtMjDvDQ.m3u8 -> /app/downloads/video_720p60_1764875810.mp4
+2025-12-04 19:16:52,280 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:16:52] "GET /api/browser/status/browser_1764875803 HTTP/1.1" 200 -
+2025-12-04 19:16:52,851 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:16:52] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:16:54,286 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:16:54] "GET /api/browser/status/browser_1764875803 HTTP/1.1" 200 -
+2025-12-04 19:16:54,302 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:16:54] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:16:55,782 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
+2025-12-04 19:16:55,956 - __main__ - INFO - Browser browser_1764875803 closed
+2025-12-04 19:16:55,956 INFO reaped unknown pid 1012 (exit status 0)
+2025-12-04 19:16:55,956 INFO reaped unknown pid 1014 (exit status 0)
+2025-12-04 19:16:55,956 INFO reaped unknown pid 1019 (exit status 0)
+2025-12-04 19:16:55,956 INFO reaped unknown pid 1020 (exit status 0)
+2025-12-04 19:16:55,956 INFO reaped unknown pid 1147 (exit status 0)
+2025-12-04 19:16:55,956 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:16:55] "POST /api/browser/close/browser_1764875803 HTTP/1.1" 200 -
+2025-12-04 19:16:55,974 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:16:55] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:16:59,393 - __main__ - INFO - Starting browser with resolution: 480p, framerate: 30, auto_download: True
+2025-12-04 19:16:59,393 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/neongutz
+2025-12-04 19:16:59,393 - __main__ - INFO - Initializing ChromeDriver service
+2025-12-04 19:16:59,394 - __main__ - INFO - Creating Chrome webdriver instance...
+2025-12-04 19:17:00,387 - __main__ - INFO - Chrome webdriver created successfully!
+2025-12-04 19:17:00,778 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
+2025-12-04 19:17:00,778 - __main__ - INFO - Chrome debugger address: localhost:35047
+2025-12-04 19:17:00,782 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:35047/devtools/page/42A100AF099A92F0A1A2C541562A8F30...
+2025-12-04 19:17:00,782 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
+2025-12-04 19:17:00,787 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
+2025-12-04 19:17:00,789 - __main__ - INFO - Network monitoring started
+2025-12-04 19:17:01,288 - __main__ - INFO - Loading https://www.twitch.tv/neongutz...
+2025-12-04 19:17:02,427 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi...
+2025-12-04 19:17:02,428 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/neongutz.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=...
+2025-12-04 19:17:02,428 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
+2025-12-04 19:17:02,510 - __main__ - INFO - This is a master playlist! Parsing resolutions...
+2025-12-04 19:17:02,511 - __main__ - INFO - Found 5 resolutions
+2025-12-04 19:17:02,511 - __main__ - INFO - Auto-download enabled, finding matching stream...
+2025-12-04 19:17:02,511 - __main__ - INFO - Matching stream - Resolution: 480p, Framerate: 30
+2025-12-04 19:17:02,511 - __main__ - INFO - Found 1 streams matching resolution 480p
+2025-12-04 19:17:02,511 - __main__ - INFO - Found 30fps stream
+2025-12-04 19:17:02,511 - __main__ - INFO - Matched stream: 480p - 852x480 @ 30.000fps
+2025-12-04 19:17:02,511 - __main__ - INFO - Starting download for resolution: 480p30
+2025-12-04 19:17:02,511 - __main__ - INFO - Stream URL: https://euw11.playlist.ttvnw.net/v1/playlist/Cp4GlKk7G1L_l7RtdPqUNZdEl7hty3IHvjzFv8-HJfV6Dowq0i7cwM_N-r563dyVxYAdbtPaJnTPZmDw8iGjlsdJjnEOoiKEH9bbRhQrsMGkd60ErgZG3OZU6qjR0Krg3acJtC2vQFUACnf8IAXjPoz3d9vpAHKY6aXlDZx92U8MAPG6-BAM5evuWTgQO0xCi7qXWOaE_-5koPUQZYA3lGbYKmotmDi_YGpeO5eWrqY6ciG76DmQFomCEufWZSZVzPM3fLbj0UBjzP8DjM6Xr5gWOu-gRVPJCMzYiZPh7rSmp_c0IockO5KAjgRh-1IIw0zsWtlkRglfZk5INDjXTid3XROOnjuGuKbah_qnPIjLvOW_oGc4lxViPjOdnbq5OFoutNvZVDAq1koL7nk3Qf7VMmw-AfceSKmCplUwOA0EaUc5ba25UakBwtdyaJabxjZh30leDj4gBoDNMSi_tuV154asL9rfD_BLSKf4lYbkTgUnWyShC5ZKPC6Fo5N-1L2cJg4N8pupA4z7Rl24sYRz0UPe86PCQ_CZ3IIsts0_Xz79_GGVcY6_zsGV03ebVxFNb8GNxX-RfIh1sQjRArtYBNbFLk7Lcurd1vLdeAVBoLIFcGopNeqMBfomeu0ocpyawnmOvxuXaMwSWJT5rda9VIV-V5HXR3uXFdVKUYph-tMSdvbNVddFI3yhKfawlPft6TKs_u2j15pgWgNjcseygRUnvdmcmSs-aT4xe6srrsWZO1r36V0oIjb2v2bGyLtrq25curcnEdNDCxF-CPGLdjhpR5kFmskkuSZ7MZx0lmg_kD4h62dXMOb5Br1hBhrR-Q8Fp0lYDOsEsswPmoImsPpTQMfzEgi-nT9IyuqbnRQyptWVQeCvNrwO96PN7iF-cgNviTU1Xa3ctapdJ6TySsqnE1AbI5jontSzJ5qprZq5BhHztntaSUmNswMFcL67m-F0M9WRvtUIIvWMOTcgOZfB0zh3YLmMTTF-Z8JMJwSx_8vLp880mhlGdYlE-At9DAQ7xDZHLwfA1aB8FcFYE49FAAGxZ7EXRxLlO-kEGgw-sCJJrEdJOjOz_lMgASoJZXUtd2VzdC0yMO8N.m3u8
+2025-12-04 19:17:02,511 - __main__ - INFO - Waiting 3 seconds for video to load...
+2025-12-04 19:17:02,847 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:02] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:17:02,998 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=E6CDCBEC6D1761002B9656355A25D1BB, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:17:04,222 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=CFEB41A17EFD83D52C719D81829B76DB, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:17:04,509 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=4D75A60B72F680BA0E80AB8344DE2B78, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:17:04,673 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1310.381, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:17:04,694 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1310.385, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:17:05,670 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:05] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-04 19:17:06,404 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-04 19:17:06,447 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=AA50DE8E41B435BCF90C9A0373255790, Error=net::ERR_CONNECTION_REFUSED
+2025-12-04 19:17:06,542 - __main__ - INFO - Thumbnail captured successfully
+2025-12-04 19:17:06,544 - __main__ - INFO - Starting FFmpeg download: https://euw11.playlist.ttvnw.net/v1/playlist/Cp4GlKk7G1L_l7RtdPqUNZdEl7hty3IHvjzFv8-HJfV6Dowq0i7cwM_N-r563dyVxYAdbtPaJnTPZmDw8iGjlsdJjnEOoiKEH9bbRhQrsMGkd60ErgZG3OZU6qjR0Krg3acJtC2vQFUACnf8IAXjPoz3d9vpAHKY6aXlDZx92U8MAPG6-BAM5evuWTgQO0xCi7qXWOaE_-5koPUQZYA3lGbYKmotmDi_YGpeO5eWrqY6ciG76DmQFomCEufWZSZVzPM3fLbj0UBjzP8DjM6Xr5gWOu-gRVPJCMzYiZPh7rSmp_c0IockO5KAjgRh-1IIw0zsWtlkRglfZk5INDjXTid3XROOnjuGuKbah_qnPIjLvOW_oGc4lxViPjOdnbq5OFoutNvZVDAq1koL7nk3Qf7VMmw-AfceSKmCplUwOA0EaUc5ba25UakBwtdyaJabxjZh30leDj4gBoDNMSi_tuV154asL9rfD_BLSKf4lYbkTgUnWyShC5ZKPC6Fo5N-1L2cJg4N8pupA4z7Rl24sYRz0UPe86PCQ_CZ3IIsts0_Xz79_GGVcY6_zsGV03ebVxFNb8GNxX-RfIh1sQjRArtYBNbFLk7Lcurd1vLdeAVBoLIFcGopNeqMBfomeu0ocpyawnmOvxuXaMwSWJT5rda9VIV-V5HXR3uXFdVKUYph-tMSdvbNVddFI3yhKfawlPft6TKs_u2j15pgWgNjcseygRUnvdmcmSs-aT4xe6srrsWZO1r36V0oIjb2v2bGyLtrq25curcnEdNDCxF-CPGLdjhpR5kFmskkuSZ7MZx0lmg_kD4h62dXMOb5Br1hBhrR-Q8Fp0lYDOsEsswPmoImsPpTQMfzEgi-nT9IyuqbnRQyptWVQeCvNrwO96PN7iF-cgNviTU1Xa3ctapdJ6TySsqnE1AbI5jontSzJ5qprZq5BhHztntaSUmNswMFcL67m-F0M9WRvtUIIvWMOTcgOZfB0zh3YLmMTTF-Z8JMJwSx_8vLp880mhlGdYlE-At9DAQ7xDZHLwfA1aB8FcFYE49FAAGxZ7EXRxLlO-kEGgw-sCJJrEdJOjOz_lMgASoJZXUtd2VzdC0yMO8N.m3u8 -> /app/downloads/video_480p30_1764875826.mp4
+2025-12-04 19:17:07,692 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:07] "GET /api/browser/status/browser_1764875819 HTTP/1.1" 200 -
+2025-12-04 19:17:10,018 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:10] "GET /api/browser/status/browser_1764875819 HTTP/1.1" 200 -
+2025-12-04 19:17:10,020 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:10] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:17:10,630 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
+2025-12-04 19:17:10,799 - __main__ - INFO - Browser browser_1764875819 closed
+2025-12-04 19:17:10,799 INFO reaped unknown pid 1212 (exit status 0)
+2025-12-04 19:17:10,800 INFO reaped unknown pid 1214 (exit status 0)
+2025-12-04 19:17:10,800 INFO reaped unknown pid 1219 (exit status 0)
+2025-12-04 19:17:10,800 INFO reaped unknown pid 1220 (exit status 0)
+2025-12-04 19:17:10,800 INFO reaped unknown pid 1343 (exit status 0)
+2025-12-04 19:17:10,800 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:10] "POST /api/browser/close/browser_1764875819 HTTP/1.1" 200 -
+2025-12-04 19:17:10,837 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:10] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:17:12,846 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:12] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:17:23,601 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:23] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:17:25,427 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 19:17:25] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:17:33,599 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:33] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:17:43,617 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:43] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:17:53,585 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:17:53] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:18:03,588 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:18:03] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 19:18:13,593 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:18:13] "GET /api/downloads/list HTTP/1.1" 200 -
