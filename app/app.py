@@ -798,7 +798,7 @@ class StreamDetector:
                         if matched_stream:
                             logger.info(f"Matched stream: {matched_stream['name']} - {matched_stream['resolution']} @ {matched_stream['framerate']}fps")
                             # Start download immediately
-                            self._start_download_with_url(matched_stream['url'], matched_stream['name'])
+                            self._start_download_with_stream(matched_stream)
                         else:
                             logger.warning("No matching stream found, showing all streams for manual selection")
                             self.awaiting_resolution_selection = True
@@ -865,10 +865,25 @@ class StreamDetector:
         """Start downloading the detected stream"""
         self._start_download_with_url(stream_info['url'], stream_info['type'])
 
-    def _start_download_with_url(self, stream_url, resolution_name):
+    def _start_download_with_stream(self, stream):
+        """Start download with stream object (contains all metadata)"""
+        # Normalize filename to always include framerate
+        resolution_name = stream.get('name', '')
+        framerate = stream.get('framerate', '')
+
+        # If framerate is provided and not already in the name, append it
+        if framerate and not any(fps in resolution_name for fps in ['60', '30', '24', '25', '50']):
+            # Extract numeric framerate (e.g., "60.000" -> "60")
+            fps_numeric = framerate.split('.')[0] if '.' in str(framerate) else str(framerate)
+            resolution_name = f"{resolution_name}{fps_numeric}"
+
+        self._start_download_with_url(stream['url'], resolution_name, stream)
+
+    def _start_download_with_url(self, stream_url, resolution_name, stream_metadata=None):
         """Start download with specific URL and resolution name"""
         self.download_started = True
         self.selected_stream_url = stream_url
+        self.selected_stream_metadata = stream_metadata  # Store for download popup
 
         logger.info(f"Starting download for resolution: {resolution_name}")
         logger.info(f"Stream URL: {stream_url}")
@@ -1074,7 +1089,8 @@ class StreamDetector:
             'thumbnail': self.thumbnail_data,
             'latest_stream': self.detected_streams[-1] if self.detected_streams else None,
             'awaiting_resolution_selection': self.awaiting_resolution_selection,
-            'available_resolutions': self.available_resolutions
+            'available_resolutions': self.available_resolutions,
+            'selected_stream_metadata': getattr(self, 'selected_stream_metadata', None)
         }
 
         return status
@@ -1243,10 +1259,9 @@ def select_resolution():
     try:
         data = request.json
         browser_id = data.get('browser_id')
-        stream_url = data.get('stream_url')
-        resolution_name = data.get('resolution_name')
+        stream = data.get('stream')
 
-        if not all([browser_id, stream_url, resolution_name]):
+        if not all([browser_id, stream]):
             return jsonify({'error': 'Missing required parameters'}), 400
 
         if browser_id not in active_browsers:
@@ -1254,18 +1269,18 @@ def select_resolution():
 
         detector = active_browsers[browser_id]
 
-        logger.info(f"User selected resolution: {resolution_name}")
-        logger.info(f"Stream URL: {stream_url}")
+        logger.info(f"User selected resolution: {stream.get('name')}")
+        logger.info(f"Stream URL: {stream.get('url')}")
 
         # Clear awaiting state
         detector.awaiting_resolution_selection = False
 
-        # Start download with selected resolution
-        detector._start_download_with_url(stream_url, resolution_name)
+        # Start download with selected stream (will normalize filename with framerate)
+        detector._start_download_with_stream(stream)
 
         return jsonify({
             'success': True,
-            'message': f'Starting download for {resolution_name}'
+            'message': f'Starting download for {stream.get("name")}'
         })
 
     except Exception as e:

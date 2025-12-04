@@ -557,7 +557,7 @@
                     <div class="input-group">
                         <label for="preferred-framerate">Framerate</label>
                         <select id="preferred-framerate">
-                            <option value="any" selected>Any (prefer 60fps)</option>
+                            <option value="any" selected>Source/Highest</option>
                             <option value="60">60fps</option>
                             <option value="30">30fps</option>
                         </select>
@@ -627,6 +627,21 @@
         <button class="btn btn-secondary" onclick="closeResolutionPopup()">Cancel & Keep Browsing</button>
     </div>
 
+    <!-- Download Started Popup -->
+    <div class="download-popup" id="download-started-popup" style="max-width: 600px;">
+        <h3>✅ Download Started</h3>
+        <div id="download-info" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0;">
+            <!-- Download info will be dynamically added here -->
+        </div>
+        <p id="countdown-text" style="text-align: center; color: #666; margin: 15px 0;">
+            Browser will close automatically in <strong id="countdown">15</strong> seconds
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <button class="btn" onclick="closeBrowserNow()">🗙 Close Browser Now</button>
+            <button class="btn btn-secondary" onclick="keepBrowserOpen()">✓ Keep Browser Open</button>
+        </div>
+    </div>
+
     <!-- Debug Stream Log Popup -->
     <div class="download-popup" id="debug-popup" style="max-width: 800px;">
         <h3>🔍 Debug: Detected Streams Log</h3>
@@ -645,6 +660,7 @@
         let countdownValue = 15;
         let debugLogContent = '';
         let detectedStreamCount = 0;
+        let downloadPopupShown = false;
 
         // Start direct download
         async function startDirectDownload() {
@@ -728,6 +744,7 @@
 
                 if (data.success) {
                     currentBrowserId = data.browser_id;
+                    downloadPopupShown = false; // Reset for new session
                     const resolutionText = framerate === 'any' ? `${resolution} (any framerate)` : `${resolution} ${framerate}fps`;
                     const modeText = autoDownload ? 'auto-download enabled' : 'manual selection';
                     showStatus(statusBox, `✓ Browser started! Looking for ${resolutionText} (${modeText})...`, 'success');
@@ -804,11 +821,16 @@
                         showStatus(statusBox, `✓ Found ${data.available_resolutions.length} streams - Select one to download`, 'success');
                     }
 
-                    // Handle auto-download success
-                    if (data.download_started) {
-                        console.log('✓ Download started automatically');
+                    // Handle download started (both auto and manual)
+                    if (data.download_started && !downloadPopupShown) {
+                        console.log('✓ Download started');
+                        downloadPopupShown = true;
                         const statusBox = document.getElementById('browser-status');
                         showStatus(statusBox, '✓ Download started!', 'success');
+
+                        // Show download confirmation popup
+                        showDownloadStartedPopup(data.selected_stream_metadata, data.thumbnail);
+
                         setTimeout(() => loadDownloads(), 2000);
                     }
 
@@ -922,7 +944,7 @@
                 card.style.cssText = 'background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid #e0e0e0; transition: all 0.2s;';
                 card.onmouseover = () => card.style.borderColor = '#667eea';
                 card.onmouseout = () => card.style.borderColor = '#e0e0e0';
-                card.onclick = () => selectResolution(res.url, res.name);
+                card.onclick = () => selectResolution(res);
 
                 const title = document.createElement('h4');
                 title.style.cssText = 'margin: 0 0 8px 0; color: #667eea; font-size: 1.1rem;';
@@ -933,12 +955,10 @@
 
                 const resolution = res.resolution || 'Unknown';
                 const framerate = res.framerate ? Math.round(parseFloat(res.framerate)) + ' fps' : 'Unknown';
-                const bandwidth = res.bandwidth ? Math.round(res.bandwidth/1000) + ' kbps' : 'Unknown';
 
                 details.innerHTML = `
                     <p style="margin: 4px 0;"><strong>Resolution:</strong> ${resolution}</p>
                     <p style="margin: 4px 0;"><strong>Framerate:</strong> ${framerate}</p>
-                    <p style="margin: 4px 0;"><strong>Bandwidth:</strong> ${bandwidth}</p>
                     <p style="margin: 4px 0; font-size: 0.75rem; word-break: break-all;"><strong>URL:</strong> ${res.url.substring(0, 80)}...</p>
                 `;
 
@@ -953,11 +973,11 @@
         }
 
         // Select a resolution
-        async function selectResolution(streamUrl, resolutionName) {
+        async function selectResolution(stream) {
             closeResolutionPopup();
 
             const statusBox = document.getElementById('browser-status');
-            showStatus(statusBox, `✓ Starting download for ${resolutionName}...`, 'success');
+            showStatus(statusBox, `✓ Starting download for ${stream.name}...`, 'success');
 
             try {
                 const response = await fetch('/api/browser/select-resolution', {
@@ -965,8 +985,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         browser_id: currentBrowserId,
-                        stream_url: streamUrl,
-                        resolution_name: resolutionName
+                        stream: stream
                     })
                 });
 
@@ -1047,6 +1066,88 @@
 
             popup.classList.remove('active');
             overlay.classList.remove('active');
+        }
+
+        // Show download started popup
+        function showDownloadStartedPopup(streamMetadata, thumbnail) {
+            const popup = document.getElementById('download-started-popup');
+            const overlay = document.getElementById('popup-overlay');
+            const infoContainer = document.getElementById('download-info');
+
+            // Populate download info
+            const resolution = streamMetadata?.resolution || 'Unknown';
+            const framerate = streamMetadata?.framerate ? Math.round(parseFloat(streamMetadata.framerate)) + ' fps' : 'Unknown';
+            const name = streamMetadata?.name || 'Video';
+
+            let infoHTML = `
+                <h4 style="margin: 0 0 10px 0; color: #667eea;">${name}</h4>
+                <p style="margin: 4px 0;"><strong>Resolution:</strong> ${resolution}</p>
+                <p style="margin: 4px 0;"><strong>Framerate:</strong> ${framerate}</p>
+            `;
+
+            // Add thumbnail if available
+            if (thumbnail) {
+                infoHTML = `<img src="data:image/png;base64,${thumbnail}" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" />` + infoHTML;
+            }
+
+            infoContainer.innerHTML = infoHTML;
+
+            // Show popup
+            popup.classList.add('active');
+            overlay.classList.add('active');
+
+            // Start 15 second countdown
+            startDownloadCountdown();
+        }
+
+        // Start countdown timer
+        function startDownloadCountdown() {
+            countdownValue = 15;
+            const countdownElement = document.getElementById('countdown');
+            countdownElement.textContent = countdownValue;
+
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+
+            countdownInterval = setInterval(() => {
+                countdownValue--;
+                countdownElement.textContent = countdownValue;
+
+                if (countdownValue <= 0) {
+                    clearInterval(countdownInterval);
+                    closeBrowserNow();
+                }
+            }, 1000);
+        }
+
+        // Close browser now (from download popup)
+        async function closeBrowserNow() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+
+            const popup = document.getElementById('download-started-popup');
+            const overlay = document.getElementById('popup-overlay');
+            popup.classList.remove('active');
+            overlay.classList.remove('active');
+
+            await closeBrowser();
+        }
+
+        // Keep browser open (from download popup)
+        function keepBrowserOpen() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+
+            const popup = document.getElementById('download-started-popup');
+            const overlay = document.getElementById('popup-overlay');
+            popup.classList.remove('active');
+            overlay.classList.remove('active');
+
+            const statusBox = document.getElementById('browser-status');
+            showStatus(statusBox, 'Browser kept open. Close manually when done.', 'success');
         }
 
         // Close browser
