@@ -465,11 +465,24 @@
         <button class="btn btn-secondary" onclick="closeResolutionPopup()">Cancel & Keep Browsing</button>
     </div>
 
+    <!-- Debug Stream Log Popup -->
+    <div class="download-popup" id="debug-popup" style="max-width: 800px;">
+        <h3>🔍 Debug: Detected Streams Log</h3>
+        <p style="margin-bottom: 10px; color: #666;">Copy this log for debugging. Updates automatically as streams are detected.</p>
+        <textarea id="debug-log" readonly style="width: 100%; height: 400px; font-family: monospace; font-size: 0.85rem; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; background: #f8f9fa; resize: vertical;"></textarea>
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <button class="btn" onclick="copyDebugLog()">📋 Copy to Clipboard</button>
+            <button class="btn btn-secondary" onclick="closeDebugPopup()">Close</button>
+        </div>
+    </div>
+
     <script>
         let currentBrowserId = null;
         let statusCheckInterval = null;
         let countdownInterval = null;
         let countdownValue = 15;
+        let debugLogContent = '';
+        let detectedStreamCount = 0;
 
         // Start direct download
         async function startDirectDownload() {
@@ -599,6 +612,17 @@
                     if (data.awaiting_resolution_selection) {
                         console.log('=== AVAILABLE RESOLUTIONS ===');
                         console.log('Count:', data.available_resolutions?.length || 0);
+
+                        // Update debug log with detected streams
+                        if (data.available_resolutions && data.available_resolutions.length > 0) {
+                            updateDebugLog(data.available_resolutions);
+
+                            // Show debug popup if not already shown
+                            if (!document.getElementById('debug-popup').classList.contains('active')) {
+                                showDebugPopup();
+                            }
+                        }
+
                         data.available_resolutions?.forEach((res, index) => {
                             console.log(`--- Stream ${index + 1} ---`);
                             console.log('Name:', res.name);
@@ -609,7 +633,7 @@
                         });
                     }
 
-                    // DEBUG: Resolution popup disabled for debugging - check console logs only
+                    // DEBUG: Resolution popup disabled for debugging - check debug log popup
                     // if (data.awaiting_resolution_selection && !document.getElementById('resolution-popup').classList.contains('active')) {
                     //     console.log('!!! SHOWING RESOLUTION POPUP !!!');
                     //     showResolutionPopup(data.available_resolutions);
@@ -786,6 +810,67 @@
         // Close resolution popup
         function closeResolutionPopup() {
             const popup = document.getElementById('resolution-popup');
+            const overlay = document.getElementById('popup-overlay');
+
+            popup.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        // Show debug popup
+        function showDebugPopup() {
+            const popup = document.getElementById('debug-popup');
+            const overlay = document.getElementById('popup-overlay');
+
+            popup.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        // Update debug log with stream information
+        function updateDebugLog(resolutions) {
+            const timestamp = new Date().toISOString();
+            let newContent = `\n=== STREAM DETECTION UPDATE @ ${timestamp} ===\n`;
+            newContent += `Total Streams Detected: ${resolutions.length}\n\n`;
+
+            resolutions.forEach((res, index) => {
+                newContent += `--- Stream ${index + 1} ---\n`;
+                newContent += `Name: ${res.name || 'Unknown'}\n`;
+                newContent += `Resolution: ${res.resolution || 'Unknown'}\n`;
+                newContent += `Framerate: ${res.framerate || 'Unknown'}\n`;
+                newContent += `Bandwidth: ${res.bandwidth || 'Unknown'}\n`;
+                newContent += `Codecs: ${res.codecs || 'Unknown'}\n`;
+                newContent += `URL: ${res.url}\n`;
+                newContent += `\n`;
+            });
+
+            // Append to existing content
+            debugLogContent += newContent;
+
+            // Update textarea
+            const textarea = document.getElementById('debug-log');
+            textarea.value = debugLogContent;
+
+            // Auto-scroll to bottom
+            textarea.scrollTop = textarea.scrollHeight;
+        }
+
+        // Copy debug log to clipboard
+        function copyDebugLog() {
+            const textarea = document.getElementById('debug-log');
+            textarea.select();
+            document.execCommand('copy');
+
+            // Show feedback
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✓ Copied!';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        }
+
+        // Close debug popup
+        function closeDebugPopup() {
+            const popup = document.getElementById('debug-popup');
             const overlay = document.getElementById('popup-overlay');
 
             popup.classList.remove('active');
