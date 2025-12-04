@@ -198,6 +198,8 @@ class StreamDetector:
 
             # Enable remote debugging for CDP WebSocket (port 0 = auto-assign)
             chrome_options.add_argument('--remote-debugging-port=0')
+            # Allow WebSocket connections to CDP from any origin
+            chrome_options.add_argument('--remote-allow-origins=*')
 
             # GPU and rendering
             chrome_options.add_argument('--disable-gpu')
