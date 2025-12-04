@@ -189,9 +189,6 @@ class StreamDetector:
         self.ws = None
         self.ws_url = None
         self.cdp_session_id = 1
-        # Track segments to derive playlist
-        self.detected_segment_urls = set()
-        self.derived_playlists_checked = set()
 
     def start_browser(self, url):
         """Start Chrome with DevTools Protocol enabled"""
@@ -330,78 +327,99 @@ class StreamDetector:
         logger.info(f"[CDP-WS] Starting WebSocket listener for {self.ws_url[:80]}...")
 
         def on_message(ws, message):
-            """Handle incoming CDP messages"""
+            """Handle incoming CDP messages - capture ALL network activity like DevTools"""
             try:
                 data = json.loads(message)
                 method = data.get('method', '')
                 params = data.get('params', {})
 
-                # Check for network request events
-                if method == 'Network.requestWillBeSent':
-                    request = params.get('request', {})
-                    url = request.get('url', '')
-                    request_id = params.get('requestId', '')
+                # Log ALL Network events (not filtered)
+                if method.startswith('Network.'):
+                    # Extract URL from various event types
+                    url = None
+                    mime_type = ''
 
-                    # TEMP DEBUG: Log ALL video-related URLs to see what we're getting
-                    if any(keyword in url.lower() for keyword in ['m3u8', 'playlist', 'usher', 'ttvnw', 'video', 'stream', 'mpd']):
-                        logger.info(f"[CDP-WS] 🔍 REQUEST: {url[:250]}")
+                    if method == 'Network.requestWillBeSent':
+                        request = params.get('request', {})
+                        url = request.get('url', '')
+                        request_method = request.get('method', '')
+                        request_id = params.get('requestId', '')
 
-                # Check for network response events
-                elif method == 'Network.responseReceived':
-                    response = params.get('response', {})
-                    url = response.get('url', '')
-                    mime_type = response.get('mimeType', '')
-                    request_id = params.get('requestId', '')
+                        # Log ALL requests containing m3u8
+                        if 'm3u8' in url.lower():
+                            logger.info(f"[CDP-WS] 🔍 REQUEST (m3u8): {request_method} {url}")
+                            logger.info(f"[CDP-WS]   └─ RequestID: {request_id}")
+                            logger.info(f"[CDP-WS]   └─ Headers: {request.get('headers', {})}")
 
-                    # TEMP DEBUG: Log ALL video-related URLs to see what we're getting
-                    if any(keyword in url.lower() for keyword in ['m3u8', 'playlist', 'usher', 'ttvnw', 'video', 'stream', 'mpd']) or 'mpegurl' in mime_type.lower():
-                        logger.info(f"[CDP-WS] 🔍 RESPONSE: {url[:250]} | MIME: {mime_type}")
+                    elif method == 'Network.responseReceived':
+                        response = params.get('response', {})
+                        url = response.get('url', '')
+                        mime_type = response.get('mimeType', '')
+                        status = response.get('status', '')
+                        request_id = params.get('requestId', '')
 
-                    # Check for video segments (Twitch .ts files)
-                    # Pattern: https://video-edge-{server}.{loc}.abs.hls.ttvnw.net/v1/segment/{path}.ts
-                    if '/v1/segment/' in url and url not in self.detected_segment_urls:
-                        self.detected_segment_urls.add(url)
-                        logger.info(f"[CDP-WS] 📦 Detected video segment: {url[:100]}...")
+                        # Log ALL responses containing m3u8 OR mpegurl MIME type
+                        if 'm3u8' in url.lower() or 'mpegurl' in mime_type.lower():
+                            logger.info(f"[CDP-WS] 🎯 RESPONSE (m3u8): Status={status} | MIME={mime_type}")
+                            logger.info(f"[CDP-WS]   └─ URL: {url}")
+                            logger.info(f"[CDP-WS]   └─ RequestID: {request_id}")
+                            logger.info(f"[CDP-WS]   └─ Headers: {response.get('headers', {})}")
 
-                        # Try to derive playlist URL from this segment
-                        if not self.download_started and not self.awaiting_resolution_selection:
-                            derived_playlist = self._derive_playlist_from_segment(url)
-                            if derived_playlist:
-                                # Treat the derived playlist as a detected stream
+                            # Process this as a detected stream
+                            if self._is_video_stream(url, mime_type):
                                 stream_info = {
-                                    'url': derived_playlist,
-                                    'type': 'HLS',
-                                    'mime_type': 'application/vnd.apple.mpegurl',
+                                    'url': url,
+                                    'type': self._get_stream_type(url),
+                                    'mime_type': mime_type,
                                     'timestamp': time.time()
                                 }
 
                                 if stream_info not in self.detected_streams:
-                                    logger.info(f"[CDP-WS] ✓✓✓ DERIVED STREAM from segment: {derived_playlist[:100]}...")
+                                    logger.info(f"[CDP-WS] ✓✓✓ DETECTED STREAM: type={stream_info['type']}")
                                     self.detected_streams.append(stream_info)
-                                    logger.info(f"[CDP-WS] Processing derived stream...")
-                                    self._handle_stream_detection(stream_info)
 
-                    # Still check for actual .m3u8 detection
-                    if '.m3u8' in url.lower() or 'mpegurl' in mime_type.lower():
-                        logger.info(f"[CDP-WS] 🎯 DETECTED .m3u8: {url[:200]}... | MIME: {mime_type}")
+                                    # Start download for the first valid stream
+                                    if not self.download_started and not self.awaiting_resolution_selection:
+                                        logger.info(f"[CDP-WS] Processing detected stream...")
+                                        self._handle_stream_detection(stream_info)
 
-                        # Process this stream
-                        if self._is_video_stream(url, mime_type):
-                            stream_info = {
-                                'url': url,
-                                'type': self._get_stream_type(url),
-                                'mime_type': mime_type,
-                                'timestamp': time.time()
-                            }
+                    elif method == 'Network.dataReceived':
+                        request_id = params.get('requestId', '')
+                        data_length = params.get('dataLength', 0)
+                        # Only log if we care about this request (has m3u8)
+                        # We'll rely on requestId correlation from earlier logs
 
-                            if stream_info not in self.detected_streams:
-                                logger.info(f"[CDP-WS] ✓✓✓ DETECTED STREAM: type={stream_info['type']}, url={url[:100]}...")
-                                self.detected_streams.append(stream_info)
+                    elif method == 'Network.loadingFinished':
+                        request_id = params.get('requestId', '')
+                        # Could log completion of m3u8 requests here
 
-                                # Start download for the first valid stream
-                                if not self.download_started and not self.awaiting_resolution_selection:
-                                    logger.info(f"[CDP-WS] Processing first detected stream...")
-                                    self._handle_stream_detection(stream_info)
+                    elif method == 'Network.loadingFailed':
+                        request_id = params.get('requestId', '')
+                        error_text = params.get('errorText', '')
+                        logger.warning(f"[CDP-WS] ⚠️ Loading failed: RequestID={request_id}, Error={error_text}")
+
+                # Handle Fetch events (modern video players use fetch/XHR)
+                elif method == 'Fetch.requestPaused':
+                    request = params.get('request', {})
+                    url = request.get('url', '')
+                    request_id = params.get('requestId', '')
+
+                    # Log ALL fetch requests containing m3u8
+                    if 'm3u8' in url.lower():
+                        logger.info(f"[CDP-WS] 🔍 FETCH REQUEST (m3u8): {url}")
+                        logger.info(f"[CDP-WS]   └─ RequestID: {request_id}")
+
+                    # Continue the request (don't block it)
+                    try:
+                        continue_cmd = {
+                            "id": self.cdp_session_id,
+                            "method": "Fetch.continueRequest",
+                            "params": {"requestId": request_id}
+                        }
+                        self.cdp_session_id += 1
+                        ws.send(json.dumps(continue_cmd))
+                    except Exception as e:
+                        logger.error(f"[CDP-WS] Error continuing fetch request: {e}")
 
             except json.JSONDecodeError as e:
                 logger.error(f"[CDP-WS] JSON decode error: {e}")
@@ -417,18 +435,24 @@ class StreamDetector:
         def on_open(ws):
             logger.info(f"[CDP-WS] ✓ WebSocket connected!")
 
-            # Send Network.enable command via WebSocket
+            # Enable all CDP domains that DevTools uses to capture network activity
             try:
+                # Network domain - CRITICAL for capturing network requests
+                # Enable with max buffer size to capture everything
                 enable_cmd = {
                     "id": self.cdp_session_id,
                     "method": "Network.enable",
-                    "params": {}
+                    "params": {
+                        "maxTotalBufferSize": 100000000,  # 100MB buffer
+                        "maxResourceBufferSize": 50000000,  # 50MB per resource
+                        "maxPostDataSize": 50000000  # 50MB for POST data
+                    }
                 }
                 self.cdp_session_id += 1
                 ws.send(json.dumps(enable_cmd))
-                logger.info("[CDP-WS] Sent Network.enable command")
+                logger.info("[CDP-WS] ✓ Sent Network.enable with large buffer sizes")
 
-                # Also enable Page domain to catch all page events
+                # Page domain - catches page lifecycle events
                 page_enable_cmd = {
                     "id": self.cdp_session_id,
                     "method": "Page.enable",
@@ -436,7 +460,31 @@ class StreamDetector:
                 }
                 self.cdp_session_id += 1
                 ws.send(json.dumps(page_enable_cmd))
-                logger.info("[CDP-WS] Sent Page.enable command")
+                logger.info("[CDP-WS] ✓ Sent Page.enable")
+
+                # Fetch domain - catches fetch/XHR requests (used by modern video players)
+                fetch_enable_cmd = {
+                    "id": self.cdp_session_id,
+                    "method": "Fetch.enable",
+                    "params": {
+                        "patterns": [{"urlPattern": "*", "requestStage": "Request"}]
+                    }
+                }
+                self.cdp_session_id += 1
+                ws.send(json.dumps(fetch_enable_cmd))
+                logger.info("[CDP-WS] ✓ Sent Fetch.enable to intercept fetch/XHR")
+
+                # Runtime domain - catches console messages and JS execution
+                runtime_enable_cmd = {
+                    "id": self.cdp_session_id,
+                    "method": "Runtime.enable",
+                    "params": {}
+                }
+                self.cdp_session_id += 1
+                ws.send(json.dumps(runtime_enable_cmd))
+                logger.info("[CDP-WS] ✓ Sent Runtime.enable")
+
+                logger.info("[CDP-WS] ✓✓✓ All CDP domains enabled - monitoring ALL network activity")
 
             except Exception as e:
                 logger.error(f"[CDP-WS] Error sending enable commands: {e}")
@@ -583,62 +631,6 @@ class StreamDetector:
             return 'MP4'
         else:
             return 'UNKNOWN'
-
-    def _derive_playlist_from_segment(self, segment_url):
-        """
-        Try to derive the master playlist URL from a video segment URL.
-        Twitch segments are at: https://video-edge-{server}.{loc}.abs.hls.ttvnw.net/v1/segment/{path}.ts
-        Playlists might be at: https://video-edge-{server}.{loc}.abs.hls.ttvnw.net/v1/playlist/{id}.m3u8
-        """
-        import re
-
-        # Check if already tried this base URL
-        if segment_url in self.derived_playlists_checked:
-            return None
-
-        self.derived_playlists_checked.add(segment_url)
-
-        # Extract the base URL pattern
-        # Example: https://video-edge-dead02.pdx01.abs.hls.ttvnw.net/v1/segment/CjoQsfL...
-        match = re.search(r'(https://[^/]+/v1)/segment/([^/]+)', segment_url)
-        if not match:
-            return None
-
-        base_url = match.group(1)
-        segment_path = match.group(2)
-
-        # The segment path often contains the playlist ID encoded
-        # Try to extract a playlist ID (typically alphanumeric before .ts)
-        playlist_id_match = re.match(r'([^.]+)', segment_path)
-        if playlist_id_match:
-            # Try multiple common Twitch playlist URL patterns
-            potential_playlists = []
-
-            # Pattern 1: Direct segment path to playlist path replacement
-            # /v1/segment/{id}.ts -> /v1/playlist/{id}.m3u8
-            potential_playlists.append(f"{base_url}/playlist/{playlist_id_match.group(1)}.m3u8")
-
-            # Pattern 2: Common index.m3u8 pattern
-            potential_playlists.append(f"{base_url}/playlist/index.m3u8")
-
-            logger.info(f"[DERIVE] Attempting to derive playlist from segment: {segment_url[:100]}...")
-
-            # Try each potential playlist URL
-            for playlist_url in potential_playlists:
-                logger.info(f"[DERIVE] Trying: {playlist_url}")
-                try:
-                    import requests
-                    response = requests.get(playlist_url, timeout=5)
-                    if response.status_code == 200:
-                        content = response.text
-                        # Check if it's a valid m3u8
-                        if '#EXTM3U' in content:
-                            logger.info(f"[DERIVE] ✓✓✓ Successfully derived playlist: {playlist_url}")
-                            return playlist_url
-                except Exception as e:
-                    logger.debug(f"[DERIVE] Failed to fetch {playlist_url}: {e}")
-
-        return None
 
     def _handle_stream_detection(self, stream_info):
         """Handle detected stream - check if it's a master playlist"""
