@@ -158,6 +158,11 @@ def parse_master_playlist(content):
     # Sort by bandwidth (highest first)
     resolutions.sort(key=lambda x: x['bandwidth'], reverse=True)
 
+    # Log sorted resolutions for debugging
+    logger.info(f"Parsed {len(resolutions)} resolutions, sorted by bandwidth:")
+    for idx, res in enumerate(resolutions):
+        logger.info(f"  [{idx}] {res['name']} - {res['resolution']} @ {res.get('framerate', '?')}fps - Bandwidth: {res['bandwidth']}")
+
     return resolutions
 
 def match_resolution(resolutions, preferred):
@@ -808,6 +813,14 @@ class StreamDetector:
                             logger.warning("No matching stream found, showing all streams for manual selection")
                             self.awaiting_resolution_selection = True
                             self.available_resolutions = resolutions
+
+                            # Generate thumbnails for streams in background (same as manual mode)
+                            for res in resolutions[:5]:
+                                threading.Thread(
+                                    target=self._add_thumbnail_to_stream,
+                                    args=(res,),
+                                    daemon=True
+                                ).start()
                     else:
                         # Manual mode: show all streams for user to choose
                         logger.info("Manual mode, showing all available streams")
@@ -884,6 +897,10 @@ class StreamDetector:
 
         logger.info(f"Starting download for resolution: {resolution_name}")
         logger.info(f"Stream URL: {stream_url}")
+        if stream_metadata:
+            logger.info(f"Stream metadata: name={stream_metadata.get('name')}, res={stream_metadata.get('resolution')}, fps={stream_metadata.get('framerate')}")
+        else:
+            logger.warning("No stream metadata available for download popup")
 
         # Start download process in background thread to avoid blocking driver operations
         threading.Thread(
