@@ -174,14 +174,16 @@ def match_resolution(resolutions, preferred):
     return None
 
 class StreamDetector:
-    def __init__(self, browser_id, preferred_resolution='1080p60'):
+    def __init__(self, browser_id, resolution='1080p', framerate='any', auto_download=False):
         self.browser_id = browser_id
         self.driver = None
         self.detected_streams = []
         self.is_running = False
         self.download_started = False
         self.thumbnail_data = None
-        self.preferred_resolution = preferred_resolution
+        self.resolution = resolution
+        self.framerate = framerate  # 'any', '60', '30'
+        self.auto_download = auto_download
         self.awaiting_resolution_selection = False
         self.available_resolutions = []
         self.selected_stream_url = None
@@ -659,6 +661,75 @@ class StreamDetector:
         else:
             return 'UNKNOWN'
 
+    def _match_stream(self, resolutions):
+        """Find best matching stream based on resolution and framerate preferences"""
+        if not resolutions:
+            return None
+
+        logger.info(f"Matching stream - Resolution: {self.resolution}, Framerate: {self.framerate}")
+
+        # Extract target resolution (e.g., "1080" from "1080p")
+        target_res = self.resolution.lower().replace('p', '')
+
+        # Special case: "source" means highest quality
+        if target_res == 'source':
+            logger.info("Source requested, returning highest quality stream")
+            return resolutions[0]  # Already sorted by bandwidth (highest first)
+
+        # Filter by resolution first
+        matching_res = []
+        for res in resolutions:
+            res_str = res.get('resolution', '').lower()
+            res_name = res.get('name', '').lower()
+
+            # Check if resolution matches (e.g., "1920x1080" contains "1080")
+            if target_res in res_str or target_res in res_name:
+                matching_res.append(res)
+
+        if not matching_res:
+            logger.warning(f"No streams found matching resolution {self.resolution}, using highest quality")
+            return resolutions[0]
+
+        logger.info(f"Found {len(matching_res)} streams matching resolution {self.resolution}")
+
+        # Now filter by framerate
+        if self.framerate == 'any':
+            # Prefer 60fps, fallback to 30fps
+            fps_60 = [r for r in matching_res if '60' in str(r.get('framerate', ''))]
+            if fps_60:
+                logger.info("Found 60fps stream (framerate='any' prefers 60fps)")
+                return fps_60[0]
+
+            fps_30 = [r for r in matching_res if '30' in str(r.get('framerate', ''))]
+            if fps_30:
+                logger.info("No 60fps found, using 30fps stream (framerate='any' fallback)")
+                return fps_30[0]
+
+            # If no specific framerate found, return highest bandwidth of matching resolution
+            logger.info("No specific framerate found, returning highest bandwidth stream")
+            return matching_res[0]
+
+        elif self.framerate == '60':
+            # Only accept 60fps
+            fps_60 = [r for r in matching_res if '60' in str(r.get('framerate', ''))]
+            if fps_60:
+                logger.info("Found 60fps stream")
+                return fps_60[0]
+            logger.warning("No 60fps stream found, returning highest bandwidth of matching resolution")
+            return matching_res[0]
+
+        elif self.framerate == '30':
+            # Only accept 30fps
+            fps_30 = [r for r in matching_res if '30' in str(r.get('framerate', ''))]
+            if fps_30:
+                logger.info("Found 30fps stream")
+                return fps_30[0]
+            logger.warning("No 30fps stream found, returning highest bandwidth of matching resolution")
+            return matching_res[0]
+
+        # Default: return highest bandwidth of matching resolution
+        return matching_res[0]
+
     def _handle_stream_detection(self, stream_info):
         """Handle detected stream - check if it's a master playlist"""
         stream_url = stream_info['url']
@@ -679,9 +750,33 @@ class StreamDetector:
                 if resolutions:
                     logger.info(f"Found {len(resolutions)} resolutions")
 
-                    # Always show resolution selection for user to choose
-                    self.awaiting_resolution_selection = True
-                    self.available_resolutions = resolutions
+                    # Check if auto-download is enabled
+                    if self.auto_download:
+                        logger.info("Auto-download enabled, finding matching stream...")
+                        matched_stream = self._match_stream(resolutions)
+
+                        if matched_stream:
+                            logger.info(f"Matched stream: {matched_stream['name']} - {matched_stream['resolution']} @ {matched_stream['framerate']}fps")
+                            # Start download immediately
+                            self._start_download_with_url(matched_stream['url'], matched_stream['name'])
+                        else:
+                            logger.warning("No matching stream found, showing all streams for manual selection")
+                            self.awaiting_resolution_selection = True
+                            self.available_resolutions = resolutions
+                    else:
+                        # Manual mode: show all streams for user to choose
+                        logger.info("Manual mode, showing all available streams")
+                        self.awaiting_resolution_selection = True
+                        self.available_resolutions = resolutions
+
+                        # Generate thumbnails for streams in background (non-blocking)
+                        # Limit to first 5 streams to avoid overload
+                        for res in resolutions[:5]:
+                            threading.Thread(
+                                target=self._add_thumbnail_to_stream,
+                                args=(res,),
+                                daemon=True
+                            ).start()
                 else:
                     # Couldn't parse resolutions, show single stream
                     logger.warning("Could not parse resolutions from master playlist")
@@ -694,8 +789,29 @@ class StreamDetector:
                         'name': 'Master Playlist (unparsed)'
                     }]
             else:
-                # Not a master playlist, show as single stream
-                logger.info("Not a master playlist, showing as single stream")
+                # Not a master playlist, show as single stream or auto-download
+                logger.info("Not a master playlist, treating as single stream")
+                if self.auto_download:
+                    logger.info("Auto-download enabled, downloading single stream")
+                    self._start_download_with_url(stream_url, stream_info['type'])
+                else:
+                    logger.info("Manual mode, showing single stream for selection")
+                    self.awaiting_resolution_selection = True
+                    self.available_resolutions = [{
+                        'url': stream_url,
+                        'bandwidth': 0,
+                        'resolution': 'Unknown',
+                        'framerate': 'Unknown',
+                        'name': stream_info['type']
+                    }]
+        else:
+            # Not HLS, show as single stream or auto-download
+            logger.info("Not HLS stream, treating as single stream")
+            if self.auto_download:
+                logger.info("Auto-download enabled, downloading stream")
+                self._start_download_with_url(stream_url, stream_info['type'])
+            else:
+                logger.info("Manual mode, showing stream for selection")
                 self.awaiting_resolution_selection = True
                 self.available_resolutions = [{
                     'url': stream_url,
@@ -704,17 +820,6 @@ class StreamDetector:
                     'framerate': 'Unknown',
                     'name': stream_info['type']
                 }]
-        else:
-            # Not HLS, show as single stream
-            logger.info("Not HLS stream, showing as single stream")
-            self.awaiting_resolution_selection = True
-            self.available_resolutions = [{
-                'url': stream_url,
-                'bandwidth': 0,
-                'resolution': 'Unknown',
-                'framerate': 'Unknown',
-                'name': stream_info['type']
-            }]
 
     def _start_download(self, stream_info):
         """Start downloading the detected stream"""
@@ -771,6 +876,74 @@ class StreamDetector:
                 logger.info("Thumbnail captured successfully")
         except Exception as e:
             logger.error(f"Failed to capture thumbnail: {e}")
+
+    def _generate_stream_thumbnail(self, stream_url):
+        """Extract a single frame from a stream URL for thumbnail"""
+        try:
+            logger.info(f"Generating thumbnail for stream: {stream_url[:100]}...")
+
+            # Create temporary output file
+            temp_file = f"/tmp/thumb_{int(time.time())}_{os.getpid()}.jpg"
+
+            # Use ffmpeg to extract a frame at 2 seconds into the stream
+            cmd = [
+                'ffmpeg',
+                '-i', stream_url,
+                '-ss', '00:00:02',  # Seek to 2 seconds
+                '-vframes', '1',     # Extract 1 frame
+                '-q:v', '2',         # High quality JPEG
+                '-y',                # Overwrite
+                temp_file
+            ]
+
+            # Run with timeout (10 seconds max)
+            process = subprocess.run(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=10
+            )
+
+            # Check if thumbnail was created
+            if os.path.exists(temp_file) and os.path.getsize(temp_file) > 0:
+                # Read and encode as base64
+                with open(temp_file, 'rb') as f:
+                    thumbnail_data = base64.b64encode(f.read()).decode('utf-8')
+
+                # Clean up temp file
+                os.remove(temp_file)
+
+                logger.info("Thumbnail generated successfully")
+                return f"data:image/jpeg;base64,{thumbnail_data}"
+            else:
+                logger.warning("Thumbnail file not created")
+                return None
+
+        except subprocess.TimeoutExpired:
+            logger.warning("Thumbnail generation timed out")
+            return None
+        except Exception as e:
+            logger.error(f"Failed to generate thumbnail: {e}")
+            return None
+        finally:
+            # Clean up temp file if it exists
+            if 'temp_file' in locals() and os.path.exists(temp_file):
+                try:
+                    os.remove(temp_file)
+                except:
+                    pass
+
+    def _add_thumbnail_to_stream(self, stream_dict):
+        """Generate and add thumbnail to a stream dictionary"""
+        try:
+            stream_url = stream_dict.get('url')
+            if stream_url:
+                thumbnail = self._generate_stream_thumbnail(stream_url)
+                if thumbnail:
+                    stream_dict['thumbnail'] = thumbnail
+                    logger.info(f"Added thumbnail to stream: {stream_dict.get('name', 'unknown')}")
+        except Exception as e:
+            logger.error(f"Error adding thumbnail to stream: {e}")
 
     def _download_with_ffmpeg(self, stream_url, output_path):
         """Download stream using FFmpeg"""
@@ -942,18 +1115,20 @@ def start_browser():
     try:
         data = request.json
         url = data.get('url')
-        preferred_resolution = data.get('preferred_resolution', '1080p60')
+        resolution = data.get('resolution', '1080p')
+        framerate = data.get('framerate', 'any')  # 'any', '60', '30'
+        auto_download = data.get('auto_download', False)
 
         if not url:
             return jsonify({'error': 'No URL provided'}), 400
 
-        logger.info(f"Starting browser with preferred resolution: {preferred_resolution}")
+        logger.info(f"Starting browser with resolution: {resolution}, framerate: {framerate}, auto_download: {auto_download}")
 
         # Generate browser ID
         browser_id = f"browser_{int(time.time())}"
 
-        # Create and start detector with preferred resolution
-        detector = StreamDetector(browser_id, preferred_resolution)
+        # Create and start detector with new parameters
+        detector = StreamDetector(browser_id, resolution, framerate, auto_download)
         active_browsers[browser_id] = detector
 
         if detector.start_browser(url):
@@ -1046,6 +1221,48 @@ def select_resolution():
 
     except Exception as e:
         logger.error(f"Resolution selection error: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/browser/select-stream', methods=['POST'])
+def select_stream():
+    """User manually selected a stream from the modal"""
+    try:
+        data = request.json
+        browser_id = data.get('browser_id')
+        stream_url = data.get('stream_url')
+
+        if not browser_id or not stream_url:
+            return jsonify({'error': 'Missing required parameters'}), 400
+
+        if browser_id not in active_browsers:
+            return jsonify({'error': 'Browser not found'}), 404
+
+        detector = active_browsers[browser_id]
+
+        logger.info(f"User selected stream from modal")
+        logger.info(f"Stream URL: {stream_url}")
+
+        # Find the stream info from available resolutions
+        stream_name = 'selected_stream'
+        for res in detector.available_resolutions:
+            if res['url'] == stream_url:
+                stream_name = res.get('name', 'selected_stream')
+                break
+
+        # Clear awaiting state
+        detector.awaiting_resolution_selection = False
+
+        # Start download with selected stream
+        detector._start_download_with_url(stream_url, stream_name)
+
+        return jsonify({
+            'success': True,
+            'message': f'Starting download for {stream_name}'
+        })
+
+    except Exception as e:
+        logger.error(f"Stream selection error: {e}")
         return jsonify({'error': str(e)}), 500
 
 

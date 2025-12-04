@@ -1,135 +1,100 @@
-2025-12-04 15:47:16,989 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
-2025-12-04 15:47:16,992 INFO supervisord started with pid 1
-2025-12-04 15:47:17,995 INFO spawned: 'xvfb' with pid 7
-2025-12-04 15:47:17,998 INFO spawned: 'fluxbox' with pid 8
-2025-12-04 15:47:18,000 INFO spawned: 'x11vnc' with pid 9
-2025-12-04 15:47:18,002 INFO spawned: 'novnc' with pid 10
-2025-12-04 15:47:18,004 INFO spawned: 'flask' with pid 11
-2025-12-04 15:47:18,226 - __main__ - INFO - ================================================================================
-2025-12-04 15:47:18,226 - __main__ - INFO - NAS VIDEO DOWNLOADER STARTING
-2025-12-04 15:47:18,226 - __main__ - INFO - ================================================================================
-2025-12-04 15:47:18,226 - __main__ - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
-2025-12-04 15:47:18,226 - __main__ - INFO - Working directory: /app
-2025-12-04 15:47:18,226 - __main__ - INFO - DISPLAY: :99
-2025-12-04 15:47:18,226 - __main__ - INFO - Download dir: /app/downloads
-2025-12-04 15:47:18,226 - __main__ - INFO - Chrome data dir: /app/chrome-data
-2025-12-04 15:47:18,227 - __main__ - INFO - Checking Chrome installation...
-2025-12-04 15:47:18,252 - __main__ - INFO - Chrome: Google Chrome 143.0.7499.40
-2025-12-04 15:47:18,252 INFO reaped unknown pid 30 (exit status 0)
-2025-12-04 15:47:18,252 INFO reaped unknown pid 31 (exit status 0)
-2025-12-04 15:47:18,256 - __main__ - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
-2025-12-04 15:47:18,256 - __main__ - INFO - DISPLAY environment: :99
-2025-12-04 15:47:18,261 - __main__ - INFO - Xvfb is running ✓
-2025-12-04 15:47:18,261 - __main__ - INFO - Download dir exists: True
-2025-12-04 15:47:18,261 - __main__ - INFO - Chrome data dir exists: True
-2025-12-04 15:47:18,264 - __main__ - INFO - ================================================================================
-2025-12-04 15:47:18,264 - __main__ - INFO - Starting NAS Video Downloader
-2025-12-04 15:47:18,264 - __main__ - INFO - Download directory: /app/downloads
-2025-12-04 15:47:18,264 - __main__ - INFO - Chrome data directory: /app/chrome-data
-2025-12-04 15:47:18,264 - __main__ - INFO - ================================================================================
+2025-12-04 15:54:29,854 - __main__ - INFO - Starting NAS Video Downloader
+2025-12-04 15:54:29,854 - __main__ - INFO - Download directory: /app/downloads
+2025-12-04 15:54:29,854 - __main__ - INFO - Chrome data directory: /app/chrome-data
+2025-12-04 15:54:29,854 - __main__ - INFO - ================================================================================
  * Serving Flask app 'app'
  * Debug mode: off
-2025-12-04 15:47:18,266 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-12-04 15:54:29,856 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://172.18.0.2:5000
-2025-12-04 15:47:18,266 - werkzeug - INFO - Press CTRL+C to quit
-2025-12-04 15:47:18,294 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:18] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:47:19,022 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:47:19,022 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:47:19,022 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:47:19,022 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:47:19,022 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 15:47:22,128 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:22] "GET / HTTP/1.1" 200 -
-2025-12-04 15:47:22,268 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:22] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:47:23,702 - __main__ - INFO - Clear cookies requested
-2025-12-04 15:47:23,702 - __main__ - INFO - Force killing Chrome and ChromeDriver processes...
-2025-12-04 15:47:23,719 - __main__ - INFO - Process kill commands executed
-2025-12-04 15:47:23,719 - __main__ - INFO - Waiting for processes to terminate...
-2025-12-04 15:47:26,719 - __main__ - INFO - Clearing Chrome data directory: /app/chrome-data
-2025-12-04 15:47:26,765 - __main__ - INFO - Chrome data cleared: 42 items removed, 0 items failed
-2025-12-04 15:47:26,766 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:26] "POST /api/clear-cookies HTTP/1.1" 200 -
-2025-12-04 15:47:27,934 - __main__ - INFO - Starting browser with preferred resolution: 1080p60
-2025-12-04 15:47:27,934 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/chocobred_
-2025-12-04 15:47:27,934 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 15:47:27,935 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 15:47:28,926 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 15:47:29,333 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 15:47:29,333 - __main__ - INFO - Chrome debugger address: localhost:35537
-2025-12-04 15:47:29,339 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:35537/devtools/page/84D4B18214B79C79379790373E58FFA1...
-2025-12-04 15:47:29,339 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 15:47:29,344 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 15:47:29,345 - __main__ - INFO - Browser browser_1764863247 started successfully, navigating to https://www.twitch.tv/chocobred_
-2025-12-04 15:47:32,225 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:32] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:47:33,729 - __main__ - INFO - Starting WebSocket CDP listener...
-2025-12-04 15:47:33,729 - __main__ - INFO - [CDP-WS] Starting WebSocket listener for ws://localhost:35537/devtools/page/84D4B18214B79C79379790373E58FFA1...
-2025-12-04 15:47:33,729 - __main__ - INFO - [CDP-WS] Starting WebSocket run_forever loop...
-2025-12-04 15:47:33,730 - __main__ - INFO - Starting network monitoring for browser browser_1764863247
-2025-12-04 15:47:33,730 - __main__ - INFO - Browser browser_1764863247 fully initialized
-2025-12-04 15:47:33,731 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:33] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 15:47:33,732 - __main__ - INFO - [CDP-WS] ✓ WebSocket connected!
-2025-12-04 15:47:33,732 - __main__ - INFO - [CDP-WS] ✓ Sent Network.enable with large buffer sizes
-2025-12-04 15:47:33,732 - __main__ - INFO - [CDP-WS] ✓ Sent Page.enable
-2025-12-04 15:47:33,732 - __main__ - INFO - [CDP-WS] ✓ Sent Fetch.enable to intercept fetch/XHR
-2025-12-04 15:47:33,733 - __main__ - INFO - [CDP-WS] ✓ Sent Runtime.enable
-2025-12-04 15:47:33,733 - __main__ - INFO - [CDP-WS] ✓✓✓ All CDP domains enabled - monitoring ALL network activity
-2025-12-04 15:47:34,758 - __main__ - INFO - [CDP-WS] 🎯 FETCH DETECTED (m3u8): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr1fTYb1ujp6olgHH_0XoMjkU_ws9To4...
-2025-12-04 15:47:34,758 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-59.0
-2025-12-04 15:47:34,758 - __main__ - INFO - ✓ Accepted (playlist): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr...
-2025-12-04 15:47:34,758 - __main__ - INFO - [CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-...
-2025-12-04 15:47:34,758 - __main__ - INFO - [CDP-WS] Processing detected stream...
-2025-12-04 15:47:34,759 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 15:47:34,857 - __main__ - INFO - Not a master playlist, showing as single stream
-2025-12-04 15:47:35,749 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:35] "GET /api/browser/status/browser_1764863247 HTTP/1.1" 200 -
-2025-12-04 15:47:36,755 - __main__ - INFO - [CDP-WS] 🎯 FETCH DETECTED (m3u8): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr1fTYb1ujp6olgHH_0XoMjkU_ws9To4...
-2025-12-04 15:47:36,755 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-114.0
-2025-12-04 15:47:36,755 - __main__ - INFO - ✓ Accepted (playlist): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr...
-2025-12-04 15:47:36,755 - __main__ - INFO - [CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-...
-2025-12-04 15:47:37,750 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:37] "GET /api/browser/status/browser_1764863247 HTTP/1.1" 200 -
-2025-12-04 15:47:38,749 - __main__ - INFO - [CDP-WS] 🎯 FETCH DETECTED (m3u8): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr1fTYb1ujp6olgHH_0XoMjkU_ws9To4...
-2025-12-04 15:47:38,749 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-119.0
-2025-12-04 15:47:38,749 - __main__ - INFO - ✓ Accepted (playlist): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr...
-2025-12-04 15:47:38,749 - __main__ - INFO - [CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-...
-2025-12-04 15:47:39,748 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:39] "GET /api/browser/status/browser_1764863247 HTTP/1.1" 200 -
-2025-12-04 15:47:40,746 - __main__ - INFO - [CDP-WS] 🎯 FETCH DETECTED (m3u8): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr1fTYb1ujp6olgHH_0XoMjkU_ws9To4...
-2025-12-04 15:47:40,746 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-122.0
-2025-12-04 15:47:40,746 - __main__ - INFO - ✓ Accepted (playlist): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr...
-2025-12-04 15:47:40,746 - __main__ - INFO - [CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-...
-2025-12-04 15:47:41,748 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:41] "GET /api/browser/status/browser_1764863247 HTTP/1.1" 200 -
-2025-12-04 15:47:42,228 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:42] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:47:42,738 - __main__ - INFO - [CDP-WS] 🎯 FETCH DETECTED (m3u8): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr1fTYb1ujp6olgHH_0XoMjkU_ws9To4...
-2025-12-04 15:47:42,739 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-125.0
-2025-12-04 15:47:42,739 - __main__ - INFO - ✓ Accepted (playlist): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr...
-2025-12-04 15:47:42,739 - __main__ - INFO - [CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-...
-2025-12-04 15:47:43,749 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:43] "GET /api/browser/status/browser_1764863247 HTTP/1.1" 200 -
-2025-12-04 15:47:44,733 - __main__ - INFO - [CDP-WS] 🎯 FETCH DETECTED (m3u8): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr1fTYb1ujp6olgHH_0XoMjkU_ws9To4...
-2025-12-04 15:47:44,733 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-128.0
-2025-12-04 15:47:44,734 - __main__ - INFO - ✓ Accepted (playlist): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr...
-2025-12-04 15:47:44,734 - __main__ - INFO - [CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-...
-2025-12-04 15:47:45,748 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:45] "GET /api/browser/status/browser_1764863247 HTTP/1.1" 200 -
-2025-12-04 15:47:46,727 - __main__ - INFO - [CDP-WS] 🎯 FETCH DETECTED (m3u8): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr1fTYb1ujp6olgHH_0XoMjkU_ws9To4...
-2025-12-04 15:47:46,727 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-131.0
-2025-12-04 15:47:46,728 - __main__ - INFO - ✓ Accepted (playlist): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr...
-2025-12-04 15:47:46,728 - __main__ - INFO - [CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-...
-2025-12-04 15:47:47,751 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:47] "GET /api/browser/status/browser_1764863247 HTTP/1.1" 200 -
-2025-12-04 15:47:48,723 - __main__ - INFO - [CDP-WS] 🎯 FETCH DETECTED (m3u8): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr1fTYb1ujp6olgHH_0XoMjkU_ws9To4...
-2025-12-04 15:47:48,724 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-136.0
-2025-12-04 15:47:48,724 - __main__ - INFO - ✓ Accepted (playlist): https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-CBkAQtJ1e2AfCo_GOwrr...
-2025-12-04 15:47:48,724 - __main__ - INFO - [CDP-WS] ✓✓✓ DETECTED STREAM via Fetch API: https://euw12.playlist.ttvnw.net/v1/playlist/CscGSRW5CpGaDQLPAh4NOvNZlou-8QqPqupwNscCYBThBN6Yc_ueGo-...
-2025-12-04 15:47:49,351 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 15:47:49,352 - __main__ - INFO - [CDP-WS] WebSocket closed: None - None
-2025-12-04 15:47:49,518 - __main__ - INFO - Browser browser_1764863247 closed
-2025-12-04 15:47:49,519 INFO reaped unknown pid 60 (exit status 0)
-2025-12-04 15:47:49,519 INFO reaped unknown pid 62 (exit status 0)
-2025-12-04 15:47:49,519 INFO reaped unknown pid 67 (exit status 0)
-2025-12-04 15:47:49,519 INFO reaped unknown pid 68 (exit status 0)
-2025-12-04 15:47:49,519 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:49] "POST /api/browser/close/browser_1764863247 HTTP/1.1" 200 -
-2025-12-04 15:47:49,524 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:49] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:47:53,214 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:47:53] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:48:03,220 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:48:03] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:48:13,225 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:48:13] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:48:23,215 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:48:23] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:48:33,208 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:48:33] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:48:43,220 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:48:43] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:49:25,231 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:49:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 15:50:25,215 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:50:25] "GET /api/downloads/list HTTP/1.1" 200 -
+ * Running on http://172.20.0.2:5000
+2025-12-04 15:54:29,856 - werkzeug - INFO - Press CTRL+C to quit
+2025-12-04 15:54:30,612 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:54:30,612 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:54:30,612 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:54:30,612 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:54:30,612 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-04 15:54:32,238 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:32] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:54:33,492 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:33] "GET / HTTP/1.1" 200 -
+2025-12-04 15:54:33,618 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:33] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:54:36,170 - __main__ - INFO - Clear cookies requested
+2025-12-04 15:54:36,171 - __main__ - INFO - Force killing Chrome and ChromeDriver processes...
+2025-12-04 15:54:36,187 - __main__ - INFO - Process kill commands executed
+2025-12-04 15:54:36,187 - __main__ - INFO - Waiting for processes to terminate...
+2025-12-04 15:54:39,188 - __main__ - INFO - Clearing Chrome data directory: /app/chrome-data
+2025-12-04 15:54:39,232 - __main__ - INFO - Chrome data cleared: 42 items removed, 0 items failed
+2025-12-04 15:54:39,232 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:39] "POST /api/clear-cookies HTTP/1.1" 200 -
+2025-12-04 15:54:40,002 - __main__ - INFO - Starting browser with preferred resolution: 1080p60
+2025-12-04 15:54:40,003 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/chocobred_
+2025-12-04 15:54:40,003 - __main__ - INFO - Initializing ChromeDriver service
+2025-12-04 15:54:40,003 - __main__ - INFO - Creating Chrome webdriver instance...
+2025-12-04 15:54:40,919 - __main__ - INFO - Chrome webdriver created successfully!
+2025-12-04 15:54:41,321 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
+2025-12-04 15:54:41,321 - __main__ - INFO - Chrome debugger address: localhost:39327
+2025-12-04 15:54:41,326 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:39327/devtools/page/F0DB850B28A52C6C0CF6AFF958C2E202...
+2025-12-04 15:54:41,326 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
+2025-12-04 15:54:41,330 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
+2025-12-04 15:54:41,330 - __main__ - INFO - Starting WebSocket CDP listener BEFORE navigation...
+2025-12-04 15:54:41,330 - __main__ - INFO - [CDP-WS] Starting WebSocket listener for ws://localhost:39327/devtools/page/F0DB850B28A52C6C0CF6AFF958C2E202...
+2025-12-04 15:54:41,330 - __main__ - INFO - [CDP-WS] Starting WebSocket run_forever loop...
+2025-12-04 15:54:41,332 - __main__ - INFO - [CDP-WS] ✓ WebSocket connected!
+2025-12-04 15:54:41,332 - __main__ - INFO - [CDP-WS] ✓ Sent Network.enable with large buffer sizes
+2025-12-04 15:54:41,332 - __main__ - INFO - [CDP-WS] ✓ Sent Page.enable
+2025-12-04 15:54:41,332 - __main__ - INFO - [CDP-WS] ✓ Sent Fetch.enable to intercept fetch/XHR
+2025-12-04 15:54:41,333 - __main__ - INFO - [CDP-WS] ✓ Sent Runtime.enable
+2025-12-04 15:54:41,333 - __main__ - INFO - [CDP-WS] ✓✓✓ All CDP domains enabled - monitoring ALL network activity
+2025-12-04 15:54:41,831 - __main__ - INFO - Starting network monitoring for browser browser_1764863680
+2025-12-04 15:54:41,831 - __main__ - INFO - Browser browser_1764863680 ready, now navigating to https://www.twitch.tv/chocobred_
+2025-12-04 15:54:43,300 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://usher.ttvnw.net/api/v2/channel/hls/chocobred_.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_source=true&browser_family=chrome&browser_version=143.0
+2025-12-04 15:54:43,301 - __main__ - INFO - [CDP-WS] 🎯 MASTER PLAYLIST detected: https://usher.ttvnw.net/api/v2/channel/hls/chocobred_.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_sourc...
+2025-12-04 15:54:43,301 - __main__ - INFO - [CDP-WS]   └─ RequestID: interception-job-127.0
+2025-12-04 15:54:43,301 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/chocobred_.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_sourc...
+2025-12-04 15:54:43,301 - __main__ - INFO - [CDP-WS] ✓✓✓ PROCESSING MASTER PLAYLIST: https://usher.ttvnw.net/api/v2/channel/hls/chocobred_.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0...
+2025-12-04 15:54:43,301 - __main__ - INFO - [CDP-WS] Processing master playlist...
+2025-12-04 15:54:43,301 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
+2025-12-04 15:54:43,406 - __main__ - INFO - This is a master playlist! Parsing resolutions...
+2025-12-04 15:54:43,407 - __main__ - INFO - Found 5 resolutions
+2025-12-04 15:54:43,407 - __main__ - INFO - DEBUG: Showing all resolutions for user selection
+2025-12-04 15:54:43,499 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/Cq0GNopeN1N_UeS8cELyl-a7Wl4ysA8nKhuUiC_12ur3bXQbD9CpJxed1n0fuBQUgGvq2MUDTu5g9D4mMFdkUOfTeBoFkr5OKs_uDN_lu3C4W9YZ8uLpbq26ZnEA7tT0JtRqAEvdcoeTLdMH_YtstSUVSjC
+2025-12-04 15:54:43,500 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:43,583 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:43] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:54:44,091 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/Cq0GNopeN1N_UeS8cELyl-a7Wl4ysA8nKhuUiC_12ur3bXQbD9CpJxed1n0fuBQUgGvq2MUDTu5g9D4mMFdkUOfTeBoFkr5OKs_uDN_lu3C4W9YZ8uLpbq26ZnEA7tT0JtRqAEvdcoeTLdMH_YtstSUVSjC
+2025-12-04 15:54:44,091 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:44,116 - __main__ - INFO - Browser browser_1764863680 fully initialized
+2025-12-04 15:54:44,116 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:44] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-04 15:54:44,172 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=152.254, Error=net::ERR_ABORTED
+2025-12-04 15:54:44,797 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/CrUGW_OL14zavfM4kfTWTa1duEjWR8Q4me4qZoNFy3_CoqkOrvNflOYCxjmMAS76gLH8MteI0q6j9aF9RbYjvEi4qzYhjXNiQhyOp2HSUs19HgkqUN5NZvaU-p98R3R-ykHLvSXQqiOUnMuGafUR-Qy9sUx
+2025-12-04 15:54:44,797 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:44,857 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/CscGh5WT7w8uFikB_x9Q9Y0e0dSZ9-a-aPycPh5K1Ghk8HddmfiX02uFdmt8_VddJhEMV9yGkB7zNWqYqdmkfh7I6_NnCu_QXRTQmV0_BS34vB_odc2AhFqPojD89fmra_CwRASm18Xx0PfbcnOF919R3gd
+2025-12-04 15:54:44,857 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:45,843 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/CscGh5WT7w8uFikB_x9Q9Y0e0dSZ9-a-aPycPh5K1Ghk8HddmfiX02uFdmt8_VddJhEMV9yGkB7zNWqYqdmkfh7I6_NnCu_QXRTQmV0_BS34vB_odc2AhFqPojD89fmra_CwRASm18Xx0PfbcnOF919R3gd
+2025-12-04 15:54:45,843 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:46,133 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:46] "GET /api/browser/status/browser_1764863680 HTTP/1.1" 200 -
+2025-12-04 15:54:47,088 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/CscGh5WT7w8uFikB_x9Q9Y0e0dSZ9-a-aPycPh5K1Ghk8HddmfiX02uFdmt8_VddJhEMV9yGkB7zNWqYqdmkfh7I6_NnCu_QXRTQmV0_BS34vB_odc2AhFqPojD89fmra_CwRASm18Xx0PfbcnOF919R3gd
+2025-12-04 15:54:47,088 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:48,085 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/CscGh5WT7w8uFikB_x9Q9Y0e0dSZ9-a-aPycPh5K1Ghk8HddmfiX02uFdmt8_VddJhEMV9yGkB7zNWqYqdmkfh7I6_NnCu_QXRTQmV0_BS34vB_odc2AhFqPojD89fmra_CwRASm18Xx0PfbcnOF919R3gd
+2025-12-04 15:54:48,085 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:48,134 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:48] "GET /api/browser/status/browser_1764863680 HTTP/1.1" 200 -
+2025-12-04 15:54:49,329 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/CscGh5WT7w8uFikB_x9Q9Y0e0dSZ9-a-aPycPh5K1Ghk8HddmfiX02uFdmt8_VddJhEMV9yGkB7zNWqYqdmkfh7I6_NnCu_QXRTQmV0_BS34vB_odc2AhFqPojD89fmra_CwRASm18Xx0PfbcnOF919R3gd
+2025-12-04 15:54:49,330 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:50,143 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:50] "GET /api/browser/status/browser_1764863680 HTTP/1.1" 200 -
+2025-12-04 15:54:50,304 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/CscGh5WT7w8uFikB_x9Q9Y0e0dSZ9-a-aPycPh5K1Ghk8HddmfiX02uFdmt8_VddJhEMV9yGkB7zNWqYqdmkfh7I6_NnCu_QXRTQmV0_BS34vB_odc2AhFqPojD89fmra_CwRASm18Xx0PfbcnOF919R3gd
+2025-12-04 15:54:50,305 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:51,549 - __main__ - INFO - [CDP-WS] 🔍 m3u8 URL detected: https://euw11.playlist.ttvnw.net/v1/playlist/CscGh5WT7w8uFikB_x9Q9Y0e0dSZ9-a-aPycPh5K1Ghk8HddmfiX02uFdmt8_VddJhEMV9yGkB7zNWqYqdmkfh7I6_NnCu_QXRTQmV0_BS34vB_odc2AhFqPojD89fmra_CwRASm18Xx0PfbcnOF919R3gd
+2025-12-04 15:54:51,549 - __main__ - INFO - [CDP-WS]   └─ Skipping (not identified as master playlist)
+2025-12-04 15:54:51,570 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
+2025-12-04 15:54:51,746 - __main__ - INFO - Browser browser_1764863680 closed
+2025-12-04 15:54:51,747 INFO reaped unknown pid 60 (exit status 0)
+2025-12-04 15:54:51,747 INFO reaped unknown pid 62 (exit status 0)
+2025-12-04 15:54:51,747 INFO reaped unknown pid 67 (exit status 0)
+2025-12-04 15:54:51,747 INFO reaped unknown pid 68 (exit status 0)
+2025-12-04 15:54:51,747 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:51] "POST /api/browser/close/browser_1764863680 HTTP/1.1" 200 -
+2025-12-04 15:54:51,753 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:51] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:54:53,586 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:54:53] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:55:01,560 - __main__ - INFO - [CDP-WS] WebSocket closed: None - None
+2025-12-04 15:55:04,223 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:55:04] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:55:14,221 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:55:14] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:55:24,219 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:55:24] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:55:34,222 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:55:34] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:55:44,216 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:55:44] "GET /api/downloads/list HTTP/1.1" 200 -
+2025-12-04 15:56:25,218 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 15:56:25] "GET /api/downloads/list HTTP/1.1" 200 -

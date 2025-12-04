@@ -334,6 +334,152 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Stream Selection Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .modal-header h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+        }
+
+        .close-modal {
+            font-size: 32px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .streams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .stream-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .stream-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .stream-thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .stream-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .stream-details {
+            margin-bottom: 12px;
+        }
+
+        .stream-details h3 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .stream-detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stream-detail-label {
+            font-weight: 600;
+        }
+
+        .stream-download-btn {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .stream-download-btn:hover {
+            background: #5568d3;
+        }
+
+        .stream-download-btn:active {
+            background: #4554bc;
+        }
     </style>
 </head>
 <body>
@@ -389,17 +535,33 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="preferred-resolution">Preferred Resolution</label>
-                    <select id="preferred-resolution">
-                        <option value="source">Source/Highest Quality</option>
-                        <option value="1080p60" selected>1080p 60fps</option>
-                        <option value="1080p30">1080p 30fps</option>
-                        <option value="720p60">720p 60fps</option>
-                        <option value="720p30">720p 30fps</option>
-                        <option value="480p30">480p 30fps</option>
-                        <option value="360p30">360p 30fps</option>
-                        <option value="160p30">160p 30fps</option>
-                    </select>
+                    <label>
+                        <input type="checkbox" id="auto-download" style="width: auto; margin-right: 8px;">
+                        Auto-download matching stream
+                    </label>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label for="preferred-resolution">Resolution</label>
+                        <select id="preferred-resolution">
+                            <option value="source">Source/Highest</option>
+                            <option value="1080p" selected>1080p</option>
+                            <option value="720p">720p</option>
+                            <option value="480p">480p</option>
+                            <option value="360p">360p</option>
+                            <option value="160p">160p</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="preferred-framerate">Framerate</label>
+                        <select id="preferred-framerate">
+                            <option value="any" selected>Any (prefer 60fps)</option>
+                            <option value="60">60fps</option>
+                            <option value="30">30fps</option>
+                        </select>
+                    </div>
                 </div>
 
                 <button class="btn" id="browser-start-btn" onclick="startBrowser()">
@@ -536,7 +698,9 @@
         // Start browser mode
         async function startBrowser() {
             const url = document.getElementById('browser-url').value.trim();
-            const preferredResolution = document.getElementById('preferred-resolution').value;
+            const resolution = document.getElementById('preferred-resolution').value;
+            const framerate = document.getElementById('preferred-framerate').value;
+            const autoDownload = document.getElementById('auto-download').checked;
             const statusBox = document.getElementById('browser-status');
             const btn = document.getElementById('browser-start-btn');
 
@@ -552,14 +716,21 @@
                 const response = await fetch('/api/browser/start', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ url, preferred_resolution: preferredResolution })
+                    body: JSON.stringify({
+                        url,
+                        resolution: resolution,
+                        framerate: framerate,
+                        auto_download: autoDownload
+                    })
                 });
 
                 const data = await response.json();
 
                 if (data.success) {
                     currentBrowserId = data.browser_id;
-                    showStatus(statusBox, `✓ Browser started! Looking for ${preferredResolution}...`, 'success');
+                    const resolutionText = framerate === 'any' ? `${resolution} (any framerate)` : `${resolution} ${framerate}fps`;
+                    const modeText = autoDownload ? 'auto-download enabled' : 'manual selection';
+                    showStatus(statusBox, `✓ Browser started! Looking for ${resolutionText} (${modeText})...`, 'success');
 
                     // Show VNC viewer with auto-connect
                     const vncContainer = document.getElementById('vnc-container');
@@ -609,45 +780,31 @@
                     console.log('Detected Streams Count:', data.detected_streams);
                     console.log('Awaiting Resolution Selection:', data.awaiting_resolution_selection);
 
-                    if (data.awaiting_resolution_selection) {
-                        console.log('=== AVAILABLE RESOLUTIONS ===');
-                        console.log('Count:', data.available_resolutions?.length || 0);
+                    // Show stream selection modal if streams are available and manual mode
+                    if (data.awaiting_resolution_selection && data.available_resolutions && data.available_resolutions.length > 0) {
+                        console.log('=== AVAILABLE STREAMS ===');
+                        console.log('Count:', data.available_resolutions.length);
 
-                        // Update debug log with detected streams
-                        if (data.available_resolutions && data.available_resolutions.length > 0) {
-                            updateDebugLog(data.available_resolutions);
-
-                            // Show debug popup if not already shown
-                            if (!document.getElementById('debug-popup').classList.contains('active')) {
-                                showDebugPopup();
-                            }
-                        }
-
-                        data.available_resolutions?.forEach((res, index) => {
+                        data.available_resolutions.forEach((res, index) => {
                             console.log(`--- Stream ${index + 1} ---`);
                             console.log('Name:', res.name);
                             console.log('Resolution:', res.resolution);
                             console.log('Framerate:', res.framerate);
-                            console.log('Bandwidth:', res.bandwidth);
-                            console.log('URL:', res.url);
                         });
+
+                        // Show modal with all available streams
+                        showStreamModal(data.available_resolutions);
+
+                        const statusBox = document.getElementById('browser-status');
+                        showStatus(statusBox, `✓ Found ${data.available_resolutions.length} streams - Select one to download`, 'success');
                     }
 
-                    // DEBUG: Resolution popup disabled for debugging - check debug log popup
-                    // if (data.awaiting_resolution_selection && !document.getElementById('resolution-popup').classList.contains('active')) {
-                    //     console.log('!!! SHOWING RESOLUTION POPUP !!!');
-                    //     showResolutionPopup(data.available_resolutions);
-                    //     const statusBox = document.getElementById('browser-status');
-                    //     showStatus(statusBox, '⚠️ Choose your preferred resolution above', 'error');
-                    // }
-
-                    // DEBUG: Download popup disabled for debugging
-                    // if (data.download_started && !document.getElementById('download-popup').classList.contains('active')) {
-                    //     console.log('!!! SHOWING DOWNLOAD POPUP !!!');
-                    //     showDownloadPopup(data);
-                    // }
+                    // Handle auto-download success
                     if (data.download_started) {
-                        console.log('!!! DOWNLOAD STARTED (popup disabled for debugging) !!!');
+                        console.log('✓ Download started automatically');
+                        const statusBox = document.getElementById('browser-status');
+                        showStatus(statusBox, '✓ Download started!', 'success');
+                        setTimeout(() => loadDownloads(), 2000);
                     }
 
                     if (!data.is_running) {
@@ -983,11 +1140,139 @@
             element.className = 'status-box active ' + type;
         }
 
+        // Stream selection modal handling
+        let displayedStreams = new Set();  // Track which streams we've already shown
+
+        function closeStreamModal() {
+            document.getElementById('stream-modal').classList.remove('active');
+        }
+
+        function showStreamModal(streams) {
+            const modal = document.getElementById('stream-modal');
+            const container = document.getElementById('streams-container');
+
+            // Filter out streams we've already displayed
+            const newStreams = streams.filter(stream => {
+                const streamId = `${stream.name}-${stream.resolution}-${stream.framerate}`;
+                if (displayedStreams.has(streamId)) {
+                    return false;
+                }
+                displayedStreams.add(streamId);
+                return true;
+            });
+
+            // If no new streams, don't show modal
+            if (newStreams.length === 0) {
+                return;
+            }
+
+            // Add new streams to the container (append, don't replace)
+            newStreams.forEach(stream => {
+                const card = document.createElement('div');
+                card.className = 'stream-card';
+
+                // Format bandwidth
+                const bandwidth = stream.bandwidth ?
+                    `${(stream.bandwidth / 1000).toFixed(0)} kbps` :
+                    'Unknown';
+
+                // Format framerate
+                const framerate = stream.framerate ?
+                    `${stream.framerate} fps` :
+                    'Unknown';
+
+                card.innerHTML = `
+                    <div class="stream-thumbnail">
+                        ${stream.thumbnail ?
+                            `<img src="${stream.thumbnail}" alt="${stream.name}">` :
+                            '🎬'
+                        }
+                    </div>
+                    <div class="stream-details">
+                        <h3>${stream.name}</h3>
+                        <div class="stream-detail-row">
+                            <span class="stream-detail-label">Resolution:</span>
+                            <span>${stream.resolution || 'Unknown'}</span>
+                        </div>
+                        <div class="stream-detail-row">
+                            <span class="stream-detail-label">Framerate:</span>
+                            <span>${framerate}</span>
+                        </div>
+                        <div class="stream-detail-row">
+                            <span class="stream-detail-label">Bitrate:</span>
+                            <span>${bandwidth}</span>
+                        </div>
+                        <div class="stream-detail-row">
+                            <span class="stream-detail-label">Codec:</span>
+                            <span>${stream.codecs || 'Unknown'}</span>
+                        </div>
+                    </div>
+                    <button class="stream-download-btn" onclick='downloadStream(${JSON.stringify(stream)})'>
+                        📥 Download This Stream
+                    </button>
+                `;
+
+                container.appendChild(card);
+            });
+
+            modal.classList.add('active');
+        }
+
+        async function downloadStream(stream) {
+            console.log('Downloading stream:', stream);
+
+            try {
+                const response = await fetch('/api/browser/select-stream', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        browser_id: currentBrowserId,
+                        stream_url: stream.url
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    closeStreamModal();
+                    const statusBox = document.getElementById('browser-status');
+                    showStatus(statusBox, `✓ Download started! ${stream.name} (${stream.resolution})`, 'success');
+                    setTimeout(() => loadDownloads(), 2000);
+                } else {
+                    alert(`Error: ${data.error}`);
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadDownloads();
             setInterval(loadDownloads, 10000); // Refresh every 10 seconds
+
+            // Close modal when clicking outside of it
+            window.onclick = function(event) {
+                const modal = document.getElementById('stream-modal');
+                if (event.target === modal) {
+                    closeStreamModal();
+                }
+            };
         });
     </script>
+
+    <!-- Stream Selection Modal -->
+    <div id="stream-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📺 Select Stream to Download</h2>
+                <span class="close-modal" onclick="closeStreamModal()">&times;</span>
+            </div>
+            <div id="streams-container" class="streams-grid">
+                <!-- Streams will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
