@@ -189,6 +189,9 @@ class StreamDetector:
         self.ws = None
         self.ws_url = None
         self.cdp_session_id = 1
+        # Track segments to derive playlist
+        self.detected_segment_urls = set()
+        self.derived_playlists_checked = set()
 
     def start_browser(self, url):
         """Start Chrome with DevTools Protocol enabled"""
@@ -354,9 +357,33 @@ class StreamDetector:
                     if any(keyword in url.lower() for keyword in ['m3u8', 'playlist', 'usher', 'ttvnw', 'video', 'stream', 'mpd']) or 'mpegurl' in mime_type.lower():
                         logger.info(f"[CDP-WS] 🔍 RESPONSE: {url[:250]} | MIME: {mime_type}")
 
-                    # Still check for actual detection
+                    # Check for video segments (Twitch .ts files)
+                    # Pattern: https://video-edge-{server}.{loc}.abs.hls.ttvnw.net/v1/segment/{path}.ts
+                    if '/v1/segment/' in url and url not in self.detected_segment_urls:
+                        self.detected_segment_urls.add(url)
+                        logger.info(f"[CDP-WS] 📦 Detected video segment: {url[:100]}...")
+
+                        # Try to derive playlist URL from this segment
+                        if not self.download_started and not self.awaiting_resolution_selection:
+                            derived_playlist = self._derive_playlist_from_segment(url)
+                            if derived_playlist:
+                                # Treat the derived playlist as a detected stream
+                                stream_info = {
+                                    'url': derived_playlist,
+                                    'type': 'HLS',
+                                    'mime_type': 'application/vnd.apple.mpegurl',
+                                    'timestamp': time.time()
+                                }
+
+                                if stream_info not in self.detected_streams:
+                                    logger.info(f"[CDP-WS] ✓✓✓ DERIVED STREAM from segment: {derived_playlist[:100]}...")
+                                    self.detected_streams.append(stream_info)
+                                    logger.info(f"[CDP-WS] Processing derived stream...")
+                                    self._handle_stream_detection(stream_info)
+
+                    # Still check for actual .m3u8 detection
                     if '.m3u8' in url.lower() or 'mpegurl' in mime_type.lower():
-                        logger.info(f"[CDP-WS] 🎯 DETECTED: {url[:200]}... | MIME: {mime_type}")
+                        logger.info(f"[CDP-WS] 🎯 DETECTED .m3u8: {url[:200]}... | MIME: {mime_type}")
 
                         # Process this stream
                         if self._is_video_stream(url, mime_type):
@@ -556,6 +583,62 @@ class StreamDetector:
             return 'MP4'
         else:
             return 'UNKNOWN'
+
+    def _derive_playlist_from_segment(self, segment_url):
+        """
+        Try to derive the master playlist URL from a video segment URL.
+        Twitch segments are at: https://video-edge-{server}.{loc}.abs.hls.ttvnw.net/v1/segment/{path}.ts
+        Playlists might be at: https://video-edge-{server}.{loc}.abs.hls.ttvnw.net/v1/playlist/{id}.m3u8
+        """
+        import re
+
+        # Check if already tried this base URL
+        if segment_url in self.derived_playlists_checked:
+            return None
+
+        self.derived_playlists_checked.add(segment_url)
+
+        # Extract the base URL pattern
+        # Example: https://video-edge-dead02.pdx01.abs.hls.ttvnw.net/v1/segment/CjoQsfL...
+        match = re.search(r'(https://[^/]+/v1)/segment/([^/]+)', segment_url)
+        if not match:
+            return None
+
+        base_url = match.group(1)
+        segment_path = match.group(2)
+
+        # The segment path often contains the playlist ID encoded
+        # Try to extract a playlist ID (typically alphanumeric before .ts)
+        playlist_id_match = re.match(r'([^.]+)', segment_path)
+        if playlist_id_match:
+            # Try multiple common Twitch playlist URL patterns
+            potential_playlists = []
+
+            # Pattern 1: Direct segment path to playlist path replacement
+            # /v1/segment/{id}.ts -> /v1/playlist/{id}.m3u8
+            potential_playlists.append(f"{base_url}/playlist/{playlist_id_match.group(1)}.m3u8")
+
+            # Pattern 2: Common index.m3u8 pattern
+            potential_playlists.append(f"{base_url}/playlist/index.m3u8")
+
+            logger.info(f"[DERIVE] Attempting to derive playlist from segment: {segment_url[:100]}...")
+
+            # Try each potential playlist URL
+            for playlist_url in potential_playlists:
+                logger.info(f"[DERIVE] Trying: {playlist_url}")
+                try:
+                    import requests
+                    response = requests.get(playlist_url, timeout=5)
+                    if response.status_code == 200:
+                        content = response.text
+                        # Check if it's a valid m3u8
+                        if '#EXTM3U' in content:
+                            logger.info(f"[DERIVE] ✓✓✓ Successfully derived playlist: {playlist_url}")
+                            return playlist_url
+                except Exception as e:
+                    logger.debug(f"[DERIVE] Failed to fetch {playlist_url}: {e}")
+
+        return None
 
     def _handle_stream_detection(self, stream_info):
         """Handle detected stream - check if it's a master playlist"""
