@@ -272,10 +272,16 @@ class StreamDetector:
     def _monitor_network(self):
         """Monitor network traffic for video streams"""
         logger.info(f"Starting network monitoring for browser {self.browser_id}")
+        loop_count = 0
 
         while self.is_running and self.driver:
             try:
                 logs = self.driver.get_log('performance')
+                loop_count += 1
+
+                # DEBUG: Log every 20 iterations to show we're alive
+                if loop_count % 20 == 0:
+                    logger.info(f"[MONITORING ALIVE] Loop #{loop_count}, got {len(logs)} log entries")
 
                 for entry in logs:
                     try:
@@ -283,12 +289,29 @@ class StreamDetector:
                         message = log_data.get('message', {})
                         method = message.get('method', '')
 
-                        # Look for network response events
+                        # DEBUG: Check for responseReceivedExtraInfo which has content-type
+                        if method == 'Network.responseReceivedExtraInfo':
+                            params = message.get('params', {})
+                            headers = params.get('headers', {})
+                            content_type = headers.get('content-type', '')
+                            request_id = params.get('requestId', '')
+
+                            if 'mpegurl' in content_type.lower() or 'm3u8' in content_type.lower():
+                                logger.info(f"[EXTRA_INFO] Found HLS content-type! RequestID: {request_id}, Content-Type: {content_type}")
+
+                        # DEBUG: Log ALL Network.responseReceived events to see what we're getting
                         if method == 'Network.responseReceived':
                             params = message.get('params', {})
                             response = params.get('response', {})
                             url = response.get('url', '')
                             mime_type = response.get('mimeType', '')
+                            request_id = params.get('requestId', '')
+
+                            # Log EVERY responseReceived to see what URLs we're getting
+                            if url:
+                                logger.info(f"[RESPONSE] RequestID: {request_id}, URL: {url[:150]}... | MIME: {mime_type}")
+                            else:
+                                logger.warning(f"[RESPONSE] URL IS EMPTY! RequestID: {request_id}, Response keys: {response.keys()}")
 
                             # DEBUG: Log ALL .m3u8 URLs (high priority for debugging)
                             if '.m3u8' in url.lower():
