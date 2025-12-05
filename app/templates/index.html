@@ -1376,6 +1376,7 @@
         function showStatus(element, message, type) {
             element.textContent = message;
             element.className = 'status-box active ' + type;
+            element.style.display = 'block';  // Explicitly show
 
             // Clear any existing timeout for this element
             if (statusTimeouts.has(element)) {
@@ -1385,6 +1386,7 @@
             // Set 10 second auto-hide timer
             const timeoutId = setTimeout(() => {
                 element.classList.remove('active');
+                element.style.display = 'none';  // Explicitly hide
                 statusTimeouts.delete(element);
             }, 10000);
 
