@@ -1331,14 +1331,21 @@
                         const statusText = download.is_running ? 'Downloading...' : 'Completed';
 
                         item.innerHTML = `
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                ${download.thumbnail ? `
+                                    <div style="flex-shrink: 0;">
+                                        <img src="data:image/png;base64,${download.thumbnail}"
+                                             style="width: 160px; height: 90px; object-fit: cover; border-radius: 8px; border: 2px solid #667eea;"
+                                             alt="Video preview">
+                                    </div>
+                                ` : ''}
                                 <div style="flex: 1;">
                                     <h4 style="margin: 0 0 8px 0; color: #667eea;">${statusIcon} ${download.filename}</h4>
                                     <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Resolution:</strong> ${download.resolution}</p>
                                     <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Size:</strong> ${sizeMB} MB &nbsp;&nbsp; <strong>Duration:</strong> ${timeStr}</p>
                                     <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Status:</strong> ${statusText}</p>
                                 </div>
-                                <div>
+                                <div style="flex-shrink: 0;">
                                     ${download.is_running ? `<button class="btn btn-secondary" onclick="stopDownload('${download.browser_id}')" style="background: #dc3545;">⏹ Stop</button>` : ''}
                                 </div>
                             </div>

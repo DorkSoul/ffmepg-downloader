@@ -92,6 +92,7 @@ check_chrome_installation()
 active_browsers = {}
 download_queue = {}
 direct_download_status = {}  # Track status for direct downloads (thumbnail, metadata)
+download_thumbnails = {}  # Cache thumbnails with timestamps {browser_id: {'thumbnail': base64, 'timestamp': time}}
 
 # Utility functions for resolution parsing
 def fetch_master_playlist(url):
@@ -1842,6 +1843,68 @@ def list_downloads():
         return jsonify({'error': str(e)}), 500
 
 
+def extract_thumbnail_from_file(file_path, browser_id):
+    """
+    Extract a thumbnail from a partially downloaded video file.
+    Returns base64 encoded image or None if extraction fails.
+    Caches thumbnails for 10 seconds to avoid excessive CPU usage.
+    """
+    try:
+        # Check cache - only extract if more than 10 seconds since last extraction
+        current_time = time.time()
+        if browser_id in download_thumbnails:
+            cached = download_thumbnails[browser_id]
+            if current_time - cached['timestamp'] < 10:
+                # Return cached thumbnail
+                return cached['thumbnail']
+
+        # Check if file exists and has content
+        if not os.path.exists(file_path):
+            return None
+
+        file_size = os.path.getsize(file_path)
+        if file_size < 100000:  # Less than 100KB - too small for thumbnail
+            return None
+
+        # Extract frame from last 3 seconds of downloaded content
+        # Use ffmpeg to get a frame without interfering with the ongoing download
+        cmd = [
+            'ffmpeg',
+            '-y',  # Overwrite output
+            '-loglevel', 'quiet',  # Suppress ffmpeg output
+            '-sseof', '-3',  # Seek to 3 seconds before end of file
+            '-i', file_path,
+            '-frames:v', '1',  # Extract 1 frame
+            '-q:v', '2',  # Quality
+            '-f', 'image2pipe',  # Output to pipe
+            '-vcodec', 'png',
+            'pipe:1'
+        ]
+
+        result = subprocess.run(cmd, capture_output=True, timeout=5)
+
+        if result.returncode == 0 and result.stdout:
+            # Convert to base64
+            thumbnail_base64 = base64.b64encode(result.stdout).decode('utf-8')
+
+            # Cache the thumbnail
+            download_thumbnails[browser_id] = {
+                'thumbnail': thumbnail_base64,
+                'timestamp': current_time
+            }
+
+            return thumbnail_base64
+
+        return None
+
+    except subprocess.TimeoutExpired:
+        logger.warning(f"Thumbnail extraction timeout for {file_path}")
+        return None
+    except Exception as e:
+        logger.error(f"Thumbnail extraction error: {e}")
+        return None
+
+
 @app.route('/api/downloads/active', methods=['GET'])
 def active_downloads():
     """Get active downloads with progress"""
@@ -1864,6 +1927,11 @@ def active_downloads():
             # Check if process is still running
             is_running = process.poll() is None if process else False
 
+            # Extract thumbnail from downloaded file (cached for 10 seconds)
+            thumbnail = None
+            if is_running and output_path:
+                thumbnail = extract_thumbnail_from_file(output_path, browser_id)
+
             active.append({
                 'browser_id': browser_id,
                 'filename': download_info.get('filename', 'Unknown'),
@@ -1873,7 +1941,8 @@ def active_downloads():
                 'codecs': download_info.get('codecs', 'Unknown'),
                 'size': file_size,
                 'duration': duration,
-                'is_running': is_running
+                'is_running': is_running,
+                'thumbnail': thumbnail  # Base64 encoded thumbnail image
             })
 
         return jsonify({'active_downloads': active})
