@@ -589,11 +589,11 @@
                 <iframe id="vnc-frame" class="vnc-frame" src=""></iframe>
             </div>
 
-            <!-- Downloads List -->
+            <!-- Active Downloads -->
             <div class="card downloads-list">
-                <h2><span class="icon">📥</span> Recent Downloads</h2>
-                <div class="downloads-grid" id="downloads-grid">
-                    <p style="color: #666;">Loading downloads...</p>
+                <h2><span class="icon">⏬</span> Active Downloads</h2>
+                <div id="active-downloads-container">
+                    <p style="color: #666; padding: 20px;">No active downloads</p>
                 </div>
             </div>
         </div>
@@ -1225,33 +1225,60 @@
         // Load downloads list
         async function loadDownloads() {
             try {
-                const response = await fetch('/api/downloads/list');
+                const response = await fetch('/api/downloads/active');
                 const data = await response.json();
 
-                const grid = document.getElementById('downloads-grid');
-                grid.innerHTML = '';
+                const container = document.getElementById('active-downloads-container');
+                container.innerHTML = '';
 
-                if (data.downloads && data.downloads.length > 0) {
-                    data.downloads.forEach(download => {
+                if (data.active_downloads && data.active_downloads.length > 0) {
+                    data.active_downloads.forEach(download => {
                         const item = document.createElement('div');
-                        item.className = 'download-item';
+                        item.style.cssText = 'background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #e0e0e0;';
 
-                        const size = (download.size / (1024 * 1024)).toFixed(2);
-                        const date = new Date(download.created * 1000).toLocaleString();
+                        const sizeMB = (download.size / (1024 * 1024)).toFixed(2);
+                        const minutes = Math.floor(download.duration / 60);
+                        const seconds = download.duration % 60;
+                        const timeStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                        const statusIcon = download.is_running ? '⏬' : '✓';
+                        const statusText = download.is_running ? 'Downloading...' : 'Completed';
 
                         item.innerHTML = `
-                            <h4>${download.filename}</h4>
-                            <p><strong>Size:</strong> ${size} MB</p>
-                            <p><strong>Date:</strong> ${date}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 8px 0; color: #667eea;">${statusIcon} ${download.filename}</h4>
+                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Resolution:</strong> ${download.resolution}</p>
+                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Size:</strong> ${sizeMB} MB &nbsp;&nbsp; <strong>Duration:</strong> ${timeStr}</p>
+                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Status:</strong> ${statusText}</p>
+                                </div>
+                                <div>
+                                    ${download.is_running ? `<button class="btn btn-secondary" onclick="stopDownload('${download.browser_id}')" style="background: #dc3545;">⏹ Stop</button>` : ''}
+                                </div>
+                            </div>
                         `;
 
-                        grid.appendChild(item);
+                        container.appendChild(item);
                     });
                 } else {
-                    grid.innerHTML = '<p style="color: #666;">No downloads yet</p>';
+                    container.innerHTML = '<p style="color: #666; padding: 20px;">No active downloads</p>';
                 }
             } catch (error) {
                 console.error('Load downloads error:', error);
+            }
+        }
+
+        async function stopDownload(browserId) {
+            try {
+                const response = await fetch(`/api/downloads/stop/${browserId}`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    loadDownloads();
+                }
+            } catch (error) {
+                console.error('Stop download error:', error);
             }
         }
 

@@ -1044,12 +1044,14 @@ class StreamDetector:
                 universal_newlines=True
             )
 
-            # Store process info
+            # Store process info with metadata
             download_queue[self.browser_id] = {
                 'process': process,
                 'output_path': output_path,
                 'stream_url': stream_url,
-                'started_at': time.time()
+                'started_at': time.time(),
+                'resolution_name': getattr(self, 'selected_stream_metadata', {}).get('name', 'Unknown') if hasattr(self, 'selected_stream_metadata') and self.selected_stream_metadata else 'Unknown',
+                'filename': os.path.basename(output_path)
             }
 
             # Wait for download to complete
@@ -1285,6 +1287,7 @@ def select_resolution():
 
         logger.info(f"User selected resolution: {stream.get('name')}")
         logger.info(f"Stream URL: {stream.get('url')}")
+        logger.info(f"Stream object received from frontend: {stream}")
 
         # Clear awaiting state
         detector.awaiting_resolution_selection = False
@@ -1484,6 +1487,69 @@ def list_downloads():
 
     except Exception as e:
         logger.error(f"List downloads error: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/downloads/active', methods=['GET'])
+def active_downloads():
+    """Get active downloads with progress"""
+    try:
+        active = []
+
+        for browser_id, download_info in list(download_queue.items()):
+            process = download_info.get('process')
+            output_path = download_info.get('output_path')
+            started_at = download_info.get('started_at')
+
+            # Check if file exists and get size
+            file_size = 0
+            if os.path.exists(output_path):
+                file_size = os.path.getsize(output_path)
+
+            # Calculate duration
+            duration = int(time.time() - started_at)
+
+            # Check if process is still running
+            is_running = process.poll() is None if process else False
+
+            active.append({
+                'browser_id': browser_id,
+                'filename': download_info.get('filename', 'Unknown'),
+                'resolution': download_info.get('resolution_name', 'Unknown'),
+                'size': file_size,
+                'duration': duration,
+                'is_running': is_running
+            })
+
+        return jsonify({'active_downloads': active})
+
+    except Exception as e:
+        logger.error(f"Active downloads error: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/downloads/stop/<browser_id>', methods=['POST'])
+def stop_download(browser_id):
+    """Stop an active download"""
+    try:
+        if browser_id in download_queue:
+            download_info = download_queue[browser_id]
+            process = download_info.get('process')
+
+            if process and process.poll() is None:
+                logger.info(f"Stopping download for browser {browser_id}")
+                process.terminate()
+                process.wait(timeout=5)
+                logger.info(f"Download stopped for browser {browser_id}")
+
+            del download_queue[browser_id]
+
+            return jsonify({'success': True, 'message': 'Download stopped'})
+        else:
+            return jsonify({'error': 'Download not found'}), 404
+
+    except Exception as e:
+        logger.error(f"Stop download error: {e}")
         return jsonify({'error': str(e)}), 500
 
 
