@@ -1870,13 +1870,13 @@ def extract_thumbnail_from_file(file_path, browser_id):
 
         logger.info(f"Extracting thumbnail from {file_path} ({file_size} bytes)")
 
-        # Extract frame from last 3 seconds of downloaded content
-        # Use ffmpeg to get a frame without interfering with the ongoing download
+        # Extract frame from beginning of downloaded content
+        # Seek from start (not end) to work with actively downloading files
         cmd = [
             'ffmpeg',
             '-y',  # Overwrite output
-            '-loglevel', 'quiet',  # Suppress ffmpeg output
-            '-sseof', '-3',  # Seek to 3 seconds before end of file
+            '-loglevel', 'error',  # Show errors only
+            '-ss', '2',  # Seek to 2 seconds from start
             '-i', file_path,
             '-frames:v', '1',  # Extract 1 frame
             '-q:v', '2',  # Quality
