@@ -641,9 +641,12 @@
         <p id="countdown-text" style="text-align: center; color: #666; margin: 15px 0;">
             Browser will close automatically in <strong id="countdown">15</strong> seconds
         </p>
-        <div style="display: flex; gap: 10px; justify-content: center;">
+        <div id="browser-buttons" style="display: flex; gap: 10px; justify-content: center;">
             <button class="btn" onclick="closeBrowserNow()">🗙 Close Browser Now</button>
             <button class="btn btn-secondary" onclick="keepBrowserOpen()">✓ Keep Browser Open</button>
+        </div>
+        <div id="direct-buttons" style="display: none; justify-content: center;">
+            <button class="btn" onclick="closeDownloadPopup()">✓ OK</button>
         </div>
     </div>
 
@@ -814,8 +817,8 @@
                     if (data.download_started && data.selected_stream_metadata) {
                         console.log('✓ Direct download metadata ready');
 
-                        // Show popup with metadata and thumbnail
-                        showDownloadStartedPopup(data.selected_stream_metadata, data.thumbnail);
+                        // Show popup with metadata and thumbnail (isDirect = true)
+                        showDownloadStartedPopup(data.selected_stream_metadata, data.thumbnail, true);
 
                         // Stop polling
                         return true;
@@ -827,8 +830,8 @@
                         setTimeout(checkStatus, 1000);
                     } else {
                         console.log('Direct download metadata timeout - showing without thumbnail');
-                        // Show popup without thumbnail if timeout
-                        showDownloadStartedPopup({name: 'Direct Download', resolution: 'Processing...', framerate: ''}, null);
+                        // Show popup without thumbnail if timeout (isDirect = true)
+                        showDownloadStartedPopup({name: 'Direct Download', resolution: 'Processing...', framerate: ''}, null, true);
                     }
                 } catch (error) {
                     console.error('Error checking direct download status:', error);
@@ -1131,10 +1134,13 @@
         }
 
         // Show download started popup
-        function showDownloadStartedPopup(streamMetadata, thumbnail) {
+        function showDownloadStartedPopup(streamMetadata, thumbnail, isDirect = false) {
             const popup = document.getElementById('download-started-popup');
             const overlay = document.getElementById('popup-overlay');
             const infoContainer = document.getElementById('download-info');
+            const countdownText = document.getElementById('countdown-text');
+            const browserButtons = document.getElementById('browser-buttons');
+            const directButtons = document.getElementById('direct-buttons');
 
             // Populate download info
             const resolution = streamMetadata?.resolution || 'Unknown';
@@ -1154,12 +1160,24 @@
 
             infoContainer.innerHTML = infoHTML;
 
+            // Show/hide appropriate elements based on download type
+            if (isDirect) {
+                // Direct download: just show OK button, no countdown
+                countdownText.style.display = 'none';
+                browserButtons.style.display = 'none';
+                directButtons.style.display = 'flex';
+            } else {
+                // Browser download: show countdown and browser control buttons
+                countdownText.style.display = 'block';
+                browserButtons.style.display = 'flex';
+                directButtons.style.display = 'none';
+                // Start 15 second countdown
+                startDownloadCountdown();
+            }
+
             // Show popup
             popup.classList.add('active');
             overlay.classList.add('active');
-
-            // Start 15 second countdown
-            startDownloadCountdown();
         }
 
         // Start countdown timer
@@ -1210,6 +1228,14 @@
 
             const statusBox = document.getElementById('browser-status');
             showStatus(statusBox, 'Browser kept open. Close manually when done.', 'success');
+        }
+
+        // Close download popup (for direct downloads - no browser to close)
+        function closeDownloadPopup() {
+            const popup = document.getElementById('download-started-popup');
+            const overlay = document.getElementById('popup-overlay');
+            popup.classList.remove('active');
+            overlay.classList.remove('active');
         }
 
         // Close browser
