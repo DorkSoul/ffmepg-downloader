@@ -922,6 +922,9 @@ class StreamDetector:
 
                         if matched_stream:
                             logger.info(f"Matched stream: {matched_stream['name']} - {matched_stream['resolution']} @ {matched_stream['framerate']}fps")
+                            # Enrich stream and add thumbnail before download
+                            logger.info("Enriching matched stream with thumbnail...")
+                            self._enrich_and_add_thumbnail(matched_stream)
                             # Start download immediately
                             self._start_download_with_stream(matched_stream)
                         else:
