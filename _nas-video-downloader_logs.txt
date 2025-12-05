@@ -1,99 +1,100 @@
-frame= 1558 fps= 69 q=-1.0 size=   24320KiB time=00:00:25.93 bitrate=7682.6kbits/s speed=1.15x    
-[https @ 0x7fdc54009880] Opening 'https://euw13.playlist.ttvnw.net/v1/playlist/CrMGwUV6cFRQKbCvRooyPryCHwbivUlq06lb07yBgmzqEo8-T6UxwG-FAGkfEJtoAlrEo6kvz_BKWfQr3_baBZOJSoVum3PnNEjBJvO_w5yb0LPKTE665zDfgwVBynpk5WxgMAU75OdoLdw9Zr9PDUZCKqIrY1bw3NTGGnLIA7MDPwC1nzPmLhXfzBipS-22mY65csClDwomie_nRA06K7mW1P32RZ3iHKSJzNC_JmBAs_9xKJVwpqGMapW7ZuxoVmC7u6ghq9S9P2bsN9K83irwBk7RyyLvr-JiDPbVcNAvjfZUJ-RA6Y-ssUoerWqOxWtcEnYQVWZI3G4V6MrgpE4PeGo0jqpiHkDbTbctcsgwS7S9-v2WKa2qa1xes9UWq6gL00Z4fUv0JR5iNyFFRD50GIDy2I7gBW0buaBPVJi8ago2ZF93J200Ol-RltuQq7Hx-sI4N5EoOGy2ft6LqOiKz-JvfMl_F4Yjl2KkUFZgnGPzMKAv6kKTIV9oHHW-Nbld8El8NZzKuiZAFbJ00ZrMH9XjhbD8pFYWd4U6xxaXCjZSAZO-a7EzzYTiUILVkD56cvR1sTsRY1nGv-WWz2rXfHvwtzb056c4UzUU41rEY3MOOwvDzJdKSWT4Xq0VyEkIWK_9wQ4cFY_60sSzBELfD5Z6ilpF6kjKR99tgWJtJX5qhijZPNbCucKs5IMDzCimuU8beakAc9K1oH-4kHnepwj1zEN7a3ka_utzihXhwQM4NK3oSfJzSHq-Gl5B9-_Amv3TG9O2Ck9wyMJh0M0tekpqYPF0m99uAxjoAxB6UKbMTDAVzFXvRg-5c88216jYZHHcJNXy5ShJU3LRfyZCar5aHU48hY1eKE1z38NqbqU1PC8Uv7G_zltUS0HsYJWfIWVAXINjgzXH04hpNS6MbamRK5meP8lc1ZadNMTbmngxuiOPiw2OlSFqu4HJ8yd721t5o_D7qGHwFXzJaaYxR5DoFI-cBc3SuwZxB8if46NsGf0FBDwNY3BCYcccMFu0TSMTGxpM1GrWIopL8HRoFWKS2kMCU7rX8l7NJKuhxdTlXSSDjnCAQ5isZOZO4XDpbA9RGgxcv1OXxm1oSTYlarAgASoJZXUtd2VzdC0yMPAN.m3u8' for reading
-[hls @ 0x563b17f14200] Skip ('#EXT-X-VERSION:3')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:13675')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:27350.000')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-TOTAL-SECS:27382.000')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1764946998",CLASS="timestamp",START-DATE="2025-12-05T15:03:18.221Z",END-ON-NEXT=YES,X-SERVER-TIME="1764946998.22"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1764946998",CLASS="twitch-session",START-DATE="2025-12-05T15:03:18.221Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="485300268383225513"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="source-1764946969",CLASS="twitch-stream-source",START-DATE="2025-12-05T15:02:49.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764946969",CLASS="twitch-trigger",START-DATE="2025-12-05T15:02:49.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw13.playlist.ttvnw.net/trigger/Cp8GUgpD7jwXVbELzeICtMbf4oOrYhzXyfACkmJPI4gbdIIhlC1ZgFoRLYEUX8mIsaJeop2kmig2kRHPVU_1p6TCv0wMxEf4KsfNUgsnSMNVH1HGc8_wXyRuzYXtzqwD9f1EiErxZLd2DPD5cdXLJOx33Gb8BwO0m7OBy4kqs4gFibRCrdJEU-iNm4JB0Gs-2433u9JK9wcTxPdkSCdLPTgJGNu1pSfdCfc7kZp21l_-kNcPmv7f5yGHe3IMin7G8xx6foxwlbx8pav8InCJFxl2amwMIA97wz9JhHVL6zwT0KvTxr4RnpNED4Vh1mtzKUd_RBCYAAht1H8SdkcwPe-oA8DIVnsirN04Wv-76FJ7FPYMFt1-_vqpTZhYpBDV0Ikb6owKM_dh6ur1zCzvrz5Pc_uWWRiLTuX2VHs_G5P76VpAkCWFPbQeW4EH3qG5iyBC4YJSv819l3A0I8FDrOO13aRF9F109kSlwcOsy8jgjzTW5U6QvgQqp5IF_w3a59kQ41lmyA-rR8hqHDAnx1YhvhVuiM-6IQRsxn8Nc-Jh8Z1tcA0Ew0gZoA1XIlkOqQxL-nBF4a-ALz28sVYCjFojTM5TNNa4QdV1P6zS1smbELP9Pawi3RNOfKZUmw8DVu_kwIlQgRGk_eFUO6eS29Y7ye4CUEXQlFlrxtY2LTE5LCAQCeCxjx-RWnVlCS-2vfjkIl8rFdAQpCyexDIMM8GBGjIKHLMM9-0HTmOT5-qV8VVlpkt4BnDEucXprcu9UFstaD1p_62mZNHlxlSYkzqm3DDIiqhcxsjjq_V-GCCyFcBnO8vHopXxcuTeqkWoETK4VcPVUG2pzSlgPeCd4yU--N8yG8zmsUpZimX1eCLx6Ry9p6io9WCmpM7sdmka5MyfKwf25pcLFNJMOL938_AIw9Oz3mKh4PwS586B1JlkwIm03jWj28ySR6Rqjj2jhviPY_JOGHWYw7U6YIKCXKGi9lLpQ8uuDhB3KVpztIOF48QAO2SlR9LTcjQ_1EWbJt8WRV4u0nr4ozKzd2aZMUiH3NtV1gLgTTMdYX9bB9RqbxoM7ilwHWwG031e-4ptIAEqCWV1LXdlc3QtMjDwDQ"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:21.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:23.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:25.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:27.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:29.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:31.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:33.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:35.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:37.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:39.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:41.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:43.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:45.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:47.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcC85kTbUwunuBpWWReqL1UxfbAkZwJapHynNy2IUJdYEwYDK8ZpomHjfCD4LPUwrPvyv2Yq6EhmAdpD-BxD0slyASa3_Xgj4SCqiN6at5-OkDrOlmkcyx7g_C6H-qTLVjX_1PZtOdSWhHpl7UnYvsauOX_lcxsV3lryY0N7h6ceRkVvijrPg5ZkmQeOtTk4l7HOr1NqSzmev06wUvNuiu7_p0JHErUqhnLPcRXfV1Pcl6EoEWoSbZvXcCtDDXCPECcXYovXE1Qg7pq71HvLEiuOWw96DSSQxcznyYtD7URvd3hlcJUBNVi8iMPhh7N5q6CEdSahR4GBzk-yVBoR5G7CTbEKoev9RoEJETJVtbCerDIq0bG8jWoc1ECUPtYPLfyD6htUMNkCOytlcG5QT-Oqcc5hWu4FcMvrzP1DvSo0Kum-zEa6ayZ2R9yYSon0OxNiZ0MvP3cNEkpWqQNLxk-80L6bTb8iKrP5VkcQ5HJ1GfnDiarghO_Ggza6mgt15fU7zlb8-UgASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcCpNi4ZPkvgUQHbeOVczFz3gHkGQGUHEVdmj2FX5ZwkYAFPcjeMiXVFLAKKG22lsKq3OC8hVYrSRG6kGmIa4S1CC3qWAd3ZB_sufKXqFtMbuwbTJYIl-tQPxJvzRVkh1X0_viZDrQgfJi9ADHzPWpwjJisSrYTZPHkomKoLWOEA_toRhlur6pJ3HcJLY2w1-xr-FfDNuDdBZaI_vOoZJA7d393UOvlE8l4acBTd0EMadp7dURMHYcJxR4BTrpHAneAOmpNOi5Lh6-SrFWsgaTA2VVxfP7yganSHctkzFch3ifaqsYwCWAUKAH1HwazuNvyoqkMjN3tofCQ0Tl5Q6DwZugVs2d7Be5h7PVqFjnmgfxSg8maLpZrbixiCpQghPOTyvJIKrCNCXUNZZi_IB0WafRcFmgPRARNfiELJIG9Po4xBvFIq-EkzD-SMgJcDz7Y_CyrSFesysHBVDiYeaIsLrQjKOldwRsExUiZOS-xn-cCPOpdrrkLGgxFPGop1hxec67Px4cgASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN')
-[https @ 0x563b181df6c0] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcCpDB3qV7RN5SQVN21TNRMxTjVBxp_fEQjSm2n-WRf8N9AR4UGJzt7HctJtJFS-CCWv4bJNRf6XoApYDTCAtgMsUhYS-CEV-9TmtkXxgTPir7KRvArZ0q3W9CPpkGOTBs8uEU9E9x0bAM-rOva2nvz1kJN_37muu4XG7s1ngh4rblr4vjgitgLfzhJuP3C_6SObWyNLrs6CgwhR5MxFZ6a1PaQmRxN4YByPt1ECMDRyPcCbz437_I9bkKshB0ZT6A4efz-L3zfhYoBsqWu6WQWQO1_RaQQ1QZm77o__L1701JBWLwweRNf0pBXWWMvKqU6GL17EoACliX-3uUPmnYwhG0pNKdu7caLWsCyNmbZcfbdv6okbgYLthhDjm_PgM-YRSTK21tfuMhzCP5b_445MlTZPOClwLYikttl3vOlMYOIxpzWC336cgaYkRM4GsuxASci2hBPlPWPCSdS8330Y-SUMKALTIHDAvbQGr9NyZEEMXx2Wh5FGgySBv2i38HlXGq4fS0gASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN' for reading
-[https @ 0x563b18319800] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcCMyue9JkqCe6wucN-xZdLpE3-NXBX4KDE_1raWf7FeSF3EnyP3D240FNf1dorlR5p0gcepDLao4fjj1wPedQparIIj2Vx8WMC4OryT0380df-ENU43yTxlOz45HKgg9OeBmUTcTqEig6f98r93PXO_cILhHG8wcmRKCMLFOwKS3upEROUJo-srJgR6h1OwhuubqsjTDB3ejmDUTZfGe5_cjHAfmS6jAZYvxBOYA0gHkiz_Ds8gI-VXrIbIMD1OKvorJKAGsyoeeYDibgPLiSmVMl3WK16HGvfzJ6OsvmA723tnH6O135rGhI1naG8IaLDJIaXsCARW0nZ5ReFAbL99BDp_djpPU7UqR7c0OQQ8nIhgtyPHGMZ4kyY5dSyGAEGghklhBzT7o1AT0QgTbP5DGrROdQYSy3qaPofJPCbhkx3SrCXG54bjUADiiMevvt5wmyqNtn5WST94czi61_myKRt2gXCRBykkk0VP3wACZ95Dc0AlfN2GgwWq-guotSx_XUnxe0gASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN' for reading
-frame= 1671 fps= 73 q=-1.0 size=   25856KiB time=00:00:27.81 bitrate=7614.6kbits/s speed=1.21x    
-frame= 1798 fps= 76 q=-1.0 size=   27904KiB time=00:00:29.93 bitrate=7636.8kbits/s speed=1.27x    
-frame= 1798 fps= 75 q=-1.0 size=   27904KiB time=00:00:29.93 bitrate=7636.8kbits/s speed=1.25x    
-frame= 1798 fps= 73 q=-1.0 size=   27904KiB time=00:00:29.93 bitrate=7636.8kbits/s speed=1.22x    
-[https @ 0x7fdc54009880] Opening 'https://euw13.playlist.ttvnw.net/v1/playlist/CrMGwUV6cFRQKbCvRooyPryCHwbivUlq06lb07yBgmzqEo8-T6UxwG-FAGkfEJtoAlrEo6kvz_BKWfQr3_baBZOJSoVum3PnNEjBJvO_w5yb0LPKTE665zDfgwVBynpk5WxgMAU75OdoLdw9Zr9PDUZCKqIrY1bw3NTGGnLIA7MDPwC1nzPmLhXfzBipS-22mY65csClDwomie_nRA06K7mW1P32RZ3iHKSJzNC_JmBAs_9xKJVwpqGMapW7ZuxoVmC7u6ghq9S9P2bsN9K83irwBk7RyyLvr-JiDPbVcNAvjfZUJ-RA6Y-ssUoerWqOxWtcEnYQVWZI3G4V6MrgpE4PeGo0jqpiHkDbTbctcsgwS7S9-v2WKa2qa1xes9UWq6gL00Z4fUv0JR5iNyFFRD50GIDy2I7gBW0buaBPVJi8ago2ZF93J200Ol-RltuQq7Hx-sI4N5EoOGy2ft6LqOiKz-JvfMl_F4Yjl2KkUFZgnGPzMKAv6kKTIV9oHHW-Nbld8El8NZzKuiZAFbJ00ZrMH9XjhbD8pFYWd4U6xxaXCjZSAZO-a7EzzYTiUILVkD56cvR1sTsRY1nGv-WWz2rXfHvwtzb056c4UzUU41rEY3MOOwvDzJdKSWT4Xq0VyEkIWK_9wQ4cFY_60sSzBELfD5Z6ilpF6kjKR99tgWJtJX5qhijZPNbCucKs5IMDzCimuU8beakAc9K1oH-4kHnepwj1zEN7a3ka_utzihXhwQM4NK3oSfJzSHq-Gl5B9-_Amv3TG9O2Ck9wyMJh0M0tekpqYPF0m99uAxjoAxB6UKbMTDAVzFXvRg-5c88216jYZHHcJNXy5ShJU3LRfyZCar5aHU48hY1eKE1z38NqbqU1PC8Uv7G_zltUS0HsYJWfIWVAXINjgzXH04hpNS6MbamRK5meP8lc1ZadNMTbmngxuiOPiw2OlSFqu4HJ8yd721t5o_D7qGHwFXzJaaYxR5DoFI-cBc3SuwZxB8if46NsGf0FBDwNY3BCYcccMFu0TSMTGxpM1GrWIopL8HRoFWKS2kMCU7rX8l7NJKuhxdTlXSSDjnCAQ5isZOZO4XDpbA9RGgxcv1OXxm1oSTYlarAgASoJZXUtd2VzdC0yMPAN.m3u8' for reading
-[hls @ 0x563b17f14200] Skip ('#EXT-X-VERSION:3')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:13676')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:27352.000')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-TOTAL-SECS:27384.000')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1764946998",CLASS="timestamp",START-DATE="2025-12-05T15:03:18.221Z",END-ON-NEXT=YES,X-SERVER-TIME="1764946998.22"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1764946998",CLASS="twitch-session",START-DATE="2025-12-05T15:03:18.221Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="485300268383225513"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="source-1764946969",CLASS="twitch-stream-source",START-DATE="2025-12-05T15:02:49.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764946969",CLASS="twitch-trigger",START-DATE="2025-12-05T15:02:49.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw13.playlist.ttvnw.net/trigger/Cp8GUgpD7jwXVbELzeICtMbf4oOrYhzXyfACkmJPI4gbdIIhlC1ZgFoRLYEUX8mIsaJeop2kmig2kRHPVU_1p6TCv0wMxEf4KsfNUgsnSMNVH1HGc8_wXyRuzYXtzqwD9f1EiErxZLd2DPD5cdXLJOx33Gb8BwO0m7OBy4kqs4gFibRCrdJEU-iNm4JB0Gs-2433u9JK9wcTxPdkSCdLPTgJGNu1pSfdCfc7kZp21l_-kNcPmv7f5yGHe3IMin7G8xx6foxwlbx8pav8InCJFxl2amwMIA97wz9JhHVL6zwT0KvTxr4RnpNED4Vh1mtzKUd_RBCYAAht1H8SdkcwPe-oA8DIVnsirN04Wv-76FJ7FPYMFt1-_vqpTZhYpBDV0Ikb6owKM_dh6ur1zCzvrz5Pc_uWWRiLTuX2VHs_G5P76VpAkCWFPbQeW4EH3qG5iyBC4YJSv819l3A0I8FDrOO13aRF9F109kSlwcOsy8jgjzTW5U6QvgQqp5IF_w3a59kQ41lmyA-rR8hqHDAnx1YhvhVuiM-6IQRsxn8Nc-Jh8Z1tcA0Ew0gZoA1XIlkOqQxL-nBF4a-ALz28sVYCjFojTM5TNNa4QdV1P6zS1smbELP9Pawi3RNOfKZUmw8DVu_kwIlQgRGk_eFUO6eS29Y7ye4CUEXQlFlrxtY2LTE5LCAQCeCxjx-RWnVlCS-2vfjkIl8rFdAQpCyexDIMM8GBGjIKHLMM9-0HTmOT5-qV8VVlpkt4BnDEucXprcu9UFstaD1p_62mZNHlxlSYkzqm3DDIiqhcxsjjq_V-GCCyFcBnO8vHopXxcuTeqkWoETK4VcPVUG2pzSlgPeCd4yU--N8yG8zmsUpZimX1eCLx6Ry9p6io9WCmpM7sdmka5MyfKwf25pcLFNJMOL938_AIw9Oz3mKh4PwS586B1JlkwIm03jWj28ySR6Rqjj2jhviPY_JOGHWYw7U6YIKCXKGi9lLpQ8uuDhB3KVpztIOF48QAO2SlR9LTcjQ_1EWbJt8WRV4u0nr4ozKzd2aZMUiH3NtV1gLgTTMdYX9bB9RqbxoM7ilwHWwG031e-4ptIAEqCWV1LXdlc3QtMjDwDQ"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:23.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:25.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:27.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:29.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:31.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:33.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:35.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:37.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:39.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:41.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:43.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:45.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:47.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:49.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcCpNi4ZPkvgUQHbeOVczFz3gHkGQGUHEVdmj2FX5ZwkYAFPcjeMiXVFLAKKG22lsKq3OC8hVYrSRG6kGmIa4S1CC3qWAd3ZB_sufKXqFtMbuwbTJYIl-tQPxJvzRVkh1X0_viZDrQgfJi9ADHzPWpwjJisSrYTZPHkomKoLWOEA_toRhlur6pJ3HcJLY2w1-xr-FfDNuDdBZaI_vOoZJA7d393UOvlE8l4acBTd0EMadp7dURMHYcJxR4BTrpHAneAOmpNOi5Lh6-SrFWsgaTA2VVxfP7yganSHctkzFch3ifaqsYwCWAUKAH1HwazuNvyoqkMjN3tofCQ0Tl5Q6DwZugVs2d7Be5h7PVqFjnmgfxSg8maLpZrbixiCpQghPOTyvJIKrCNCXUNZZi_IB0WafRcFmgPRARNfiELJIG9Po4xBvFIq-EkzD-SMgJcDz7Y_CyrSFesysHBVDiYeaIsLrQjKOldwRsExUiZOS-xn-cCPOpdrrkLGgxFPGop1hxec67Px4cgASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcCmi9wvEhV-13MJGPTwc-OJTU7UzovHxDqAIAUZT0US24Q0WZhFs96K7CLQ4kFb_5rZ-ltu6IZFsnsjC7ER-mcvNIUrcTnE9WpDAxTBod8wkvV8MuWmp5tLK4TNoQELbwFZhDmdT9E8lEHZNWRz1uTONavaOpgSjz6kG76qdVOTEQDOljs6m9A0NSnpICs3v-1653dycF8rY8mDecTKqm7sGI_vKcrfo5mHBACXRdUtQVh6qJ1bIP2qlSobBxHd0UD45YhLVdNkUduW7PECP5sBJxJwAFv094fss6YczS7nB3kVc6oO8AtjIIXUxB7akK303lBzuh1qxtYtGYDs-SY2SonXZoDYecQE0KFMtBS1fCpDaZlBPmI2OUK6naNQGPKCcBzffp0pl-CoCoSjySAlo3qCjxDHygz6WGTpIOte4YDe_EjbVijmgZtOThv5CEe4RXmbJiUpPD_BB2D3aVNI_6WYSwHbA0T22LeZDaoP65Bgz8Ql7BsGgwtjRU18peckUB_WhkgASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN')
-[https @ 0x563b18319800] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcC85kTbUwunuBpWWReqL1UxfbAkZwJapHynNy2IUJdYEwYDK8ZpomHjfCD4LPUwrPvyv2Yq6EhmAdpD-BxD0slyASa3_Xgj4SCqiN6at5-OkDrOlmkcyx7g_C6H-qTLVjX_1PZtOdSWhHpl7UnYvsauOX_lcxsV3lryY0N7h6ceRkVvijrPg5ZkmQeOtTk4l7HOr1NqSzmev06wUvNuiu7_p0JHErUqhnLPcRXfV1Pcl6EoEWoSbZvXcCtDDXCPECcXYovXE1Qg7pq71HvLEiuOWw96DSSQxcznyYtD7URvd3hlcJUBNVi8iMPhh7N5q6CEdSahR4GBzk-yVBoR5G7CTbEKoev9RoEJETJVtbCerDIq0bG8jWoc1ECUPtYPLfyD6htUMNkCOytlcG5QT-Oqcc5hWu4FcMvrzP1DvSo0Kum-zEa6ayZ2R9yYSon0OxNiZ0MvP3cNEkpWqQNLxk-80L6bTb8iKrP5VkcQ5HJ1GfnDiarghO_Ggza6mgt15fU7zlb8-UgASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN' for reading
-frame= 1918 fps= 77 q=-1.0 size=   29952KiB time=00:00:31.93 bitrate=7683.9kbits/s speed=1.28x    
-[https @ 0x7fdc54009880] Opening 'https://euw13.playlist.ttvnw.net/v1/playlist/CrMGwUV6cFRQKbCvRooyPryCHwbivUlq06lb07yBgmzqEo8-T6UxwG-FAGkfEJtoAlrEo6kvz_BKWfQr3_baBZOJSoVum3PnNEjBJvO_w5yb0LPKTE665zDfgwVBynpk5WxgMAU75OdoLdw9Zr9PDUZCKqIrY1bw3NTGGnLIA7MDPwC1nzPmLhXfzBipS-22mY65csClDwomie_nRA06K7mW1P32RZ3iHKSJzNC_JmBAs_9xKJVwpqGMapW7ZuxoVmC7u6ghq9S9P2bsN9K83irwBk7RyyLvr-JiDPbVcNAvjfZUJ-RA6Y-ssUoerWqOxWtcEnYQVWZI3G4V6MrgpE4PeGo0jqpiHkDbTbctcsgwS7S9-v2WKa2qa1xes9UWq6gL00Z4fUv0JR5iNyFFRD50GIDy2I7gBW0buaBPVJi8ago2ZF93J200Ol-RltuQq7Hx-sI4N5EoOGy2ft6LqOiKz-JvfMl_F4Yjl2KkUFZgnGPzMKAv6kKTIV9oHHW-Nbld8El8NZzKuiZAFbJ00ZrMH9XjhbD8pFYWd4U6xxaXCjZSAZO-a7EzzYTiUILVkD56cvR1sTsRY1nGv-WWz2rXfHvwtzb056c4UzUU41rEY3MOOwvDzJdKSWT4Xq0VyEkIWK_9wQ4cFY_60sSzBELfD5Z6ilpF6kjKR99tgWJtJX5qhijZPNbCucKs5IMDzCimuU8beakAc9K1oH-4kHnepwj1zEN7a3ka_utzihXhwQM4NK3oSfJzSHq-Gl5B9-_Amv3TG9O2Ck9wyMJh0M0tekpqYPF0m99uAxjoAxB6UKbMTDAVzFXvRg-5c88216jYZHHcJNXy5ShJU3LRfyZCar5aHU48hY1eKE1z38NqbqU1PC8Uv7G_zltUS0HsYJWfIWVAXINjgzXH04hpNS6MbamRK5meP8lc1ZadNMTbmngxuiOPiw2OlSFqu4HJ8yd721t5o_D7qGHwFXzJaaYxR5DoFI-cBc3SuwZxB8if46NsGf0FBDwNY3BCYcccMFu0TSMTGxpM1GrWIopL8HRoFWKS2kMCU7rX8l7NJKuhxdTlXSSDjnCAQ5isZOZO4XDpbA9RGgxcv1OXxm1oSTYlarAgASoJZXUtd2VzdC0yMPAN.m3u8' for reading
-[hls @ 0x563b17f14200] Skip ('#EXT-X-VERSION:3')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:13677')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:27354.000')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-TOTAL-SECS:27386.000')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1764946998",CLASS="timestamp",START-DATE="2025-12-05T15:03:18.221Z",END-ON-NEXT=YES,X-SERVER-TIME="1764946998.22"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1764946998",CLASS="twitch-session",START-DATE="2025-12-05T15:03:18.221Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="485300268383225513"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="source-1764946969",CLASS="twitch-stream-source",START-DATE="2025-12-05T15:02:49.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764946969",CLASS="twitch-trigger",START-DATE="2025-12-05T15:02:49.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw13.playlist.ttvnw.net/trigger/Cp8GUgpD7jwXVbELzeICtMbf4oOrYhzXyfACkmJPI4gbdIIhlC1ZgFoRLYEUX8mIsaJeop2kmig2kRHPVU_1p6TCv0wMxEf4KsfNUgsnSMNVH1HGc8_wXyRuzYXtzqwD9f1EiErxZLd2DPD5cdXLJOx33Gb8BwO0m7OBy4kqs4gFibRCrdJEU-iNm4JB0Gs-2433u9JK9wcTxPdkSCdLPTgJGNu1pSfdCfc7kZp21l_-kNcPmv7f5yGHe3IMin7G8xx6foxwlbx8pav8InCJFxl2amwMIA97wz9JhHVL6zwT0KvTxr4RnpNED4Vh1mtzKUd_RBCYAAht1H8SdkcwPe-oA8DIVnsirN04Wv-76FJ7FPYMFt1-_vqpTZhYpBDV0Ikb6owKM_dh6ur1zCzvrz5Pc_uWWRiLTuX2VHs_G5P76VpAkCWFPbQeW4EH3qG5iyBC4YJSv819l3A0I8FDrOO13aRF9F109kSlwcOsy8jgjzTW5U6QvgQqp5IF_w3a59kQ41lmyA-rR8hqHDAnx1YhvhVuiM-6IQRsxn8Nc-Jh8Z1tcA0Ew0gZoA1XIlkOqQxL-nBF4a-ALz28sVYCjFojTM5TNNa4QdV1P6zS1smbELP9Pawi3RNOfKZUmw8DVu_kwIlQgRGk_eFUO6eS29Y7ye4CUEXQlFlrxtY2LTE5LCAQCeCxjx-RWnVlCS-2vfjkIl8rFdAQpCyexDIMM8GBGjIKHLMM9-0HTmOT5-qV8VVlpkt4BnDEucXprcu9UFstaD1p_62mZNHlxlSYkzqm3DDIiqhcxsjjq_V-GCCyFcBnO8vHopXxcuTeqkWoETK4VcPVUG2pzSlgPeCd4yU--N8yG8zmsUpZimX1eCLx6Ry9p6io9WCmpM7sdmka5MyfKwf25pcLFNJMOL938_AIw9Oz3mKh4PwS586B1JlkwIm03jWj28ySR6Rqjj2jhviPY_JOGHWYw7U6YIKCXKGi9lLpQ8uuDhB3KVpztIOF48QAO2SlR9LTcjQ_1EWbJt8WRV4u0nr4ozKzd2aZMUiH3NtV1gLgTTMdYX9bB9RqbxoM7ilwHWwG031e-4ptIAEqCWV1LXdlc3QtMjDwDQ"')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:25.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:27.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:29.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:31.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:33.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:35.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:37.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:39.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:41.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:43.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:45.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:47.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:49.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T15:03:51.649Z')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcCmi9wvEhV-13MJGPTwc-OJTU7UzovHxDqAIAUZT0US24Q0WZhFs96K7CLQ4kFb_5rZ-ltu6IZFsnsjC7ER-mcvNIUrcTnE9WpDAxTBod8wkvV8MuWmp5tLK4TNoQELbwFZhDmdT9E8lEHZNWRz1uTONavaOpgSjz6kG76qdVOTEQDOljs6m9A0NSnpICs3v-1653dycF8rY8mDecTKqm7sGI_vKcrfo5mHBACXRdUtQVh6qJ1bIP2qlSobBxHd0UD45YhLVdNkUduW7PECP5sBJxJwAFv094fss6YczS7nB3kVc6oO8AtjIIXUxB7akK303lBzuh1qxtYtGYDs-SY2SonXZoDYecQE0KFMtBS1fCpDaZlBPmI2OUK6naNQGPKCcBzffp0pl-CoCoSjySAlo3qCjxDHygz6WGTpIOte4YDe_EjbVijmgZtOThv5CEe4RXmbJiUpPD_BB2D3aVNI_6WYSwHbA0T22LeZDaoP65Bgz8Ql7BsGgwtjRU18peckUB_WhkgASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN')
-[hls @ 0x563b17f14200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcC-8MJZAF1h524muoCoCH_h681eMP__20hBw-aAm6ry7c800eEEsrGRMJCADJmjmenTKS1a0sddYJRwxj_6l6oRSAmFb5DkSKLs-p1orn5lfl_nTZClcfAycH37TlBoaDL_-Fwi1UhgW3rY3xRK7i8kdhTW4_QutdTng8OTzxbQo4KTVKwuNrOwtxoLNsLlPYDVZ2SQRDyfQiGuqhr9h8WoFsedLgi4e3s4-s97uIU4pC1TLbUXso5DLO9S8hIpGu4I4bNk2OB4IMypTFPSPiANfj0BBgEiRVqf-X-L5iPRCvH_ay7xAZBJ_HgI9vw5-DrPgBNpL1C7Ic5fe266INSGw6X0okDvCghX-ROD8Vps6dH3GhhMRVBG_x4eMKbIm9NrQgCMvHxHc48ZcJuvSVP1kU27kpJGZp0QR-jwOJBvoGOh-C6JW7FmMVAlpSMxTArmc0VucEIyugzj6OjhpxKsw3NXnijLaQL61P3NxwcdE_7C0Ueu_RWGgxC4iiw2RiEe8QCjGIgASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN')
-[https @ 0x563b18319800] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CvcCpNi4ZPkvgUQHbeOVczFz3gHkGQGUHEVdmj2FX5ZwkYAFPcjeMiXVFLAKKG22lsKq3OC8hVYrSRG6kGmIa4S1CC3qWAd3ZB_sufKXqFtMbuwbTJYIl-tQPxJvzRVkh1X0_viZDrQgfJi9ADHzPWpwjJisSrYTZPHkomKoLWOEA_toRhlur6pJ3HcJLY2w1-xr-FfDNuDdBZaI_vOoZJA7d393UOvlE8l4acBTd0EMadp7dURMHYcJxR4BTrpHAneAOmpNOi5Lh6-SrFWsgaTA2VVxfP7yganSHctkzFch3ifaqsYwCWAUKAH1HwazuNvyoqkMjN3tofCQ0Tl5Q6DwZugVs2d7Be5h7PVqFjnmgfxSg8maLpZrbixiCpQghPOTyvJIKrCNCXUNZZi_IB0WafRcFmgPRARNfiELJIG9Po4xBvFIq-EkzD-SMgJcDz7Y_CyrSFesysHBVDiYeaIsLrQjKOldwRsExUiZOS-xn-cCPOpdrrkLGgxFPGop1hxec67Px4cgASoJZXUtd2VzdC0yMPAN.ts?dna=Cm3E0lLd-uJWwupsMV9vbrQ4XWwMaITGQMQi3MRrk-iDgJktALdYn9xiiHu7GXg9FIrh09u-kvzEY5DiRl7NDglV7qrwwdjeo2UyXg_LYuD09mPJYrjA2TxF9P1A_7p4mPS0OMjnRrAInmsjhYhAGgxcrsUAZV0xUIwF-9ogASoJZXUtd2VzdC0yMPAN' for reading
-[out#0/mp4 @ 0x563b18a26180] video:29331KiB audio:636KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.206480%
-frame= 1918 fps= 71 q=-1.0 Lsize=   30028KiB time=00:00:31.93 bitrate=7703.5kbits/s speed=1.19x    
-Exiting normally, received signal 15.
-2025-12-05 15:03:53,558 - __main__ - INFO - Download stopped for browser browser_1764946990
-2025-12-05 15:03:53,558 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:03:53] "POST /api/downloads/stop/browser_1764946990 HTTP/1.1" 200 -
-2025-12-05 15:03:53,574 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:03:53] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:03:53,917 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:03:53] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:03:54,928 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:03:54] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:03:55,921 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:03:55] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:03:56,933 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:03:56] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:03:57,925 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:03:57] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:03:59,835 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:03:59] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:04:00,835 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:04:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:04:01,830 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:04:01] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 15:10:35,949 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:35,949 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:35,949 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
+2025-12-05 15:10:35,949 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=524336
+2025-12-05 15:10:35,949 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
+2025-12-05 15:10:35,949 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (524336 bytes)
+2025-12-05 15:10:36,002 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:36,003 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:36,003 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:36] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 15:10:36,855 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
+2025-12-05 15:10:36,856 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=12582960
+2025-12-05 15:10:36,856 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
+2025-12-05 15:10:36,856 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (12582960 bytes)
+2025-12-05 15:10:36,926 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:36,926 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:36,926 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
+2025-12-05 15:10:36,926 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
+2025-12-05 15:10:36,926 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
+2025-12-05 15:10:36,926 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
+2025-12-05 15:10:36,975 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:36,976 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:36,976 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:36] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 15:10:37,856 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
+2025-12-05 15:10:37,856 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=13631536
+2025-12-05 15:10:37,856 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
+2025-12-05 15:10:37,856 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (13631536 bytes)
+2025-12-05 15:10:37,937 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:37,937 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:37,937 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
+2025-12-05 15:10:37,937 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
+2025-12-05 15:10:37,937 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
+2025-12-05 15:10:37,937 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
+2025-12-05 15:10:38,000 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:38,000 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:38,000 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:38] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 15:10:38,872 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
+2025-12-05 15:10:38,872 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=13631536
+2025-12-05 15:10:38,872 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
+2025-12-05 15:10:38,872 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (13631536 bytes)
+2025-12-05 15:10:38,952 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:38,952 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:38,952 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
+2025-12-05 15:10:38,953 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
+2025-12-05 15:10:38,953 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
+2025-12-05 15:10:38,953 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
+2025-12-05 15:10:39,003 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:39,003 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:39,003 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:39] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 15:10:39,866 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
+2025-12-05 15:10:39,866 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=14417968
+2025-12-05 15:10:39,866 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
+2025-12-05 15:10:39,867 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (14417968 bytes)
+2025-12-05 15:10:39,928 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:39,928 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:39,928 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
+2025-12-05 15:10:39,929 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
+2025-12-05 15:10:39,929 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
+2025-12-05 15:10:39,929 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
+2025-12-05 15:10:39,988 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:39,988 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:39,989 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:39] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 15:10:40,858 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
+2025-12-05 15:10:40,858 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=14417968
+2025-12-05 15:10:40,858 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
+2025-12-05 15:10:40,858 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (14417968 bytes)
+2025-12-05 15:10:40,918 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:40,918 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:40,918 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
+2025-12-05 15:10:40,918 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
+2025-12-05 15:10:40,918 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
+2025-12-05 15:10:40,918 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
+2025-12-05 15:10:40,977 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:40,977 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:40,977 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:40] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 15:10:42,838 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
+2025-12-05 15:10:42,838 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=15466544
+2025-12-05 15:10:42,838 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
+2025-12-05 15:10:42,838 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (15466544 bytes)
+2025-12-05 15:10:42,909 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:42,909 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:42,909 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
+2025-12-05 15:10:42,909 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=1048624
+2025-12-05 15:10:42,909 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
+2025-12-05 15:10:42,909 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (1048624 bytes)
+2025-12-05 15:10:42,959 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:42,959 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:42,960 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:42] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 15:10:44,839 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
+2025-12-05 15:10:44,839 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=16252976
+2025-12-05 15:10:44,839 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
+2025-12-05 15:10:44,839 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (16252976 bytes)
+2025-12-05 15:10:44,902 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:44,902 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:44,902 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
+2025-12-05 15:10:44,902 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=1048624
+2025-12-05 15:10:44,902 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
+2025-12-05 15:10:44,902 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (1048624 bytes)
+2025-12-05 15:10:44,951 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
+2025-12-05 15:10:44,951 - __main__ - INFO - Thumbnail result: none
+2025-12-05 15:10:44,952 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:44] "GET /api/downloads/active HTTP/1.1" 200 -
