@@ -91,6 +91,7 @@ check_chrome_installation()
 # Global state
 active_browsers = {}
 download_queue = {}
+direct_download_status = {}  # Track status for direct downloads (thumbnail, metadata)
 
 # Utility functions for resolution parsing
 def fetch_master_playlist(url):
@@ -279,6 +280,78 @@ def enrich_stream_metadata(stream_dict):
         logger.debug(f"Stream metadata already complete for: {stream_dict.get('name', 'unknown')}")
 
     return stream_dict
+
+def generate_stream_thumbnail(stream_url):
+    """Extract a single frame from a stream URL for thumbnail (standalone function)"""
+    temp_file = None
+    try:
+        logger.info(f"Generating thumbnail for stream: {stream_url[:100]}...")
+
+        # Create temporary output file
+        temp_file = f"/tmp/thumb_{int(time.time())}_{os.getpid()}.jpg"
+
+        # Use ffmpeg to extract a frame at 2 seconds into the stream
+        cmd = [
+            'ffmpeg',
+            '-loglevel', 'error',
+            '-i', stream_url,
+            '-ss', '00:00:02',  # Seek to 2 seconds
+            '-vframes', '1',     # Extract 1 frame
+            '-q:v', '2',         # High quality JPEG
+            '-y',                # Overwrite
+            temp_file
+        ]
+
+        logger.debug(f"Running ffmpeg command: {' '.join(cmd[:5])}...")
+
+        # Run with timeout (15 seconds max)
+        process = subprocess.run(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=15
+        )
+
+        # Check if thumbnail was created
+        if os.path.exists(temp_file) and os.path.getsize(temp_file) > 0:
+            # Read and encode as base64
+            with open(temp_file, 'rb') as f:
+                thumbnail_data = base64.b64encode(f.read()).decode('utf-8')
+
+            # Clean up temp file
+            os.remove(temp_file)
+
+            logger.info(f"✓ Thumbnail generated successfully ({len(thumbnail_data)} bytes)")
+            return f"data:image/jpeg;base64,{thumbnail_data}"
+        else:
+            if os.path.exists(temp_file):
+                logger.warning(f"Thumbnail file created but empty (size: {os.path.getsize(temp_file)})")
+            else:
+                logger.warning("Thumbnail file was not created by ffmpeg")
+
+            if process.stderr:
+                stderr_text = process.stderr.decode('utf-8', errors='ignore')
+                if stderr_text.strip():
+                    logger.warning(f"FFmpeg stderr: {stderr_text[:200]}")
+
+            return None
+
+    except subprocess.TimeoutExpired:
+        logger.warning("Thumbnail generation timed out after 15 seconds")
+        return None
+    except Exception as e:
+        logger.error(f"Failed to generate thumbnail: {type(e).__name__}: {e}")
+        import traceback
+        logger.debug(f"Thumbnail generation traceback: {traceback.format_exc()}")
+        return None
+    finally:
+        # Clean up temp file if it exists
+        if temp_file and os.path.exists(temp_file):
+            try:
+                os.remove(temp_file)
+                logger.debug(f"Cleaned up temp thumbnail file: {temp_file}")
+            except Exception as cleanup_error:
+                logger.debug(f"Failed to clean up temp file: {cleanup_error}")
 
 def match_resolution(resolutions, preferred):
     """Find best matching resolution"""
@@ -1121,76 +1194,8 @@ class StreamDetector:
 
     def _generate_stream_thumbnail(self, stream_url):
         """Extract a single frame from a stream URL for thumbnail"""
-        temp_file = None
-        try:
-            logger.info(f"Generating thumbnail for stream: {stream_url[:100]}...")
-
-            # Create temporary output file
-            temp_file = f"/tmp/thumb_{int(time.time())}_{os.getpid()}.jpg"
-
-            # Use ffmpeg to extract a frame at 2 seconds into the stream
-            # Added -loglevel error to reduce noise, increased timeout to 15s
-            cmd = [
-                'ffmpeg',
-                '-loglevel', 'error',
-                '-i', stream_url,
-                '-ss', '00:00:02',  # Seek to 2 seconds
-                '-vframes', '1',     # Extract 1 frame
-                '-q:v', '2',         # High quality JPEG
-                '-y',                # Overwrite
-                temp_file
-            ]
-
-            logger.debug(f"Running ffmpeg command: {' '.join(cmd[:5])}...")
-
-            # Run with timeout (15 seconds max - increased from 10)
-            process = subprocess.run(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                timeout=15
-            )
-
-            # Check if thumbnail was created
-            if os.path.exists(temp_file) and os.path.getsize(temp_file) > 0:
-                # Read and encode as base64
-                with open(temp_file, 'rb') as f:
-                    thumbnail_data = base64.b64encode(f.read()).decode('utf-8')
-
-                # Clean up temp file
-                os.remove(temp_file)
-
-                logger.info(f"✓ Thumbnail generated successfully ({len(thumbnail_data)} bytes)")
-                return f"data:image/jpeg;base64,{thumbnail_data}"
-            else:
-                if os.path.exists(temp_file):
-                    logger.warning(f"Thumbnail file created but empty (size: {os.path.getsize(temp_file)})")
-                else:
-                    logger.warning("Thumbnail file was not created by ffmpeg")
-
-                if process.stderr:
-                    stderr_text = process.stderr.decode('utf-8', errors='ignore')
-                    if stderr_text.strip():
-                        logger.warning(f"FFmpeg stderr: {stderr_text[:200]}")
-
-                return None
-
-        except subprocess.TimeoutExpired:
-            logger.warning("Thumbnail generation timed out after 15 seconds")
-            return None
-        except Exception as e:
-            logger.error(f"Failed to generate thumbnail: {type(e).__name__}: {e}")
-            import traceback
-            logger.debug(f"Thumbnail generation traceback: {traceback.format_exc()}")
-            return None
-        finally:
-            # Clean up temp file if it exists
-            if temp_file and os.path.exists(temp_file):
-                try:
-                    os.remove(temp_file)
-                    logger.debug(f"Cleaned up temp thumbnail file: {temp_file}")
-                except Exception as cleanup_error:
-                    logger.debug(f"Failed to clean up temp file: {cleanup_error}")
+        # Delegate to standalone function
+        return generate_stream_thumbnail(stream_url)
 
     def _add_thumbnail_to_stream(self, stream_dict):
         """Generate and add thumbnail to a stream dictionary"""
@@ -1363,8 +1368,46 @@ def download_direct():
 
 
 def _direct_download(browser_id, stream_url, output_path):
-    """Execute direct download"""
+    """Execute direct download with metadata enrichment"""
     try:
+        logger.info(f"Starting direct download: {stream_url[:100]}...")
+
+        # Create stream entry object for metadata enrichment
+        stream_entry = {
+            'url': stream_url,
+            'bandwidth': 0,
+            'resolution': '',
+            'framerate': '',
+            'codecs': '',
+            'name': 'direct'
+        }
+
+        # Enrich metadata using ffprobe
+        logger.info("Enriching stream metadata for direct download...")
+        enrich_stream_metadata(stream_entry)
+
+        # Generate thumbnail
+        logger.info("Generating thumbnail for direct download...")
+        thumbnail = generate_stream_thumbnail(stream_url)
+
+        # Prepare metadata for display
+        resolution_display = stream_entry.get('resolution', 'Unknown')
+        if stream_entry.get('resolution') and 'x' in str(stream_entry.get('resolution')):
+            fps = stream_entry.get('framerate', '').split('.')[0] if stream_entry.get('framerate') else ''
+            resolution_display = f"{stream_entry.get('resolution')}@{fps}fps" if fps else stream_entry.get('resolution')
+
+        # Store status for frontend (includes thumbnail and metadata)
+        direct_download_status[browser_id] = {
+            'browser_id': browser_id,
+            'is_running': True,
+            'download_started': True,
+            'thumbnail': thumbnail.split(',', 1)[1] if thumbnail and thumbnail.startswith('data:image/') else thumbnail,
+            'selected_stream_metadata': stream_entry
+        }
+
+        logger.info(f"Direct download metadata: res={stream_entry.get('resolution')}, fps={stream_entry.get('framerate')}, codecs={stream_entry.get('codecs')}")
+
+        # Start FFmpeg download
         cmd = [
             'ffmpeg',
             '-i', stream_url,
@@ -1381,11 +1424,17 @@ def _direct_download(browser_id, stream_url, output_path):
             universal_newlines=True
         )
 
+        # Store in download queue with metadata
         download_queue[browser_id] = {
             'process': process,
             'output_path': output_path,
             'stream_url': stream_url,
-            'started_at': time.time()
+            'started_at': time.time(),
+            'resolution_name': resolution_display,
+            'resolution': stream_entry.get('resolution', 'Unknown'),
+            'framerate': stream_entry.get('framerate', 'Unknown'),
+            'codecs': stream_entry.get('codecs', 'Unknown'),
+            'filename': os.path.basename(output_path)
         }
 
         stdout, stderr = process.communicate()
@@ -1395,8 +1444,14 @@ def _direct_download(browser_id, stream_url, output_path):
         else:
             logger.error(f"Direct download failed: {stderr}")
 
+        # Clean up status after download completes
+        if browser_id in direct_download_status:
+            del direct_download_status[browser_id]
+
     except Exception as e:
         logger.error(f"Direct download error: {e}")
+        import traceback
+        logger.error(f"Traceback: {traceback.format_exc()}")
 
 
 @app.route('/api/browser/start', methods=['POST'])
@@ -1438,8 +1493,9 @@ def start_browser():
 
 @app.route('/api/browser/status/<browser_id>', methods=['GET'])
 def browser_status(browser_id):
-    """Get browser status"""
+    """Get browser or direct download status"""
     try:
+        # Check if it's a browser-based download
         if browser_id in active_browsers:
             detector = active_browsers[browser_id]
             status = detector.get_status()
@@ -1454,6 +1510,22 @@ def browser_status(browser_id):
                 }
 
             return jsonify(status)
+
+        # Check if it's a direct download
+        elif browser_id in direct_download_status:
+            status = direct_download_status[browser_id]
+
+            # Add download info if available
+            if browser_id in download_queue:
+                download_info = download_queue[browser_id]
+                status['download'] = {
+                    'output_path': download_info['output_path'],
+                    'stream_url': download_info['stream_url'],
+                    'duration': time.time() - download_info['started_at']
+                }
+
+            return jsonify(status)
+
         else:
             return jsonify({'error': 'Browser not found'}), 404
 
