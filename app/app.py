@@ -1924,6 +1924,8 @@ def active_downloads():
             output_path = download_info.get('output_path')
             started_at = download_info.get('started_at')
 
+            logger.info(f"Processing download {browser_id}: output_path={output_path}")
+
             # Check if file exists and get size
             file_size = 0
             if os.path.exists(output_path):
@@ -1937,8 +1939,11 @@ def active_downloads():
 
             # Extract thumbnail from downloaded file (cached for 10 seconds)
             thumbnail = None
+            logger.info(f"Thumbnail check: is_running={is_running}, output_path={output_path}, file_size={file_size}")
             if is_running and output_path:
+                logger.info(f"Calling extract_thumbnail_from_file for {browser_id}")
                 thumbnail = extract_thumbnail_from_file(output_path, browser_id)
+                logger.info(f"Thumbnail result: {'success' if thumbnail else 'none'}")
 
             active.append({
                 'browser_id': browser_id,
