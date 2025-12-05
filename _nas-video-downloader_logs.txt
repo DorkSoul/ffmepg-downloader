@@ -1,278 +1,99 @@
-2025-12-04 19:37:12,938 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
-2025-12-04 19:37:12,939 INFO supervisord started with pid 1
-2025-12-04 19:37:13,943 INFO spawned: 'xvfb' with pid 7
-2025-12-04 19:37:13,945 INFO spawned: 'fluxbox' with pid 8
-2025-12-04 19:37:13,947 INFO spawned: 'x11vnc' with pid 9
-2025-12-04 19:37:13,948 INFO spawned: 'novnc' with pid 10
-2025-12-04 19:37:13,950 INFO spawned: 'flask' with pid 11
-2025-12-04 19:37:14,196 - __main__ - INFO - ================================================================================
-2025-12-04 19:37:14,196 - __main__ - INFO - NAS VIDEO DOWNLOADER STARTING
-2025-12-04 19:37:14,196 - __main__ - INFO - ================================================================================
-2025-12-04 19:37:14,196 - __main__ - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
-2025-12-04 19:37:14,196 - __main__ - INFO - Working directory: /app
-2025-12-04 19:37:14,196 - __main__ - INFO - DISPLAY: :99
-2025-12-04 19:37:14,196 - __main__ - INFO - Download dir: /app/downloads
-2025-12-04 19:37:14,196 - __main__ - INFO - Chrome data dir: /app/chrome-data
-2025-12-04 19:37:14,197 - __main__ - INFO - Checking Chrome installation...
-2025-12-04 19:37:14,223 - __main__ - INFO - Chrome: Google Chrome 143.0.7499.40
-2025-12-04 19:37:14,223 INFO reaped unknown pid 30 (exit status 0)
-2025-12-04 19:37:14,224 INFO reaped unknown pid 31 (exit status 0)
-2025-12-04 19:37:14,227 - __main__ - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
-2025-12-04 19:37:14,228 - __main__ - INFO - DISPLAY environment: :99
-2025-12-04 19:37:14,232 - __main__ - INFO - Xvfb is running ✓
-2025-12-04 19:37:14,232 - __main__ - INFO - Download dir exists: True
-2025-12-04 19:37:14,233 - __main__ - INFO - Chrome data dir exists: True
-2025-12-04 19:37:14,236 - __main__ - INFO - ================================================================================
-2025-12-04 19:37:14,237 - __main__ - INFO - Starting NAS Video Downloader
-2025-12-04 19:37:14,237 - __main__ - INFO - Download directory: /app/downloads
-2025-12-04 19:37:14,237 - __main__ - INFO - Chrome data directory: /app/chrome-data
-2025-12-04 19:37:14,237 - __main__ - INFO - ================================================================================
- * Serving Flask app 'app'
- * Debug mode: off
-2025-12-04 19:37:14,238 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://192.168.96.2:5000
-2025-12-04 19:37:14,238 - werkzeug - INFO - Press CTRL+C to quit
-2025-12-04 19:37:14,955 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 19:37:14,955 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 19:37:14,955 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 19:37:14,955 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 19:37:14,955 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-04 19:37:16,514 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:16] "GET / HTTP/1.1" 200 -
-2025-12-04 19:37:16,705 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:16] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:25,445 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 19:37:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:26,714 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:26] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:30,806 - __main__ - INFO - Starting browser with resolution: source, framerate: any, auto_download: True
-2025-12-04 19:37:30,807 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/niikokonut
-2025-12-04 19:37:30,807 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 19:37:30,807 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 19:37:31,790 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 19:37:32,207 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 19:37:32,207 - __main__ - INFO - Chrome debugger address: localhost:34651
-2025-12-04 19:37:32,211 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:34651/devtools/page/DDA6584A598F9F157A3826C02CD1D5EA...
-2025-12-04 19:37:32,211 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 19:37:32,215 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 19:37:32,217 - __main__ - INFO - Network monitoring started
-2025-12-04 19:37:32,716 - __main__ - INFO - Loading https://www.twitch.tv/niikokonut...
-2025-12-04 19:37:33,728 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0...
-2025-12-04 19:37:33,728 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_sourc...
-2025-12-04 19:37:33,728 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 19:37:33,842 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 19:37:33,843 - __main__ - INFO - Found 5 resolutions
-2025-12-04 19:37:33,843 - __main__ - INFO - Auto-download enabled, finding matching stream...
-2025-12-04 19:37:33,843 - __main__ - INFO - Matching stream - Resolution: source, Framerate: any
-2025-12-04 19:37:33,843 - __main__ - INFO - Source requested, returning highest quality stream
-2025-12-04 19:37:33,843 - __main__ - INFO - Matched stream: 480p30 - 852x480 @ 30.000fps
-2025-12-04 19:37:33,843 - __main__ - INFO - Starting download for resolution: 480p30
-2025-12-04 19:37:33,843 - __main__ - INFO - Stream URL: https://euw13.playlist.ttvnw.net/v1/playlist/CqUGSXM6YZ3xUpPdL3ipgj1u-1fB2pDv20YS0LUiPMLh2_OrkuwPP56a_BHFI1xWo9ryuo9L-cJ6URYzkHNDK_ELErTn1rBjTVAodOXF6GmC0dUW3teQAI8429GSoOBZcw3E1pINSTz9TmbbZFmAbDH8wNli5duwVSqj729pROfxq5KAv-uCYFuD3CT5Jkw2IR5ByoKVRbMzQoHonrntZDR05dWbU6eA9X43XJSD4jUhCzODhNVpIA6HaXMAsEg-3rB6SiB_ZiaUNK6MeWiAm_BYxLfS-NztzsDSBSTcASeGxuxCRm7wl6zJoMUvvsf1rP1Mz5dqa--HdeGiDwjufcOVEjj66NWdNaUijCshr5d3wupu9SGfbFALgE5MV_dFUsQO2z1L5EvnBQAxKxb0oZhOKFg_2eXLyLC2AmM6kc5oR9exYatScG6-wAsbii2UAObDKTt92UW0QoCBa6yqccc6sgI1KHoEc4kShDrWHbcQMMt-LssaxOLgIX3j35Kh3w3QYVeIiD59aYQowVBgPNOg0DuYM-z3lAe8HvJcvQbcGQRmC5HLsfiTQ8bTDRWrFf-7q1bBEo_ErkRVYWKSplErcZDhKigSWwfNjq9LLzP6xodcrw1PCfFQEIUkLaLG_1zJcy91vZ-EMWoWl8ingQSYMYmm0LpY0PWLjhMIE4GDxDRJ34fWqdMDFrak7AFtOiBw8w8zmTh1oRWnMvMxiNNnEzAqGVO_AR5PPNzvkWuu5z_3ifzUfg4UHKXMf5chEeueepWsnasr2QoL3Rjs89vH9aXHCqDcoZm7DWfwHrrj7qbT8cbx1rdXqgIkCYg3aogYuXYq9D-EWIcDiSO-iFY70wPlpHil1SfsgEovb8_FwJQsbPoYxt0i_IDc4c41p4XgVUsm61EUFuZFfRRHr-zuYpcQ2fziD_57QBW7MwsBQp0fepDRL5gG_KFfMaNy3bYBX4oyOfR0LMB3TFlEt6rNNDm5YRw01b44cS-lQdd_bJlNe7GJBRJLJ7qECDoowPB9oyO7l6XB7cPIDdLnuH0T74Laxz7M4_XjRrRqX_Sll9CRugdwlRoMS2mEwR_8xUBFyxyzIAEqCWV1LXdlc3QtMjDvDQ.m3u8
-2025-12-04 19:37:33,843 - __main__ - INFO - Waiting 3 seconds for video to load...
-2025-12-04 19:37:36,410 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:36] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 19:37:36,719 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:36] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:37,604 - __main__ - INFO - Thumbnail captured successfully
-2025-12-04 19:37:37,604 - __main__ - INFO - Starting FFmpeg download: https://euw13.playlist.ttvnw.net/v1/playlist/CqUGSXM6YZ3xUpPdL3ipgj1u-1fB2pDv20YS0LUiPMLh2_OrkuwPP56a_BHFI1xWo9ryuo9L-cJ6URYzkHNDK_ELErTn1rBjTVAodOXF6GmC0dUW3teQAI8429GSoOBZcw3E1pINSTz9TmbbZFmAbDH8wNli5duwVSqj729pROfxq5KAv-uCYFuD3CT5Jkw2IR5ByoKVRbMzQoHonrntZDR05dWbU6eA9X43XJSD4jUhCzODhNVpIA6HaXMAsEg-3rB6SiB_ZiaUNK6MeWiAm_BYxLfS-NztzsDSBSTcASeGxuxCRm7wl6zJoMUvvsf1rP1Mz5dqa--HdeGiDwjufcOVEjj66NWdNaUijCshr5d3wupu9SGfbFALgE5MV_dFUsQO2z1L5EvnBQAxKxb0oZhOKFg_2eXLyLC2AmM6kc5oR9exYatScG6-wAsbii2UAObDKTt92UW0QoCBa6yqccc6sgI1KHoEc4kShDrWHbcQMMt-LssaxOLgIX3j35Kh3w3QYVeIiD59aYQowVBgPNOg0DuYM-z3lAe8HvJcvQbcGQRmC5HLsfiTQ8bTDRWrFf-7q1bBEo_ErkRVYWKSplErcZDhKigSWwfNjq9LLzP6xodcrw1PCfFQEIUkLaLG_1zJcy91vZ-EMWoWl8ingQSYMYmm0LpY0PWLjhMIE4GDxDRJ34fWqdMDFrak7AFtOiBw8w8zmTh1oRWnMvMxiNNnEzAqGVO_AR5PPNzvkWuu5z_3ifzUfg4UHKXMf5chEeueepWsnasr2QoL3Rjs89vH9aXHCqDcoZm7DWfwHrrj7qbT8cbx1rdXqgIkCYg3aogYuXYq9D-EWIcDiSO-iFY70wPlpHil1SfsgEovb8_FwJQsbPoYxt0i_IDc4c41p4XgVUsm61EUFuZFfRRHr-zuYpcQ2fziD_57QBW7MwsBQp0fepDRL5gG_KFfMaNy3bYBX4oyOfR0LMB3TFlEt6rNNDm5YRw01b44cS-lQdd_bJlNe7GJBRJLJ7qECDoowPB9oyO7l6XB7cPIDdLnuH0T74Laxz7M4_XjRrRqX_Sll9CRugdwlRoMS2mEwR_8xUBFyxyzIAEqCWV1LXdlc3QtMjDvDQ.m3u8 -> /app/downloads/video_480p30_1764877057.mp4
-2025-12-04 19:37:38,437 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:38] "GET /api/browser/status/browser_1764877050 HTTP/1.1" 200 -
-2025-12-04 19:37:40,116 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 19:37:40,284 - __main__ - INFO - Browser browser_1764877050 closed
-2025-12-04 19:37:40,285 INFO reaped unknown pid 58 (exit status 0)
-2025-12-04 19:37:40,285 INFO reaped unknown pid 60 (exit status 0)
-2025-12-04 19:37:40,285 INFO reaped unknown pid 65 (exit status 0)
-2025-12-04 19:37:40,285 INFO reaped unknown pid 66 (exit status 0)
-2025-12-04 19:37:40,285 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:40] "POST /api/browser/close/browser_1764877050 HTTP/1.1" 200 -
-2025-12-04 19:37:40,301 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:40] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:40,471 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:40] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:44,729 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: 60, auto_download: True
-2025-12-04 19:37:44,729 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/niikokonut
-2025-12-04 19:37:44,729 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 19:37:44,730 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 19:37:45,699 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 19:37:46,086 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 19:37:46,086 - __main__ - INFO - Chrome debugger address: localhost:39913
-2025-12-04 19:37:46,089 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:39913/devtools/page/123381BD7FBC23A593F04257C157EBA5...
-2025-12-04 19:37:46,089 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 19:37:46,092 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 19:37:46,094 - __main__ - INFO - Network monitoring started
-2025-12-04 19:37:46,593 - __main__ - INFO - Loading https://www.twitch.tv/niikokonut...
-2025-12-04 19:37:46,713 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:46] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:47,805 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0...
-2025-12-04 19:37:47,805 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_sourc...
-2025-12-04 19:37:47,805 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 19:37:47,878 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 19:37:47,879 - __main__ - INFO - Found 5 resolutions
-2025-12-04 19:37:47,879 - __main__ - INFO - Auto-download enabled, finding matching stream...
-2025-12-04 19:37:47,879 - __main__ - INFO - Matching stream - Resolution: 1080p, Framerate: 60
-2025-12-04 19:37:47,879 - __main__ - INFO - Found 1 streams matching resolution 1080p
-2025-12-04 19:37:47,879 - __main__ - INFO - Found 60fps stream
-2025-12-04 19:37:47,879 - __main__ - INFO - Matched stream: 1080p60 - 1920x1080 @ 60.000fps
-2025-12-04 19:37:47,879 - __main__ - INFO - Starting download for resolution: 1080p60
-2025-12-04 19:37:47,879 - __main__ - INFO - Stream URL: https://euw13.playlist.ttvnw.net/v1/playlist/CrcGfGCkp0v9dzqxh90jpZY3P7M_bXBLMZrjmdpJQ5d2KCfd-3clbWPr5NKF86t05fakpXdYHY9BrtD1cQgGW9NE9_m5c6e0CyZ7q5wTME-8C3Sg6qk0bHLtPYt5H8kakDLvMVQ-OifPsn5NV9uxIxioZ_K_1n3l4XgVEpBAXzcKmWlHRTxVarlhOPolAWDG2Bydchl5GGp0ctWNRKVjxZaab6hZ5F2FrUxSbjTORkCbOHXzz2yvSY58lDOg71VuK_i41516nz4G4EARQxj4C0mDeVbHzfIYmikOPsJbqXD7SjEvNB4lKYWpmOyKv-qSKs-2KcYVjjKTGV9jUr3VpvzHj1rrMOdecvM7XD8LrJ2Z3Tfv0tLBZ1N40uPe0yAljcl-ztzpqrq_qWu_4Sk8jcDcuGG7RymLxmACY96sy3EnXlrEA4S_vgoOSwbIPsg1QOUckil70j9DXDORAVoW_p5fC9tcFH2p4Gi7WrShFb7P6g6UHtgiZge9FbAhqETNZ-5xEPbM5mGpYI1GKHHwHrLUrIjnGKZKAKnTOJ-WHk22ktP4mVXQOa3eXiMnT0_X-pExQj-rew6RJD2hg7T_fPogVyz1-Z9jaqwsndnJxNyHxbGULnVA7DP3JCBGbfiwnl53pfXKhn69yzPEYRFErn4ssY7p2Az7rr_4X_RgjvNWMKTzV4MJXW9Cl1FcPaO8XpRAVcOKIlt6qmLyMPhrwG16JuQOmemXw2AsMgJd6eLnQa0sEz_n7aw1aVu5Cg2ju3_2zhzXuw0hypVFSJ-ohBRrJvWvnUvq43Fu-4x2Yr1h7wbh4KDMVjUU7kPEPDJ55WysNPXE0WfOmMQI6PTHFQFHEzD7thJ9EsN1vbx4B8FME408lMtN4lbkmVNQjpB_g3ALiJGDW7-wjEvUISB2mITiBy-endKqt9X5_R6-xaP2IcJqLjlEWMT_HlN5hmSQ_rIBfknIcUX_9zqoHLNhBNHYzXGPLOyYvtK9OZLBi3k473Os7GFBhBalekQ1mLpjNBaAov5rxh__ILD-FsSM8A01AVkbc476h24maa3GGcIzeeU_ZOKwSojBAbWad9vCNN-S0exwQuSoARoMyOS78fhoqw1E1YEZIAEqCWV1LXdlc3QtMjDvDQ.m3u8
-2025-12-04 19:37:47,879 - __main__ - INFO - Waiting 3 seconds for video to load...
-2025-12-04 19:37:50,629 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:50] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 19:37:51,769 - __main__ - INFO - Thumbnail captured successfully
-2025-12-04 19:37:51,770 - __main__ - INFO - Starting FFmpeg download: https://euw13.playlist.ttvnw.net/v1/playlist/CrcGfGCkp0v9dzqxh90jpZY3P7M_bXBLMZrjmdpJQ5d2KCfd-3clbWPr5NKF86t05fakpXdYHY9BrtD1cQgGW9NE9_m5c6e0CyZ7q5wTME-8C3Sg6qk0bHLtPYt5H8kakDLvMVQ-OifPsn5NV9uxIxioZ_K_1n3l4XgVEpBAXzcKmWlHRTxVarlhOPolAWDG2Bydchl5GGp0ctWNRKVjxZaab6hZ5F2FrUxSbjTORkCbOHXzz2yvSY58lDOg71VuK_i41516nz4G4EARQxj4C0mDeVbHzfIYmikOPsJbqXD7SjEvNB4lKYWpmOyKv-qSKs-2KcYVjjKTGV9jUr3VpvzHj1rrMOdecvM7XD8LrJ2Z3Tfv0tLBZ1N40uPe0yAljcl-ztzpqrq_qWu_4Sk8jcDcuGG7RymLxmACY96sy3EnXlrEA4S_vgoOSwbIPsg1QOUckil70j9DXDORAVoW_p5fC9tcFH2p4Gi7WrShFb7P6g6UHtgiZge9FbAhqETNZ-5xEPbM5mGpYI1GKHHwHrLUrIjnGKZKAKnTOJ-WHk22ktP4mVXQOa3eXiMnT0_X-pExQj-rew6RJD2hg7T_fPogVyz1-Z9jaqwsndnJxNyHxbGULnVA7DP3JCBGbfiwnl53pfXKhn69yzPEYRFErn4ssY7p2Az7rr_4X_RgjvNWMKTzV4MJXW9Cl1FcPaO8XpRAVcOKIlt6qmLyMPhrwG16JuQOmemXw2AsMgJd6eLnQa0sEz_n7aw1aVu5Cg2ju3_2zhzXuw0hypVFSJ-ohBRrJvWvnUvq43Fu-4x2Yr1h7wbh4KDMVjUU7kPEPDJ55WysNPXE0WfOmMQI6PTHFQFHEzD7thJ9EsN1vbx4B8FME408lMtN4lbkmVNQjpB_g3ALiJGDW7-wjEvUISB2mITiBy-endKqt9X5_R6-xaP2IcJqLjlEWMT_HlN5hmSQ_rIBfknIcUX_9zqoHLNhBNHYzXGPLOyYvtK9OZLBi3k473Os7GFBhBalekQ1mLpjNBaAov5rxh__ILD-FsSM8A01AVkbc476h24maa3GGcIzeeU_ZOKwSojBAbWad9vCNN-S0exwQuSoARoMyOS78fhoqw1E1YEZIAEqCWV1LXdlc3QtMjDvDQ.m3u8 -> /app/downloads/video_1080p60_1764877071.mp4
-2025-12-04 19:37:52,660 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:52] "GET /api/browser/status/browser_1764877064 HTTP/1.1" 200 -
-2025-12-04 19:37:54,086 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 19:37:54,252 - __main__ - INFO - Browser browser_1764877064 closed
-2025-12-04 19:37:54,253 INFO reaped unknown pid 249 (exit status 0)
-2025-12-04 19:37:54,253 INFO reaped unknown pid 251 (exit status 0)
-2025-12-04 19:37:54,253 INFO reaped unknown pid 256 (exit status 0)
-2025-12-04 19:37:54,253 INFO reaped unknown pid 257 (exit status 0)
-2025-12-04 19:37:54,253 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:54] "POST /api/browser/close/browser_1764877064 HTTP/1.1" 200 -
-2025-12-04 19:37:54,271 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:54] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:54,687 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:54] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:56,709 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:37:56] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:37:57,156 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: 30, auto_download: True
-2025-12-04 19:37:57,157 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/niikokonut
-2025-12-04 19:37:57,157 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 19:37:57,157 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 19:37:58,117 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 19:37:58,494 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 19:37:58,494 - __main__ - INFO - Chrome debugger address: localhost:42805
-2025-12-04 19:37:58,497 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:42805/devtools/page/378F8495BDCCE89514B5C3C3CE896392...
-2025-12-04 19:37:58,497 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 19:37:58,502 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 19:37:58,505 - __main__ - INFO - Network monitoring started
-2025-12-04 19:37:59,003 - __main__ - INFO - Loading https://www.twitch.tv/niikokonut...
-2025-12-04 19:38:00,109 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0...
-2025-12-04 19:38:00,109 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_sourc...
-2025-12-04 19:38:00,109 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 19:38:00,180 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 19:38:00,181 - __main__ - INFO - Found 5 resolutions
-2025-12-04 19:38:00,181 - __main__ - INFO - Auto-download enabled, finding matching stream...
-2025-12-04 19:38:00,181 - __main__ - INFO - Matching stream - Resolution: 1080p, Framerate: 30
-2025-12-04 19:38:00,181 - __main__ - INFO - Found 1 streams matching resolution 1080p
-2025-12-04 19:38:00,181 - __main__ - WARNING - No 30fps stream found for 1080p, showing all streams for manual selection
-2025-12-04 19:38:00,181 - __main__ - WARNING - No matching stream found, showing all streams for manual selection
-2025-12-04 19:38:03,318 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:03] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 19:38:05,353 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:05] "GET /api/browser/status/browser_1764877077 HTTP/1.1" 200 -
-2025-12-04 19:38:06,713 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:06] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:07,345 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:07] "GET /api/browser/status/browser_1764877077 HTTP/1.1" 200 -
-2025-12-04 19:38:09,353 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:09] "GET /api/browser/status/browser_1764877077 HTTP/1.1" 200 -
-2025-12-04 19:38:11,186 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 19:38:11,347 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:11] "GET /api/browser/status/browser_1764877077 HTTP/1.1" 200 -
-2025-12-04 19:38:11,347 INFO reaped unknown pid 435 (exit status 0)
-2025-12-04 19:38:11,348 INFO reaped unknown pid 437 (exit status 0)
-2025-12-04 19:38:11,348 INFO reaped unknown pid 442 (exit status 0)
-2025-12-04 19:38:11,348 INFO reaped unknown pid 443 (exit status 0)
-2025-12-04 19:38:11,358 - __main__ - INFO - Browser browser_1764877077 closed
-2025-12-04 19:38:11,358 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:11] "POST /api/browser/close/browser_1764877077 HTTP/1.1" 200 -
-2025-12-04 19:38:11,369 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:11] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:11,378 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:11] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:14,300 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: 30, auto_download: False
-2025-12-04 19:38:14,301 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/niikokonut
-2025-12-04 19:38:14,301 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 19:38:14,301 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 19:38:15,264 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 19:38:15,666 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 19:38:15,666 - __main__ - INFO - Chrome debugger address: localhost:45073
-2025-12-04 19:38:15,669 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:45073/devtools/page/A0B9FEEBDAB6D905B67653663CAB31BF...
-2025-12-04 19:38:15,670 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 19:38:15,673 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 19:38:15,675 - __main__ - INFO - Network monitoring started
-2025-12-04 19:38:16,174 - __main__ - INFO - Loading https://www.twitch.tv/niikokonut...
-2025-12-04 19:38:16,718 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:16] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:17,244 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0...
-2025-12-04 19:38:17,244 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_sourc...
-2025-12-04 19:38:17,244 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 19:38:17,320 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 19:38:17,320 - __main__ - INFO - Found 5 resolutions
-2025-12-04 19:38:17,320 - __main__ - INFO - Manual mode, showing all available streams
-2025-12-04 19:38:17,320 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/CrcGiIF8H6drq1Vky-WCSm9QhUPjZvE_WWUo-RdXh2y9lRLLdMrofBr...
-2025-12-04 19:38:17,321 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/Cq0G41nZYSRFT8jD97C6Tf7VMsT1v1fEUP9UXVYBovq-aIE9lgVfX5f...
-2025-12-04 19:38:17,321 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/CqUGZ1qzupV034HbJDVl_7C5Gkh_ZNJpOZRJtO-M4UjjW6XvKrqvuWS...
-2025-12-04 19:38:17,321 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/Cp0GMLOhamElYK-EGSnnu_IZETtxgzeg5zRyStBAHwoYpbnU3fjFyXj...
-2025-12-04 19:38:17,323 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/CpUGe3ZqBolyGQe2FX1dH8Xip2t7_Xd7JYT5uHDExnzYRpXSq2hx5fY...
-2025-12-04 19:38:17,691 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=4927148A74AF04E7A8B4B5431AE7992D, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:18,076 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:18,076 - __main__ - INFO - Added thumbnail to stream: 160p30
-2025-12-04 19:38:18,218 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:18,219 - __main__ - INFO - Added thumbnail to stream: 360p30
-2025-12-04 19:38:18,386 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:18,387 - __main__ - INFO - Added thumbnail to stream: 480p30
-2025-12-04 19:38:18,500 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:18,501 - __main__ - INFO - Added thumbnail to stream: 720p60
-2025-12-04 19:38:18,697 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:18,697 - __main__ - INFO - Added thumbnail to stream: 1080p60
-2025-12-04 19:38:20,266 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:20] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 19:38:21,060 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=EBA39360FDC854DE972C6007DC520E91, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:22,308 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:22] "GET /api/browser/status/browser_1764877094 HTTP/1.1" 200 -
-2025-12-04 19:38:24,307 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:24] "GET /api/browser/status/browser_1764877094 HTTP/1.1" 200 -
-2025-12-04 19:38:25,452 - werkzeug - INFO - 192.168.0.246 - - [04/Dec/2025 19:38:25] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:26,309 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:26] "GET /api/browser/status/browser_1764877094 HTTP/1.1" 200 -
-2025-12-04 19:38:26,710 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:26] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:28,313 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:28] "GET /api/browser/status/browser_1764877094 HTTP/1.1" 200 -
-2025-12-04 19:38:29,558 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=712.543, Error=net::ERR_ABORTED
-2025-12-04 19:38:29,558 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=712.541, Error=net::ERR_ABORTED
-2025-12-04 19:38:29,559 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=712.542, Error=net::ERR_ABORTED
-2025-12-04 19:38:30,312 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:30] "GET /api/browser/status/browser_1764877094 HTTP/1.1" 200 -
-2025-12-04 19:38:30,428 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0...
-2025-12-04 19:38:30,428 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_sourc...
-2025-12-04 19:38:31,277 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=51F68F03EFC82F0D32F33A584CBACB48, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:32,303 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:32] "GET /api/browser/status/browser_1764877094 HTTP/1.1" 200 -
-2025-12-04 19:38:33,383 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=D40C8B96BB7959A35AA8CBCC96CE5301, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:34,304 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:34] "GET /api/browser/status/browser_1764877094 HTTP/1.1" 200 -
-2025-12-04 19:38:35,324 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 19:38:35,494 - __main__ - INFO - Browser browser_1764877094 closed
-2025-12-04 19:38:35,494 INFO reaped unknown pid 620 (exit status 0)
-2025-12-04 19:38:35,495 INFO reaped unknown pid 622 (exit status 0)
-2025-12-04 19:38:35,495 INFO reaped unknown pid 627 (exit status 0)
-2025-12-04 19:38:35,495 INFO reaped unknown pid 628 (exit status 0)
-2025-12-04 19:38:35,495 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:35] "POST /api/browser/close/browser_1764877094 HTTP/1.1" 200 -
-2025-12-04 19:38:35,509 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:35] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:36,303 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:36] "GET / HTTP/1.1" 200 -
-2025-12-04 19:38:36,489 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:36] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:39,084 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: False
-2025-12-04 19:38:39,084 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/niikokonut
-2025-12-04 19:38:39,084 - __main__ - INFO - Initializing ChromeDriver service
-2025-12-04 19:38:39,084 - __main__ - INFO - Creating Chrome webdriver instance...
-2025-12-04 19:38:40,023 - __main__ - INFO - Chrome webdriver created successfully!
-2025-12-04 19:38:40,413 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-04 19:38:40,413 - __main__ - INFO - Chrome debugger address: localhost:35929
-2025-12-04 19:38:40,415 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:35929/devtools/page/3DA9644C1D54E90411E3F0518CFF4584...
-2025-12-04 19:38:40,416 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-04 19:38:40,420 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-04 19:38:40,422 - __main__ - INFO - Network monitoring started
-2025-12-04 19:38:40,922 - __main__ - INFO - Loading https://www.twitch.tv/niikokonut...
-2025-12-04 19:38:42,045 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0...
-2025-12-04 19:38:42,045 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/niikokonut.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNWRlZTVkMjgtZTA0Zi00MGEzLWE5NGUtMDMyZTc3YjNlNjNlIn0%3D&allow_sourc...
-2025-12-04 19:38:42,045 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
-2025-12-04 19:38:46,160 - __main__ - INFO - This is a master playlist! Parsing resolutions...
-2025-12-04 19:38:46,160 - __main__ - INFO - Found 5 resolutions
-2025-12-04 19:38:46,160 - __main__ - INFO - Manual mode, showing all available streams
-2025-12-04 19:38:46,160 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CrYGeQAoa3GVnieYRWkv3SNT-xYgK2yjFir6vS2Mx2MvJ5uSxHwf3tV...
-2025-12-04 19:38:46,161 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CqwGGzQypGBk92j1f6bXLkkV7XNca9mhGAIqeTqA461j_S3OqnpUmy5...
-2025-12-04 19:38:46,161 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CqQG0MND2rDOUqUi9rZT4PquuZl2CVrJNIg2d474OIkcqypfnqW4sPj...
-2025-12-04 19:38:46,161 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CpwGiLKXyJc12L63lRZuTiF5VbW9ejEQo4ppFm66ssMV6_NqSgvFjDO...
-2025-12-04 19:38:46,162 - __main__ - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CpQGI_MuFCkTrmiEiZdJOlFRgxdn_0gSBlS8xg6W6gNO6Q6_cFus4HC...
-2025-12-04 19:38:46,273 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=DF716923C393376708E349310E524BEB, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:46,501 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:46] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:47,002 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:47,002 - __main__ - INFO - Added thumbnail to stream: 160p30
-2025-12-04 19:38:47,112 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:47,112 - __main__ - INFO - Added thumbnail to stream: 480p30
-2025-12-04 19:38:47,179 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:47,180 - __main__ - INFO - Added thumbnail to stream: 360p30
-2025-12-04 19:38:47,499 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:47,499 - __main__ - INFO - Added thumbnail to stream: 720p60
-2025-12-04 19:38:47,518 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=375A064E18FE2B7AA8744E5CAE299354, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:47,643 - __main__ - INFO - Thumbnail generated successfully
-2025-12-04 19:38:47,644 - __main__ - INFO - Added thumbnail to stream: 1080p60
-2025-12-04 19:38:47,788 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=ED1EF6327ACE094BE6A1D66D5E371D2F, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:47,817 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1093.279, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:47,860 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=1093.280, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:48,524 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:48] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-04 19:38:49,557 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=E606C1017A6B1071AD561ED604D304F8, Error=net::ERR_CONNECTION_REFUSED
-2025-12-04 19:38:50,558 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:50] "GET /api/browser/status/browser_1764877119 HTTP/1.1" 200 -
-2025-12-04 19:38:52,567 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:52] "GET /api/browser/status/browser_1764877119 HTTP/1.1" 200 -
-2025-12-04 19:38:54,908 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:54] "GET /api/browser/status/browser_1764877119 HTTP/1.1" 200 -
-2025-12-04 19:38:56,493 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:56] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:38:56,566 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:56] "GET /api/browser/status/browser_1764877119 HTTP/1.1" 200 -
-2025-12-04 19:38:57,027 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
-2025-12-04 19:38:57,198 - __main__ - INFO - Browser browser_1764877119 closed
-2025-12-04 19:38:57,198 INFO reaped unknown pid 1001 (exit status 0)
-2025-12-04 19:38:57,199 INFO reaped unknown pid 1003 (exit status 0)
-2025-12-04 19:38:57,199 INFO reaped unknown pid 1008 (exit status 0)
-2025-12-04 19:38:57,199 INFO reaped unknown pid 1009 (exit status 0)
-2025-12-04 19:38:57,199 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:57] "POST /api/browser/close/browser_1764877119 HTTP/1.1" 200 -
-2025-12-04 19:38:57,218 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:38:57] "GET /api/downloads/list HTTP/1.1" 200 -
-2025-12-04 19:39:06,598 - werkzeug - INFO - 192.168.0.88 - - [04/Dec/2025 19:39:06] "GET /api/downloads/list HTTP/1.1" 200 -
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="source-1764923473",CLASS="twitch-stream-source",START-DATE="2025-12-05T08:31:13.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764923473",CLASS="twitch-trigger",START-DATE="2025-12-05T08:31:13.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/CqAGJp_nhwa_3hoqvgmQSHr3z43wSopQvf1tzrFTA7oGp9mvNqmRpYepS2tF0VrsAQ36xP6gTORLBt_Dgtn4q-x16FuaGfrZHsqxXEAJ_EwsHu_aRdGW7cBRlU-NfjgRIiFgEYArsw0bIq5lhL9Ddaps-_lM5Qtu4SSsM2JOV_cxY1XFXVcD1JfAuvbRA9U1O0B7urS-C-Y-sEIGCN56DbBW0NFD5fgZHfoY7irPecBlh3WRNLpysD2s8h8-gWSiXVXwmkPQgB3lXOvTYZcrxlz4i6pNphiyqArNmmIIyuIHiRVsx3oKwhrKT_HKlw6iIpohvyNfcA1lCJ26zxtXo0BT5jpCE7m1YWJbsHlC2HHo50v-drcMUwJiZVUjBhw7yi5d0VeUxsOLAKec4cv6TJozMxp0FfRmDKICwaHwwU4yljoShLCjZjP7wmuAfg-Rpz3sjTShftZKuZ58lzsS7kMWIuB2AqnMF7NFhcnY9JEV4GpO5NfI7sLV3rssvOagAf8b5mpSj3GIy_Dai1MlZK26513_j8Iz3rFaS_P75sg24vxCFpTY2wIWzVOX-Dt5LdUnywu9JQvmSyomuBIwOXoTbN5rFiF3V_Xt7hKuV2Pu2GeySAX2886d9OU_lv5EOQceiY5QWrNY4rbnqq80t1XlJ445Nqa3xJhitFrjNAehxJBcoOY2jzwbshdjO1U9mcC50uy17GxnAe58-8lpXAsQ2zva-qXpx84KW0AG94gSaQaXHfxawxHB2pi1BZ3qk_OxC3sUkcyaOw7kxmsDUNwSvbvzKWM2RhkeYnr2ouTPGG52FFeT-oB4q9iOl4Y-kQgwmPGRI2UpStCM90oHK8N1Kf2EjndzZhwLZIKq30sUjSBuGdXiPek8rkBnfNS7exfdfRqhhTITwqzPd-8yuVvfZcn7PjJiMqSbM4K1BETAvULqO8jzd_Pgj5icDGVCLYX_SfdJrpgPs1Z_7JGGOt3-z9oZqLAV6sjdki6cYXWYp6w9OLgvAEl7l_yQYT0dcy9oIcKUjzfMWwH63VSjxuxPDTLKuk0UWPhWDhUubGn3y70aDF7Q7wFaxweJT5E6MCABKglldS13ZXN0LTIw8A0"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:43.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:45.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:47.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:49.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:51.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:53.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:55.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:57.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:59.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:01.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:03.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:05.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:07.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:09.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCW4FgxntJuNOi3HAZGcqM79c2CzXwdf1KRHuzxDhLfch2yodDqH3OizZowkQE6j0b1soX8BCXf56POEs2D1NT_llsxnlJgaXTfoyzFW65lgis22aLmnsHr4qGmMCIDI4oYIgu2wf2oKM84igW8yjODKqXs7HDmWXDvk1m4iXXNgIhCL_7ZH1H-b7RjJTyO0YcVWmiw9RvDsxdYRlas7A6uuu0lMtj1Eviixpum2pwJEJe5rwQQLLrA112VsARZduy41d38iHzYcTDekPvqr1rDx5o9vzRV5XANDfbw54wSAuBv5AfTdNHmAwPd2o4YNnDv9xE19oQxEXiC15gl1nmXdgOeUFPYTI0nD9Awi4VYp3u3cbeSWqWEa_jKMVuI9zhJKM0UZDniJgN3epk1HmKjeYXbiXk-IuurqHcLQ2CQE-v4u1J6l0rkq3jkA0tAAm4rO-VEdcor9HzVd56FYqy1KDL5OEaDCmj-8qs6hpK2xCVQSABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCRt1ZY1UKwz5pI3HRAC1xIFHbRch6RZx0Na137wHlFCXdmQueYyp_SJxrN8jNto96uM-9qc3Q7NuDccPJJL2a06C6OAiSSs4dTiihJqEIOoZi5bF0RD2W5wIjq603SZ6quCMduetL6ElFEJrON8pqY-UCNs9fpbjSIhomokj5czzu2KycTiwZDkd_oyEWJczIW26kfhn_bLbKeBys6SQ3ECtEGblofETAXV4f2-jz79g2n_CQzRvWRPvTrIlQtFLG7qGNiGAzcs3yOH89pfqbw3Z801RMe_HSLDauR2Wsw3fUgKZeVoUTHj2DLYhA9n321WQ1J0BBbZaodYMgCy8Fu_dxPddWWoAApam0R9Xoy6E2Lfat_UWhq--sj25raTSoUlyW131w2TRrzpIkRGNuXVM9OpVf0rTyobfW5irzkQmSjH2JRGgbeHY9AqK-WjULGT2Vd4DOgMd-FiFnnCycWsEDR3AaDGI8bnCfvK9Eyi5A3CABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN')
+[https @ 0x55ea3554f740] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCkayZMBVoPN_QBlHeMBcWI0Tg8k_a9XdWmf6_7v6kCHhZbFi2D_Wv0AErjXENimViaO98BhukaRYR0ZJL9OtpchRyGwk0H2l_eVo8UrLRrEp2jsqs_1v8PhBC60iGR7kfuQqCS8s0daPL-ebw6WTlNTUwchsgd0VhQNnAFy46_PzLsBE3Fv8Xy6pk7lSgAipvkUCH_Vsvq_yaYXn3F40AUl9-Ticcy8rvYkn3B8MxIK7iK_QJIJjlKJ_8DvxFJglvTmFnvcJlnhjASGcZEdci9UsoHVdqesHhUM2jf3gPdTWAmfGT1FquCoh_SY8ddO6zXeT-tgRxacVjHi8iQipGje1RRoGYaUC1EKFuoIBtCuTeO2GZlAiuC3_58SAptxBMsqu5aKQYKoUBaoigCRUR6CKm_5SnrwENalBuFtZl3GFsFioKAiKKKm65uZlvDw4JUqDtyOPvTz2K0KygEeSNYgAKUSwaDEL8qnwfr-XlK8IstyABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN' for reading
+frame=  538 fps= 37 q=-1.0 size=    2560KiB time=00:00:17.86 bitrate=1173.8kbits/s speed=1.23x    
+frame=  598 fps= 40 q=-1.0 size=    2816KiB time=00:00:19.86 bitrate=1161.2kbits/s speed=1.32x    
+frame=  598 fps= 39 q=-1.0 size=    2816KiB time=00:00:19.86 bitrate=1161.2kbits/s speed=1.28x    
+frame=  598 fps= 37 q=-1.0 size=    2816KiB time=00:00:19.86 bitrate=1161.2kbits/s speed=1.24x    
+frame=  598 fps= 36 q=-1.0 size=    2816KiB time=00:00:19.86 bitrate=1161.2kbits/s speed= 1.2x    
+[https @ 0x7f8b0000e280] Opening 'https://euw12.playlist.ttvnw.net/v1/playlist/CqIG73Ut4IjGrCwubijqwiydo5tcmdU4MkrLy25nDFLAjUuLHwjDRNivGULw6IH-eeodbIuGjGeexPGe-NcLN6dy9zmMc7nLClZ0SBXYwhJRyCxD2Qwu8Y4ccYbj_AATy72TMZtIVTUanrIuIjc8bPx-GfEAY32iP5r2Q_ekADBPniAe9NuFY4nlPdzsAe4nnJVjbwMxm41BPDXpCuglXM7p2euOqRTRBMkiwxoXs64YjWqCQsUCErZSoapkzg0K4JxeLFtdWq4uJTjwjuRG505GfWRAhEok_RWW6taIoJBFuujHGP_txxXqKy6xDcU4eUOWIzWNVqqqdQ7ByWrwGWCAHLBOzwrQmpgjT-RkJFwsg9pPhT-OjEqpz0zuzDY_a3wNOHoYCagEqoLn57gc1dVJwKt6nqNFtKWIarKKLABgx4mKNSDTiMqJH6MbUuyozXmov9xFDHSCky1UVLeUhrn8GC1DfUJ9rLuqIOQ0JCC1cngR_PN1gQH7dVbkixguTWrxVhMCNP6PZ4dMjLAaYS1gwrIK7HEGvdP2nIuNYM0s4xIDYTw4W3tmSvmoqJkXpP50C46RlZ_UauuQEWy89zPA6ReIF6ZomTUTPnmzxJUOTPONLVpY0DUkSYIJcz9sULiwPOpC2zi0Cn5cFWxqcbRClA4ZQ_qiPkxirj-rvRHRJ7I_PcZNtQBI9MfIrJcGJSO_elSweGm57Iy6URfpPLAwTQAZjztN2Y37gAzYkn5_NogtbcbwDG-6VFf-ndYLHPZGkiu5f8FjmD4WKjijhZxVFz9x36E-gjjohnNhVD4YFuQ7wGz_5i8WdhLinlB-EIRO6Tn3AT6Us9RX2m1gv7fYIdd7b86uj7NvjGu5u_-S-FZeYivrevy51_VTzydOGilPtZykMJNTfppWtpAiwdLT2nLyWKJBOfwhFIYxvMVzZ_dODSdk0yp6jAX3bGm-ugk9X1LADXrzermSQS4L1tsLZXldHWjL3tudNwnIQWwQPAu6VQoh6pcZxqNwb2xDRY8pIBrTULXppBPpbwVVBwbDxJt9CP4HteLQJh-S6Op8hBbV-BoMjWhw8TaRdYtQ4zgcIAEqCWV1LXdlc3QtMjDwDQ.m3u8' for reading
+[hls @ 0x55ea35284200] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:1927')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:3854.000')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-TOTAL-SECS:3886.000')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1764923504",CLASS="timestamp",START-DATE="2025-12-05T08:31:44.022Z",END-ON-NEXT=YES,X-SERVER-TIME="1764923504.02"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1764923504",CLASS="twitch-session",START-DATE="2025-12-05T08:31:44.022Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4646433022628159077"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="source-1764923473",CLASS="twitch-stream-source",START-DATE="2025-12-05T08:31:13.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764923473",CLASS="twitch-trigger",START-DATE="2025-12-05T08:31:13.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/CqAGJp_nhwa_3hoqvgmQSHr3z43wSopQvf1tzrFTA7oGp9mvNqmRpYepS2tF0VrsAQ36xP6gTORLBt_Dgtn4q-x16FuaGfrZHsqxXEAJ_EwsHu_aRdGW7cBRlU-NfjgRIiFgEYArsw0bIq5lhL9Ddaps-_lM5Qtu4SSsM2JOV_cxY1XFXVcD1JfAuvbRA9U1O0B7urS-C-Y-sEIGCN56DbBW0NFD5fgZHfoY7irPecBlh3WRNLpysD2s8h8-gWSiXVXwmkPQgB3lXOvTYZcrxlz4i6pNphiyqArNmmIIyuIHiRVsx3oKwhrKT_HKlw6iIpohvyNfcA1lCJ26zxtXo0BT5jpCE7m1YWJbsHlC2HHo50v-drcMUwJiZVUjBhw7yi5d0VeUxsOLAKec4cv6TJozMxp0FfRmDKICwaHwwU4yljoShLCjZjP7wmuAfg-Rpz3sjTShftZKuZ58lzsS7kMWIuB2AqnMF7NFhcnY9JEV4GpO5NfI7sLV3rssvOagAf8b5mpSj3GIy_Dai1MlZK26513_j8Iz3rFaS_P75sg24vxCFpTY2wIWzVOX-Dt5LdUnywu9JQvmSyomuBIwOXoTbN5rFiF3V_Xt7hKuV2Pu2GeySAX2886d9OU_lv5EOQceiY5QWrNY4rbnqq80t1XlJ445Nqa3xJhitFrjNAehxJBcoOY2jzwbshdjO1U9mcC50uy17GxnAe58-8lpXAsQ2zva-qXpx84KW0AG94gSaQaXHfxawxHB2pi1BZ3qk_OxC3sUkcyaOw7kxmsDUNwSvbvzKWM2RhkeYnr2ouTPGG52FFeT-oB4q9iOl4Y-kQgwmPGRI2UpStCM90oHK8N1Kf2EjndzZhwLZIKq30sUjSBuGdXiPek8rkBnfNS7exfdfRqhhTITwqzPd-8yuVvfZcn7PjJiMqSbM4K1BETAvULqO8jzd_Pgj5icDGVCLYX_SfdJrpgPs1Z_7JGGOt3-z9oZqLAV6sjdki6cYXWYp6w9OLgvAEl7l_yQYT0dcy9oIcKUjzfMWwH63VSjxuxPDTLKuk0UWPhWDhUubGn3y70aDF7Q7wFaxweJT5E6MCABKglldS13ZXN0LTIw8A0"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:45.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:47.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:49.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:51.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:53.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:55.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:57.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:59.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:01.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:03.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:05.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:07.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:09.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:11.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCRt1ZY1UKwz5pI3HRAC1xIFHbRch6RZx0Na137wHlFCXdmQueYyp_SJxrN8jNto96uM-9qc3Q7NuDccPJJL2a06C6OAiSSs4dTiihJqEIOoZi5bF0RD2W5wIjq603SZ6quCMduetL6ElFEJrON8pqY-UCNs9fpbjSIhomokj5czzu2KycTiwZDkd_oyEWJczIW26kfhn_bLbKeBys6SQ3ECtEGblofETAXV4f2-jz79g2n_CQzRvWRPvTrIlQtFLG7qGNiGAzcs3yOH89pfqbw3Z801RMe_HSLDauR2Wsw3fUgKZeVoUTHj2DLYhA9n321WQ1J0BBbZaodYMgCy8Fu_dxPddWWoAApam0R9Xoy6E2Lfat_UWhq--sj25raTSoUlyW131w2TRrzpIkRGNuXVM9OpVf0rTyobfW5irzkQmSjH2JRGgbeHY9AqK-WjULGT2Vd4DOgMd-FiFnnCycWsEDR3AaDGI8bnCfvK9Eyi5A3CABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCffGYiDgG-rQR5ql9hhFtEHr1S3trpW2PJi-s0WRwPlQXjJ3kBnvn6JmKRM5t33SUFVjQYM-RvtpQnC7WgfMxwTaN6DBMQjn8hM_geZu2WQYvVIP4chrtcLfWQrfmkBa4eB8sTVrSmVUi9V20hcJ1-xRNTwY9ecFq48RCEXnvmbw_iqHSyx8I4Ezdf18X0__gQRph7hH7tzE45RxcDjE7LZ6IZT-S9tne5qY3Z42Rg2p2MS7fGVju4d6k5eeetuKbzPyzxfC3bJzylYYM1ynJTnNS_zHndny1aZVqpfX8COVsLkRIk5V5BG2oafXSKfakAZcFAKvm4mR-0mzNkk-vfPDUVNPoURWvAvcPle5M3dntDGKAZ9v8KgtIAr--IzztL0nGJtnvJs7N4wi_VHG8wqWrOlXqahTtaSDTktSkAp53mP09-41rokes49KzuvKIZc2V5SdzsomEs6kGr3w2nZylAC8aDDQKKtvQL8Jm-NAEQiABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN')
+[https @ 0x55ea3554f740] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCW4FgxntJuNOi3HAZGcqM79c2CzXwdf1KRHuzxDhLfch2yodDqH3OizZowkQE6j0b1soX8BCXf56POEs2D1NT_llsxnlJgaXTfoyzFW65lgis22aLmnsHr4qGmMCIDI4oYIgu2wf2oKM84igW8yjODKqXs7HDmWXDvk1m4iXXNgIhCL_7ZH1H-b7RjJTyO0YcVWmiw9RvDsxdYRlas7A6uuu0lMtj1Eviixpum2pwJEJe5rwQQLLrA112VsARZduy41d38iHzYcTDekPvqr1rDx5o9vzRV5XANDfbw54wSAuBv5AfTdNHmAwPd2o4YNnDv9xE19oQxEXiC15gl1nmXdgOeUFPYTI0nD9Awi4VYp3u3cbeSWqWEa_jKMVuI9zhJKM0UZDniJgN3epk1HmKjeYXbiXk-IuurqHcLQ2CQE-v4u1J6l0rkq3jkA0tAAm4rO-VEdcor9HzVd56FYqy1KDL5OEaDCmj-8qs6hpK2xCVQSABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN' for reading
+frame=  658 fps= 39 q=-1.0 size=    3072KiB time=00:00:21.86 bitrate=1150.9kbits/s speed=1.29x    
+[https @ 0x7f8b0000e280] Opening 'https://euw12.playlist.ttvnw.net/v1/playlist/CqIG73Ut4IjGrCwubijqwiydo5tcmdU4MkrLy25nDFLAjUuLHwjDRNivGULw6IH-eeodbIuGjGeexPGe-NcLN6dy9zmMc7nLClZ0SBXYwhJRyCxD2Qwu8Y4ccYbj_AATy72TMZtIVTUanrIuIjc8bPx-GfEAY32iP5r2Q_ekADBPniAe9NuFY4nlPdzsAe4nnJVjbwMxm41BPDXpCuglXM7p2euOqRTRBMkiwxoXs64YjWqCQsUCErZSoapkzg0K4JxeLFtdWq4uJTjwjuRG505GfWRAhEok_RWW6taIoJBFuujHGP_txxXqKy6xDcU4eUOWIzWNVqqqdQ7ByWrwGWCAHLBOzwrQmpgjT-RkJFwsg9pPhT-OjEqpz0zuzDY_a3wNOHoYCagEqoLn57gc1dVJwKt6nqNFtKWIarKKLABgx4mKNSDTiMqJH6MbUuyozXmov9xFDHSCky1UVLeUhrn8GC1DfUJ9rLuqIOQ0JCC1cngR_PN1gQH7dVbkixguTWrxVhMCNP6PZ4dMjLAaYS1gwrIK7HEGvdP2nIuNYM0s4xIDYTw4W3tmSvmoqJkXpP50C46RlZ_UauuQEWy89zPA6ReIF6ZomTUTPnmzxJUOTPONLVpY0DUkSYIJcz9sULiwPOpC2zi0Cn5cFWxqcbRClA4ZQ_qiPkxirj-rvRHRJ7I_PcZNtQBI9MfIrJcGJSO_elSweGm57Iy6URfpPLAwTQAZjztN2Y37gAzYkn5_NogtbcbwDG-6VFf-ndYLHPZGkiu5f8FjmD4WKjijhZxVFz9x36E-gjjohnNhVD4YFuQ7wGz_5i8WdhLinlB-EIRO6Tn3AT6Us9RX2m1gv7fYIdd7b86uj7NvjGu5u_-S-FZeYivrevy51_VTzydOGilPtZykMJNTfppWtpAiwdLT2nLyWKJBOfwhFIYxvMVzZ_dODSdk0yp6jAX3bGm-ugk9X1LADXrzermSQS4L1tsLZXldHWjL3tudNwnIQWwQPAu6VQoh6pcZxqNwb2xDRY8pIBrTULXppBPpbwVVBwbDxJt9CP4HteLQJh-S6Op8hBbV-BoMjWhw8TaRdYtQ4zgcIAEqCWV1LXdlc3QtMjDwDQ.m3u8' for reading
+[hls @ 0x55ea35284200] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:1928')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:3856.000')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-TOTAL-SECS:3888.000')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1764923504",CLASS="timestamp",START-DATE="2025-12-05T08:31:44.022Z",END-ON-NEXT=YES,X-SERVER-TIME="1764923504.02"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1764923504",CLASS="twitch-session",START-DATE="2025-12-05T08:31:44.022Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4646433022628159077"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="source-1764923473",CLASS="twitch-stream-source",START-DATE="2025-12-05T08:31:13.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764923473",CLASS="twitch-trigger",START-DATE="2025-12-05T08:31:13.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/CqAGJp_nhwa_3hoqvgmQSHr3z43wSopQvf1tzrFTA7oGp9mvNqmRpYepS2tF0VrsAQ36xP6gTORLBt_Dgtn4q-x16FuaGfrZHsqxXEAJ_EwsHu_aRdGW7cBRlU-NfjgRIiFgEYArsw0bIq5lhL9Ddaps-_lM5Qtu4SSsM2JOV_cxY1XFXVcD1JfAuvbRA9U1O0B7urS-C-Y-sEIGCN56DbBW0NFD5fgZHfoY7irPecBlh3WRNLpysD2s8h8-gWSiXVXwmkPQgB3lXOvTYZcrxlz4i6pNphiyqArNmmIIyuIHiRVsx3oKwhrKT_HKlw6iIpohvyNfcA1lCJ26zxtXo0BT5jpCE7m1YWJbsHlC2HHo50v-drcMUwJiZVUjBhw7yi5d0VeUxsOLAKec4cv6TJozMxp0FfRmDKICwaHwwU4yljoShLCjZjP7wmuAfg-Rpz3sjTShftZKuZ58lzsS7kMWIuB2AqnMF7NFhcnY9JEV4GpO5NfI7sLV3rssvOagAf8b5mpSj3GIy_Dai1MlZK26513_j8Iz3rFaS_P75sg24vxCFpTY2wIWzVOX-Dt5LdUnywu9JQvmSyomuBIwOXoTbN5rFiF3V_Xt7hKuV2Pu2GeySAX2886d9OU_lv5EOQceiY5QWrNY4rbnqq80t1XlJ445Nqa3xJhitFrjNAehxJBcoOY2jzwbshdjO1U9mcC50uy17GxnAe58-8lpXAsQ2zva-qXpx84KW0AG94gSaQaXHfxawxHB2pi1BZ3qk_OxC3sUkcyaOw7kxmsDUNwSvbvzKWM2RhkeYnr2ouTPGG52FFeT-oB4q9iOl4Y-kQgwmPGRI2UpStCM90oHK8N1Kf2EjndzZhwLZIKq30sUjSBuGdXiPek8rkBnfNS7exfdfRqhhTITwqzPd-8yuVvfZcn7PjJiMqSbM4K1BETAvULqO8jzd_Pgj5icDGVCLYX_SfdJrpgPs1Z_7JGGOt3-z9oZqLAV6sjdki6cYXWYp6w9OLgvAEl7l_yQYT0dcy9oIcKUjzfMWwH63VSjxuxPDTLKuk0UWPhWDhUubGn3y70aDF7Q7wFaxweJT5E6MCABKglldS13ZXN0LTIw8A0"')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:47.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:49.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:51.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:53.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:55.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:57.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:31:59.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:01.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:03.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:05.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:07.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:09.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:11.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:32:13.649Z')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCffGYiDgG-rQR5ql9hhFtEHr1S3trpW2PJi-s0WRwPlQXjJ3kBnvn6JmKRM5t33SUFVjQYM-RvtpQnC7WgfMxwTaN6DBMQjn8hM_geZu2WQYvVIP4chrtcLfWQrfmkBa4eB8sTVrSmVUi9V20hcJ1-xRNTwY9ecFq48RCEXnvmbw_iqHSyx8I4Ezdf18X0__gQRph7hH7tzE45RxcDjE7LZ6IZT-S9tne5qY3Z42Rg2p2MS7fGVju4d6k5eeetuKbzPyzxfC3bJzylYYM1ynJTnNS_zHndny1aZVqpfX8COVsLkRIk5V5BG2oafXSKfakAZcFAKvm4mR-0mzNkk-vfPDUVNPoURWvAvcPle5M3dntDGKAZ9v8KgtIAr--IzztL0nGJtnvJs7N4wi_VHG8wqWrOlXqahTtaSDTktSkAp53mP09-41rokes49KzuvKIZc2V5SdzsomEs6kGr3w2nZylAC8aDDQKKtvQL8Jm-NAEQiABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN')
+[hls @ 0x55ea35284200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCgR33KUcNlXirMfeNmv9RfaSgvW2rQmpjfwfo47FQ5uyG_JLEVAo7bEuD2vnnaF9ii8z2CbLqMzAUiQl9S-7n0_Mj4nFhMAnP4oyXGaKKSX41dcxjLxDgiGX13_s6RcIdhdV6YGfO1E1jkIW65bhMlO8mJVgJUt9DLxTzW1SlX4jqQV2wIgfOd7DylXERGD9XwR6XcoHWpve3AjnZR2SJ7hmJC0HS9j32fFKRoIvs4WmqCoyakZj_Ed0b4bR7Bih9Yt8zhTndWKGbKA1gNpmujRy2FHZwHO8YFlLaEWe_3F-NgJMn56Xw9hOD_Q80EK1kIDZ1gidVodJ57Dc1X8hv8LHJ1-UlP00Lm3bhe-SgwKrXDSFuRGzehsGqAqax0hbxgIdJOyrytUfZLZASb51Un0zHKo6XwQpsk8mrGb-W6wIA0IOVBJ5pgJsx3DipsLrXfECUa7DuaobdYEdNKeXmEFSFK5EaDHBLzw_Tkc32XRH_FSABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN')
+[https @ 0x55ea3554f740] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CuQCRt1ZY1UKwz5pI3HRAC1xIFHbRch6RZx0Na137wHlFCXdmQueYyp_SJxrN8jNto96uM-9qc3Q7NuDccPJJL2a06C6OAiSSs4dTiihJqEIOoZi5bF0RD2W5wIjq603SZ6quCMduetL6ElFEJrON8pqY-UCNs9fpbjSIhomokj5czzu2KycTiwZDkd_oyEWJczIW26kfhn_bLbKeBys6SQ3ECtEGblofETAXV4f2-jz79g2n_CQzRvWRPvTrIlQtFLG7qGNiGAzcs3yOH89pfqbw3Z801RMe_HSLDauR2Wsw3fUgKZeVoUTHj2DLYhA9n321WQ1J0BBbZaodYMgCy8Fu_dxPddWWoAApam0R9Xoy6E2Lfat_UWhq--sj25raTSoUlyW131w2TRrzpIkRGNuXVM9OpVf0rTyobfW5irzkQmSjH2JRGgbeHY9AqK-WjULGT2Vd4DOgMd-FiFnnCycWsEDR3AaDGI8bnCfvK9Eyi5A3CABKglldS13ZXN0LTIw8A0.ts?dna=Cm1GkNRw8J1t_r3_tfkkswXRbGqUPvawLvlyiOH2GzJmijDvzeuJX__L2dzT6RcTo65T2Sjux9nvm5gmofV2lhvVP0n9Tqp2oqgERc-uGniX-luELFlWX4PshKn8BmdXrVewcTM7GSb1AHn7Na9eGgz42CR2kefd_YcFdrMgASoJZXUtd2VzdC0yMPAN' for reading
+[out#0/mp4 @ 0x55ea35a7e300] video:2671KiB audio:438KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.884141%
+frame=  658 fps= 35 q=-1.0 Lsize=    3137KiB time=00:00:21.86 bitrate=1175.4kbits/s speed=1.17x    
+Exiting normally, received signal 15.
+2025-12-05 08:32:17,401 - __main__ - INFO - Download stopped for browser browser_1764923494
+2025-12-05 08:32:17,402 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:32:17] "POST /api/downloads/stop/browser_1764923494 HTTP/1.1" 200 -
+2025-12-05 08:32:17,417 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:32:17] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:32:19,805 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:32:19] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:32:30,786 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:32:30] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:32:40,774 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:32:40] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:32:50,778 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:32:50] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:32:59,810 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:32:59] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:33:10,781 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:33:10] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:33:20,800 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:33:20] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:33:30,773 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:33:30] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:33:40,770 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:33:40] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:33:50,772 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:33:50] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:34:00,769 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:34:00] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:34:26,778 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:34:26] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:34:31,806 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/topson.m3u8?allow_source=true&browser_family=chrome&brows...
+2025-12-05 08:34:31,807 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/topson.m3u8?allow_source=true&browser_family=chrome&browser_version=143.0&cdm=wv&enable_score=true&fast_bre...
+2025-12-05 08:35:26,776 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:35:26] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 08:35:50,005 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:35:50] "GET /api/downloads/active HTTP/1.1" 200 -

@@ -105,6 +105,75 @@ def fetch_master_playlist(url):
         logger.error(f"Failed to fetch master playlist: {e}")
         return None
 
+def extract_stream_metadata_with_ffprobe(stream_url, timeout=8):
+    """Extract metadata from stream using ffprobe as fallback"""
+    try:
+        logger.info(f"Extracting metadata with ffprobe for: {stream_url[:100]}...")
+
+        cmd = [
+            'ffprobe',
+            '-v', 'quiet',
+            '-print_format', 'json',
+            '-show_streams',
+            '-show_format',
+            stream_url
+        ]
+
+        result = subprocess.run(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=timeout,
+            text=True
+        )
+
+        if result.returncode == 0 and result.stdout:
+            import json
+            data = json.loads(result.stdout)
+
+            metadata = {
+                'resolution': '',
+                'framerate': '',
+                'codecs': ''
+            }
+
+            # Find video stream
+            video_stream = next((s for s in data.get('streams', []) if s.get('codec_type') == 'video'), None)
+            if video_stream:
+                # Extract resolution
+                width = video_stream.get('width')
+                height = video_stream.get('height')
+                if width and height:
+                    metadata['resolution'] = f"{width}x{height}"
+
+                # Extract framerate
+                fps_str = video_stream.get('r_frame_rate', '')
+                if fps_str and '/' in fps_str:
+                    try:
+                        num, denom = fps_str.split('/')
+                        fps = float(num) / float(denom)
+                        metadata['framerate'] = f"{fps:.3f}"
+                    except:
+                        pass
+
+                # Extract codec
+                codec_name = video_stream.get('codec_name', '')
+                if codec_name:
+                    metadata['codecs'] = codec_name
+
+            logger.info(f"Extracted metadata: {metadata}")
+            return metadata
+        else:
+            logger.warning(f"ffprobe failed: {result.stderr}")
+            return None
+
+    except subprocess.TimeoutExpired:
+        logger.warning(f"ffprobe timed out after {timeout}s")
+        return None
+    except Exception as e:
+        logger.error(f"Failed to extract metadata with ffprobe: {e}")
+        return None
+
 def parse_master_playlist(content):
     """Parse master playlist and extract resolution information"""
     resolutions = []
@@ -164,6 +233,52 @@ def parse_master_playlist(content):
         logger.info(f"  [{idx}] {res['name']} - {res['resolution']} @ {res.get('framerate', '?')}fps - Bandwidth: {res['bandwidth']}")
 
     return resolutions
+
+def enrich_stream_metadata(stream_dict):
+    """Enrich stream metadata using ffprobe if HLS attributes are missing"""
+    needs_enrichment = (
+        not stream_dict.get('resolution') or
+        not stream_dict.get('framerate') or
+        not stream_dict.get('codecs')
+    )
+
+    if needs_enrichment:
+        missing_fields = []
+        if not stream_dict.get('resolution'):
+            missing_fields.append('resolution')
+        if not stream_dict.get('framerate'):
+            missing_fields.append('framerate')
+        if not stream_dict.get('codecs'):
+            missing_fields.append('codecs')
+
+        logger.info(f"Stream metadata incomplete (missing: {', '.join(missing_fields)}), attempting to enrich with ffprobe: {stream_dict.get('name', 'unknown')}")
+        metadata = extract_stream_metadata_with_ffprobe(stream_dict['url'])
+
+        if metadata:
+            enriched = []
+            # Fill in missing fields
+            if not stream_dict.get('resolution') and metadata.get('resolution'):
+                stream_dict['resolution'] = metadata['resolution']
+                enriched.append(f"resolution={metadata['resolution']}")
+
+            if not stream_dict.get('framerate') and metadata.get('framerate'):
+                stream_dict['framerate'] = metadata['framerate']
+                enriched.append(f"framerate={metadata['framerate']}")
+
+            if not stream_dict.get('codecs') and metadata.get('codecs'):
+                stream_dict['codecs'] = metadata['codecs']
+                enriched.append(f"codecs={metadata['codecs']}")
+
+            if enriched:
+                logger.info(f"  ✓ Enriched with: {', '.join(enriched)}")
+            else:
+                logger.warning("  → ffprobe ran but couldn't extract any missing metadata")
+        else:
+            logger.warning("  → ffprobe enrichment failed, metadata will remain incomplete")
+    else:
+        logger.debug(f"Stream metadata already complete for: {stream_dict.get('name', 'unknown')}")
+
+    return stream_dict
 
 def match_resolution(resolutions, preferred):
     """Find best matching resolution"""
@@ -814,10 +929,10 @@ class StreamDetector:
                             self.awaiting_resolution_selection = True
                             self.available_resolutions = resolutions
 
-                            # Generate thumbnails for streams in background (same as manual mode)
+                            # Enrich metadata and generate thumbnails in background (same as manual mode)
                             for res in resolutions[:5]:
                                 threading.Thread(
-                                    target=self._add_thumbnail_to_stream,
+                                    target=self._enrich_and_add_thumbnail,
                                     args=(res,),
                                     daemon=True
                                 ).start()
@@ -827,11 +942,11 @@ class StreamDetector:
                         self.awaiting_resolution_selection = True
                         self.available_resolutions = resolutions
 
-                        # Generate thumbnails for streams in background (non-blocking)
+                        # Enrich metadata and generate thumbnails in background (non-blocking)
                         # Limit to first 5 streams to avoid overload
                         for res in resolutions[:5]:
                             threading.Thread(
-                                target=self._add_thumbnail_to_stream,
+                                target=self._enrich_and_add_thumbnail,
                                 args=(res,),
                                 daemon=True
                             ).start()
@@ -839,13 +954,21 @@ class StreamDetector:
                     # Couldn't parse resolutions, show single stream
                     logger.warning("Could not parse resolutions from master playlist")
                     self.awaiting_resolution_selection = True
-                    self.available_resolutions = [{
+                    stream_entry = {
                         'url': stream_url,
                         'bandwidth': 0,
-                        'resolution': 'Unknown',
-                        'framerate': 'Unknown',
+                        'resolution': '',
+                        'framerate': '',
+                        'codecs': '',
                         'name': 'Master Playlist (unparsed)'
-                    }]
+                    }
+                    self.available_resolutions = [stream_entry]
+                    # Enrich and add thumbnail in background
+                    threading.Thread(
+                        target=self._enrich_and_add_thumbnail,
+                        args=(stream_entry,),
+                        daemon=True
+                    ).start()
             else:
                 # Not a master playlist, show as single stream or auto-download
                 logger.info("Not a master playlist, treating as single stream")
@@ -855,13 +978,21 @@ class StreamDetector:
                 else:
                     logger.info("Manual mode, showing single stream for selection")
                     self.awaiting_resolution_selection = True
-                    self.available_resolutions = [{
+                    stream_entry = {
                         'url': stream_url,
                         'bandwidth': 0,
-                        'resolution': 'Unknown',
-                        'framerate': 'Unknown',
+                        'resolution': '',
+                        'framerate': '',
+                        'codecs': '',
                         'name': stream_info['type']
-                    }]
+                    }
+                    self.available_resolutions = [stream_entry]
+                    # Enrich and add thumbnail in background
+                    threading.Thread(
+                        target=self._enrich_and_add_thumbnail,
+                        args=(stream_entry,),
+                        daemon=True
+                    ).start()
         else:
             # Not HLS, show as single stream or auto-download
             logger.info("Not HLS stream, treating as single stream")
@@ -871,13 +1002,21 @@ class StreamDetector:
             else:
                 logger.info("Manual mode, showing stream for selection")
                 self.awaiting_resolution_selection = True
-                self.available_resolutions = [{
+                stream_entry = {
                     'url': stream_url,
                     'bandwidth': 0,
-                    'resolution': 'Unknown',
-                    'framerate': 'Unknown',
+                    'resolution': '',
+                    'framerate': '',
+                    'codecs': '',
                     'name': stream_info['type']
-                }]
+                }
+                self.available_resolutions = [stream_entry]
+                # Enrich and add thumbnail in background
+                threading.Thread(
+                    target=self._enrich_and_add_thumbnail,
+                    args=(stream_entry,),
+                    daemon=True
+                ).start()
 
     def _start_download(self, stream_info):
         """Start downloading the detected stream"""
@@ -957,6 +1096,7 @@ class StreamDetector:
 
     def _generate_stream_thumbnail(self, stream_url):
         """Extract a single frame from a stream URL for thumbnail"""
+        temp_file = None
         try:
             logger.info(f"Generating thumbnail for stream: {stream_url[:100]}...")
 
@@ -964,8 +1104,10 @@ class StreamDetector:
             temp_file = f"/tmp/thumb_{int(time.time())}_{os.getpid()}.jpg"
 
             # Use ffmpeg to extract a frame at 2 seconds into the stream
+            # Added -loglevel error to reduce noise, increased timeout to 15s
             cmd = [
                 'ffmpeg',
+                '-loglevel', 'error',
                 '-i', stream_url,
                 '-ss', '00:00:02',  # Seek to 2 seconds
                 '-vframes', '1',     # Extract 1 frame
@@ -974,12 +1116,14 @@ class StreamDetector:
                 temp_file
             ]
 
-            # Run with timeout (10 seconds max)
+            logger.debug(f"Running ffmpeg command: {' '.join(cmd[:5])}...")
+
+            # Run with timeout (15 seconds max - increased from 10)
             process = subprocess.run(
                 cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                timeout=10
+                timeout=15
             )
 
             # Check if thumbnail was created
@@ -991,25 +1135,37 @@ class StreamDetector:
                 # Clean up temp file
                 os.remove(temp_file)
 
-                logger.info("Thumbnail generated successfully")
+                logger.info(f"✓ Thumbnail generated successfully ({len(thumbnail_data)} bytes)")
                 return f"data:image/jpeg;base64,{thumbnail_data}"
             else:
-                logger.warning("Thumbnail file not created")
+                if os.path.exists(temp_file):
+                    logger.warning(f"Thumbnail file created but empty (size: {os.path.getsize(temp_file)})")
+                else:
+                    logger.warning("Thumbnail file was not created by ffmpeg")
+
+                if process.stderr:
+                    stderr_text = process.stderr.decode('utf-8', errors='ignore')
+                    if stderr_text.strip():
+                        logger.warning(f"FFmpeg stderr: {stderr_text[:200]}")
+
                 return None
 
         except subprocess.TimeoutExpired:
-            logger.warning("Thumbnail generation timed out")
+            logger.warning("Thumbnail generation timed out after 15 seconds")
             return None
         except Exception as e:
-            logger.error(f"Failed to generate thumbnail: {e}")
+            logger.error(f"Failed to generate thumbnail: {type(e).__name__}: {e}")
+            import traceback
+            logger.debug(f"Thumbnail generation traceback: {traceback.format_exc()}")
             return None
         finally:
             # Clean up temp file if it exists
-            if 'temp_file' in locals() and os.path.exists(temp_file):
+            if temp_file and os.path.exists(temp_file):
                 try:
                     os.remove(temp_file)
-                except:
-                    pass
+                    logger.debug(f"Cleaned up temp thumbnail file: {temp_file}")
+                except Exception as cleanup_error:
+                    logger.debug(f"Failed to clean up temp file: {cleanup_error}")
 
     def _add_thumbnail_to_stream(self, stream_dict):
         """Generate and add thumbnail to a stream dictionary"""
@@ -1022,6 +1178,17 @@ class StreamDetector:
                     logger.info(f"Added thumbnail to stream: {stream_dict.get('name', 'unknown')}")
         except Exception as e:
             logger.error(f"Error adding thumbnail to stream: {e}")
+
+    def _enrich_and_add_thumbnail(self, stream_dict):
+        """Enrich stream metadata and add thumbnail (combined operation for manual selection)"""
+        try:
+            # First, enrich metadata if needed
+            enrich_stream_metadata(stream_dict)
+
+            # Then add thumbnail
+            self._add_thumbnail_to_stream(stream_dict)
+        except Exception as e:
+            logger.error(f"Error enriching stream data: {e}")
 
     def _download_with_ffmpeg(self, stream_url, output_path):
         """Download stream using FFmpeg"""
