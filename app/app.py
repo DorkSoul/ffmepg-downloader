@@ -1212,12 +1212,29 @@ class StreamDetector:
             )
 
             # Store process info with metadata
+            # Get stream metadata for display
+            if hasattr(self, 'selected_stream_metadata') and self.selected_stream_metadata:
+                metadata = self.selected_stream_metadata
+                resolution_display = metadata.get('resolution') or metadata.get('name', 'Unknown')
+                # If resolution is like "1920x1080" and we have framerate, combine them
+                if metadata.get('resolution') and 'x' in str(metadata.get('resolution')):
+                    fps = metadata.get('framerate', '').split('.')[0] if metadata.get('framerate') else ''
+                    resolution_display = f"{metadata.get('resolution')}@{fps}fps" if fps else metadata.get('resolution')
+                elif metadata.get('name'):
+                    resolution_display = metadata.get('name')
+            else:
+                resolution_display = 'Unknown'
+                metadata = {}
+
             download_queue[self.browser_id] = {
                 'process': process,
                 'output_path': output_path,
                 'stream_url': stream_url,
                 'started_at': time.time(),
-                'resolution_name': getattr(self, 'selected_stream_metadata', {}).get('name', 'Unknown') if hasattr(self, 'selected_stream_metadata') and self.selected_stream_metadata else 'Unknown',
+                'resolution_name': resolution_display,
+                'resolution': metadata.get('resolution', 'Unknown'),
+                'framerate': metadata.get('framerate', 'Unknown'),
+                'codecs': metadata.get('codecs', 'Unknown'),
                 'filename': os.path.basename(output_path)
             }
 
@@ -1454,7 +1471,14 @@ def select_resolution():
 
         logger.info(f"User selected resolution: {stream.get('name')}")
         logger.info(f"Stream URL: {stream.get('url')}")
-        logger.info(f"Stream object received from frontend: {stream}")
+        logger.info(f"Stream object received from frontend (before enrichment): {stream}")
+
+        # IMPORTANT: Enrich the stream metadata synchronously before downloading
+        # The stream from frontend may have incomplete metadata because enrichment
+        # happens asynchronously in background threads
+        logger.info("Enriching selected stream metadata before download...")
+        enrich_stream_metadata(stream)
+        logger.info(f"Stream object after enrichment: {stream}")
 
         # Clear awaiting state
         detector.awaiting_resolution_selection = False
@@ -1683,6 +1707,9 @@ def active_downloads():
                 'browser_id': browser_id,
                 'filename': download_info.get('filename', 'Unknown'),
                 'resolution': download_info.get('resolution_name', 'Unknown'),
+                'resolution_detail': download_info.get('resolution', 'Unknown'),
+                'framerate': download_info.get('framerate', 'Unknown'),
+                'codecs': download_info.get('codecs', 'Unknown'),
                 'size': file_size,
                 'duration': duration,
                 'is_running': is_running
