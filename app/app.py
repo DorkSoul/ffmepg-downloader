@@ -1860,11 +1860,15 @@ def extract_thumbnail_from_file(file_path, browser_id):
 
         # Check if file exists and has content
         if not os.path.exists(file_path):
+            logger.debug(f"Thumbnail: file does not exist: {file_path}")
             return None
 
         file_size = os.path.getsize(file_path)
-        if file_size < 100000:  # Less than 100KB - too small for thumbnail
+        if file_size < 50000:  # Less than 50KB - too small for thumbnail
+            logger.debug(f"Thumbnail: file too small ({file_size} bytes): {file_path}")
             return None
+
+        logger.info(f"Extracting thumbnail from {file_path} ({file_size} bytes)")
 
         # Extract frame from last 3 seconds of downloaded content
         # Use ffmpeg to get a frame without interfering with the ongoing download
@@ -1893,8 +1897,12 @@ def extract_thumbnail_from_file(file_path, browser_id):
                 'timestamp': current_time
             }
 
+            logger.info(f"✓ Thumbnail extracted successfully ({len(thumbnail_base64)} bytes base64)")
             return thumbnail_base64
 
+        logger.warning(f"Thumbnail extraction failed: ffmpeg returned {result.returncode}")
+        if result.stderr:
+            logger.debug(f"ffmpeg stderr: {result.stderr.decode('utf-8')[:200]}")
         return None
 
     except subprocess.TimeoutExpired:
