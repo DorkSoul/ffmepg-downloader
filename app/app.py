@@ -972,20 +972,24 @@ class StreamDetector:
             else:
                 # Not a master playlist, show as single stream or auto-download
                 logger.info("Not a master playlist, treating as single stream")
+                # Create stream entry object
+                stream_entry = {
+                    'url': stream_url,
+                    'bandwidth': 0,
+                    'resolution': '',
+                    'framerate': '',
+                    'codecs': '',
+                    'name': stream_info['type']
+                }
+
                 if self.auto_download:
                     logger.info("Auto-download enabled, downloading single stream")
-                    self._start_download_with_url(stream_url, stream_info['type'])
+                    # Enrich synchronously before download to ensure metadata and thumbnail are available
+                    self._enrich_and_add_thumbnail(stream_entry)
+                    self._start_download_with_url(stream_url, stream_info['type'], stream_entry)
                 else:
                     logger.info("Manual mode, showing single stream for selection")
                     self.awaiting_resolution_selection = True
-                    stream_entry = {
-                        'url': stream_url,
-                        'bandwidth': 0,
-                        'resolution': '',
-                        'framerate': '',
-                        'codecs': '',
-                        'name': stream_info['type']
-                    }
                     self.available_resolutions = [stream_entry]
                     # Enrich and add thumbnail in background
                     threading.Thread(
@@ -996,20 +1000,24 @@ class StreamDetector:
         else:
             # Not HLS, show as single stream or auto-download
             logger.info("Not HLS stream, treating as single stream")
+            # Create stream entry object
+            stream_entry = {
+                'url': stream_url,
+                'bandwidth': 0,
+                'resolution': '',
+                'framerate': '',
+                'codecs': '',
+                'name': stream_info['type']
+            }
+
             if self.auto_download:
                 logger.info("Auto-download enabled, downloading stream")
-                self._start_download_with_url(stream_url, stream_info['type'])
+                # Enrich synchronously before download to ensure metadata and thumbnail are available
+                self._enrich_and_add_thumbnail(stream_entry)
+                self._start_download_with_url(stream_url, stream_info['type'], stream_entry)
             else:
                 logger.info("Manual mode, showing stream for selection")
                 self.awaiting_resolution_selection = True
-                stream_entry = {
-                    'url': stream_url,
-                    'bandwidth': 0,
-                    'resolution': '',
-                    'framerate': '',
-                    'codecs': '',
-                    'name': stream_info['type']
-                }
                 self.available_resolutions = [stream_entry]
                 # Enrich and add thumbnail in background
                 threading.Thread(
