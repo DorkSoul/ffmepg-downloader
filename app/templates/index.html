@@ -1092,7 +1092,6 @@
                 newContent += `Name: ${res.name || 'Unknown'}\n`;
                 newContent += `Resolution: ${res.resolution || 'Unknown'}\n`;
                 newContent += `Framerate: ${res.framerate || 'Unknown'}\n`;
-                newContent += `Bandwidth: ${res.bandwidth || 'Unknown'}\n`;
                 newContent += `Codecs: ${res.codecs || 'Unknown'}\n`;
                 newContent += `URL: ${res.url}\n`;
                 newContent += `\n`;
@@ -1371,9 +1370,25 @@
         }
 
         // Show status message
+        // Store timeout IDs for each status element
+        const statusTimeouts = new Map();
+
         function showStatus(element, message, type) {
             element.textContent = message;
             element.className = 'status-box active ' + type;
+
+            // Clear any existing timeout for this element
+            if (statusTimeouts.has(element)) {
+                clearTimeout(statusTimeouts.get(element));
+            }
+
+            // Set 10 second auto-hide timer
+            const timeoutId = setTimeout(() => {
+                element.classList.remove('active');
+                statusTimeouts.delete(element);
+            }, 10000);
+
+            statusTimeouts.set(element, timeoutId);
         }
 
         // Stream selection modal handling
@@ -1407,11 +1422,6 @@
                 const card = document.createElement('div');
                 card.className = 'stream-card';
 
-                // Format bandwidth
-                const bandwidth = stream.bandwidth ?
-                    `${(stream.bandwidth / 1000).toFixed(0)} kbps` :
-                    'Unknown';
-
                 // Format framerate
                 const framerate = stream.framerate ?
                     `${stream.framerate} fps` :
@@ -1433,10 +1443,6 @@
                         <div class="stream-detail-row">
                             <span class="stream-detail-label">Framerate:</span>
                             <span>${framerate}</span>
-                        </div>
-                        <div class="stream-detail-row">
-                            <span class="stream-detail-label">Bitrate:</span>
-                            <span>${bandwidth}</span>
                         </div>
                         <div class="stream-detail-row">
                             <span class="stream-detail-label">Codec:</span>
