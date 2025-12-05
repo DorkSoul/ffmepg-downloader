@@ -381,7 +381,7 @@ def match_resolution(resolutions, preferred):
     return None
 
 class StreamDetector:
-    def __init__(self, browser_id, resolution='1080p', framerate='any', auto_download=False):
+    def __init__(self, browser_id, resolution='1080p', framerate='any', auto_download=False, filename=None):
         self.browser_id = browser_id
         self.driver = None
         self.detected_streams = []
@@ -391,6 +391,7 @@ class StreamDetector:
         self.resolution = resolution
         self.framerate = framerate  # 'any', '60', '30'
         self.auto_download = auto_download
+        self.filename = filename  # Optional custom filename
         self.awaiting_resolution_selection = False
         self.available_resolutions = []
         self.selected_stream_url = None
@@ -1155,9 +1156,17 @@ class StreamDetector:
         else:
             logger.info("Using existing thumbnail from stream metadata")
 
-        # Generate filename
-        timestamp = int(time.time())
-        filename = f"video_{resolution_name}_{timestamp}.mp4"
+        # Generate filename - use custom filename if provided, otherwise generate one
+        if self.filename:
+            # Use custom filename, ensure it has .mp4 extension
+            filename = self.filename if self.filename.endswith('.mp4') else f"{self.filename}.mp4"
+            logger.info(f"Using custom filename: {filename}")
+        else:
+            # Generate default filename with timestamp
+            timestamp = int(time.time())
+            filename = f"video_{resolution_name}_{timestamp}.mp4"
+            logger.info(f"Using generated filename: {filename}")
+
         output_path = os.path.join(DOWNLOAD_DIR, filename)
 
         # Start FFmpeg download in background
@@ -1271,6 +1280,11 @@ class StreamDetector:
             # Wait for download to complete
             stdout, stderr = process.communicate()
 
+            # Mark download as completed with timestamp
+            if self.browser_id in download_queue:
+                download_queue[self.browser_id]['completed_at'] = time.time()
+                download_queue[self.browser_id]['success'] = (process.returncode == 0)
+
             if process.returncode == 0:
                 logger.info(f"Download completed: {output_path}")
             else:
@@ -1278,6 +1292,10 @@ class StreamDetector:
 
         except Exception as e:
             logger.error(f"Download failed: {e}")
+            # Mark as failed if in queue
+            if self.browser_id in download_queue:
+                download_queue[self.browser_id]['completed_at'] = time.time()
+                download_queue[self.browser_id]['success'] = False
 
     def _auto_close_browser(self):
         """Auto-close browser after delay"""
@@ -1439,6 +1457,11 @@ def _direct_download(browser_id, stream_url, output_path):
 
         stdout, stderr = process.communicate()
 
+        # Mark download as completed with timestamp
+        if browser_id in download_queue:
+            download_queue[browser_id]['completed_at'] = time.time()
+            download_queue[browser_id]['success'] = (process.returncode == 0)
+
         if process.returncode == 0:
             logger.info(f"Direct download completed: {output_path}")
         else:
@@ -1452,6 +1475,10 @@ def _direct_download(browser_id, stream_url, output_path):
         logger.error(f"Direct download error: {e}")
         import traceback
         logger.error(f"Traceback: {traceback.format_exc()}")
+        # Mark as failed if in queue
+        if browser_id in download_queue:
+            download_queue[browser_id]['completed_at'] = time.time()
+            download_queue[browser_id]['success'] = False
 
 
 @app.route('/api/browser/start', methods=['POST'])
@@ -1463,17 +1490,18 @@ def start_browser():
         resolution = data.get('resolution', '1080p')
         framerate = data.get('framerate', 'any')  # 'any', '60', '30'
         auto_download = data.get('auto_download', False)
+        filename = data.get('filename', None)  # Optional custom filename
 
         if not url:
             return jsonify({'error': 'No URL provided'}), 400
 
-        logger.info(f"Starting browser with resolution: {resolution}, framerate: {framerate}, auto_download: {auto_download}")
+        logger.info(f"Starting browser with resolution: {resolution}, framerate: {framerate}, auto_download: {auto_download}, filename: {filename}")
 
         # Generate browser ID
         browser_id = f"browser_{int(time.time())}"
 
         # Create and start detector with new parameters
-        detector = StreamDetector(browser_id, resolution, framerate, auto_download)
+        detector = StreamDetector(browser_id, resolution, framerate, auto_download, filename)
         active_browsers[browser_id] = detector
 
         if detector.start_browser(url):
@@ -1503,10 +1531,18 @@ def browser_status(browser_id):
             # Add download info if available
             if browser_id in download_queue:
                 download_info = download_queue[browser_id]
+                # Use completed_at if download finished, otherwise calculate current duration
+                if 'completed_at' in download_info:
+                    duration = download_info['completed_at'] - download_info['started_at']
+                else:
+                    duration = time.time() - download_info['started_at']
+
                 status['download'] = {
                     'output_path': download_info['output_path'],
                     'stream_url': download_info['stream_url'],
-                    'duration': time.time() - download_info['started_at']
+                    'duration': duration,
+                    'completed': 'completed_at' in download_info,
+                    'success': download_info.get('success', True)
                 }
 
             return jsonify(status)
@@ -1518,10 +1554,18 @@ def browser_status(browser_id):
             # Add download info if available
             if browser_id in download_queue:
                 download_info = download_queue[browser_id]
+                # Use completed_at if download finished, otherwise calculate current duration
+                if 'completed_at' in download_info:
+                    duration = download_info['completed_at'] - download_info['started_at']
+                else:
+                    duration = time.time() - download_info['started_at']
+
                 status['download'] = {
                     'output_path': download_info['output_path'],
                     'stream_url': download_info['stream_url'],
-                    'duration': time.time() - download_info['started_at']
+                    'duration': duration,
+                    'completed': 'completed_at' in download_info,
+                    'success': download_info.get('success', True)
                 }
 
             return jsonify(status)
