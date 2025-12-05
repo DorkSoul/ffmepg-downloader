@@ -1902,7 +1902,7 @@ def extract_thumbnail_from_file(file_path, browser_id):
 
         logger.warning(f"Thumbnail extraction failed: ffmpeg returned {result.returncode}")
         if result.stderr:
-            logger.debug(f"ffmpeg stderr: {result.stderr.decode('utf-8')[:200]}")
+            logger.warning(f"ffmpeg stderr: {result.stderr.decode('utf-8')[:500]}")
         return None
 
     except subprocess.TimeoutExpired:
