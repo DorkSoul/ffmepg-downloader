@@ -535,6 +535,11 @@
                 </div>
 
                 <div class="input-group">
+                    <label for="browser-filename">Filename (optional)</label>
+                    <input type="text" id="browser-filename" placeholder="my_video (leave empty for auto-generated name)">
+                </div>
+
+                <div class="input-group">
                     <label>
                         <input type="checkbox" id="auto-download" style="width: auto; margin-right: 8px;">
                         Auto-download matching stream
@@ -698,7 +703,13 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    showStatus(statusBox, `✓ Download started! Saving to: ${data.output_path}`, 'success');
+                    showStatus(statusBox, `✓ Download started! Extracting metadata...`, 'success');
+
+                    // Set up status polling for direct download (similar to browser mode)
+                    currentBrowserId = data.browser_id;
+                    downloadPopupShown = false;
+                    startBrowserStatusPolling();
+
                     setTimeout(() => loadDownloads(), 2000);
                 } else {
                     showStatus(statusBox, `Error: ${data.error}`, 'error');
@@ -714,6 +725,7 @@
         // Start browser mode
         async function startBrowser() {
             const url = document.getElementById('browser-url').value.trim();
+            const filename = document.getElementById('browser-filename').value.trim();
             const resolution = document.getElementById('preferred-resolution').value;
             const framerate = document.getElementById('preferred-framerate').value;
             const autoDownload = document.getElementById('auto-download').checked;
@@ -729,15 +741,22 @@
             btn.innerHTML = '<span class="spinner"></span> Starting browser...';
 
             try {
+                const payload = {
+                    url,
+                    resolution: resolution,
+                    framerate: framerate,
+                    auto_download: autoDownload
+                };
+
+                // Only add filename if provided
+                if (filename) {
+                    payload.filename = filename;
+                }
+
                 const response = await fetch('/api/browser/start', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        url,
-                        resolution: resolution,
-                        framerate: framerate,
-                        auto_download: autoDownload
-                    })
+                    body: JSON.stringify(payload)
                 });
 
                 const data = await response.json();
