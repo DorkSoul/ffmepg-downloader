@@ -1038,6 +1038,16 @@ class StreamDetector:
         logger.info(f"Stream URL: {stream_url}")
         if stream_metadata:
             logger.info(f"Stream metadata: name={stream_metadata.get('name')}, res={stream_metadata.get('resolution')}, fps={stream_metadata.get('framerate')}")
+
+            # Reuse existing thumbnail if available
+            if 'thumbnail' in stream_metadata and stream_metadata['thumbnail']:
+                # Extract base64 data (remove data:image/jpeg;base64, prefix if present)
+                thumbnail = stream_metadata['thumbnail']
+                if thumbnail.startswith('data:image/'):
+                    self.thumbnail_data = thumbnail.split(',', 1)[1]
+                else:
+                    self.thumbnail_data = thumbnail
+                logger.info("Reusing existing thumbnail from stream metadata")
         else:
             logger.warning("No stream metadata available for download popup")
 
@@ -1054,8 +1064,12 @@ class StreamDetector:
         logger.info("Waiting 3 seconds for video to load...")
         time.sleep(3)
 
-        # Capture thumbnail
-        self._capture_thumbnail()
+        # Capture thumbnail only if not already available from stream metadata
+        if not self.thumbnail_data:
+            logger.info("No existing thumbnail, capturing from browser...")
+            self._capture_thumbnail()
+        else:
+            logger.info("Using existing thumbnail from stream metadata")
 
         # Generate filename
         timestamp = int(time.time())
