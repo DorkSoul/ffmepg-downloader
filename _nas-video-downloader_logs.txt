@@ -1,99 +1,99 @@
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCcVBr2iTyWnWwkfFyRs3T9T8wzNZxyiHkevvhVqa7ngS1ddrgLBcqHhGTv0cAOdVSJOxBQXU3M55QOXva9DRJuVqLTCjfdxNEa2_cAYruqfSQS8vvn2SWG_pmn6dv911AqHykS6dxqA_xlZQkjKeciN_mcFRe0HhQUgCBbEXqM3BSSR-mZCzu2kMJY9xbSakbnDjpKpNuQJ6qLfok2iGb7Xd166OCHti9PirkZTX2fU6c9ViEdcoGsYSkamsTLW2Y_32YkyxssdoU7VAwuMLYyPpmccrn8NpL_SQS-FqqcH_r8fFjbQwGEYq71YSu4suNGYd-LHwhV072LXHL_I3crbPAzSnkcsmGQENhVmoHsPm2XFi9X87L0shCKvxeEjcHf3zxynfm0DWop3dij7T_mt17N05Hlmf9GPwVVqMWatitc7tU3EwpIkp4YO3HO0JdLvQtpRoMVNyA1g9QgpiEOUKFIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCT5SXCGPpNOYJk14LQVlqZBrsb3njd8nsXMbEAXNSXZy9IasLOHPm-TKxf6ANnJsFIZQvMeSirXJmxl2UFnEwLrFsWQ_17MTAewLKRYxzWdQCtPBF-9tI3e2L42c43ThTRotYHkOBXDKlD1WQ7MBFTcDrAKlQPA6YYP33cLEDa25fK0oaCW_NB0j0EgpRw6H2UgiQ6-AG1VichzI-9vH23tBMiDFekypZMksbKxDnVRV30dXkMJXfciLRCepT0yztZbx91VEvPixlEAGYd3nldkWVVuERJLwgGjqTXcEhgmWJvNoXzfw-rZsEcCrn25bSzf4sYWNkhaLWOoWOvV3Ym30J0ToEV5anamTkOvnA-UFT0gc2KYOe7wWR0LyY6gxPg334X4q8LmNnLrwv5djO2AQdV_aJYLV_BfaPF84GaJ_0CuBu33e3j5Yd5tE2Mg-i-nFyuBoMomFFtfpyIcCBUZeqIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN')
-[https @ 0x55e616c3e6c0] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCOB8Lsxt5ZDZep8vry-G3mXz67UB7okmfbk-W0VCoUtDLblmM7B5oLsE17zjj0koN9USVMQAGflLl_eE76CYzG1k1T5ucRDTB_QPquqk_XWa7oz4uYtC1GqV32yvfZ3NM8DCsj1E9cBYrK5cFBNqu0tosdCMR0p-ZtI4fP0S80M32aq4ajSlJTOr5wO9wcy3XfL9ZrnNMEoHjpNDP80YtQ7lW47T_mfyQmoMxOdNWm4qzk5yHiw3dDGlXNlFhqpW4Ol5Y7iAjbv_d92mfvzDl9sxMZQEPK7V-GGesHGGSElupHQymj19MLPWQTnjAzNQoScgE0q_mzGuT4mjJi3INhsOs04fkD-7xX4deSdpiH4Noio6azbGW4DHEj1SkW-eXElaf0yAkwJiEAqArhhHnDZ5Fmz_T1x8sumSNeQfgmR54EaMLuumTnxNDCCcQu2NlSxFz7RoMSF0_-Ho7cvz-Xj1-IAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN' for reading
-frame= 1198 fps= 34 q=-1.0 size=    1536KiB time=00:00:39.86 bitrate= 315.6kbits/s speed=1.12x    
-frame= 1198 fps= 33 q=-1.0 size=    1536KiB time=00:00:39.86 bitrate= 315.6kbits/s speed=1.11x    
-frame= 1198 fps= 33 q=-1.0 size=    1536KiB time=00:00:39.86 bitrate= 315.6kbits/s speed=1.09x    
-frame= 1198 fps= 32 q=-1.0 size=    1536KiB time=00:00:39.86 bitrate= 315.6kbits/s speed=1.08x    
-[https @ 0x7fad6800fd40] Opening 'https://euw13.playlist.ttvnw.net/v1/playlist/CpEGYoMIykdNy7I-NyWaX0FW-bmW5zyYjCJiMqGn2EShwiYonh08QOW92U8nM44aXdjLT-EeksRtCXixSaBOoyK8zFstYLVjdVga1n3-2-mogMu0V7sDXATU0clgCO50WFzN74Ljy4cDSPFckIzDvZxkNKm9liFIJkiH6_xQlWeQJMuVcctG_FGzO0snwCVIB0qlXLUb5Zc-l8yiTeIXAdOm8R2VQvk7oJEQR0uVO6fUoOJbPhE7sQijiNkYCuProSBXydIBEMsSSWhmQhHi3h9qWrBZKarXuYvC9K7T5CeEqv6IH8zZ7Cf42VWK62rfOsQmM-6-npoMAd2EH1rrQ_H44RgXkUK7VkzTvokhx4rD2sEK3fBBpEh8YrAmT9kl3CcJN_lPEEJ8XQeeXnB00lbU7YOqiCzLiCzfdUEL_4cd_6itAMLrx1FZ6S_BV3lOq7Ts9Vh1E9hdfvR7oY8qKF_3tShNzRQpDZVGhZlx8tuDEfc-iuEyK3ykaOHmmWX_G6ZGnR4qAWd2Ae1wiKoo5KFBsvP-Re_ntNK6FGcP0xbrsffkikHw294wQQOJ9LQSQFQ3IzDz5CHrd0YkHhNE9Xwb-HusZiFQwO3pCGFwPNXvERHlunJnCeGRsZ2nCYJfx2TcLCIxYPudm23-g5f4Nn4nQre_CV7M66aojTTgUxxRKxaA8RWnGKH_IF78EiANBo5hOaXDF_0y-cbCROTOOrpW4YlnliJwgFVG3Ki6OLJgmEHu_SKKw-nbbVBAg-4BnHb539L1MOXsl-34B2s2Ql5KjwFDMNj8Tm3Q-RTHpIz6cFfonRVHZYgFYJy56X6M_tVlagqDdHY-lbEXz91_rYaTReBDTmNScEWyvjrZfmfXsO_iz5hvR4ElC39dWYAs51S9raOyRXLyMksScX1vcZUGleaTy7B76MBy1qL2Id2r6EpVej0X47iGunn9jRdQIsETTqDXnVc98pjbFneNh5NsoHE4oELTfk1CHPrGhz8Pa6t4PHANm2crJJkg9Sz2N6h4c_67785YmpqGRnYgMAqcmjoaDMfXchoAiTbbXH42IiABKglldS13ZXN0LTIw8A0.m3u8' for reading
-[hls @ 0x55e616973200] Skip ('#EXT-X-VERSION:3')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:2335')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:4670.000')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-TOTAL-SECS:4702.000')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1764924303",CLASS="timestamp",START-DATE="2025-12-05T08:45:03.702Z",END-ON-NEXT=YES,X-SERVER-TIME="1764924303.70"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1764924303",CLASS="twitch-session",START-DATE="2025-12-05T08:45:03.702Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4791913336572797169"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="source-1764924273",CLASS="twitch-stream-source",START-DATE="2025-12-05T08:44:33.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764924273",CLASS="twitch-trigger",START-DATE="2025-12-05T08:44:33.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw13.playlist.ttvnw.net/trigger/Cp8GOEr-4_QNN1P7j199fMrAtLu_-IlRb2fQPZ2C6qun-IRScmbXCdgwjkDroYekulHFVUvDEvpY-ifxE5f0aTxMcuKXTC2HzZh6SJrIt_oi-kSav0oNY3c_GttZHW9ohDQXLtcAj6tHyK1zmAdl2WDuwXlvv8yMtQuxVPWMUpNN5D0LcmxBibRmHgXkK0mnXPo8jhZVK6VNEN37R2HmJImZCmdnsCY1uaX4HLZawstYhUIPQ0bwxQX1FuAYrmVMRiJFNimfL6JwBOA2ev00wqc7BXawxiiAhGJci1ooBiE4cvhVzhgXozjMI9i_syFzbW3BfbkvydkuXy39QylTgmW81IkrJWBAIK71fZ9Lhxm6yg1w27Uw3CSloh_OixwBG1Zjv4RMJZdeJD3YQC2lhAlKuYUQsC14mhGxA0ByASnYjAzLKB6-cMSpEL2vUC0X3ec_zHRiEFC_UgoBvqG6OPrQhw2wBCswFsgYQxWGoHAaDBWQyhhw1x7ij5dSJTgIXPQIIX_5yR31rJBT9_26Oucwsr5e5gx--jihd0rVSfLAFPA9T3iPCrRdgeDfgEJmwXQj6POydPzvLssDhdF9AW9K3rah5ghpFqu2ild8v_aLOijTBFZ59NXN6_4Z1xJsVVfaf1P1mfmWCB-XuNpggP4Gvtu-vTYWTI3-sFxyFmKG8L5YZjAHepPj2lfVnDgTQqm9TbmDhspB6Hafhcbm-YoeBoKwz5x8Dd3kvHmEr0AMppYXKPWyiPbwnhhHqmCNomT9K1lsxcJNaigy7uJX_vgNE-YJu9IYu9GF_gSCTRJvixEoW8suwjgunoCBX2JPVONJASD1gEAg3pF8pfAkjCQvIW83LQuEykQrEsqV4D9MZKwkbtrQh1zXf-P4fILE9ZTLBi5fSYebwAjmKNixxFxeAc4LsD_kBLPAFVU1Y0G_MCG8FbVDqqFhTLU__zvhR2kfhhxZ2IdejWZ5dHFPQJ6fj_WiC_6OTnivCN7ClBLnckmt56LgFjMBtzunpf9wehufwMBQ3w6d6Vq0uw3vnQYRJg00NGpxge8XMhl5f1Py4hoMyqY_lmqyMFZVX8QZIAEqCWV1LXdlc3QtMjDwDQ"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:21.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:23.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:25.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:27.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:29.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:31.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:33.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:35.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:37.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:39.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:41.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:43.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:45.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:47.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCT5SXCGPpNOYJk14LQVlqZBrsb3njd8nsXMbEAXNSXZy9IasLOHPm-TKxf6ANnJsFIZQvMeSirXJmxl2UFnEwLrFsWQ_17MTAewLKRYxzWdQCtPBF-9tI3e2L42c43ThTRotYHkOBXDKlD1WQ7MBFTcDrAKlQPA6YYP33cLEDa25fK0oaCW_NB0j0EgpRw6H2UgiQ6-AG1VichzI-9vH23tBMiDFekypZMksbKxDnVRV30dXkMJXfciLRCepT0yztZbx91VEvPixlEAGYd3nldkWVVuERJLwgGjqTXcEhgmWJvNoXzfw-rZsEcCrn25bSzf4sYWNkhaLWOoWOvV3Ym30J0ToEV5anamTkOvnA-UFT0gc2KYOe7wWR0LyY6gxPg334X4q8LmNnLrwv5djO2AQdV_aJYLV_BfaPF84GaJ_0CuBu33e3j5Yd5tE2Mg-i-nFyuBoMomFFtfpyIcCBUZeqIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCuAbPJCxBqpamtSBQxWgBkHJYrXxUl6oDGDG5k3ywriR-goxh2Nt-EDhw-nEmT0XPehWwFDFfa12SpHiYscRFlux3bBAI7KDpMDIwl6jbTRCrv6wHoJq1d4z0vLn9jaKv6TYTqBfXRx7tMUAwRGbJIQWb5kH4my-DGQSHWrtu2UWcK0BSJACab52ONLS0cTSqmCN2E2Z0KCuY3WQV6_MoNcIGAW9iNugIAeVv9mbYHR3M3FrRP-CeR8kDY7qqdiwmjfNH8OmeTdn2o3ncUUHkuzvfsnJj6A_CjjDufMMgk4Wqyql4Qb4TtpsHeViV4zZ2Yw_N_ZboUvCKJrJH6ZBg2zifhD3LwOHluUT7AtqmW7hJqTHT4fdwskDOY5bsOCrt7titXPQzucI0SN2pT-OuXwBsoxDSCu65mafK_sbNkZ-9_jHOkHYrclBB99VEFzqN7OPwzBoMjda50tNSYcv4DKLDIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN')
-[https @ 0x55e616c3e6c0] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCcVBr2iTyWnWwkfFyRs3T9T8wzNZxyiHkevvhVqa7ngS1ddrgLBcqHhGTv0cAOdVSJOxBQXU3M55QOXva9DRJuVqLTCjfdxNEa2_cAYruqfSQS8vvn2SWG_pmn6dv911AqHykS6dxqA_xlZQkjKeciN_mcFRe0HhQUgCBbEXqM3BSSR-mZCzu2kMJY9xbSakbnDjpKpNuQJ6qLfok2iGb7Xd166OCHti9PirkZTX2fU6c9ViEdcoGsYSkamsTLW2Y_32YkyxssdoU7VAwuMLYyPpmccrn8NpL_SQS-FqqcH_r8fFjbQwGEYq71YSu4suNGYd-LHwhV072LXHL_I3crbPAzSnkcsmGQENhVmoHsPm2XFi9X87L0shCKvxeEjcHf3zxynfm0DWop3dij7T_mt17N05Hlmf9GPwVVqMWatitc7tU3EwpIkp4YO3HO0JdLvQtpRoMVNyA1g9QgpiEOUKFIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN' for reading
-frame= 1258 fps= 34 q=-1.0 size=    1792KiB time=00:00:41.86 bitrate= 350.7kbits/s speed=1.12x    
-frame= 1258 fps= 33 q=-1.0 size=    1792KiB time=00:00:41.86 bitrate= 350.7kbits/s speed= 1.1x    
-frame= 1258 fps= 33 q=-1.0 size=    1792KiB time=00:00:41.86 bitrate= 350.7kbits/s speed=1.09x    
-frame= 1258 fps= 32 q=-1.0 size=    1792KiB time=00:00:41.86 bitrate= 350.7kbits/s speed=1.07x    
-[https @ 0x7fad6800fd40] Opening 'https://euw13.playlist.ttvnw.net/v1/playlist/CpEGYoMIykdNy7I-NyWaX0FW-bmW5zyYjCJiMqGn2EShwiYonh08QOW92U8nM44aXdjLT-EeksRtCXixSaBOoyK8zFstYLVjdVga1n3-2-mogMu0V7sDXATU0clgCO50WFzN74Ljy4cDSPFckIzDvZxkNKm9liFIJkiH6_xQlWeQJMuVcctG_FGzO0snwCVIB0qlXLUb5Zc-l8yiTeIXAdOm8R2VQvk7oJEQR0uVO6fUoOJbPhE7sQijiNkYCuProSBXydIBEMsSSWhmQhHi3h9qWrBZKarXuYvC9K7T5CeEqv6IH8zZ7Cf42VWK62rfOsQmM-6-npoMAd2EH1rrQ_H44RgXkUK7VkzTvokhx4rD2sEK3fBBpEh8YrAmT9kl3CcJN_lPEEJ8XQeeXnB00lbU7YOqiCzLiCzfdUEL_4cd_6itAMLrx1FZ6S_BV3lOq7Ts9Vh1E9hdfvR7oY8qKF_3tShNzRQpDZVGhZlx8tuDEfc-iuEyK3ykaOHmmWX_G6ZGnR4qAWd2Ae1wiKoo5KFBsvP-Re_ntNK6FGcP0xbrsffkikHw294wQQOJ9LQSQFQ3IzDz5CHrd0YkHhNE9Xwb-HusZiFQwO3pCGFwPNXvERHlunJnCeGRsZ2nCYJfx2TcLCIxYPudm23-g5f4Nn4nQre_CV7M66aojTTgUxxRKxaA8RWnGKH_IF78EiANBo5hOaXDF_0y-cbCROTOOrpW4YlnliJwgFVG3Ki6OLJgmEHu_SKKw-nbbVBAg-4BnHb539L1MOXsl-34B2s2Ql5KjwFDMNj8Tm3Q-RTHpIz6cFfonRVHZYgFYJy56X6M_tVlagqDdHY-lbEXz91_rYaTReBDTmNScEWyvjrZfmfXsO_iz5hvR4ElC39dWYAs51S9raOyRXLyMksScX1vcZUGleaTy7B76MBy1qL2Id2r6EpVej0X47iGunn9jRdQIsETTqDXnVc98pjbFneNh5NsoHE4oELTfk1CHPrGhz8Pa6t4PHANm2crJJkg9Sz2N6h4c_67785YmpqGRnYgMAqcmjoaDMfXchoAiTbbXH42IiABKglldS13ZXN0LTIw8A0.m3u8' for reading
-[hls @ 0x55e616973200] Skip ('#EXT-X-VERSION:3')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:2337')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:4674.000')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-TOTAL-SECS:4706.000')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1764924303",CLASS="timestamp",START-DATE="2025-12-05T08:45:03.702Z",END-ON-NEXT=YES,X-SERVER-TIME="1764924303.70"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1764924303",CLASS="twitch-session",START-DATE="2025-12-05T08:45:03.702Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4791913336572797169"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="source-1764924273",CLASS="twitch-stream-source",START-DATE="2025-12-05T08:44:33.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764924273",CLASS="twitch-trigger",START-DATE="2025-12-05T08:44:33.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw13.playlist.ttvnw.net/trigger/Cp8GOEr-4_QNN1P7j199fMrAtLu_-IlRb2fQPZ2C6qun-IRScmbXCdgwjkDroYekulHFVUvDEvpY-ifxE5f0aTxMcuKXTC2HzZh6SJrIt_oi-kSav0oNY3c_GttZHW9ohDQXLtcAj6tHyK1zmAdl2WDuwXlvv8yMtQuxVPWMUpNN5D0LcmxBibRmHgXkK0mnXPo8jhZVK6VNEN37R2HmJImZCmdnsCY1uaX4HLZawstYhUIPQ0bwxQX1FuAYrmVMRiJFNimfL6JwBOA2ev00wqc7BXawxiiAhGJci1ooBiE4cvhVzhgXozjMI9i_syFzbW3BfbkvydkuXy39QylTgmW81IkrJWBAIK71fZ9Lhxm6yg1w27Uw3CSloh_OixwBG1Zjv4RMJZdeJD3YQC2lhAlKuYUQsC14mhGxA0ByASnYjAzLKB6-cMSpEL2vUC0X3ec_zHRiEFC_UgoBvqG6OPrQhw2wBCswFsgYQxWGoHAaDBWQyhhw1x7ij5dSJTgIXPQIIX_5yR31rJBT9_26Oucwsr5e5gx--jihd0rVSfLAFPA9T3iPCrRdgeDfgEJmwXQj6POydPzvLssDhdF9AW9K3rah5ghpFqu2ild8v_aLOijTBFZ59NXN6_4Z1xJsVVfaf1P1mfmWCB-XuNpggP4Gvtu-vTYWTI3-sFxyFmKG8L5YZjAHepPj2lfVnDgTQqm9TbmDhspB6Hafhcbm-YoeBoKwz5x8Dd3kvHmEr0AMppYXKPWyiPbwnhhHqmCNomT9K1lsxcJNaigy7uJX_vgNE-YJu9IYu9GF_gSCTRJvixEoW8suwjgunoCBX2JPVONJASD1gEAg3pF8pfAkjCQvIW83LQuEykQrEsqV4D9MZKwkbtrQh1zXf-P4fILE9ZTLBi5fSYebwAjmKNixxFxeAc4LsD_kBLPAFVU1Y0G_MCG8FbVDqqFhTLU__zvhR2kfhhxZ2IdejWZ5dHFPQJ6fj_WiC_6OTnivCN7ClBLnckmt56LgFjMBtzunpf9wehufwMBQ3w6d6Vq0uw3vnQYRJg00NGpxge8XMhl5f1Py4hoMyqY_lmqyMFZVX8QZIAEqCWV1LXdlc3QtMjDwDQ"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:25.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:27.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:29.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:31.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:33.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:35.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:37.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:39.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:41.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:43.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:45.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:47.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:49.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:51.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCMG1KMZmUF6NTGoq8H7Q0Y2DB4rZdzqtCmdE_oTzQKqgjptNGZ-CKMo9T1GOBoEfPLEjNTRf0Wc8qRCmWKnvoE1mF6S9NIgcAYm21hXZe8VJS1ZqK79z-cPz7mgfP_SjU8OnoQQF5aMx0H-KRb0pWi6KlzH3RmaqmlGF7EhdAbYcKB0Wp0-DCbwnCmViVycggj581ep8j0hfFYvQOXXJV3n4fEJq57lrABwHIjMZ7l1eQdjhy0cOms4ScUs9w9xobhf2AfPgpD6-ncUTL7MgwJxwDQ_vWED9NIKDbat0toazYMKhn_Yz6dwvrxD2knoovFbcvkG1H79aeKD5ddYmK4Jyga8IVNS-NJJjUt3zJg-Cj5wf7PsEQrociXFiWy_p_xzm3qgfrAR4-9IdiCcSlmr71vOE6dD29KaNyaBfSOW-n7Tl6BxKXeq0sGTd8STPPqnIYVxoMVx41TEvs_MSduuRsIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCay7I8v2M10YQ2Isj8xafaGhawirHovi-KeE8LjKgFBA00j8hyn6HxqwqseFHXmGELjVuJ0ccvpGCPnoudKNulDNFydhdPwvzFN7HPrA2JXKqzqOKV4IZCIfdswANlXSN8S95wFZz4LamlTXLrq7yPUZQb7JCbvbzTyrosq2-Cmu0-9PmgoNPYkf3qdwMS2Cd7CUdvdMIiCBeWQaUr8xjSTEJhrHMuliIPg7mh0gWKa4UJwuI-Tc6r66erVUhfwOIZwZh3y4t0WzLVZVW7OutWphJZ2eBmnregYiD2F-OtCqsNL6pBXyN3T4adMIa03MuRjSe99Sgv_aSXo_SAdQvS3-XpeWlqYiJMmQkb3iGQF8Qug1Y8wUYxIjZLq_F6yVh8hCvXeVo2m3jS3dSBnoI5CfvBDC6vI8BbLVFfkEGsZGLl3koJ_ikEcGAgVDlNDYLLq3UhBoMm7s9nL7_hUcXGz_GIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN')
-[https @ 0x55e616c3e6c0] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCT5SXCGPpNOYJk14LQVlqZBrsb3njd8nsXMbEAXNSXZy9IasLOHPm-TKxf6ANnJsFIZQvMeSirXJmxl2UFnEwLrFsWQ_17MTAewLKRYxzWdQCtPBF-9tI3e2L42c43ThTRotYHkOBXDKlD1WQ7MBFTcDrAKlQPA6YYP33cLEDa25fK0oaCW_NB0j0EgpRw6H2UgiQ6-AG1VichzI-9vH23tBMiDFekypZMksbKxDnVRV30dXkMJXfciLRCepT0yztZbx91VEvPixlEAGYd3nldkWVVuERJLwgGjqTXcEhgmWJvNoXzfw-rZsEcCrn25bSzf4sYWNkhaLWOoWOvV3Ym30J0ToEV5anamTkOvnA-UFT0gc2KYOe7wWR0LyY6gxPg334X4q8LmNnLrwv5djO2AQdV_aJYLV_BfaPF84GaJ_0CuBu33e3j5Yd5tE2Mg-i-nFyuBoMomFFtfpyIcCBUZeqIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN' for reading
-frame= 1258 fps= 32 q=-1.0 size=    1792KiB time=00:00:41.86 bitrate= 350.7kbits/s speed=1.06x    
-[https @ 0x55e616afd1c0] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCuAbPJCxBqpamtSBQxWgBkHJYrXxUl6oDGDG5k3ywriR-goxh2Nt-EDhw-nEmT0XPehWwFDFfa12SpHiYscRFlux3bBAI7KDpMDIwl6jbTRCrv6wHoJq1d4z0vLn9jaKv6TYTqBfXRx7tMUAwRGbJIQWb5kH4my-DGQSHWrtu2UWcK0BSJACab52ONLS0cTSqmCN2E2Z0KCuY3WQV6_MoNcIGAW9iNugIAeVv9mbYHR3M3FrRP-CeR8kDY7qqdiwmjfNH8OmeTdn2o3ncUUHkuzvfsnJj6A_CjjDufMMgk4Wqyql4Qb4TtpsHeViV4zZ2Yw_N_ZboUvCKJrJH6ZBg2zifhD3LwOHluUT7AtqmW7hJqTHT4fdwskDOY5bsOCrt7titXPQzucI0SN2pT-OuXwBsoxDSCu65mafK_sbNkZ-9_jHOkHYrclBB99VEFzqN7OPwzBoMjda50tNSYcv4DKLDIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN' for reading
-[https @ 0x7fad6800fd40] Opening 'https://euw13.playlist.ttvnw.net/v1/playlist/CpEGYoMIykdNy7I-NyWaX0FW-bmW5zyYjCJiMqGn2EShwiYonh08QOW92U8nM44aXdjLT-EeksRtCXixSaBOoyK8zFstYLVjdVga1n3-2-mogMu0V7sDXATU0clgCO50WFzN74Ljy4cDSPFckIzDvZxkNKm9liFIJkiH6_xQlWeQJMuVcctG_FGzO0snwCVIB0qlXLUb5Zc-l8yiTeIXAdOm8R2VQvk7oJEQR0uVO6fUoOJbPhE7sQijiNkYCuProSBXydIBEMsSSWhmQhHi3h9qWrBZKarXuYvC9K7T5CeEqv6IH8zZ7Cf42VWK62rfOsQmM-6-npoMAd2EH1rrQ_H44RgXkUK7VkzTvokhx4rD2sEK3fBBpEh8YrAmT9kl3CcJN_lPEEJ8XQeeXnB00lbU7YOqiCzLiCzfdUEL_4cd_6itAMLrx1FZ6S_BV3lOq7Ts9Vh1E9hdfvR7oY8qKF_3tShNzRQpDZVGhZlx8tuDEfc-iuEyK3ykaOHmmWX_G6ZGnR4qAWd2Ae1wiKoo5KFBsvP-Re_ntNK6FGcP0xbrsffkikHw294wQQOJ9LQSQFQ3IzDz5CHrd0YkHhNE9Xwb-HusZiFQwO3pCGFwPNXvERHlunJnCeGRsZ2nCYJfx2TcLCIxYPudm23-g5f4Nn4nQre_CV7M66aojTTgUxxRKxaA8RWnGKH_IF78EiANBo5hOaXDF_0y-cbCROTOOrpW4YlnliJwgFVG3Ki6OLJgmEHu_SKKw-nbbVBAg-4BnHb539L1MOXsl-34B2s2Ql5KjwFDMNj8Tm3Q-RTHpIz6cFfonRVHZYgFYJy56X6M_tVlagqDdHY-lbEXz91_rYaTReBDTmNScEWyvjrZfmfXsO_iz5hvR4ElC39dWYAs51S9raOyRXLyMksScX1vcZUGleaTy7B76MBy1qL2Id2r6EpVej0X47iGunn9jRdQIsETTqDXnVc98pjbFneNh5NsoHE4oELTfk1CHPrGhz8Pa6t4PHANm2crJJkg9Sz2N6h4c_67785YmpqGRnYgMAqcmjoaDMfXchoAiTbbXH42IiABKglldS13ZXN0LTIw8A0.m3u8' for reading
-[hls @ 0x55e616973200] Skip ('#EXT-X-VERSION:3')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:2338')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:4676.000')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-TOTAL-SECS:4708.000')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1764924303",CLASS="timestamp",START-DATE="2025-12-05T08:45:03.702Z",END-ON-NEXT=YES,X-SERVER-TIME="1764924303.70"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1764924303",CLASS="twitch-session",START-DATE="2025-12-05T08:45:03.702Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4791913336572797169"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="source-1764924273",CLASS="twitch-stream-source",START-DATE="2025-12-05T08:44:33.649Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-DATERANGE:ID="trigger-1764924273",CLASS="twitch-trigger",START-DATE="2025-12-05T08:44:33.649Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw13.playlist.ttvnw.net/trigger/Cp8GOEr-4_QNN1P7j199fMrAtLu_-IlRb2fQPZ2C6qun-IRScmbXCdgwjkDroYekulHFVUvDEvpY-ifxE5f0aTxMcuKXTC2HzZh6SJrIt_oi-kSav0oNY3c_GttZHW9ohDQXLtcAj6tHyK1zmAdl2WDuwXlvv8yMtQuxVPWMUpNN5D0LcmxBibRmHgXkK0mnXPo8jhZVK6VNEN37R2HmJImZCmdnsCY1uaX4HLZawstYhUIPQ0bwxQX1FuAYrmVMRiJFNimfL6JwBOA2ev00wqc7BXawxiiAhGJci1ooBiE4cvhVzhgXozjMI9i_syFzbW3BfbkvydkuXy39QylTgmW81IkrJWBAIK71fZ9Lhxm6yg1w27Uw3CSloh_OixwBG1Zjv4RMJZdeJD3YQC2lhAlKuYUQsC14mhGxA0ByASnYjAzLKB6-cMSpEL2vUC0X3ec_zHRiEFC_UgoBvqG6OPrQhw2wBCswFsgYQxWGoHAaDBWQyhhw1x7ij5dSJTgIXPQIIX_5yR31rJBT9_26Oucwsr5e5gx--jihd0rVSfLAFPA9T3iPCrRdgeDfgEJmwXQj6POydPzvLssDhdF9AW9K3rah5ghpFqu2ild8v_aLOijTBFZ59NXN6_4Z1xJsVVfaf1P1mfmWCB-XuNpggP4Gvtu-vTYWTI3-sFxyFmKG8L5YZjAHepPj2lfVnDgTQqm9TbmDhspB6Hafhcbm-YoeBoKwz5x8Dd3kvHmEr0AMppYXKPWyiPbwnhhHqmCNomT9K1lsxcJNaigy7uJX_vgNE-YJu9IYu9GF_gSCTRJvixEoW8suwjgunoCBX2JPVONJASD1gEAg3pF8pfAkjCQvIW83LQuEykQrEsqV4D9MZKwkbtrQh1zXf-P4fILE9ZTLBi5fSYebwAjmKNixxFxeAc4LsD_kBLPAFVU1Y0G_MCG8FbVDqqFhTLU__zvhR2kfhhxZ2IdejWZ5dHFPQJ6fj_WiC_6OTnivCN7ClBLnckmt56LgFjMBtzunpf9wehufwMBQ3w6d6Vq0uw3vnQYRJg00NGpxge8XMhl5f1Py4hoMyqY_lmqyMFZVX8QZIAEqCWV1LXdlc3QtMjDwDQ"')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:27.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:29.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:31.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:33.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:35.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:37.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:39.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:41.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:43.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:45.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:47.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:49.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:51.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-05T08:45:53.649Z')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCay7I8v2M10YQ2Isj8xafaGhawirHovi-KeE8LjKgFBA00j8hyn6HxqwqseFHXmGELjVuJ0ccvpGCPnoudKNulDNFydhdPwvzFN7HPrA2JXKqzqOKV4IZCIfdswANlXSN8S95wFZz4LamlTXLrq7yPUZQb7JCbvbzTyrosq2-Cmu0-9PmgoNPYkf3qdwMS2Cd7CUdvdMIiCBeWQaUr8xjSTEJhrHMuliIPg7mh0gWKa4UJwuI-Tc6r66erVUhfwOIZwZh3y4t0WzLVZVW7OutWphJZ2eBmnregYiD2F-OtCqsNL6pBXyN3T4adMIa03MuRjSe99Sgv_aSXo_SAdQvS3-XpeWlqYiJMmQkb3iGQF8Qug1Y8wUYxIjZLq_F6yVh8hCvXeVo2m3jS3dSBnoI5CfvBDC6vI8BbLVFfkEGsZGLl3koJ_ikEcGAgVDlNDYLLq3UhBoMm7s9nL7_hUcXGz_GIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN')
-[hls @ 0x55e616973200] Skip ('#EXT-X-TWITCH-PREFETCH:https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCat2o5pHamm7qT_ECJTqiq7PHfkL_t55Rnzhnjs0FVVG2mFf7yd6vY0B9Pk7U53R1mefjME1InhZiDqJgPP_VPMAukidYFjtsfoiz87MZgKh08Gci9tb4HjhH_S_3CoOvkxoulog2ASer02iEn6fqJh51PT6QcLr5-9ZkwAWBVUf7CCBdoBYYYxu1_y0lzGsz_WWvXlWT-ncnKBqzpWwTzGKFogq3RG2sbGksJQqajwaPv4duQPcGUBb7HrGtHMaLm5QGN_x1823dLj7ip_ac-53n7UxhtZDbS-qJemPcUzxxAY3_JAWqiugQICsrUHdSOFJ_DV08Pj4oK3vq1NhODVNQpzrQiv_XJV5QI3KoG01z12uePcInHlmq0Kb5U_7beycTwRwEavcYALQBMId_Rfj6HHU7qCFQnLL-Dp63Skc2Ov-nUS7pZLkQuKaJckMwDryMKRoM10BA7GdlWALvUTA0IAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN')
-[https @ 0x55e616afd1c0] Opening 'https://7dfcb88758ec.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCMG1KMZmUF6NTGoq8H7Q0Y2DB4rZdzqtCmdE_oTzQKqgjptNGZ-CKMo9T1GOBoEfPLEjNTRf0Wc8qRCmWKnvoE1mF6S9NIgcAYm21hXZe8VJS1ZqK79z-cPz7mgfP_SjU8OnoQQF5aMx0H-KRb0pWi6KlzH3RmaqmlGF7EhdAbYcKB0Wp0-DCbwnCmViVycggj581ep8j0hfFYvQOXXJV3n4fEJq57lrABwHIjMZ7l1eQdjhy0cOms4ScUs9w9xobhf2AfPgpD6-ncUTL7MgwJxwDQ_vWED9NIKDbat0toazYMKhn_Yz6dwvrxD2knoovFbcvkG1H79aeKD5ddYmK4Jyga8IVNS-NJJjUt3zJg-Cj5wf7PsEQrociXFiWy_p_xzm3qgfrAR4-9IdiCcSlmr71vOE6dD29KaNyaBfSOW-n7Tl6BxKXeq0sGTd8STPPqnIYVxoMVx41TEvs_MSduuRsIAEqCWV1LXdlc3QtMjDwDQ.ts?dna=Cm0F3wlbwvwZR-SMob53nsEkMkDaPRYDMd19QOeIG5bH4POKUsS9VgR5jDgUC4rtZJNOYCAonJcXg6G7079mux7gdVs-Mnbo2mHZ6TQS0nQuz5FIj4LNEG5r7vbaR61NnOjJsqKElctnTV4LyJaGGgy1vFwO2-N4YaVsXN8gASoJZXUtd2VzdC0yMPAN' for reading
-[out#0/mp4 @ 0x55e61725db00] video:1134KiB audio:917KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 2.734877%
-frame= 1378 fps= 33 q=-1.0 Lsize=    2107KiB time=00:00:45.86 bitrate= 376.3kbits/s speed= 1.1x    
-Exiting normally, received signal 15.
-2025-12-05 08:45:55,992 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:45:55] "POST /api/downloads/stop/browser_1764924294 HTTP/1.1" 200 -
-2025-12-05 08:45:55,992 - __main__ - INFO - Download stopped for browser browser_1764924294
-2025-12-05 08:45:55,993 - __main__ - ERROR - Stop download error: 'browser_1764924294'
-2025-12-05 08:45:55,993 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:45:55] "POST /api/downloads/stop/browser_1764924294 HTTP/1.1" 500 -
-2025-12-05 08:45:56,010 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 08:45:56] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 09:04:38,503 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:04:38] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-05 09:04:40,555 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:04:40] "GET /api/browser/status/browser_1764925472 HTTP/1.1" 200 -
+2025-12-05 09:04:42,539 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:04:42] "GET /api/browser/status/browser_1764925472 HTTP/1.1" 200 -
+2025-12-05 09:04:43,753 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:04:43] "GET / HTTP/1.1" 200 -
+2025-12-05 09:04:43,829 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:04:43] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 09:04:45,804 - __main__ - INFO - Starting browser with resolution: 1080p, framerate: any, auto_download: False
+2025-12-05 09:04:45,805 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/ceb_
+2025-12-05 09:04:45,805 - __main__ - INFO - Initializing ChromeDriver service
+2025-12-05 09:04:45,805 - __main__ - INFO - Creating Chrome webdriver instance...
+2025-12-05 09:04:46,439 - __main__ - ERROR - Failed to create Chrome webdriver: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.
+Stacktrace:
+#0 0x55efb22c816a <unknown>
+#1 0x55efb1d45c4b <unknown>
+#2 0x55efb1d7fd1d <unknown>
+#3 0x55efb1d7b6d3 <unknown>
+#4 0x55efb1dcb24c <unknown>
+#5 0x55efb1dca96c <unknown>
+#6 0x55efb1d89c42 <unknown>
+#7 0x55efb1d8a8f1 <unknown>
+#8 0x55efb2290f09 <unknown>
+#9 0x55efb2293e4d <unknown>
+#10 0x55efb2279c51 <unknown>
+#11 0x55efb2294a2b <unknown>
+#12 0x55efb2260a20 <unknown>
+#13 0x55efb22b5a78 <unknown>
+#14 0x55efb22b5c49 <unknown>
+#15 0x55efb22c74c3 <unknown>
+#16 0x7f1aade0db7b <unknown>
+2025-12-05 09:04:46,439 INFO reaped unknown pid 762 (exit status 0)
+2025-12-05 09:04:46,440 INFO reaped unknown pid 764 (exit status 0)
+2025-12-05 09:04:46,440 INFO reaped unknown pid 769 (exit status 0)
+2025-12-05 09:04:46,440 INFO reaped unknown pid 770 (exit status 0)
+2025-12-05 09:04:46,439 - __main__ - WARNING - Chrome failed to start with user-data-dir, cleaning lock files and retrying...
+2025-12-05 09:04:46,458 - __main__ - INFO - Removed lock file: /app/chrome-data/SingletonLock
+2025-12-05 09:04:47,459 - __main__ - INFO - Starting Chrome browser for https://www.twitch.tv/ceb_
+2025-12-05 09:04:47,459 - __main__ - INFO - Initializing ChromeDriver service
+2025-12-05 09:04:47,460 - __main__ - INFO - Creating Chrome webdriver instance...
+2025-12-05 09:04:48,449 - __main__ - INFO - Chrome webdriver created successfully!
+2025-12-05 09:04:48,939 - __main__ - INFO - Getting Chrome DevTools Protocol WebSocket URL...
+2025-12-05 09:04:48,939 - __main__ - INFO - Chrome debugger address: localhost:37699
+2025-12-05 09:04:48,941 - __main__ - INFO - ✓ Got CDP WebSocket URL: ws://localhost:37699/devtools/page/230BC6356493E75FA679EDC8BB0CCDFB...
+2025-12-05 09:04:48,941 - __main__ - INFO - Enabling Network domain via execute_cdp_cmd...
+2025-12-05 09:04:48,943 - __main__ - INFO - Network domain enabled via execute_cdp_cmd
+2025-12-05 09:04:48,944 - __main__ - INFO - Network monitoring started
+2025-12-05 09:04:49,444 - __main__ - INFO - Loading https://www.twitch.tv/ceb_...
+2025-12-05 09:04:53,841 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:04:53] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 09:04:54,469 - __main__ - WARNING - [CDP-WS] ⚠️ Loading failed: RequestID=877.217, Error=net::ERR_ABORTED
+2025-12-05 09:04:54,531 - __main__ - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/ceb_.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiMzliMGY2Y2ItMTEwZi00MT...
+2025-12-05 09:04:54,531 - __main__ - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/ceb_.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiMzliMGY2Y2ItMTEwZi00MTlhLWJjMzAtNjAxZjYxNDVhMmRhIn0%3D&allow_source=true...
+2025-12-05 09:04:54,531 - __main__ - INFO - Detected .m3u8 stream, checking if it's a master playlist...
+2025-12-05 09:04:54,599 - __main__ - INFO - This is a master playlist! Parsing resolutions...
+2025-12-05 09:04:54,600 - __main__ - INFO - Parsed 5 resolutions, sorted by bandwidth:
+2025-12-05 09:04:54,600 - __main__ - INFO -   [0] 1080p60 - 1920x1080 @ 60.000fps - Bandwidth: 0
+2025-12-05 09:04:54,600 - __main__ - INFO -   [1] 720p60 - 1280x720 @ 60.000fps - Bandwidth: 0
+2025-12-05 09:04:54,600 - __main__ - INFO -   [2] 480p30 - 852x480 @ 30.000fps - Bandwidth: 0
+2025-12-05 09:04:54,600 - __main__ - INFO -   [3] 360p30 - 640x360 @ 30.000fps - Bandwidth: 0
+2025-12-05 09:04:54,600 - __main__ - INFO -   [4] 160p30 - 284x160 @ 30.000fps - Bandwidth: 0
+2025-12-05 09:04:54,600 - __main__ - INFO - Found 5 resolutions
+2025-12-05 09:04:54,600 - __main__ - INFO - Manual mode, showing all available streams
+2025-12-05 09:04:54,600 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/CqwGUjVNdt0B_8wsWtd8Nleel2lsqPD9SIOz3K-6PkcXNCYlCZnFeHS...
+2025-12-05 09:04:54,601 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/CqIGB5uw79gw5mqnEgUXOikLiskgl5sVRNvDi_-dLXWLTmklkIoKc61...
+2025-12-05 09:04:54,602 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/CpoGjI92SWecGzbPMK2DmLV1AqiTMzlikfzm9SrLD8lmGRIQ4muhmuY...
+2025-12-05 09:04:54,604 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/CpIGAWN5VexVe-NODnoFYSkc4S2GyvoRpeHltGqz-Cu7RhppznNuKSy...
+2025-12-05 09:04:54,604 - __main__ - INFO - Generating thumbnail for stream: https://euw13.playlist.ttvnw.net/v1/playlist/CooGbAVtmp6zrcXsI-I6FvWitf4DFcXLUPORuh9nVsMHggaXCCoNAIu...
+2025-12-05 09:04:55,326 - __main__ - INFO - ✓ Thumbnail generated successfully (95656 bytes)
+2025-12-05 09:04:55,326 - __main__ - INFO - Added thumbnail to stream: 360p30
+2025-12-05 09:04:55,391 - __main__ - INFO - ✓ Thumbnail generated successfully (24352 bytes)
+2025-12-05 09:04:55,392 - __main__ - INFO - Added thumbnail to stream: 160p30
+2025-12-05 09:04:55,464 - __main__ - INFO - ✓ Thumbnail generated successfully (156156 bytes)
+2025-12-05 09:04:55,465 - __main__ - INFO - Added thumbnail to stream: 480p30
+2025-12-05 09:04:55,945 - __main__ - INFO - ✓ Thumbnail generated successfully (287092 bytes)
+2025-12-05 09:04:55,945 - __main__ - INFO - Added thumbnail to stream: 720p60
+2025-12-05 09:04:56,253 - __main__ - INFO - ✓ Thumbnail generated successfully (547596 bytes)
+2025-12-05 09:04:56,254 - __main__ - INFO - Added thumbnail to stream: 1080p60
+2025-12-05 09:04:57,363 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:04:57] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-05 09:04:59,386 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:04:59] "GET /api/browser/status/browser_1764925485 HTTP/1.1" 200 -
+2025-12-05 09:05:01,389 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:05:01] "GET /api/browser/status/browser_1764925485 HTTP/1.1" 200 -
+2025-12-05 09:05:01,407 - __main__ - INFO - User selected stream from modal
+2025-12-05 09:05:01,407 - __main__ - INFO - Stream URL: https://euw13.playlist.ttvnw.net/v1/playlist/CpIGAWN5VexVe-NODnoFYSkc4S2GyvoRpeHltGqz-Cu7RhppznNuKSy8PlA9zkhlmTdDgRUSE_S5nQv0UmFrjs127xeiVaz1ov863U0yLuLk_SPmd7IHt_zSR_TQb8qtJwMyi-WwGMBqZrdsPrY8L34u8wyVV0PyowoJum8zoDwibyxwRolrOz3sOBHvR_ESDXQt96AMFTYF1kAOeHhZLhfzk7QKZAssEhLP9FMfjsA_tY0UWlLx5ZHTn1_gk3yXWm913OrR3nAe2RnXKKRemL3v3sFPrbF1n8QP0o-480Vx-6cXybOdmMB56gaHf7sesanKg6WRio46IGRiZn7r7qRQspOjEmd1gf-5-ScSkJjuke2amKiSy0FBTRzlHv4goIENfhnPzw-kJxIYABn3DWs7LbNUhd0kh1cm80up6f-AXEbj3LgEg98JPnKyltAjMCBvt5AtywqcPSl68EbJ2WvDEipR33l59iNIukSiLe_5TNkYJuDR_yDfrtOkTuD_IBmoPdFs3fIEBhDQVbyuzxiZSvc2j4ylo0FcpqwQQRc0YkYvtoZfNL5DRAxFXi03vZwmUcwBXfdccyj7Vd5COBHSInfxfA_K3oYgIMdfUOZfmUkRytOdjv3g7FUad084KFVwsz2GiQNaz6sQQL78ghXymLVrsq0qNiHjDqr0NF1umDtlHmUl59YGerJNAW6A5Gc6g6Y13Oho7074Cn_ytF1rFDP6PlHl9xEffSntDvtWyKDbS_-i4l3_JJFaZpg-cneNgtsHaStZe_a23eOXnB_GNe14GdljKM5hSqZfkTfMy52e4skVWY7VEaqABV4CAVgLLDZU1xIKOR5tD5M0bC7ZXY6QA3_s7Umn0CrAqXts70-ZnK2eJ6KAWk60scR3AcXnWwZdaEksK724uEevfb-uqcqWSVATEzdhm0gsfYxShqv5bhG66HheZ0O-F5NC7fOob5ACCgwzhw_CeWN1Oob3FYaf2sL-STRObzUYyZBZ9D61TQHsllyM2JvYvTwbBqmNmOOPOsvz0bCfiSa1N0XQZ2nnGgyHD3MADa42uNZJHUkgASoJZXUtd2VzdC0yMPAN.m3u8
+2025-12-05 09:05:01,408 - __main__ - INFO - Starting download for resolution: 360p30
+2025-12-05 09:05:01,408 - __main__ - INFO - Stream URL: https://euw13.playlist.ttvnw.net/v1/playlist/CpIGAWN5VexVe-NODnoFYSkc4S2GyvoRpeHltGqz-Cu7RhppznNuKSy8PlA9zkhlmTdDgRUSE_S5nQv0UmFrjs127xeiVaz1ov863U0yLuLk_SPmd7IHt_zSR_TQb8qtJwMyi-WwGMBqZrdsPrY8L34u8wyVV0PyowoJum8zoDwibyxwRolrOz3sOBHvR_ESDXQt96AMFTYF1kAOeHhZLhfzk7QKZAssEhLP9FMfjsA_tY0UWlLx5ZHTn1_gk3yXWm913OrR3nAe2RnXKKRemL3v3sFPrbF1n8QP0o-480Vx-6cXybOdmMB56gaHf7sesanKg6WRio46IGRiZn7r7qRQspOjEmd1gf-5-ScSkJjuke2amKiSy0FBTRzlHv4goIENfhnPzw-kJxIYABn3DWs7LbNUhd0kh1cm80up6f-AXEbj3LgEg98JPnKyltAjMCBvt5AtywqcPSl68EbJ2WvDEipR33l59iNIukSiLe_5TNkYJuDR_yDfrtOkTuD_IBmoPdFs3fIEBhDQVbyuzxiZSvc2j4ylo0FcpqwQQRc0YkYvtoZfNL5DRAxFXi03vZwmUcwBXfdccyj7Vd5COBHSInfxfA_K3oYgIMdfUOZfmUkRytOdjv3g7FUad084KFVwsz2GiQNaz6sQQL78ghXymLVrsq0qNiHjDqr0NF1umDtlHmUl59YGerJNAW6A5Gc6g6Y13Oho7074Cn_ytF1rFDP6PlHl9xEffSntDvtWyKDbS_-i4l3_JJFaZpg-cneNgtsHaStZe_a23eOXnB_GNe14GdljKM5hSqZfkTfMy52e4skVWY7VEaqABV4CAVgLLDZU1xIKOR5tD5M0bC7ZXY6QA3_s7Umn0CrAqXts70-ZnK2eJ6KAWk60scR3AcXnWwZdaEksK724uEevfb-uqcqWSVATEzdhm0gsfYxShqv5bhG66HheZ0O-F5NC7fOob5ACCgwzhw_CeWN1Oob3FYaf2sL-STRObzUYyZBZ9D61TQHsllyM2JvYvTwbBqmNmOOPOsvz0bCfiSa1N0XQZ2nnGgyHD3MADa42uNZJHUkgASoJZXUtd2VzdC0yMPAN.m3u8
+2025-12-05 09:05:01,408 - __main__ - WARNING - No stream metadata available for download popup
+2025-12-05 09:05:01,408 - __main__ - INFO - Waiting 3 seconds for video to load...
+2025-12-05 09:05:01,409 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:05:01] "POST /api/browser/select-stream HTTP/1.1" 200 -
+2025-12-05 09:05:03,385 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:05:03] "GET /api/browser/status/browser_1764925485 HTTP/1.1" 200 -
+2025-12-05 09:05:03,428 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:05:03] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 09:05:03,832 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:05:03] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 09:05:04,791 - __main__ - INFO - [CDP-WS] Closing WebSocket connection...
+2025-12-05 09:05:05,192 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-05 09:05:05,193 INFO reaped unknown pid 779 (exit status 0)
+2025-12-05 09:05:05,193 INFO reaped unknown pid 781 (exit status 0)
+2025-12-05 09:05:05,193 INFO reaped unknown pid 786 (exit status 0)
+2025-12-05 09:05:05,193 INFO reaped unknown pid 787 (exit status 0)
+2025-12-05 09:05:05,195 - __main__ - INFO - Browser browser_1764925485 closed
+2025-12-05 09:05:05,195 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:05:05] "POST /api/browser/close/browser_1764925485 HTTP/1.1" 200 -
+2025-12-05 09:05:05,209 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:05:05] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-05 09:05:05,230 - __main__ - INFO - Thumbnail captured successfully
+2025-12-05 09:05:05,230 - __main__ - INFO - Starting FFmpeg download: https://euw13.playlist.ttvnw.net/v1/playlist/CpIGAWN5VexVe-NODnoFYSkc4S2GyvoRpeHltGqz-Cu7RhppznNuKSy8PlA9zkhlmTdDgRUSE_S5nQv0UmFrjs127xeiVaz1ov863U0yLuLk_SPmd7IHt_zSR_TQb8qtJwMyi-WwGMBqZrdsPrY8L34u8wyVV0PyowoJum8zoDwibyxwRolrOz3sOBHvR_ESDXQt96AMFTYF1kAOeHhZLhfzk7QKZAssEhLP9FMfjsA_tY0UWlLx5ZHTn1_gk3yXWm913OrR3nAe2RnXKKRemL3v3sFPrbF1n8QP0o-480Vx-6cXybOdmMB56gaHf7sesanKg6WRio46IGRiZn7r7qRQspOjEmd1gf-5-ScSkJjuke2amKiSy0FBTRzlHv4goIENfhnPzw-kJxIYABn3DWs7LbNUhd0kh1cm80up6f-AXEbj3LgEg98JPnKyltAjMCBvt5AtywqcPSl68EbJ2WvDEipR33l59iNIukSiLe_5TNkYJuDR_yDfrtOkTuD_IBmoPdFs3fIEBhDQVbyuzxiZSvc2j4ylo0FcpqwQQRc0YkYvtoZfNL5DRAxFXi03vZwmUcwBXfdccyj7Vd5COBHSInfxfA_K3oYgIMdfUOZfmUkRytOdjv3g7FUad084KFVwsz2GiQNaz6sQQL78ghXymLVrsq0qNiHjDqr0NF1umDtlHmUl59YGerJNAW6A5Gc6g6Y13Oho7074Cn_ytF1rFDP6PlHl9xEffSntDvtWyKDbS_-i4l3_JJFaZpg-cneNgtsHaStZe_a23eOXnB_GNe14GdljKM5hSqZfkTfMy52e4skVWY7VEaqABV4CAVgLLDZU1xIKOR5tD5M0bC7ZXY6QA3_s7Umn0CrAqXts70-ZnK2eJ6KAWk60scR3AcXnWwZdaEksK724uEevfb-uqcqWSVATEzdhm0gsfYxShqv5bhG66HheZ0O-F5NC7fOob5ACCgwzhw_CeWN1Oob3FYaf2sL-STRObzUYyZBZ9D61TQHsllyM2JvYvTwbBqmNmOOPOsvz0bCfiSa1N0XQZ2nnGgyHD3MADa42uNZJHUkgASoJZXUtd2VzdC0yMPAN.m3u8 -> /app/downloads/video_360p30_1764925505.mp4
+2025-12-05 09:05:05,414 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 09:05:05] "GET /api/downloads/active HTTP/1.1" 200 -

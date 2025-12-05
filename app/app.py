@@ -1515,18 +1515,38 @@ def select_stream():
         logger.info(f"User selected stream from modal")
         logger.info(f"Stream URL: {stream_url}")
 
-        # Find the stream info from available resolutions
-        stream_name = 'selected_stream'
+        # Find the full stream object from available resolutions
+        selected_stream = None
         for res in detector.available_resolutions:
             if res['url'] == stream_url:
-                stream_name = res.get('name', 'selected_stream')
+                selected_stream = res
                 break
+
+        if not selected_stream:
+            # Fallback if not found in available_resolutions
+            logger.warning("Stream not found in available_resolutions, creating minimal stream object")
+            selected_stream = {
+                'url': stream_url,
+                'name': 'selected_stream',
+                'resolution': '',
+                'framerate': '',
+                'codecs': ''
+            }
+
+        stream_name = selected_stream.get('name', 'selected_stream')
+        logger.info(f"Selected stream: {stream_name}")
+        logger.info(f"Stream object before enrichment: {selected_stream}")
+
+        # IMPORTANT: Enrich the stream metadata synchronously before downloading
+        logger.info("Enriching selected stream metadata before download...")
+        enrich_stream_metadata(selected_stream)
+        logger.info(f"Stream object after enrichment: {selected_stream}")
 
         # Clear awaiting state
         detector.awaiting_resolution_selection = False
 
-        # Start download with selected stream
-        detector._start_download_with_url(stream_url, stream_name)
+        # Start download with selected stream and metadata
+        detector._start_download_with_url(stream_url, stream_name, selected_stream)
 
         return jsonify({
             'success': True,
