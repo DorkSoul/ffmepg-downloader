@@ -703,12 +703,10 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    showStatus(statusBox, `✓ Download started! Extracting metadata...`, 'success');
+                    showStatus(statusBox, `✓ Download started! Extracting metadata with ffmpeg...`, 'success');
 
-                    // Set up status polling for direct download (similar to browser mode)
-                    currentBrowserId = data.browser_id;
-                    downloadPopupShown = false;
-                    startBrowserStatusPolling();
+                    // Poll for metadata and thumbnail (ffmpeg extracts these from the stream)
+                    pollDirectDownloadStatus(data.browser_id);
 
                     setTimeout(() => loadDownloads(), 2000);
                 } else {
@@ -798,6 +796,51 @@
                 btn.disabled = false;
                 btn.innerHTML = 'Open Browser & Detect';
             }
+        }
+
+        // Poll direct download status (just for metadata and thumbnail, no browser)
+        async function pollDirectDownloadStatus(browserId) {
+            let attempts = 0;
+            const maxAttempts = 10; // 10 seconds max
+
+            const checkStatus = async () => {
+                try {
+                    const response = await fetch(`/api/browser/status/${browserId}`);
+                    const data = await response.json();
+
+                    console.log('Direct download status check:', data);
+
+                    // Check if metadata and thumbnail are ready
+                    if (data.download_started && data.selected_stream_metadata) {
+                        console.log('✓ Direct download metadata ready');
+
+                        // Show popup with metadata and thumbnail
+                        showDownloadStartedPopup(data.selected_stream_metadata, data.thumbnail);
+
+                        // Stop polling
+                        return true;
+                    }
+
+                    attempts++;
+                    if (attempts < maxAttempts) {
+                        // Poll again in 1 second
+                        setTimeout(checkStatus, 1000);
+                    } else {
+                        console.log('Direct download metadata timeout - showing without thumbnail');
+                        // Show popup without thumbnail if timeout
+                        showDownloadStartedPopup({name: 'Direct Download', resolution: 'Processing...', framerate: ''}, null);
+                    }
+                } catch (error) {
+                    console.error('Error checking direct download status:', error);
+                    attempts++;
+                    if (attempts < maxAttempts) {
+                        setTimeout(checkStatus, 1000);
+                    }
+                }
+            };
+
+            // Start checking
+            checkStatus();
         }
 
         // Poll browser status
