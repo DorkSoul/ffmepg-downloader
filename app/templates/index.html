@@ -1297,7 +1297,7 @@
             showStatus(statusBox, 'Closing browsers and clearing cookies...', 'error');
 
             try {
-                const response = await fetch('/api/clear-cookies', {
+                const response = await fetch('/api/browser/clear-cookies', {
                     method: 'POST'
                 });
 

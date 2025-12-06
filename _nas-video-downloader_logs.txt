@@ -1,100 +1,421 @@
-2025-12-06 16:11:00,020 - app.config - INFO - Download dir: /app/downloads
-2025-12-06 16:11:00,020 - app.config - INFO - Chrome data dir: /app/chrome-data
-2025-12-06 16:11:00,020 - app.services.browser_service - INFO - Checking Chrome installation...
-2025-12-06 16:11:00,053 - app.services.browser_service - INFO - Chrome: Google Chrome 143.0.7499.40
-2025-12-06 16:11:00,053 INFO reaped unknown pid 30 (exit status 0)
-2025-12-06 16:11:00,053 INFO reaped unknown pid 31 (exit status 0)
-2025-12-06 16:11:00,057 - app.services.browser_service - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
-2025-12-06 16:11:00,057 - app.services.browser_service - INFO - DISPLAY environment: :99
-2025-12-06 16:11:00,062 - app.services.browser_service - INFO - Xvfb is running ✓
-2025-12-06 16:11:00,062 - app.services.browser_service - INFO - Download dir exists: True
-2025-12-06 16:11:00,062 - app.services.browser_service - INFO - Chrome data dir exists: True
-2025-12-06 16:11:00,067 - app.config - INFO - ================================================================================
-2025-12-06 16:11:00,067 - app.config - INFO - Application initialized successfully
-2025-12-06 16:11:00,067 - app.config - INFO - ================================================================================
+2025-12-06 18:10:20,169 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-12-06 18:10:20,170 INFO supervisord started with pid 1
+2025-12-06 18:10:21,173 INFO spawned: 'xvfb' with pid 8
+2025-12-06 18:10:21,175 INFO spawned: 'fluxbox' with pid 9
+2025-12-06 18:10:21,177 INFO spawned: 'x11vnc' with pid 10
+2025-12-06 18:10:21,179 INFO spawned: 'novnc' with pid 11
+2025-12-06 18:10:21,181 INFO spawned: 'flask' with pid 12
+2025-12-06 18:10:21,502 - app.config - INFO - ================================================================================
+2025-12-06 18:10:21,502 - app.config - INFO - NAS VIDEO DOWNLOADER STARTING
+2025-12-06 18:10:21,502 - app.config - INFO - ================================================================================
+2025-12-06 18:10:21,502 - app.config - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
+2025-12-06 18:10:21,502 - app.config - INFO - Working directory: /app
+2025-12-06 18:10:21,502 - app.config - INFO - DISPLAY: :99
+2025-12-06 18:10:21,502 - app.config - INFO - Download dir: /app/downloads
+2025-12-06 18:10:21,502 - app.config - INFO - Chrome data dir: /app/chrome-data
+2025-12-06 18:10:21,502 - app.services.browser_service - INFO - Checking Chrome installation...
+2025-12-06 18:10:21,535 - app.services.browser_service - INFO - Chrome: Google Chrome 143.0.7499.40
+2025-12-06 18:10:21,535 INFO reaped unknown pid 31 (exit status 0)
+2025-12-06 18:10:21,535 INFO reaped unknown pid 32 (exit status 0)
+2025-12-06 18:10:21,539 - app.services.browser_service - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
+2025-12-06 18:10:21,539 - app.services.browser_service - INFO - DISPLAY environment: :99
+2025-12-06 18:10:21,544 - app.services.browser_service - INFO - Xvfb is running ✓
+2025-12-06 18:10:21,544 - app.services.browser_service - INFO - Download dir exists: True
+2025-12-06 18:10:21,544 - app.services.browser_service - INFO - Chrome data dir exists: True
+2025-12-06 18:10:21,549 - app.config - INFO - ================================================================================
+2025-12-06 18:10:21,549 - app.config - INFO - Application initialized successfully
+2025-12-06 18:10:21,549 - app.config - INFO - ================================================================================
  * Serving Flask app 'app'
  * Debug mode: off
-2025-12-06 16:11:00,070 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-12-06 18:10:21,551 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://192.168.160.2:5000
-2025-12-06 16:11:00,070 - werkzeug - INFO - Press CTRL+C to quit
-2025-12-06 16:11:00,242 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:00,261 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:00,270 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:00,288 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:00,498 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:00,683 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 16:11:00,683 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 16:11:00,683 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 16:11:00,683 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 16:11:00,683 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 16:11:00,994 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:02,008 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:02] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:02,228 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:02] "GET / HTTP/1.1" 200 -
-2025-12-06 16:11:02,440 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:02] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:03,446 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:03] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:04,448 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:04] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:05,324 - app.routes.browser_routes - INFO - Starting browser with resolution: source, framerate: any
-2025-12-06 16:11:05,325 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/zun_bird
-2025-12-06 16:11:05,325 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 16:11:05,325 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 16:11:05,326 - app.models.stream_detector - INFO - Initializing ChromeDriver service
-2025-12-06 16:11:05,326 - app.models.stream_detector - INFO - Creating Chrome webdriver instance...
-2025-12-06 16:11:05,452 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:05] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:06,217 - app.models.stream_detector - INFO - Chrome webdriver created successfully!
-2025-12-06 16:11:06,454 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:06] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:06,616 - app.models.stream_detector - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-06 16:11:06,616 - app.models.stream_detector - INFO - Chrome debugger address: localhost:33437
-2025-12-06 16:11:06,620 - app.models.stream_detector - INFO - ✓ Got CDP WebSocket URL: ws://localhost:33437/devtools/page/012174014452B348353C467B3853C8D2...
-2025-12-06 16:11:06,620 - app.models.stream_detector - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-06 16:11:06,623 - app.models.stream_detector - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-06 16:11:07,125 - app.models.stream_detector - INFO - Loading https://www.twitch.tv/zun_bird...
-2025-12-06 16:11:07,453 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:07] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:08,451 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:08] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:09,454 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:09] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:10,449 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:10] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:10,882 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:10] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-06 16:11:10,944 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
-2025-12-06 16:11:11,448 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:11] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:12,444 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:12] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:12,905 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:12] "GET /api/browser/status/browser_1765037465 HTTP/1.1" 200 -
-2025-12-06 16:11:13,454 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:13] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:14,448 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:14] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:14,907 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:14] "GET /api/browser/status/browser_1765037465 HTTP/1.1" 200 -
-2025-12-06 16:11:15,449 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:15] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:16,453 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:16] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:16,910 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:16] "GET /api/browser/status/browser_1765037465 HTTP/1.1" 200 -
-2025-12-06 16:11:17,445 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:17] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:18,450 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:18] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:18,904 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:18] "GET /api/browser/status/browser_1765037465 HTTP/1.1" 200 -
-2025-12-06 16:11:19,448 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:19] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:20,444 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:20] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:20,913 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:20] "GET /api/browser/status/browser_1765037465 HTTP/1.1" 200 -
-2025-12-06 16:11:21,447 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:21] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:22,445 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:22] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:22,916 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:22] "GET /api/browser/status/browser_1765037465 HTTP/1.1" 200 -
-2025-12-06 16:11:23,449 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:23] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:24,112 - app.models.stream_detector - INFO - Browser browser_1765037465 closed
-2025-12-06 16:11:24,113 INFO reaped unknown pid 66 (exit status 0)
-2025-12-06 16:11:24,113 INFO reaped unknown pid 68 (exit status 0)
-2025-12-06 16:11:24,113 INFO reaped unknown pid 73 (exit status 0)
-2025-12-06 16:11:24,113 INFO reaped unknown pid 74 (exit status 0)
-2025-12-06 16:11:24,114 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:24] "POST /api/browser/close/browser_1765037465 HTTP/1.1" 200 -
-2025-12-06 16:11:24,127 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:24] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:24,453 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:24] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:25,456 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:25] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:26,457 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:26] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:27,736 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:27] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:28,739 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:28] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:29,733 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:29] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:30,745 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:30] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:31,737 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:31] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:32,732 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:32] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:33,741 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:33] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:34,745 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:34] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:35,738 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:35] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:36,733 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:36] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:37,737 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:37] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:38,738 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:38] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 16:11:39,733 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 16:11:39] "GET /api/downloads/active HTTP/1.1" 200 -
+ * Running on http://172.26.0.2:5000
+2025-12-06 18:10:21,552 - werkzeug - INFO - Press CTRL+C to quit
+2025-12-06 18:10:21,773 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:21] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:21,780 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:21] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:21,788 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:21] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:21,789 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:21] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:22,201 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 18:10:22,201 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 18:10:22,201 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 18:10:22,201 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 18:10:22,201 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 18:10:22,765 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:22] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:23,774 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:23] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:24,771 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:24] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:25,771 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:25] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:26,219 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:26] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:27,209 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:27] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:28,222 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:28] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:29,219 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:29] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:29,540 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:29] "GET / HTTP/1.1" 200 -
+2025-12-06 18:10:29,742 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:29] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:30,758 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:30] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:31,744 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:31] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:32,750 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:32] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:33,043 - app.routes.browser_routes - INFO - Starting browser with resolution: source, framerate: any
+2025-12-06 18:10:33,043 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/mars_fortuna
+2025-12-06 18:10:33,043 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 18:10:33,044 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 18:10:33,045 - app.models.stream_detector - INFO - Initializing ChromeDriver service
+2025-12-06 18:10:33,045 - app.models.stream_detector - INFO - Creating Chrome webdriver instance...
+2025-12-06 18:10:33,747 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:33] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:34,030 - app.models.stream_detector - INFO - Chrome webdriver created successfully!
+2025-12-06 18:10:34,432 - app.models.stream_detector - INFO - Getting Chrome DevTools Protocol WebSocket URL...
+2025-12-06 18:10:34,432 - app.models.stream_detector - INFO - Chrome debugger address: localhost:36675
+2025-12-06 18:10:34,436 - app.models.stream_detector - INFO - ✓ Got CDP WebSocket URL: ws://localhost:36675/devtools/page/E951E672B17B03FF6BC06B5F62A677F6...
+2025-12-06 18:10:34,437 - app.models.stream_detector - INFO - Enabling Network domain via execute_cdp_cmd...
+2025-12-06 18:10:34,440 - app.models.stream_detector - INFO - Network domain enabled via execute_cdp_cmd
+2025-12-06 18:10:34,440 - app.models.stream_detector - INFO - Connecting to CDP WebSocket: ws://localhost:36675/devtools/page/E951E672B17B03F...
+2025-12-06 18:10:34,442 - app.models.stream_detector - INFO - CDP WebSocket OPEN CONNECTED!
+2025-12-06 18:10:34,442 - app.models.stream_detector - INFO - Network monitoring started
+2025-12-06 18:10:34,748 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:34] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:34,942 - app.models.stream_detector - INFO - Loading https://www.twitch.tv/mars_fortuna...
+2025-12-06 18:10:35,745 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:35] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:36,025 - app.models.stream_detector - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/mars_fortuna.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNzEwZjQ2NTgtMz...
+2025-12-06 18:10:36,025 - app.models.stream_detector - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/mars_fortuna.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNzEwZjQ2NTgtMzc3Mi00ZDFhLTkzNDEtZDY3OTFkMDI2NTY3In0%3D&allow_sou...
+2025-12-06 18:10:36,025 - app.models.stream_detector - INFO - ✓ DETECTED STREAM: type=HLS
+2025-12-06 18:10:36,025 - app.models.stream_detector - INFO - Processing detected stream...
+2025-12-06 18:10:36,025 - app.models.stream_detector - INFO - Detected .m3u8 stream, checking if it's a master playlist...
+2025-12-06 18:10:36,128 - app.models.stream_detector - INFO - This is a master playlist! Parsing resolutions...
+2025-12-06 18:10:36,129 - app.utils.playlist_parser - INFO - Parsed 5 resolutions, sorted by bandwidth:
+2025-12-06 18:10:36,129 - app.utils.playlist_parser - INFO -   [0] 1080p60 - 1920x1080 @ 60.000fps - Bandwidth: 0
+2025-12-06 18:10:36,129 - app.utils.playlist_parser - INFO -   [1] 720p60 - 1280x720 @ 60.000fps - Bandwidth: 0
+2025-12-06 18:10:36,129 - app.utils.playlist_parser - INFO -   [2] 480p30 - 852x480 @ 30.000fps - Bandwidth: 0
+2025-12-06 18:10:36,129 - app.utils.playlist_parser - INFO -   [3] 360p30 - 640x360 @ 30.000fps - Bandwidth: 0
+2025-12-06 18:10:36,129 - app.utils.playlist_parser - INFO -   [4] 160p30 - 284x160 @ 30.000fps - Bandwidth: 0
+2025-12-06 18:10:36,129 - app.models.stream_detector - INFO - Found 5 resolutions
+2025-12-06 18:10:36,130 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CrsGF-yrueLja35W2dBEHE7eqrEVleycTDQuEZ2SoUwX7SxENzdmZKI...
+2025-12-06 18:10:36,130 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CrEGbuPzL-sSXHGXcBN3nXB-vvgQBkKfzXUIRTzoqVDEItaPtlo6K3Z...
+2025-12-06 18:10:36,131 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CqkGaNdEr9Nl7HOAazR1py3ABJ8_u9lOFMCLZxXm4gPAecyfd55C0Dj...
+2025-12-06 18:10:36,132 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CqEGgdgPIX_rq2SyTX_cx4whNPKwp9QRmotH4lV7heamvFz_xLKWJai...
+2025-12-06 18:10:36,133 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CpkGSRHrwquDAyRQ-zlG5Pn6LIhsA4yCei72i6j-nBLrU8YqBpPFrOU...
+2025-12-06 18:10:36,746 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:36] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:37,638 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (17296 bytes)
+2025-12-06 18:10:37,639 - app.models.stream_detector - INFO - Added thumbnail to stream: 160p30
+2025-12-06 18:10:37,681 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (53592 bytes)
+2025-12-06 18:10:37,681 - app.models.stream_detector - INFO - Added thumbnail to stream: 360p30
+2025-12-06 18:10:37,744 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:37] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:37,748 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (78160 bytes)
+2025-12-06 18:10:37,748 - app.models.stream_detector - INFO - Added thumbnail to stream: 480p30
+2025-12-06 18:10:38,241 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (125792 bytes)
+2025-12-06 18:10:38,241 - app.models.stream_detector - INFO - Added thumbnail to stream: 720p60
+2025-12-06 18:10:38,350 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (205096 bytes)
+2025-12-06 18:10:38,351 - app.models.stream_detector - INFO - Added thumbnail to stream: 1080p60
+2025-12-06 18:10:38,747 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:38] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:39,072 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:39] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-06 18:10:39,117 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 18:10:39,748 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:39] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:40,745 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:40] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:41,149 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:41] "GET /api/browser/status/browser_1765044633 HTTP/1.1" 200 -
+2025-12-06 18:10:41,746 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:41] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:42,744 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:42] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:43,151 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:43] "GET /api/browser/status/browser_1765044633 HTTP/1.1" 200 -
+2025-12-06 18:10:43,634 - app.models.stream_detector - INFO - Starting download for resolution: 160p30
+     
+06 18:10:43,634 - app.services.download_service - INFO - Starting FFmpeg download: https://euw12.playlist.ttvnw.net/v1/playlist/CpkGSRHrwquDAyRQ-zlG5Pn6LIhsA4yCei72i6j-nBLrU8YqBpPFrOUGHeriie3gFIiQQ7bWZU9J9Z9L6pCcVb0raeGF2-fyYDaH_fWZh4qg18yed9hT2na1U1zE5SHwDA0IX9KOEy8U1dU0nGCg8GvUquI_VEf5Ldpipepj7l5ehaPYsNkCY23nsA9BbzzmEBvCHd2NAi99k_-oZxd0Qg-QnWHlRbnJVoYWIp_GV9Bx8lfHi4Isn_o1q22AzQ7urtYS2ffXlhHZaGmsQTqTdkqYMxAfnFKmpahlHC8GEH7TutcE0yW1MHRqJvtvkto2wCzXN3_jJryiELkrwh-XM54I7gM3I8POyHSpC1sVcxyP1T23QTnXOeAeG3_aPV8SKBetqkpMCy4H6uhoUK5YHcgFgeyZraZMg6ehCq3ZW9gl3DwumI94o9yf2qh6a5jaAPbr_CujSQk5sLmnkTKNKrGBYrAAOk0R79JkJ9QOlPFGHJbFPvV1Qq6K-GeHjFZkHvvqlhuYAiRFkAEYUUHuqO2vRrMB4KqYFLw8MDfDi5-lVUHmYMpS_ICrkEIwnPnVOoWNC-JkncGHxlNE3nCVFx8QV4VxvJfjpEgAbbKkl2k2C9ecs5os5ULMD3MRZlhwYTKlGz9imWXjPkWHVws8FTX7Jw2mq3blyc7o_6PyjHRyZgfmqD36SSsVXrIj1o8sNjXFvLF5HMhaZFyqUdmmcs0DrdWTxWNw015ftO0o_UoJHXqwtXoz8jcj64F1kONKqnPCe7F3t1wZcXN63GFDjQlCufAnoMYu5HhblczhWuDTuFvifuVk3I2eQ3WamqUKmjbYgC-0OHFjR3V1zLyVhbkzzb45G2v60pUlAYjYWgh5jbtmY4n_lPOvZ3tq81ix119FePP1VpwYIqQuz_XkNUxfXjMmwKBUo1iqehvCqS7TInU2PWLDzxQYdfej5sXhMns93obYsNa3bg7LNIasJBsmpRxmaqVY0HAKixR_sO6-g0_IS6cAnYBHT-S0Xx5kGI0Ho5HqaPkqY_JbFtrhRN9WdHQzArahgC-x5hoMKtzez7Bg0LlwFLEOIAEqCWV1LXdlc3QtMjDxDQ.m3u8 -> /app/downloads/video_160p30_1765044643.mp4
+2025-12-06 18:10:43,636 - app.services.download_service - INFO - Starting thumbnail updater for browser_1765044633
+2025-12-06 18:10:43,745 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:43] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:44,744 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:44] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:45,157 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:45] "GET /api/browser/status/browser_1765044633 HTTP/1.1" 200 -
+2025-12-06 18:10:45,749 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:45] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:46,636 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:46] "POST /api/browser/select-stream HTTP/1.1" 200 -
+2025-12-06 18:10:46,746 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:46] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:46,773 - app.models.stream_detector - INFO - [CDP-WS] WebSocket closed: None - None
+2025-12-06 18:10:46,948 - app.models.stream_detector - INFO - Browser browser_1765044633 closed
+2025-12-06 18:10:46,948 INFO reaped unknown pid 72 (exit status 0)
+2025-12-06 18:10:46,948 INFO reaped unknown pid 74 (exit status 0)
+2025-12-06 18:10:46,948 INFO reaped unknown pid 79 (exit status 0)
+2025-12-06 18:10:46,948 INFO reaped unknown pid 80 (exit status 0)
+2025-12-06 18:10:46,948 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:46] "POST /api/browser/close/browser_1765044633 HTTP/1.1" 200 -
+2025-12-06 18:10:46,963 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:46] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:47,213 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:47] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:47,756 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:47] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:48,682 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:48] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:48,744 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:48] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:49,757 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:49] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:50,752 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:50] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:51,639 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_160p30_1765044643.mp4 (262180 bytes) at 6s
+2025-12-06 18:10:51,731 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail extracted successfully (125040 bytes base64)
+2025-12-06 18:10:51,749 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:51] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:52,748 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:52] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:53,751 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:53] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:54,750 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:54] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:55,748 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:55] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:56,754 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:56] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:57,195 - app.services.download_service - INFO - Stopping download for browser browser_1765044633
+2025-12-06 18:10:57,752 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:57] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:57,850 - app.services.download_service - ERROR - FFmpeg error: ffmpeg version 7.1.2-0+deb13u1 Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 14 (Debian 14.2.0-19)
+  configuration: --prefix=/usr --extra-version=0+deb13u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-libmfx --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+  libavutil      59. 39.100 / 59. 39.100
+  libavcodec     61. 19.101 / 61. 19.101
+  libavformat    61.  7.100 / 61.  7.100
+  libavdevice    61.  3.100 / 61.  3.100
+  libavfilter    10.  4.100 / 10.  4.100
+  libswscale      8.  3.100 /  8.  3.100
+  libswresample   5.  3.100 /  5.  3.100
+  libpostproc    58.  3.100 / 58.  3.100
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:201')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:402.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-TOTAL-SECS:434.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1765044636",CLASS="timestamp",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-SERVER-TIME="1765044636.80"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1765044636",CLASS="twitch-session",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4611757320073873349"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="source-1765044606",CLASS="twitch-stream-source",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="trigger-1765044606",CLASS="twitch-trigger",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/Cq8GD5pnXnzmSEwt3QDJVRtvFIyqErrZwEkDGr3N5PIAcNhl7qBwlGbESBPiY3BhNH8wxnkRrAnqW9XXfuFpRSEM1HJKi-QuGQ_cD8fY11XZdyceYBftd-9GvZFQv62vWdg7izQyVSDaGj1ZiCP3WnPTlPGbhsGDE0UOpgYt_J56vYS6LflBFdS1jOtR9CKBywoUzEXqMr65AOJp8nZi92m7OtAC_qoKwnpPgYy-S9aDSM9BwKs5jmhbn2sPO1KtSftAVIOMbnfbOI87SH46gcR7ry4sxp10EkEanwIV_UKihVLkrmzSbe-N-JJ04SPwvXvHiRzCLVVfaId4xRjkHu2f7uSsF7ao6BSN-CcRmCs7HOjXUo2E-p0PQ_0MrARqMX_yd1trWO1lkdT-4U6istSNWgNnQn5hkEdDf72vymRiU7C7japP5jEl9Y7kN_ojdTv8C9KlUrcgMdEHmByAps79yPzoBI4YKOxbEwJ4CbIv6V9hbSfatWvxVclAvRKDabX-7KrO9dD8H7kRCI0B9gecjqGnYQKEo20tWpUg_XkP4-1DuWHactGqhOTBijgMdvVAW76WOzPjH3e8d3jV9LJP0JVJ3fBkoujS1pX9xdW1iITn1vyTN5jpBUj_lMysBWQVWUXcRP_dBPZa2poerUwsZg1NW60DglanzY5kAJvfaAf57b06nnHC6b3X-4FDr85JopaVSn1M5aKuw7zwdseAF-8YZ3RSkJELyCtFNTKgN_UnjmXE9_3345FQLG5sbzdJAPQAbwfVBcxXub5x1x_MCc4v8B_48uVUwQW1m1muitZ1MaTHRX6xuTJBHkIzncHepswfBTLvMILXpOo-98bP_h_I8JVdrV7zkGy4zbY97NOwNi3w_9T_hgR7fNgDOpGqrnY0YM4lrulDEf7aNdvUKXpaeuOq_v5zkYtqZcuX52XyZHvXKnuMrHCLLGYU1HllXC4TC6_cM-f3-Q1QOqny2yk0ifH3juRgXntBF9V6CsbQK_af3E4SKY7_hJCCPxcuaLFjAuyahjTYL2yyZwOkW2p_4rU3JCu2A-ilfWrXt_m8eP-njJgo-c4zUsw_WL8aDELxVSqDuJl3dJ9DmiABKglldS13ZXN0LTIw8Q0"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:14.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:16.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:18.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:20.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:22.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:24.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:26.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:28.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:30.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:32.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:34.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:36.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:38.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:40.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCV6tmb0Bu2SNv8G9a3owzIvUSP831ivrWCztYF5Zf0N9TWmPoVCjDkR9rCciyu-JwV-HR1ZCpOEy_8m4B0t0umXVdZNnf8Y0WtarllcxqMSD09xdvKkB76NvSlf1kJS0K7VjoA8UyV4VwKpFSBbLvsIJCnGYOn80TjiHFoaBmEKQWc1S_zxh-PGob1U4jRFAxS82Nv9Ar2_PyFa5Xm2kRFyHAyBymUqel3CCc_4sTzkEssr0quMp3epsXbtNbMmHfaKRhYIMJ3qGIAkij5yBJdUaaXhZYVLy1rTUpX3o-mAxHt789_i2Znc-ISva8UnmUJrobtSsVUxUDtt_W2TFYmCwyxot_XeI60ZW7tQiYhR630roj89EAYS-QpZe9OIJvOLAdJHv-5pHvXHXLS0Yw6WD6xCjaHqww-Nz8uoEONOrQmD5TuW2LsJD3FJ0iv4ERHDvrJRoMaP9475gW0tFOanfmIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCSaWLg6UpidSZ4nRGWiSr-KlSyheerDINV5wuxbMCl1YIwnU1N3kbo28mpbvK7jTPyb1CSKaEt3xCZFL850j08Xh1kb_A7UMH2tavyW-G-r99ceLvX_U7iZLZkkljHPJGxNyMfEYfHPRKC1tKKPVfyt6o9c0XjpjFoAMbTPMyKEumssPXX3jShjlPUo9ah9tt7Roy45QEON8yvOU_Etua7sh6dfqW1ZRYwLrjI7NCdVKZWwWWPAwt3EsEuKVRlOVFlnRY4Z7BcjWDMRItVkjOxzonlOcW8vMWXkClcz-5ozRYy3_to7rt5HpO4TmVMfETs0b9JnTFOF23vg831T8E2-9fMgE9Nokp9lZiD4FhQEWTigZ1JdYbGUtDedOkMr6xEI11EcCFunm29ndib7rsLtRqgQfxPLrqkI3Dknrfje1E2P-c--TKyYqI4SHId2_lsQlXCBoMi-KgYEx9aL7cNOMSIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[hls @ 0x55b9b8a56240] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCjARTa32d9ACoy-w4ahSLzw33DoOXqEZ1ZbjQUcp4CTPl9ou1djNUp1IDiekcmOg_jbavcQpPFc8fTF6gi7evs6Y6hUTrLJr7q4mygfmmOFeNIz2mc6BYbIKhui05cMdqJKO34j2G_vjW4j29VSVBFJMWB28gJCj76vqKYIshJsLZ5YzDdXBlx75KgXG6xJblqsHgAwjwAXdRHbZovjgtmNlzMSaTbdFW44xafQByaxG3EmWQIz1a7xceAw6lt403A_BM4LDhQEr74JTgzm4O5X1--2g-95iPAaxc2KTwymKikuHT77a0LRimo2wAwIpFhcTtxWM676RWwcSRDLh8l12GxEbTcCBG3V9Bq1tTKPiiUJkPBnV19CgS_OJWZA9mM5wYO6xh8ggyuk3TCpnRWf-L7RRCHcHKDGD_qaLRfJ8wlJzRJwWmOkrv4VqWGoFMZGCsyhoMRtm3UATTxP1fsF80IAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+[hls @ 0x55b9b8a56240] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtoCCIQMlOnhrW1INnx7hQ58bmFvtDwDNgscPz-D3r9hJ4Dxj4HvIqE4Wc7Z8nbVEqGd-HQyNczUM7GKmyHlE2as6KV0TJs3WtPsppuOAbiljhhxqJOFytPG2jkGNfreRrNRo-LCnkoa_ySG6eWnxzALjaRBJtj8_6FThkBccOVsmrqAEy_Y1nsRAodssCFmzfA1WI13E0Ha7a4RUJPBVU2yXoXeERkqArMbVwU9Lwu9UMI9vPiNozg9-1rzZYiKECXN7bYMxt3WPAbOBeccEwa5oqaPD6q7mgNm4RZis6M5TxEHHNQ--6uPU87SwcoSEelPtwKI8NUNet4Gx25GBjWCofQNTnMpkE1cj0Nj3dkudTWjF5iVcX5CtpsXiHVLDTCSEjtYHPM5P1dX4zDGd4WTlFDblOUY2dEweEeU2XAc6kSzZb2sl6UVJ_XDGKVeVT5xVlZBRk9X6QCT1hoM-IcbTLDkOSVzwEgwIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+Input #0, hls, from 'https://euw12.playlist.ttvnw.net/v1/playlist/CpkGSRHrwquDAyRQ-zlG5Pn6LIhsA4yCei72i6j-nBLrU8YqBpPFrOUGHeriie3gFIiQQ7bWZU9J9Z9L6pCcVb0raeGF2-fyYDaH_fWZh4qg18yed9hT2na1U1zE5SHwDA0IX9KOEy8U1dU0nGCg8GvUquI_VEf5Ldpipepj7l5ehaPYsNkCY23nsA9BbzzmEBvCHd2NAi99k_-oZxd0Qg-QnWHlRbnJVoYWIp_GV9Bx8lfHi4Isn_o1q22AzQ7urtYS2ffXlhHZaGmsQTqTdkqYMxAfnFKmpahlHC8GEH7TutcE0yW1MHRqJvtvkto2wCzXN3_jJryiELkrwh-XM54I7gM3I8POyHSpC1sVcxyP1T23QTnXOeAeG3_aPV8SKBetqkpMCy4H6uhoUK5YHcgFgeyZraZMg6ehCq3ZW9gl3DwumI94o9yf2qh6a5jaAPbr_CujSQk5sLmnkTKNKrGBYrAAOk0R79JkJ9QOlPFGHJbFPvV1Qq6K-GeHjFZkHvvqlhuYAiRFkAEYUUHuqO2vRrMB4KqYFLw8MDfDi5-lVUHmYMpS_ICrkEIwnPnVOoWNC-JkncGHxlNE3nCVFx8QV4VxvJfjpEgAbbKkl2k2C9ecs5os5ULMD3MRZlhwYTKlGz9imWXjPkWHVws8FTX7Jw2mq3blyc7o_6PyjHRyZgfmqD36SSsVXrIj1o8sNjXFvLF5HMhaZFyqUdmmcs0DrdWTxWNw015ftO0o_UoJHXqwtXoz8jcj64F1kONKqnPCe7F3t1wZcXN63GFDjQlCufAnoMYu5HhblczhWuDTuFvifuVk3I2eQ3WamqUKmjbYgC-0OHFjR3V1zLyVhbkzzb45G2v60pUlAYjYWgh5jbtmY4n_lPOvZ3tq81ix119FePP1VpwYIqQuz_XkNUxfXjMmwKBUo1iqehvCqS7TInU2PWLDzxQYdfej5sXhMns93obYsNa3bg7LNIasJBsmpRxmaqVY0HAKixR_sO6-g0_IS6cAnYBHT-S0Xx5kGI0Ho5HqaPkqY_JbFtrhRN9WdHQzArahgC-x5hoMKtzez7Bg0LlwFLEOIAEqCWV1LXdlc3QtMjDxDQ.m3u8':
+  Duration: N/A, start: 486.032000, bitrate: N/A
+        Program 0 
+    Metadata:
+      variant_bitrate : 0
+  Stream #0:0: Audio: aac (LC) ([15][0][0][0] / 0x000F), 48000 Hz, stereo, fltp
+      Metadata:
+        variant_bitrate : 0
+  Stream #0:1: Video: h264 (Main) ([27][0][0][0] / 0x001B), yuv420p(tv, bt709), 284x160, 30 tbr, 90k tbn
+      Metadata:
+        variant_bitrate : 0
+  Stream #0:2: Data: timed_id3 (ID3  / 0x20334449)
+      Metadata:
+        variant_bitrate : 0
+Stream mapping:
+  Stream #0:1 -> #0:0 (copy)
+  Stream #0:0 -> #0:1 (copy)
+Output #0, mp4, to '/app/downloads/video_160p30_1765044643.mp4':
+  Metadata:
+    encoder         : Lavf61.7.100
+  Stream #0:0: Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709), 284x160, q=2-31, 30 tbr, 90k tbn
+      Metadata:
+        variant_bitrate : 0
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp
+      Metadata:
+        variant_bitrate : 0
+Press [q] to stop, [?] for help
+[https @ 0x55b9b8d216c0] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtoCN_mQBfZ219I6mK3zUoueSLBkmuhWlH9oF-uT2WTdoV6PSQBNnn9mdr0MiC56yElA2jFRiWHRt91mE-xkhV5wX6gbbyOMm1dM6ZzUJpSTGLNXCOXcL4PjydjAaXViSMyIUnDzrIh8DGAyj017PHZhb-XmNRB9ZRjOrGTS7ZESg09oDbR8bNPwKE-D7T3jPyTayV15kVN-U5aCHntTXYfscY0yvHXqA_MbXGY7iXAx5JDlx99QVrhn0n3HH4OWGf3kMZoqu_ziOYMyKjHB7eZhIwQubSyZhXCjvIh8EccYJ7XPcnARdg60JH58orGSa8sRZAp9gPs5FWzNNifOSzUYN3ZbTbBwnQGn4PIqaDEz7guwB3CXrL0stHjGx-VBiyZjTnlH8KH7O7ro0XpveNTfrIODv-siINLkfYH6rS4j9p1pIE8XSgXs_J3U9BmBWL-oj2AemyS-QJ9DTRoMTCnzZk2WawEbhNqbIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+frame=  178 fps=0.0 q=-1.0 size=       0KiB time=00:00:05.86 bitrate=   0.0kbits/s speed=11.7x    
+frame=  178 fps=178 q=-1.0 size=       0KiB time=00:00:05.86 bitrate=   0.0kbits/s speed=5.86x    
+frame=  178 fps=119 q=-1.0 size=       0KiB time=00:00:05.86 bitrate=   0.0kbits/s speed=3.91x    
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:202')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:404.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-TOTAL-SECS:436.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1765044636",CLASS="timestamp",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-SERVER-TIME="1765044636.80"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1765044636",CLASS="twitch-session",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4611757320073873349"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="source-1765044606",CLASS="twitch-stream-source",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="trigger-1765044606",CLASS="twitch-trigger",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/Cq8GD5pnXnzmSEwt3QDJVRtvFIyqErrZwEkDGr3N5PIAcNhl7qBwlGbESBPiY3BhNH8wxnkRrAnqW9XXfuFpRSEM1HJKi-QuGQ_cD8fY11XZdyceYBftd-9GvZFQv62vWdg7izQyVSDaGj1ZiCP3WnPTlPGbhsGDE0UOpgYt_J56vYS6LflBFdS1jOtR9CKBywoUzEXqMr65AOJp8nZi92m7OtAC_qoKwnpPgYy-S9aDSM9BwKs5jmhbn2sPO1KtSftAVIOMbnfbOI87SH46gcR7ry4sxp10EkEanwIV_UKihVLkrmzSbe-N-JJ04SPwvXvHiRzCLVVfaId4xRjkHu2f7uSsF7ao6BSN-CcRmCs7HOjXUo2E-p0PQ_0MrARqMX_yd1trWO1lkdT-4U6istSNWgNnQn5hkEdDf72vymRiU7C7japP5jEl9Y7kN_ojdTv8C9KlUrcgMdEHmByAps79yPzoBI4YKOxbEwJ4CbIv6V9hbSfatWvxVclAvRKDabX-7KrO9dD8H7kRCI0B9gecjqGnYQKEo20tWpUg_XkP4-1DuWHactGqhOTBijgMdvVAW76WOzPjH3e8d3jV9LJP0JVJ3fBkoujS1pX9xdW1iITn1vyTN5jpBUj_lMysBWQVWUXcRP_dBPZa2poerUwsZg1NW60DglanzY5kAJvfaAf57b06nnHC6b3X-4FDr85JopaVSn1M5aKuw7zwdseAF-8YZ3RSkJELyCtFNTKgN_UnjmXE9_3345FQLG5sbzdJAPQAbwfVBcxXub5x1x_MCc4v8B_48uVUwQW1m1muitZ1MaTHRX6xuTJBHkIzncHepswfBTLvMILXpOo-98bP_h_I8JVdrV7zkGy4zbY97NOwNi3w_9T_hgR7fNgDOpGqrnY0YM4lrulDEf7aNdvUKXpaeuOq_v5zkYtqZcuX52XyZHvXKnuMrHCLLGYU1HllXC4TC6_cM-f3-Q1QOqny2yk0ifH3juRgXntBF9V6CsbQK_af3E4SKY7_hJCCPxcuaLFjAuyahjTYL2yyZwOkW2p_4rU3JCu2A-ilfWrXt_m8eP-njJgo-c4zUsw_WL8aDELxVSqDuJl3dJ9DmiABKglldS13ZXN0LTIw8Q0"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:16.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:18.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:20.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:22.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:24.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:26.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:28.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:30.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:32.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:34.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:36.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:38.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:40.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:42.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCSaWLg6UpidSZ4nRGWiSr-KlSyheerDINV5wuxbMCl1YIwnU1N3kbo28mpbvK7jTPyb1CSKaEt3xCZFL850j08Xh1kb_A7UMH2tavyW-G-r99ceLvX_U7iZLZkkljHPJGxNyMfEYfHPRKC1tKKPVfyt6o9c0XjpjFoAMbTPMyKEumssPXX3jShjlPUo9ah9tt7Roy45QEON8yvOU_Etua7sh6dfqW1ZRYwLrjI7NCdVKZWwWWPAwt3EsEuKVRlOVFlnRY4Z7BcjWDMRItVkjOxzonlOcW8vMWXkClcz-5ozRYy3_to7rt5HpO4TmVMfETs0b9JnTFOF23vg831T8E2-9fMgE9Nokp9lZiD4FhQEWTigZ1JdYbGUtDedOkMr6xEI11EcCFunm29ndib7rsLtRqgQfxPLrqkI3Dknrfje1E2P-c--TKyYqI4SHId2_lsQlXCBoMi-KgYEx9aL7cNOMSIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCAO76QyS__BzVEdtZRK-e0zzCwVmdghVgCZNutOe8ygc0pHX13C3Cwlma3JnKrTMR3xEx6FUrkvNrQ29Inp6HRkBiHhJthMm-JHWfX2eya64B7SSt3NHqry1KEfz7CTdVJzOCzXxJnMiUtqwMmpWFyHmu58xb6pgQqzi4HpByjFFbszjppNIlMf0xkZdYTTViLRcKpF9clYZqSQQleojeNKrlNleDsEtuwFA_Ah0yEXgZ54k9EXksNCPWFcG4ScnXvy5icjkNfi8LZy7vs_hZ_b2Gq8SHriaDuKaCeh5BmfOfLa_UYhBunL1rYwvCa3JHNsRutyiq6sAKe8sFgmSo4F3dGcwiKa13lVvqkDcgUrvD27DXD1Cuz-6OKgTOPmi21MBq8ov7wVJmeOh7UZt2_ByPrRPlJcifMAjgN9IPbn0oHZIWIxm7M5NNX5PmGCULe9M9kRoM-9QUkxFecMa5c_qdIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[https @ 0x55b9b8d216c0] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCV6tmb0Bu2SNv8G9a3owzIvUSP831ivrWCztYF5Zf0N9TWmPoVCjDkR9rCciyu-JwV-HR1ZCpOEy_8m4B0t0umXVdZNnf8Y0WtarllcxqMSD09xdvKkB76NvSlf1kJS0K7VjoA8UyV4VwKpFSBbLvsIJCnGYOn80TjiHFoaBmEKQWc1S_zxh-PGob1U4jRFAxS82Nv9Ar2_PyFa5Xm2kRFyHAyBymUqel3CCc_4sTzkEssr0quMp3epsXbtNbMmHfaKRhYIMJ3qGIAkij5yBJdUaaXhZYVLy1rTUpX3o-mAxHt789_i2Znc-ISva8UnmUJrobtSsVUxUDtt_W2TFYmCwyxot_XeI60ZW7tQiYhR630roj89EAYS-QpZe9OIJvOLAdJHv-5pHvXHXLS0Yw6WD6xCjaHqww-Nz8uoEONOrQmD5TuW2LsJD3FJ0iv4ERHDvrJRoMaP9475gW0tFOanfmIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+frame=  178 fps= 89 q=-1.0 size=       0KiB time=00:00:05.86 bitrate=   0.0kbits/s speed=2.93x    
+frame=  238 fps= 95 q=-1.0 size=       0KiB time=00:00:07.86 bitrate=   0.0kbits/s speed=3.15x    
+frame=  238 fps= 79 q=-1.0 size=       0KiB time=00:00:07.86 bitrate=   0.0kbits/s speed=2.62x    
+frame=  238 fps= 68 q=-1.0 size=       0KiB time=00:00:07.86 bitrate=   0.0kbits/s speed=2.25x    
+[https @ 0x7f807c03bc40] Opening 'https://euw12.playlist.ttvnw.net/v1/playlist/CpkGSRHrwquDAyRQ-zlG5Pn6LIhsA4yCei72i6j-nBLrU8YqBpPFrOUGHeriie3gFIiQQ7bWZU9J9Z9L6pCcVb0raeGF2-fyYDaH_fWZh4qg18yed9hT2na1U1zE5SHwDA0IX9KOEy8U1dU0nGCg8GvUquI_VEf5Ldpipepj7l5ehaPYsNkCY23nsA9BbzzmEBvCHd2NAi99k_-oZxd0Qg-QnWHlRbnJVoYWIp_GV9Bx8lfHi4Isn_o1q22AzQ7urtYS2ffXlhHZaGmsQTqTdkqYMxAfnFKmpahlHC8GEH7TutcE0yW1MHRqJvtvkto2wCzXN3_jJryiELkrwh-XM54I7gM3I8POyHSpC1sVcxyP1T23QTnXOeAeG3_aPV8SKBetqkpMCy4H6uhoUK5YHcgFgeyZraZMg6ehCq3ZW9gl3DwumI94o9yf2qh6a5jaAPbr_CujSQk5sLmnkTKNKrGBYrAAOk0R79JkJ9QOlPFGHJbFPvV1Qq6K-GeHjFZkHvvqlhuYAiRFkAEYUUHuqO2vRrMB4KqYFLw8MDfDi5-lVUHmYMpS_ICrkEIwnPnVOoWNC-JkncGHxlNE3nCVFx8QV4VxvJfjpEgAbbKkl2k2C9ecs5os5ULMD3MRZlhwYTKlGz9imWXjPkWHVws8FTX7Jw2mq3blyc7o_6PyjHRyZgfmqD36SSsVXrIj1o8sNjXFvLF5HMhaZFyqUdmmcs0DrdWTxWNw015ftO0o_UoJHXqwtXoz8jcj64F1kONKqnPCe7F3t1wZcXN63GFDjQlCufAnoMYu5HhblczhWuDTuFvifuVk3I2eQ3WamqUKmjbYgC-0OHFjR3V1zLyVhbkzzb45G2v60pUlAYjYWgh5jbtmY4n_lPOvZ3tq81ix119FePP1VpwYIqQuz_XkNUxfXjMmwKBUo1iqehvCqS7TInU2PWLDzxQYdfej5sXhMns93obYsNa3bg7LNIasJBsmpRxmaqVY0HAKixR_sO6-g0_IS6cAnYBHT-S0Xx5kGI0Ho5HqaPkqY_JbFtrhRN9WdHQzArahgC-x5hoMKtzez7Bg0LlwFLEOIAEqCWV1LXdlc3QtMjDxDQ.m3u8' for reading
+frame=  238 fps= 59 q=-1.0 size=       0KiB time=00:00:07.86 bitrate=   0.0kbits/s speed=1.97x    
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:203')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:406.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-TOTAL-SECS:438.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1765044636",CLASS="timestamp",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-SERVER-TIME="1765044636.80"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1765044636",CLASS="twitch-session",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4611757320073873349"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="source-1765044606",CLASS="twitch-stream-source",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="trigger-1765044606",CLASS="twitch-trigger",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/Cq8GD5pnXnzmSEwt3QDJVRtvFIyqErrZwEkDGr3N5PIAcNhl7qBwlGbESBPiY3BhNH8wxnkRrAnqW9XXfuFpRSEM1HJKi-QuGQ_cD8fY11XZdyceYBftd-9GvZFQv62vWdg7izQyVSDaGj1ZiCP3WnPTlPGbhsGDE0UOpgYt_J56vYS6LflBFdS1jOtR9CKBywoUzEXqMr65AOJp8nZi92m7OtAC_qoKwnpPgYy-S9aDSM9BwKs5jmhbn2sPO1KtSftAVIOMbnfbOI87SH46gcR7ry4sxp10EkEanwIV_UKihVLkrmzSbe-N-JJ04SPwvXvHiRzCLVVfaId4xRjkHu2f7uSsF7ao6BSN-CcRmCs7HOjXUo2E-p0PQ_0MrARqMX_yd1trWO1lkdT-4U6istSNWgNnQn5hkEdDf72vymRiU7C7japP5jEl9Y7kN_ojdTv8C9KlUrcgMdEHmByAps79yPzoBI4YKOxbEwJ4CbIv6V9hbSfatWvxVclAvRKDabX-7KrO9dD8H7kRCI0B9gecjqGnYQKEo20tWpUg_XkP4-1DuWHactGqhOTBijgMdvVAW76WOzPjH3e8d3jV9LJP0JVJ3fBkoujS1pX9xdW1iITn1vyTN5jpBUj_lMysBWQVWUXcRP_dBPZa2poerUwsZg1NW60DglanzY5kAJvfaAf57b06nnHC6b3X-4FDr85JopaVSn1M5aKuw7zwdseAF-8YZ3RSkJELyCtFNTKgN_UnjmXE9_3345FQLG5sbzdJAPQAbwfVBcxXub5x1x_MCc4v8B_48uVUwQW1m1muitZ1MaTHRX6xuTJBHkIzncHepswfBTLvMILXpOo-98bP_h_I8JVdrV7zkGy4zbY97NOwNi3w_9T_hgR7fNgDOpGqrnY0YM4lrulDEf7aNdvUKXpaeuOq_v5zkYtqZcuX52XyZHvXKnuMrHCLLGYU1HllXC4TC6_cM-f3-Q1QOqny2yk0ifH3juRgXntBF9V6CsbQK_af3E4SKY7_hJCCPxcuaLFjAuyahjTYL2yyZwOkW2p_4rU3JCu2A-ilfWrXt_m8eP-njJgo-c4zUsw_WL8aDELxVSqDuJl3dJ9DmiABKglldS13ZXN0LTIw8Q0"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:18.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:20.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:22.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:24.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:26.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:28.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:30.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:32.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:34.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:36.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:38.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:40.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:42.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:44.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCAO76QyS__BzVEdtZRK-e0zzCwVmdghVgCZNutOe8ygc0pHX13C3Cwlma3JnKrTMR3xEx6FUrkvNrQ29Inp6HRkBiHhJthMm-JHWfX2eya64B7SSt3NHqry1KEfz7CTdVJzOCzXxJnMiUtqwMmpWFyHmu58xb6pgQqzi4HpByjFFbszjppNIlMf0xkZdYTTViLRcKpF9clYZqSQQleojeNKrlNleDsEtuwFA_Ah0yEXgZ54k9EXksNCPWFcG4ScnXvy5icjkNfi8LZy7vs_hZ_b2Gq8SHriaDuKaCeh5BmfOfLa_UYhBunL1rYwvCa3JHNsRutyiq6sAKe8sFgmSo4F3dGcwiKa13lVvqkDcgUrvD27DXD1Cuz-6OKgTOPmi21MBq8ov7wVJmeOh7UZt2_ByPrRPlJcifMAjgN9IPbn0oHZIWIxm7M5NNX5PmGCULe9M9kRoM-9QUkxFecMa5c_qdIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCbpiMfDFt0lKAiXVMIlSRf3mQEaoWP-M8DruIOxyWXc6QJ_Hlpfq6EoHHQANgQLDQ4N8FA0NlKyFjkVvswvrABnYX_MU5kIhW7XG2rE403eRvsSfzEVLNuBT3s7UfC70vv7IbR03xbxhjO5dkgFM4taO0DuwEh7TtKad0rTzEpW-BaLdKw394RWnnGiX5UWWS6klnU18PJkLj1SAGeO1wJ_KWzlcXxKKbzJ42BxItdDxzGId5QtA4rxLPgdC1TyYgfiR9YJ3gSvrvcoXBi0CBJfawB5zRCcPyZni7_I5S0OM_W3ILZ2w_wThUVgVw2BMQiPJxdT5CFuVA-3Jzo1zmAZ3R1wBnmYQflYAyo3kgxLlcidX6i9Yvw2YjKb-Vww_BaS5-NvZbvBiTLdE2cUpG6V34ALs6co1Xr29fFagTypk6NH-zQhdMu4Az6ARLKPTxoFovzhoMg2P528t5jfJJkGLXIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[https @ 0x55b9b8d216c0] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCSaWLg6UpidSZ4nRGWiSr-KlSyheerDINV5wuxbMCl1YIwnU1N3kbo28mpbvK7jTPyb1CSKaEt3xCZFL850j08Xh1kb_A7UMH2tavyW-G-r99ceLvX_U7iZLZkkljHPJGxNyMfEYfHPRKC1tKKPVfyt6o9c0XjpjFoAMbTPMyKEumssPXX3jShjlPUo9ah9tt7Roy45QEON8yvOU_Etua7sh6dfqW1ZRYwLrjI7NCdVKZWwWWPAwt3EsEuKVRlOVFlnRY4Z7BcjWDMRItVkjOxzonlOcW8vMWXkClcz-5ozRYy3_to7rt5HpO4TmVMfETs0b9JnTFOF23vg831T8E2-9fMgE9Nokp9lZiD4FhQEWTigZ1JdYbGUtDedOkMr6xEI11EcCFunm29ndib7rsLtRqgQfxPLrqkI3Dknrfje1E2P-c--TKyYqI4SHId2_lsQlXCBoMi-KgYEx9aL7cNOMSIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+frame=  298 fps= 66 q=-1.0 size=       0KiB time=00:00:09.86 bitrate=   0.0kbits/s speed=2.19x    
+frame=  298 fps= 60 q=-1.0 size=       0KiB time=00:00:09.86 bitrate=   0.0kbits/s speed=1.97x    
+frame=  298 fps= 54 q=-1.0 size=       0KiB time=00:00:09.86 bitrate=   0.0kbits/s speed=1.79x    
+frame=  298 fps= 50 q=-1.0 size=       0KiB time=00:00:09.86 bitrate=   0.0kbits/s speed=1.64x    
+[https @ 0x7f807c03bc40] Opening 'https://euw12.playlist.ttvnw.net/v1/playlist/CpkGSRHrwquDAyRQ-zlG5Pn6LIhsA4yCei72i6j-nBLrU8YqBpPFrOUGHeriie3gFIiQQ7bWZU9J9Z9L6pCcVb0raeGF2-fyYDaH_fWZh4qg18yed9hT2na1U1zE5SHwDA0IX9KOEy8U1dU0nGCg8GvUquI_VEf5Ldpipepj7l5ehaPYsNkCY23nsA9BbzzmEBvCHd2NAi99k_-oZxd0Qg-QnWHlRbnJVoYWIp_GV9Bx8lfHi4Isn_o1q22AzQ7urtYS2ffXlhHZaGmsQTqTdkqYMxAfnFKmpahlHC8GEH7TutcE0yW1MHRqJvtvkto2wCzXN3_jJryiELkrwh-XM54I7gM3I8POyHSpC1sVcxyP1T23QTnXOeAeG3_aPV8SKBetqkpMCy4H6uhoUK5YHcgFgeyZraZMg6ehCq3ZW9gl3DwumI94o9yf2qh6a5jaAPbr_CujSQk5sLmnkTKNKrGBYrAAOk0R79JkJ9QOlPFGHJbFPvV1Qq6K-GeHjFZkHvvqlhuYAiRFkAEYUUHuqO2vRrMB4KqYFLw8MDfDi5-lVUHmYMpS_ICrkEIwnPnVOoWNC-JkncGHxlNE3nCVFx8QV4VxvJfjpEgAbbKkl2k2C9ecs5os5ULMD3MRZlhwYTKlGz9imWXjPkWHVws8FTX7Jw2mq3blyc7o_6PyjHRyZgfmqD36SSsVXrIj1o8sNjXFvLF5HMhaZFyqUdmmcs0DrdWTxWNw015ftO0o_UoJHXqwtXoz8jcj64F1kONKqnPCe7F3t1wZcXN63GFDjQlCufAnoMYu5HhblczhWuDTuFvifuVk3I2eQ3WamqUKmjbYgC-0OHFjR3V1zLyVhbkzzb45G2v60pUlAYjYWgh5jbtmY4n_lPOvZ3tq81ix119FePP1VpwYIqQuz_XkNUxfXjMmwKBUo1iqehvCqS7TInU2PWLDzxQYdfej5sXhMns93obYsNa3bg7LNIasJBsmpRxmaqVY0HAKixR_sO6-g0_IS6cAnYBHT-S0Xx5kGI0Ho5HqaPkqY_JbFtrhRN9WdHQzArahgC-x5hoMKtzez7Bg0LlwFLEOIAEqCWV1LXdlc3QtMjDxDQ.m3u8' for reading
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:204')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:408.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-TOTAL-SECS:440.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1765044636",CLASS="timestamp",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-SERVER-TIME="1765044636.80"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1765044636",CLASS="twitch-session",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4611757320073873349"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="source-1765044606",CLASS="twitch-stream-source",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="trigger-1765044606",CLASS="twitch-trigger",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/Cq8GD5pnXnzmSEwt3QDJVRtvFIyqErrZwEkDGr3N5PIAcNhl7qBwlGbESBPiY3BhNH8wxnkRrAnqW9XXfuFpRSEM1HJKi-QuGQ_cD8fY11XZdyceYBftd-9GvZFQv62vWdg7izQyVSDaGj1ZiCP3WnPTlPGbhsGDE0UOpgYt_J56vYS6LflBFdS1jOtR9CKBywoUzEXqMr65AOJp8nZi92m7OtAC_qoKwnpPgYy-S9aDSM9BwKs5jmhbn2sPO1KtSftAVIOMbnfbOI87SH46gcR7ry4sxp10EkEanwIV_UKihVLkrmzSbe-N-JJ04SPwvXvHiRzCLVVfaId4xRjkHu2f7uSsF7ao6BSN-CcRmCs7HOjXUo2E-p0PQ_0MrARqMX_yd1trWO1lkdT-4U6istSNWgNnQn5hkEdDf72vymRiU7C7japP5jEl9Y7kN_ojdTv8C9KlUrcgMdEHmByAps79yPzoBI4YKOxbEwJ4CbIv6V9hbSfatWvxVclAvRKDabX-7KrO9dD8H7kRCI0B9gecjqGnYQKEo20tWpUg_XkP4-1DuWHactGqhOTBijgMdvVAW76WOzPjH3e8d3jV9LJP0JVJ3fBkoujS1pX9xdW1iITn1vyTN5jpBUj_lMysBWQVWUXcRP_dBPZa2poerUwsZg1NW60DglanzY5kAJvfaAf57b06nnHC6b3X-4FDr85JopaVSn1M5aKuw7zwdseAF-8YZ3RSkJELyCtFNTKgN_UnjmXE9_3345FQLG5sbzdJAPQAbwfVBcxXub5x1x_MCc4v8B_48uVUwQW1m1muitZ1MaTHRX6xuTJBHkIzncHepswfBTLvMILXpOo-98bP_h_I8JVdrV7zkGy4zbY97NOwNi3w_9T_hgR7fNgDOpGqrnY0YM4lrulDEf7aNdvUKXpaeuOq_v5zkYtqZcuX52XyZHvXKnuMrHCLLGYU1HllXC4TC6_cM-f3-Q1QOqny2yk0ifH3juRgXntBF9V6CsbQK_af3E4SKY7_hJCCPxcuaLFjAuyahjTYL2yyZwOkW2p_4rU3JCu2A-ilfWrXt_m8eP-njJgo-c4zUsw_WL8aDELxVSqDuJl3dJ9DmiABKglldS13ZXN0LTIw8Q0"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:20.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:22.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:24.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:26.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:28.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:30.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:32.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:34.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:36.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:38.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:40.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:42.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:44.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:46.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCbpiMfDFt0lKAiXVMIlSRf3mQEaoWP-M8DruIOxyWXc6QJ_Hlpfq6EoHHQANgQLDQ4N8FA0NlKyFjkVvswvrABnYX_MU5kIhW7XG2rE403eRvsSfzEVLNuBT3s7UfC70vv7IbR03xbxhjO5dkgFM4taO0DuwEh7TtKad0rTzEpW-BaLdKw394RWnnGiX5UWWS6klnU18PJkLj1SAGeO1wJ_KWzlcXxKKbzJ42BxItdDxzGId5QtA4rxLPgdC1TyYgfiR9YJ3gSvrvcoXBi0CBJfawB5zRCcPyZni7_I5S0OM_W3ILZ2w_wThUVgVw2BMQiPJxdT5CFuVA-3Jzo1zmAZ3R1wBnmYQflYAyo3kgxLlcidX6i9Yvw2YjKb-Vww_BaS5-NvZbvBiTLdE2cUpG6V34ALs6co1Xr29fFagTypk6NH-zQhdMu4Az6ARLKPTxoFovzhoMg2P528t5jfJJkGLXIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQC9E0FSa_5ZZf6h15K-Sn13La0lzCJpJmDErdMj1tMDOKWnCGn5G7qUY22C_JJbKtScUEkyylBxN27QuYJBJpvZBHsSXWmENXr08yr5xUQCqN-ynVBUub7XkCtkYT5NyTnJqqg1CZQK2gNuIGP032Xzn2IEBxPbprjAwhh_tJ_8jyFVnGh5bhZ0bAq1i04ZlVSN4kakJ65VoNcN9l-zf6Nb3oHS8Ajm12IHww8Co5k_lfLqD5cWwsGIjyeSRM-U-IAqgmB1DeXFIIGK6yidI30ITOoxIihrB9lK9PlbRM7bA0JanZMHCwMMe_QUkVA9bVZA00pHqYWA_-Q2LtEYQPISEgEqVqbmH9NLCtZS8R5tQ0GIs2CRvwzpkDeIrrlrj2SVjLxB1tsrTXN3LtVo_g-ZtamQAWDUDLZX_lnlTdajWFbVTtbPRM2yL7eW2EWp8kMKvvD7xoMA80ftkOn822NMyTEIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[https @ 0x55b9b8d216c0] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCAO76QyS__BzVEdtZRK-e0zzCwVmdghVgCZNutOe8ygc0pHX13C3Cwlma3JnKrTMR3xEx6FUrkvNrQ29Inp6HRkBiHhJthMm-JHWfX2eya64B7SSt3NHqry1KEfz7CTdVJzOCzXxJnMiUtqwMmpWFyHmu58xb6pgQqzi4HpByjFFbszjppNIlMf0xkZdYTTViLRcKpF9clYZqSQQleojeNKrlNleDsEtuwFA_Ah0yEXgZ54k9EXksNCPWFcG4ScnXvy5icjkNfi8LZy7vs_hZ_b2Gq8SHriaDuKaCeh5BmfOfLa_UYhBunL1rYwvCa3JHNsRutyiq6sAKe8sFgmSo4F3dGcwiKa13lVvqkDcgUrvD27DXD1Cuz-6OKgTOPmi21MBq8ov7wVJmeOh7UZt2_ByPrRPlJcifMAjgN9IPbn0oHZIWIxm7M5NNX5PmGCULe9M9kRoM-9QUkxFecMa5c_qdIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+frame=  298 fps= 46 q=-1.0 size=       0KiB time=00:00:09.86 bitrate=   0.0kbits/s speed=1.52x    
+frame=  358 fps= 51 q=-1.0 size=     256KiB time=00:00:11.86 bitrate= 176.8kbits/s speed=1.69x    
+frame=  358 fps= 48 q=-1.0 size=     256KiB time=00:00:11.86 bitrate= 176.8kbits/s speed=1.58x    
+frame=  358 fps= 45 q=-1.0 size=     256KiB time=00:00:11.86 bitrate= 176.8kbits/s speed=1.48x    
+[https @ 0x7f807c03bc40] Opening 'https://euw12.playlist.ttvnw.net/v1/playlist/CpkGSRHrwquDAyRQ-zlG5Pn6LIhsA4yCei72i6j-nBLrU8YqBpPFrOUGHeriie3gFIiQQ7bWZU9J9Z9L6pCcVb0raeGF2-fyYDaH_fWZh4qg18yed9hT2na1U1zE5SHwDA0IX9KOEy8U1dU0nGCg8GvUquI_VEf5Ldpipepj7l5ehaPYsNkCY23nsA9BbzzmEBvCHd2NAi99k_-oZxd0Qg-QnWHlRbnJVoYWIp_GV9Bx8lfHi4Isn_o1q22AzQ7urtYS2ffXlhHZaGmsQTqTdkqYMxAfnFKmpahlHC8GEH7TutcE0yW1MHRqJvtvkto2wCzXN3_jJryiELkrwh-XM54I7gM3I8POyHSpC1sVcxyP1T23QTnXOeAeG3_aPV8SKBetqkpMCy4H6uhoUK5YHcgFgeyZraZMg6ehCq3ZW9gl3DwumI94o9yf2qh6a5jaAPbr_CujSQk5sLmnkTKNKrGBYrAAOk0R79JkJ9QOlPFGHJbFPvV1Qq6K-GeHjFZkHvvqlhuYAiRFkAEYUUHuqO2vRrMB4KqYFLw8MDfDi5-lVUHmYMpS_ICrkEIwnPnVOoWNC-JkncGHxlNE3nCVFx8QV4VxvJfjpEgAbbKkl2k2C9ecs5os5ULMD3MRZlhwYTKlGz9imWXjPkWHVws8FTX7Jw2mq3blyc7o_6PyjHRyZgfmqD36SSsVXrIj1o8sNjXFvLF5HMhaZFyqUdmmcs0DrdWTxWNw015ftO0o_UoJHXqwtXoz8jcj64F1kONKqnPCe7F3t1wZcXN63GFDjQlCufAnoMYu5HhblczhWuDTuFvifuVk3I2eQ3WamqUKmjbYgC-0OHFjR3V1zLyVhbkzzb45G2v60pUlAYjYWgh5jbtmY4n_lPOvZ3tq81ix119FePP1VpwYIqQuz_XkNUxfXjMmwKBUo1iqehvCqS7TInU2PWLDzxQYdfej5sXhMns93obYsNa3bg7LNIasJBsmpRxmaqVY0HAKixR_sO6-g0_IS6cAnYBHT-S0Xx5kGI0Ho5HqaPkqY_JbFtrhRN9WdHQzArahgC-x5hoMKtzez7Bg0LlwFLEOIAEqCWV1LXdlc3QtMjDxDQ.m3u8' for reading
+frame=  358 fps= 42 q=-1.0 size=     256KiB time=00:00:11.86 bitrate= 176.8kbits/s speed= 1.4x    
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:205')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:410.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-TOTAL-SECS:442.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1765044636",CLASS="timestamp",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-SERVER-TIME="1765044636.80"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1765044636",CLASS="twitch-session",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4611757320073873349"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="source-1765044606",CLASS="twitch-stream-source",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="trigger-1765044606",CLASS="twitch-trigger",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/Cq8GD5pnXnzmSEwt3QDJVRtvFIyqErrZwEkDGr3N5PIAcNhl7qBwlGbESBPiY3BhNH8wxnkRrAnqW9XXfuFpRSEM1HJKi-QuGQ_cD8fY11XZdyceYBftd-9GvZFQv62vWdg7izQyVSDaGj1ZiCP3WnPTlPGbhsGDE0UOpgYt_J56vYS6LflBFdS1jOtR9CKBywoUzEXqMr65AOJp8nZi92m7OtAC_qoKwnpPgYy-S9aDSM9BwKs5jmhbn2sPO1KtSftAVIOMbnfbOI87SH46gcR7ry4sxp10EkEanwIV_UKihVLkrmzSbe-N-JJ04SPwvXvHiRzCLVVfaId4xRjkHu2f7uSsF7ao6BSN-CcRmCs7HOjXUo2E-p0PQ_0MrARqMX_yd1trWO1lkdT-4U6istSNWgNnQn5hkEdDf72vymRiU7C7japP5jEl9Y7kN_ojdTv8C9KlUrcgMdEHmByAps79yPzoBI4YKOxbEwJ4CbIv6V9hbSfatWvxVclAvRKDabX-7KrO9dD8H7kRCI0B9gecjqGnYQKEo20tWpUg_XkP4-1DuWHactGqhOTBijgMdvVAW76WOzPjH3e8d3jV9LJP0JVJ3fBkoujS1pX9xdW1iITn1vyTN5jpBUj_lMysBWQVWUXcRP_dBPZa2poerUwsZg1NW60DglanzY5kAJvfaAf57b06nnHC6b3X-4FDr85JopaVSn1M5aKuw7zwdseAF-8YZ3RSkJELyCtFNTKgN_UnjmXE9_3345FQLG5sbzdJAPQAbwfVBcxXub5x1x_MCc4v8B_48uVUwQW1m1muitZ1MaTHRX6xuTJBHkIzncHepswfBTLvMILXpOo-98bP_h_I8JVdrV7zkGy4zbY97NOwNi3w_9T_hgR7fNgDOpGqrnY0YM4lrulDEf7aNdvUKXpaeuOq_v5zkYtqZcuX52XyZHvXKnuMrHCLLGYU1HllXC4TC6_cM-f3-Q1QOqny2yk0ifH3juRgXntBF9V6CsbQK_af3E4SKY7_hJCCPxcuaLFjAuyahjTYL2yyZwOkW2p_4rU3JCu2A-ilfWrXt_m8eP-njJgo-c4zUsw_WL8aDELxVSqDuJl3dJ9DmiABKglldS13ZXN0LTIw8Q0"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:22.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:24.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:26.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:28.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:30.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:32.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:34.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:36.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:38.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:40.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:42.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:44.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:46.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:48.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQC9E0FSa_5ZZf6h15K-Sn13La0lzCJpJmDErdMj1tMDOKWnCGn5G7qUY22C_JJbKtScUEkyylBxN27QuYJBJpvZBHsSXWmENXr08yr5xUQCqN-ynVBUub7XkCtkYT5NyTnJqqg1CZQK2gNuIGP032Xzn2IEBxPbprjAwhh_tJ_8jyFVnGh5bhZ0bAq1i04ZlVSN4kakJ65VoNcN9l-zf6Nb3oHS8Ajm12IHww8Co5k_lfLqD5cWwsGIjyeSRM-U-IAqgmB1DeXFIIGK6yidI30ITOoxIihrB9lK9PlbRM7bA0JanZMHCwMMe_QUkVA9bVZA00pHqYWA_-Q2LtEYQPISEgEqVqbmH9NLCtZS8R5tQ0GIs2CRvwzpkDeIrrlrj2SVjLxB1tsrTXN3LtVo_g-ZtamQAWDUDLZX_lnlTdajWFbVTtbPRM2yL7eW2EWp8kMKvvD7xoMA80ftkOn822NMyTEIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCMb6DLYFh3ND3Fz_g90fTeGZlZh8O7Wc69UJRcug0Tfer7g4OuCI36l0c6VuK9F49H5oNTZXZxNKwo9d41-5dkC4h2QM1k7hPPv4CrYuuyh0wop2s1zMOxx_EfNFzv-zAYtcDyV3JdOgPooRKvn_-f52goZZlWmQglT6ba50jaMLB-10blohKrdW8dfz73YrWQobN7jXrkQkdCpM_17Lk6JTUoJ-QvenGwD2ZuujOrDI1i0C8UObP1zBzuXgabCMNIPLcZLEPBbmjIJyFoUBacO6xWeqETpxjC0ZudXsehdHBz9K2-2MRJuJcbvE-04OPcwy55BCtU7VRhKv5TgzTL4n9FYDxR4lqqVfLk6eS4i-RVPVxE29daEFCUmtF7yq-31_06Jhig3c8uPhzAIY1yieY1tAUMdPu_QsA1YtCWLihg_cCm-LJ1v-sdqOz-hTUks6NQBoMyqmQCR62YAyxSO-XIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[https @ 0x55b9b8d216c0] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCbpiMfDFt0lKAiXVMIlSRf3mQEaoWP-M8DruIOxyWXc6QJ_Hlpfq6EoHHQANgQLDQ4N8FA0NlKyFjkVvswvrABnYX_MU5kIhW7XG2rE403eRvsSfzEVLNuBT3s7UfC70vv7IbR03xbxhjO5dkgFM4taO0DuwEh7TtKad0rTzEpW-BaLdKw394RWnnGiX5UWWS6klnU18PJkLj1SAGeO1wJ_KWzlcXxKKbzJ42BxItdDxzGId5QtA4rxLPgdC1TyYgfiR9YJ3gSvrvcoXBi0CBJfawB5zRCcPyZni7_I5S0OM_W3ILZ2w_wThUVgVw2BMQiPJxdT5CFuVA-3Jzo1zmAZ3R1wBnmYQflYAyo3kgxLlcidX6i9Yvw2YjKb-Vww_BaS5-NvZbvBiTLdE2cUpG6V34ALs6co1Xr29fFagTypk6NH-zQhdMu4Az6ARLKPTxoFovzhoMg2P528t5jfJJkGLXIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+frame=  418 fps= 46 q=-1.0 size=     256KiB time=00:00:13.86 bitrate= 151.3kbits/s speed=1.54x    
+frame=  418 fps= 44 q=-1.0 size=     256KiB time=00:00:13.86 bitrate= 151.3kbits/s speed=1.46x    
+frame=  418 fps= 42 q=-1.0 size=     256KiB time=00:00:13.86 bitrate= 151.3kbits/s speed=1.39x    
+frame=  418 fps= 40 q=-1.0 size=     256KiB time=00:00:13.86 bitrate= 151.3kbits/s speed=1.32x    
+[https @ 0x7f807c03bc40] Opening 'https://euw12.playlist.ttvnw.net/v1/playlist/CpkGSRHrwquDAyRQ-zlG5Pn6LIhsA4yCei72i6j-nBLrU8YqBpPFrOUGHeriie3gFIiQQ7bWZU9J9Z9L6pCcVb0raeGF2-fyYDaH_fWZh4qg18yed9hT2na1U1zE5SHwDA0IX9KOEy8U1dU0nGCg8GvUquI_VEf5Ldpipepj7l5ehaPYsNkCY23nsA9BbzzmEBvCHd2NAi99k_-oZxd0Qg-QnWHlRbnJVoYWIp_GV9Bx8lfHi4Isn_o1q22AzQ7urtYS2ffXlhHZaGmsQTqTdkqYMxAfnFKmpahlHC8GEH7TutcE0yW1MHRqJvtvkto2wCzXN3_jJryiELkrwh-XM54I7gM3I8POyHSpC1sVcxyP1T23QTnXOeAeG3_aPV8SKBetqkpMCy4H6uhoUK5YHcgFgeyZraZMg6ehCq3ZW9gl3DwumI94o9yf2qh6a5jaAPbr_CujSQk5sLmnkTKNKrGBYrAAOk0R79JkJ9QOlPFGHJbFPvV1Qq6K-GeHjFZkHvvqlhuYAiRFkAEYUUHuqO2vRrMB4KqYFLw8MDfDi5-lVUHmYMpS_ICrkEIwnPnVOoWNC-JkncGHxlNE3nCVFx8QV4VxvJfjpEgAbbKkl2k2C9ecs5os5ULMD3MRZlhwYTKlGz9imWXjPkWHVws8FTX7Jw2mq3blyc7o_6PyjHRyZgfmqD36SSsVXrIj1o8sNjXFvLF5HMhaZFyqUdmmcs0DrdWTxWNw015ftO0o_UoJHXqwtXoz8jcj64F1kONKqnPCe7F3t1wZcXN63GFDjQlCufAnoMYu5HhblczhWuDTuFvifuVk3I2eQ3WamqUKmjbYgC-0OHFjR3V1zLyVhbkzzb45G2v60pUlAYjYWgh5jbtmY4n_lPOvZ3tq81ix119FePP1VpwYIqQuz_XkNUxfXjMmwKBUo1iqehvCqS7TInU2PWLDzxQYdfej5sXhMns93obYsNa3bg7LNIasJBsmpRxmaqVY0HAKixR_sO6-g0_IS6cAnYBHT-S0Xx5kGI0Ho5HqaPkqY_JbFtrhRN9WdHQzArahgC-x5hoMKtzez7Bg0LlwFLEOIAEqCWV1LXdlc3QtMjDxDQ.m3u8' for reading
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:206')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:412.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-TOTAL-SECS:444.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1765044636",CLASS="timestamp",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-SERVER-TIME="1765044636.80"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1765044636",CLASS="twitch-session",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4611757320073873349"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="source-1765044606",CLASS="twitch-stream-source",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="trigger-1765044606",CLASS="twitch-trigger",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/Cq8GD5pnXnzmSEwt3QDJVRtvFIyqErrZwEkDGr3N5PIAcNhl7qBwlGbESBPiY3BhNH8wxnkRrAnqW9XXfuFpRSEM1HJKi-QuGQ_cD8fY11XZdyceYBftd-9GvZFQv62vWdg7izQyVSDaGj1ZiCP3WnPTlPGbhsGDE0UOpgYt_J56vYS6LflBFdS1jOtR9CKBywoUzEXqMr65AOJp8nZi92m7OtAC_qoKwnpPgYy-S9aDSM9BwKs5jmhbn2sPO1KtSftAVIOMbnfbOI87SH46gcR7ry4sxp10EkEanwIV_UKihVLkrmzSbe-N-JJ04SPwvXvHiRzCLVVfaId4xRjkHu2f7uSsF7ao6BSN-CcRmCs7HOjXUo2E-p0PQ_0MrARqMX_yd1trWO1lkdT-4U6istSNWgNnQn5hkEdDf72vymRiU7C7japP5jEl9Y7kN_ojdTv8C9KlUrcgMdEHmByAps79yPzoBI4YKOxbEwJ4CbIv6V9hbSfatWvxVclAvRKDabX-7KrO9dD8H7kRCI0B9gecjqGnYQKEo20tWpUg_XkP4-1DuWHactGqhOTBijgMdvVAW76WOzPjH3e8d3jV9LJP0JVJ3fBkoujS1pX9xdW1iITn1vyTN5jpBUj_lMysBWQVWUXcRP_dBPZa2poerUwsZg1NW60DglanzY5kAJvfaAf57b06nnHC6b3X-4FDr85JopaVSn1M5aKuw7zwdseAF-8YZ3RSkJELyCtFNTKgN_UnjmXE9_3345FQLG5sbzdJAPQAbwfVBcxXub5x1x_MCc4v8B_48uVUwQW1m1muitZ1MaTHRX6xuTJBHkIzncHepswfBTLvMILXpOo-98bP_h_I8JVdrV7zkGy4zbY97NOwNi3w_9T_hgR7fNgDOpGqrnY0YM4lrulDEf7aNdvUKXpaeuOq_v5zkYtqZcuX52XyZHvXKnuMrHCLLGYU1HllXC4TC6_cM-f3-Q1QOqny2yk0ifH3juRgXntBF9V6CsbQK_af3E4SKY7_hJCCPxcuaLFjAuyahjTYL2yyZwOkW2p_4rU3JCu2A-ilfWrXt_m8eP-njJgo-c4zUsw_WL8aDELxVSqDuJl3dJ9DmiABKglldS13ZXN0LTIw8Q0"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:24.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:26.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:28.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:30.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:32.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:34.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:36.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:38.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:40.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:42.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:44.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:46.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:48.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:50.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCMb6DLYFh3ND3Fz_g90fTeGZlZh8O7Wc69UJRcug0Tfer7g4OuCI36l0c6VuK9F49H5oNTZXZxNKwo9d41-5dkC4h2QM1k7hPPv4CrYuuyh0wop2s1zMOxx_EfNFzv-zAYtcDyV3JdOgPooRKvn_-f52goZZlWmQglT6ba50jaMLB-10blohKrdW8dfz73YrWQobN7jXrkQkdCpM_17Lk6JTUoJ-QvenGwD2ZuujOrDI1i0C8UObP1zBzuXgabCMNIPLcZLEPBbmjIJyFoUBacO6xWeqETpxjC0ZudXsehdHBz9K2-2MRJuJcbvE-04OPcwy55BCtU7VRhKv5TgzTL4n9FYDxR4lqqVfLk6eS4i-RVPVxE29daEFCUmtF7yq-31_06Jhig3c8uPhzAIY1yieY1tAUMdPu_QsA1YtCWLihg_cCm-LJ1v-sdqOz-hTUks6NQBoMyqmQCR62YAyxSO-XIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCPu5mKq22Se43jGTER6NfBkjNao1Oh1UlsEjOdCx8jgTjfHyIantFjr6_xToAeFjfz7dvOkfh5RsH-tDS1xS1DOyi8pRrdKFxbDALP96krzQVhvCj7xY0W4jVdRfyX3y9b-IRxDhTp91hRRF38lpDzmDFikXzRzKk0U-vLDB2CqrfRiRj9wH8se4BV57p4594hoXGHhKlEsUHfWvEX-UOU5zaxhw7JTjw_aTmSHJW7RsWpoyonjwFqciIgw0R6uY-KSvrJ87o7u8m3APzUAD__RT8sY9TSesxezMTCVJqTOGVw6rCT7dWauNjtRJG5ZfJrFzh7fL0kVhDxpIt4BbWlQ5v6yy1iINUZpFFg4Uag8flqptRHrGy442R-th8-23ShAw8rkC6BEhP_v6pL26g6K5-fkmQMaMjSXllP4o_a8ZhE8TTjA33Dn7vlldGiZpqvj-_ahoMVBw_AZZdrI8UaH9TIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[https @ 0x55b9b8d216c0] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQC9E0FSa_5ZZf6h15K-Sn13La0lzCJpJmDErdMj1tMDOKWnCGn5G7qUY22C_JJbKtScUEkyylBxN27QuYJBJpvZBHsSXWmENXr08yr5xUQCqN-ynVBUub7XkCtkYT5NyTnJqqg1CZQK2gNuIGP032Xzn2IEBxPbprjAwhh_tJ_8jyFVnGh5bhZ0bAq1i04ZlVSN4kakJ65VoNcN9l-zf6Nb3oHS8Ajm12IHww8Co5k_lfLqD5cWwsGIjyeSRM-U-IAqgmB1DeXFIIGK6yidI30ITOoxIihrB9lK9PlbRM7bA0JanZMHCwMMe_QUkVA9bVZA00pHqYWA_-Q2LtEYQPISEgEqVqbmH9NLCtZS8R5tQ0GIs2CRvwzpkDeIrrlrj2SVjLxB1tsrTXN3LtVo_g-ZtamQAWDUDLZX_lnlTdajWFbVTtbPRM2yL7eW2EWp8kMKvvD7xoMA80ftkOn822NMyTEIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+frame=  418 fps= 38 q=-1.0 size=     256KiB time=00:00:13.86 bitrate= 151.3kbits/s speed=1.26x    
+frame=  478 fps= 42 q=-1.0 size=     256KiB time=00:00:15.86 bitrate= 132.2kbits/s speed=1.38x    
+frame=  478 fps= 40 q=-1.0 size=     256KiB time=00:00:15.86 bitrate= 132.2kbits/s speed=1.32x    
+frame=  478 fps= 38 q=-1.0 size=     256KiB time=00:00:15.86 bitrate= 132.2kbits/s speed=1.27x    
+[https @ 0x7f807c03bc40] Opening 'https://euw12.playlist.ttvnw.net/v1/playlist/CpkGSRHrwquDAyRQ-zlG5Pn6LIhsA4yCei72i6j-nBLrU8YqBpPFrOUGHeriie3gFIiQQ7bWZU9J9Z9L6pCcVb0raeGF2-fyYDaH_fWZh4qg18yed9hT2na1U1zE5SHwDA0IX9KOEy8U1dU0nGCg8GvUquI_VEf5Ldpipepj7l5ehaPYsNkCY23nsA9BbzzmEBvCHd2NAi99k_-oZxd0Qg-QnWHlRbnJVoYWIp_GV9Bx8lfHi4Isn_o1q22AzQ7urtYS2ffXlhHZaGmsQTqTdkqYMxAfnFKmpahlHC8GEH7TutcE0yW1MHRqJvtvkto2wCzXN3_jJryiELkrwh-XM54I7gM3I8POyHSpC1sVcxyP1T23QTnXOeAeG3_aPV8SKBetqkpMCy4H6uhoUK5YHcgFgeyZraZMg6ehCq3ZW9gl3DwumI94o9yf2qh6a5jaAPbr_CujSQk5sLmnkTKNKrGBYrAAOk0R79JkJ9QOlPFGHJbFPvV1Qq6K-GeHjFZkHvvqlhuYAiRFkAEYUUHuqO2vRrMB4KqYFLw8MDfDi5-lVUHmYMpS_ICrkEIwnPnVOoWNC-JkncGHxlNE3nCVFx8QV4VxvJfjpEgAbbKkl2k2C9ecs5os5ULMD3MRZlhwYTKlGz9imWXjPkWHVws8FTX7Jw2mq3blyc7o_6PyjHRyZgfmqD36SSsVXrIj1o8sNjXFvLF5HMhaZFyqUdmmcs0DrdWTxWNw015ftO0o_UoJHXqwtXoz8jcj64F1kONKqnPCe7F3t1wZcXN63GFDjQlCufAnoMYu5HhblczhWuDTuFvifuVk3I2eQ3WamqUKmjbYgC-0OHFjR3V1zLyVhbkzzb45G2v60pUlAYjYWgh5jbtmY4n_lPOvZ3tq81ix119FePP1VpwYIqQuz_XkNUxfXjMmwKBUo1iqehvCqS7TInU2PWLDzxQYdfej5sXhMns93obYsNa3bg7LNIasJBsmpRxmaqVY0HAKixR_sO6-g0_IS6cAnYBHT-S0Xx5kGI0Ho5HqaPkqY_JbFtrhRN9WdHQzArahgC-x5hoMKtzez7Bg0LlwFLEOIAEqCWV1LXdlc3QtMjDxDQ.m3u8' for reading
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-VERSION:3')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-LIVE-SEQUENCE:207')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-ELAPSED-SECS:414.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-TOTAL-SECS:446.000')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-creation-1765044636",CLASS="timestamp",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-SERVER-TIME="1765044636.80"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="playlist-session-1765044636",CLASS="twitch-session",START-DATE="2025-12-06T18:10:36.799Z",END-ON-NEXT=YES,X-TV-TWITCH-SESSIONID="4611757320073873349"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="source-1765044606",CLASS="twitch-stream-source",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-STREAM-SOURCE="live"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-DATERANGE:ID="trigger-1765044606",CLASS="twitch-trigger",START-DATE="2025-12-06T18:10:06.449Z",END-ON-NEXT=YES,X-TV-TWITCH-TRIGGER-URL="https://euw12.playlist.ttvnw.net/trigger/Cq8GD5pnXnzmSEwt3QDJVRtvFIyqErrZwEkDGr3N5PIAcNhl7qBwlGbESBPiY3BhNH8wxnkRrAnqW9XXfuFpRSEM1HJKi-QuGQ_cD8fY11XZdyceYBftd-9GvZFQv62vWdg7izQyVSDaGj1ZiCP3WnPTlPGbhsGDE0UOpgYt_J56vYS6LflBFdS1jOtR9CKBywoUzEXqMr65AOJp8nZi92m7OtAC_qoKwnpPgYy-S9aDSM9BwKs5jmhbn2sPO1KtSftAVIOMbnfbOI87SH46gcR7ry4sxp10EkEanwIV_UKihVLkrmzSbe-N-JJ04SPwvXvHiRzCLVVfaId4xRjkHu2f7uSsF7ao6BSN-CcRmCs7HOjXUo2E-p0PQ_0MrARqMX_yd1trWO1lkdT-4U6istSNWgNnQn5hkEdDf72vymRiU7C7japP5jEl9Y7kN_ojdTv8C9KlUrcgMdEHmByAps79yPzoBI4YKOxbEwJ4CbIv6V9hbSfatWvxVclAvRKDabX-7KrO9dD8H7kRCI0B9gecjqGnYQKEo20tWpUg_XkP4-1DuWHactGqhOTBijgMdvVAW76WOzPjH3e8d3jV9LJP0JVJ3fBkoujS1pX9xdW1iITn1vyTN5jpBUj_lMysBWQVWUXcRP_dBPZa2poerUwsZg1NW60DglanzY5kAJvfaAf57b06nnHC6b3X-4FDr85JopaVSn1M5aKuw7zwdseAF-8YZ3RSkJELyCtFNTKgN_UnjmXE9_3345FQLG5sbzdJAPQAbwfVBcxXub5x1x_MCc4v8B_48uVUwQW1m1muitZ1MaTHRX6xuTJBHkIzncHepswfBTLvMILXpOo-98bP_h_I8JVdrV7zkGy4zbY97NOwNi3w_9T_hgR7fNgDOpGqrnY0YM4lrulDEf7aNdvUKXpaeuOq_v5zkYtqZcuX52XyZHvXKnuMrHCLLGYU1HllXC4TC6_cM-f3-Q1QOqny2yk0ifH3juRgXntBF9V6CsbQK_af3E4SKY7_hJCCPxcuaLFjAuyahjTYL2yyZwOkW2p_4rU3JCu2A-ilfWrXt_m8eP-njJgo-c4zUsw_WL8aDELxVSqDuJl3dJ9DmiABKglldS13ZXN0LTIw8Q0"')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:26.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:28.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:30.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:32.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:34.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:36.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:38.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:40.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:42.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:44.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:46.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:48.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:50.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-PROGRAM-DATE-TIME:2025-12-06T18:10:52.449Z')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCPu5mKq22Se43jGTER6NfBkjNao1Oh1UlsEjOdCx8jgTjfHyIantFjr6_xToAeFjfz7dvOkfh5RsH-tDS1xS1DOyi8pRrdKFxbDALP96krzQVhvCj7xY0W4jVdRfyX3y9b-IRxDhTp91hRRF38lpDzmDFikXzRzKk0U-vLDB2CqrfRiRj9wH8se4BV57p4594hoXGHhKlEsUHfWvEX-UOU5zaxhw7JTjw_aTmSHJW7RsWpoyonjwFqciIgw0R6uY-KSvrJ87o7u8m3APzUAD__RT8sY9TSesxezMTCVJqTOGVw6rCT7dWauNjtRJG5ZfJrFzh7fL0kVhDxpIt4BbWlQ5v6yy1iINUZpFFg4Uag8flqptRHrGy442R-th8-23ShAw8rkC6BEhP_v6pL26g6K5-fkmQMaMjSXllP4o_a8ZhE8TTjA33Dn7vlldGiZpqvj-_ahoMVBw_AZZdrI8UaH9TIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[hls @ 0x55b9b8a56240] Skip ('#EXT-X-TWITCH-PREFETCH:https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQC6Ky-QrGD8GA4xuB0sK917YvvvISRO0L7TFoiiNTGjhqE0MEE_hq8GGcJMwmc0Li6xfP5OJ1-M5rjWuMrRzvcT61tQofJILz5I2-_MVObqrqjGttrM-vCPpNyHYXAO2aCaG8vM0GiwUe-sexVBx3nNSbllw25M_FwPt6Aq7Qeh6En4nJ-75gj_UTBygaF5I89Dj3rFOx5TU07qxtElJiEGLrA1K2WSznVdykCq4dPGFpJH0v18-s8iN-T333V5OXkRUV_TbR2rH3mPKU0zU5v969Nkq1SU4hGABZGuAP9XnKwHGQPnOOP6cn06B1j3mhkl4_6fHe02XE6gP5kAMXjP-sLOmhg4L3dA4MtRJwghX5pTrVyLE0Jyg69YfL4ODAoHtP6XKIhSdyCo7v21GGFxj0ggEK7nQMLoVMgIWWoeiYIHQcuWFhzJhscMtcbQSMe6Z6oFhoMV5qL6GkdB-ZgDO37IAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ')
+[https @ 0x55b9b8d216c0] Opening 'https://76553a7dc934.j.cloudfront.hls.ttvnw.net/v1/segment/CtQCMb6DLYFh3ND3Fz_g90fTeGZlZh8O7Wc69UJRcug0Tfer7g4OuCI36l0c6VuK9F49H5oNTZXZxNKwo9d41-5dkC4h2QM1k7hPPv4CrYuuyh0wop2s1zMOxx_EfNFzv-zAYtcDyV3JdOgPooRKvn_-f52goZZlWmQglT6ba50jaMLB-10blohKrdW8dfz73YrWQobN7jXrkQkdCpM_17Lk6JTUoJ-QvenGwD2ZuujOrDI1i0C8UObP1zBzuXgabCMNIPLcZLEPBbmjIJyFoUBacO6xWeqETpxjC0ZudXsehdHBz9K2-2MRJuJcbvE-04OPcwy55BCtU7VRhKv5TgzTL4n9FYDxR4lqqVfLk6eS4i-RVPVxE29daEFCUmtF7yq-31_06Jhig3c8uPhzAIY1yieY1tAUMdPu_QsA1YtCWLihg_cCm-LJ1v-sdqOz-hTUks6NQBoMyqmQCR62YAyxSO-XIAEqCWV1LXdlc3QtMjDxDQ.ts?dna=Cm6Eyk_AaAhS5LgPdN6D0t60YXSz9YYB3598APvzP6oX436-U5P7UtYaacEzyGTwAPaNz9UtFxxXbFcuCYPxF0vgEec5X4PglW0kkiiyZoIgtzcPnLYAX3vXKTIxmXHzQizw6apKQ5eur6uD85ectRoM6dUPHTE-zb57g3YEIAEqCWV1LXdlc3QtMjDxDQ' for reading
+[out#0/mp4 @ 0x55b9b8e21580] video:363KiB audio:94KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 2.736741%
+frame=  478 fps= 36 q=-1.0 Lsize=     470KiB time=00:00:15.86 bitrate= 242.5kbits/s speed=1.18x    
+Exiting normally, received signal 15.
+2025-12-06 18:10:57,851 - app.services.download_service - INFO - Stopping thumbnail updater for browser_1765044633
+2025-12-06 18:10:57,862 - app.services.download_service - INFO - Download stopped for browser browser_1765044633
+2025-12-06 18:10:57,863 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:57] "POST /api/downloads/stop/browser_1765044633 HTTP/1.1" 200 -
+2025-12-06 18:10:57,887 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:57] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:58,744 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:58] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:10:59,746 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:10:59] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:00,750 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:00] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:01,758 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:01] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:02,752 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:02] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:03,749 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:03] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:05,311 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:05] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:05,312 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:05] "POST /api/clear-cookies HTTP/1.1" 404 -
+2025-12-06 18:11:05,754 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:05] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:06,753 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:06] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:07,753 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:07] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:08,762 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:08] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:09,778 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:09] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:10,775 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:10] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:11,765 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:11] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:12,768 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:12] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:13,766 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:13] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:14,773 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:14] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:15,771 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:15] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:16,765 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:16] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 18:11:17,773 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:11:17] "GET /api/downloads/active HTTP/1.1" 200 -
