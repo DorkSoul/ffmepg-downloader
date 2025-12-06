@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 class StreamDetector:
     """Detects and handles video streams from web pages using browser automation"""
 
-    def __init__(self, browser_id, config, resolution='1080p', framerate='any', auto_download=False, filename=None):
+    def __init__(self, browser_id, config, resolution='1080p', framerate='any', auto_download=False, filename=None, output_format='mp4'):
         self.browser_id = browser_id
         self.config = config
         self.driver = None
@@ -33,6 +33,7 @@ class StreamDetector:
         self.framerate = framerate  # 'any', '60', '30'
         self.auto_download = auto_download
         self.filename = filename  # Optional custom filename
+        self.output_format = output_format  # Output file format (mp4, mkv, mp3, etc.)
         self.awaiting_resolution_selection = False
         self.available_resolutions = []
         self.selected_stream_url = None
@@ -692,11 +693,16 @@ class StreamDetector:
                 self.thumbnail_data = thumbnail
 
         # Generate filename
+        ext = self.output_format
         if self.filename:
-            filename = self.filename if self.filename.endswith('.mp4') else f"{self.filename}.mp4"
+            # Check if filename already has an extension
+            if '.' in self.filename:
+                filename = self.filename
+            else:
+                filename = f"{self.filename}.{ext}"
         else:
             timestamp = int(time.time())
-            filename = f"video_{resolution_name}_{timestamp}.mp4"
+            filename = f"video_{resolution_name}_{timestamp}.{ext}"
 
         # Call download callback if set
         if self.download_callback:

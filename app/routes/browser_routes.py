@@ -24,6 +24,7 @@ def init_browser_routes(browser_service, download_service, config):
             framerate = data.get('framerate', 'any')
             auto_download = data.get('auto_download', False)
             filename = data.get('filename', None)
+            output_format = data.get('format', 'mp4')
 
             if not url:
                 return jsonify({'error': 'No URL provided'}), 400
@@ -35,7 +36,7 @@ def init_browser_routes(browser_service, download_service, config):
 
             # Start browser
             success, detector = browser_service.start_browser(
-                url, browser_id, resolution, framerate, auto_download, filename
+                url, browser_id, resolution, framerate, auto_download, filename, output_format
             )
 
             if success:

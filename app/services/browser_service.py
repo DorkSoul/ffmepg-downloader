@@ -16,7 +16,7 @@ class BrowserService:
         self.download_service = download_service
         self.active_browsers = {}
 
-    def start_browser(self, url, browser_id, resolution='1080p', framerate='any', auto_download=False, filename=None):
+    def start_browser(self, url, browser_id, resolution='1080p', framerate='any', auto_download=False, filename=None, output_format='mp4'):
         """Start a browser instance for stream detection"""
         # Enforce singleton: Close ALL existing browsers first to free up the profile
         if self.active_browsers:
@@ -33,7 +33,8 @@ class BrowserService:
             resolution,
             framerate,
             auto_download,
-            filename
+            filename,
+            output_format
         )
 
         # Set download callback

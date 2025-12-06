@@ -517,12 +517,27 @@
                 <div class="input-group">
                     <label for="direct-format">Output Format</label>
                     <select id="direct-format">
-                        <option value="mp4">MP4 (recommended)</option>
-                        <option value="mkv">MKV</option>
-                        <option value="avi">AVI</option>
-                        <option value="webm">WebM</option>
-                        <option value="ts">TS (Transport Stream)</option>
-                        <option value="mov">MOV</option>
+                        <optgroup label="Video Formats">
+                            <option value="mp4">MP4 (recommended)</option>
+                            <option value="mkv">MKV</option>
+                            <option value="webm">WebM</option>
+                            <option value="avi">AVI</option>
+                            <option value="mov">MOV</option>
+                            <option value="ts">TS (Transport Stream)</option>
+                            <option value="flv">FLV</option>
+                            <option value="wmv">WMV</option>
+                            <option value="m4v">M4V</option>
+                        </optgroup>
+                        <optgroup label="Audio Only">
+                            <option value="mp3">MP3</option>
+                            <option value="aac">AAC</option>
+                            <option value="m4a">M4A</option>
+                            <option value="flac">FLAC</option>
+                            <option value="wav">WAV</option>
+                            <option value="ogg">OGG</option>
+                            <option value="opus">OPUS</option>
+                            <option value="wma">WMA</option>
+                        </optgroup>
                     </select>
                 </div>
 
@@ -547,6 +562,33 @@
                     <label for="browser-filename">Filename (optional)</label>
                     <input type="text" id="browser-filename"
                         placeholder="video_name (leave empty for auto-generated name)">
+                </div>
+
+                <div class="input-group">
+                    <label for="browser-format">Output Format</label>
+                    <select id="browser-format">
+                        <optgroup label="Video Formats">
+                            <option value="mp4">MP4 (recommended)</option>
+                            <option value="mkv">MKV</option>
+                            <option value="webm">WebM</option>
+                            <option value="avi">AVI</option>
+                            <option value="mov">MOV</option>
+                            <option value="ts">TS (Transport Stream)</option>
+                            <option value="flv">FLV</option>
+                            <option value="wmv">WMV</option>
+                            <option value="m4v">M4V</option>
+                        </optgroup>
+                        <optgroup label="Audio Only">
+                            <option value="mp3">MP3</option>
+                            <option value="aac">AAC</option>
+                            <option value="m4a">M4A</option>
+                            <option value="flac">FLAC</option>
+                            <option value="wav">WAV</option>
+                            <option value="ogg">OGG</option>
+                            <option value="opus">OPUS</option>
+                            <option value="wma">WMA</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <div class="input-group">
@@ -739,7 +781,8 @@
         // Start browser mode
         async function startBrowser() {
             const url = document.getElementById('browser-url').value.trim();
-            const filename = document.getElementById('browser-filename').value.trim();
+            let filename = document.getElementById('browser-filename').value.trim();
+            const format = document.getElementById('browser-format').value;
             const resolution = document.getElementById('preferred-resolution').value;
             const framerate = document.getElementById('preferred-framerate').value;
             const autoDownload = document.getElementById('auto-download').checked;
@@ -759,11 +802,15 @@
                     url,
                     resolution: resolution,
                     framerate: framerate,
-                    auto_download: autoDownload
+                    auto_download: autoDownload,
+                    format: format
                 };
 
-                // Only add filename if provided
+                // Only add filename if provided (with auto extension)
                 if (filename) {
+                    if (!filename.includes('.')) {
+                        filename = filename + '.' + format;
+                    }
                     payload.filename = filename;
                 }
 

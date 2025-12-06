@@ -263,16 +263,71 @@ class DownloadService:
 
     def _start_ffmpeg_process(self, stream_url, output_path):
         """Start FFmpeg process for downloading"""
-        cmd = [
-            'ffmpeg',
-            '-i', stream_url,
-            '-c', 'copy',
-            '-bsf:a', 'aac_adtstoasc',
-            # Use fragmented MP4 to allow reading while downloading (for thumbnails)
-            '-movflags', '+frag_keyframe+empty_moov',
-            '-y',  # Overwrite output file
-            output_path
-        ]
+        # Determine output format from extension
+        ext = os.path.splitext(output_path)[1].lower().lstrip('.')
+        
+        # Audio-only formats
+        audio_formats = ['mp3', 'aac', 'm4a', 'flac', 'wav', 'ogg', 'opus', 'wma']
+        
+        if ext in audio_formats:
+            # Audio extraction - need to encode
+            cmd = [
+                'ffmpeg',
+                '-i', stream_url,
+                '-vn',  # No video
+            ]
+            
+            # Format-specific encoding options
+            if ext == 'mp3':
+                cmd.extend(['-c:a', 'libmp3lame', '-q:a', '2'])
+            elif ext == 'aac':
+                cmd.extend(['-c:a', 'aac', '-b:a', '192k'])
+            elif ext == 'm4a':
+                cmd.extend(['-c:a', 'aac', '-b:a', '192k'])
+            elif ext == 'flac':
+                cmd.extend(['-c:a', 'flac'])
+            elif ext == 'wav':
+                cmd.extend(['-c:a', 'pcm_s16le'])
+            elif ext == 'ogg':
+                cmd.extend(['-c:a', 'libvorbis', '-q:a', '6'])
+            elif ext == 'opus':
+                cmd.extend(['-c:a', 'libopus', '-b:a', '128k'])
+            elif ext == 'wma':
+                cmd.extend(['-c:a', 'wmav2', '-b:a', '192k'])
+            
+            cmd.extend(['-y', output_path])
+        else:
+            # Video formats - try stream copy first
+            cmd = [
+                'ffmpeg',
+                '-i', stream_url,
+            ]
+            
+            # Format-specific options
+            if ext in ['mp4', 'm4v', 'mov']:
+                cmd.extend([
+                    '-c', 'copy',
+                    '-bsf:a', 'aac_adtstoasc',
+                    '-movflags', '+frag_keyframe+empty_moov',
+                ])
+            elif ext == 'mkv':
+                cmd.extend(['-c', 'copy'])
+            elif ext == 'webm':
+                # WebM may need re-encoding if source isn't VP8/VP9
+                cmd.extend(['-c:v', 'copy', '-c:a', 'copy'])
+            elif ext == 'ts':
+                cmd.extend(['-c', 'copy', '-bsf:v', 'h264_mp4toannexb'])
+            elif ext == 'flv':
+                cmd.extend(['-c', 'copy'])
+            elif ext == 'wmv':
+                cmd.extend(['-c:v', 'wmv2', '-c:a', 'wmav2'])
+            elif ext == 'avi':
+                cmd.extend(['-c', 'copy'])
+            else:
+                # Default: stream copy
+                cmd.extend(['-c', 'copy'])
+            
+            cmd.extend(['-y', output_path])
 
         return subprocess.Popen(
             cmd,
