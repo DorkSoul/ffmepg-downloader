@@ -1,100 +1,100 @@
-2025-12-05 15:10:35,949 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:35,949 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:35,949 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
-2025-12-05 15:10:35,949 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=524336
-2025-12-05 15:10:35,949 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
-2025-12-05 15:10:35,949 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (524336 bytes)
-2025-12-05 15:10:36,002 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:36,003 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:36,003 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:36] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:10:36,855 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
-2025-12-05 15:10:36,856 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=12582960
-2025-12-05 15:10:36,856 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
-2025-12-05 15:10:36,856 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (12582960 bytes)
-2025-12-05 15:10:36,926 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:36,926 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:36,926 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
-2025-12-05 15:10:36,926 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
-2025-12-05 15:10:36,926 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
-2025-12-05 15:10:36,926 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
-2025-12-05 15:10:36,975 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:36,976 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:36,976 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:36] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:10:37,856 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
-2025-12-05 15:10:37,856 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=13631536
-2025-12-05 15:10:37,856 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
-2025-12-05 15:10:37,856 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (13631536 bytes)
-2025-12-05 15:10:37,937 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:37,937 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:37,937 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
-2025-12-05 15:10:37,937 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
-2025-12-05 15:10:37,937 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
-2025-12-05 15:10:37,937 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
-2025-12-05 15:10:38,000 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:38,000 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:38,000 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:38] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:10:38,872 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
-2025-12-05 15:10:38,872 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=13631536
-2025-12-05 15:10:38,872 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
-2025-12-05 15:10:38,872 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (13631536 bytes)
-2025-12-05 15:10:38,952 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:38,952 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:38,952 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
-2025-12-05 15:10:38,953 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
-2025-12-05 15:10:38,953 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
-2025-12-05 15:10:38,953 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
-2025-12-05 15:10:39,003 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:39,003 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:39,003 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:39] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:10:39,866 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
-2025-12-05 15:10:39,866 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=14417968
-2025-12-05 15:10:39,866 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
-2025-12-05 15:10:39,867 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (14417968 bytes)
-2025-12-05 15:10:39,928 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:39,928 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:39,928 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
-2025-12-05 15:10:39,929 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
-2025-12-05 15:10:39,929 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
-2025-12-05 15:10:39,929 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
-2025-12-05 15:10:39,988 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:39,988 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:39,989 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:39] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:10:40,858 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
-2025-12-05 15:10:40,858 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=14417968
-2025-12-05 15:10:40,858 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
-2025-12-05 15:10:40,858 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (14417968 bytes)
-2025-12-05 15:10:40,918 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:40,918 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:40,918 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
-2025-12-05 15:10:40,918 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=786480
-2025-12-05 15:10:40,918 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
-2025-12-05 15:10:40,918 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (786480 bytes)
-2025-12-05 15:10:40,977 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:40,977 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:40,977 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:40] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:10:42,838 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
-2025-12-05 15:10:42,838 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=15466544
-2025-12-05 15:10:42,838 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
-2025-12-05 15:10:42,838 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (15466544 bytes)
-2025-12-05 15:10:42,909 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:42,909 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:42,909 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
-2025-12-05 15:10:42,909 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=1048624
-2025-12-05 15:10:42,909 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
-2025-12-05 15:10:42,909 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (1048624 bytes)
-2025-12-05 15:10:42,959 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:42,959 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:42,960 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:42] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-05 15:10:44,839 - __main__ - INFO - Processing download browser_1764947398: output_path=/app/downloads/video_720p60_1764947411.mp4
-2025-12-05 15:10:44,839 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/video_720p60_1764947411.mp4, file_size=16252976
-2025-12-05 15:10:44,839 - __main__ - INFO - Calling extract_thumbnail_from_file for browser_1764947398
-2025-12-05 15:10:44,839 - __main__ - INFO - Extracting thumbnail from /app/downloads/video_720p60_1764947411.mp4 (16252976 bytes)
-2025-12-05 15:10:44,902 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:44,902 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:44,902 - __main__ - INFO - Processing download direct_1764947422: output_path=/app/downloads/22.mp4
-2025-12-05 15:10:44,902 - __main__ - INFO - Thumbnail check: is_running=True, output_path=/app/downloads/22.mp4, file_size=1048624
-2025-12-05 15:10:44,902 - __main__ - INFO - Calling extract_thumbnail_from_file for direct_1764947422
-2025-12-05 15:10:44,902 - __main__ - INFO - Extracting thumbnail from /app/downloads/22.mp4 (1048624 bytes)
-2025-12-05 15:10:44,951 - __main__ - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-05 15:10:44,951 - __main__ - INFO - Thumbnail result: none
-2025-12-05 15:10:44,952 - werkzeug - INFO - 192.168.0.246 - - [05/Dec/2025 15:10:44] "GET /api/downloads/active HTTP/1.1" 200 -
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/blueprints.py", line 110, in add_url_rule
+    self.app.add_url_rule(
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/scaffold.py", line 44, in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/app.py", line 659, in add_url_rule
+    raise AssertionError(
+AssertionError: View function mapping is overwriting an existing endpoint function: browser.clear_cookies
+2025-12-06 12:40:02,928 WARN exited: flask (exit status 1; not expected)
+2025-12-06 12:40:04,934 INFO spawned: 'flask' with pid 54
+2025-12-06 12:40:05,105 - app.config - INFO - ================================================================================
+2025-12-06 12:40:05,105 - app.config - INFO - NAS VIDEO DOWNLOADER STARTING
+2025-12-06 12:40:05,105 - app.config - INFO - ================================================================================
+2025-12-06 12:40:05,105 - app.config - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
+2025-12-06 12:40:05,105 - app.config - INFO - Working directory: /app
+2025-12-06 12:40:05,106 - app.config - INFO - DISPLAY: :99
+2025-12-06 12:40:05,106 - app.config - INFO - Download dir: /app/downloads
+2025-12-06 12:40:05,106 - app.config - INFO - Chrome data dir: /app/chrome-data
+2025-12-06 12:40:05,106 - app.services.browser_service - INFO - Checking Chrome installation...
+2025-12-06 12:40:05,134 - app.services.browser_service - INFO - Chrome: Google Chrome 143.0.7499.40
+2025-12-06 12:40:05,134 INFO reaped unknown pid 59 (exit status 0)
+2025-12-06 12:40:05,134 INFO reaped unknown pid 60 (exit status 0)
+2025-12-06 12:40:05,137 - app.services.browser_service - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
+2025-12-06 12:40:05,137 - app.services.browser_service - INFO - DISPLAY environment: :99
+2025-12-06 12:40:05,142 - app.services.browser_service - INFO - Xvfb is running ✓
+2025-12-06 12:40:05,142 - app.services.browser_service - INFO - Download dir exists: True
+2025-12-06 12:40:05,142 - app.services.browser_service - INFO - Chrome data dir exists: True
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/app.py", line 56, in <module>
+    app = create_app()
+          ^^^^^^^^^^^^
+  File "/app/app/app.py", line 34, in create_app
+    flask_app.register_blueprint(browser_bp)
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/scaffold.py", line 44, in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/app.py", line 597, in register_blueprint
+    blueprint.register(self, options)
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/blueprints.py", line 335, in register
+    deferred(state)
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/blueprints.py", line 431, in <lambda>
+    lambda s: s.add_url_rule(
+              ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/blueprints.py", line 110, in add_url_rule
+    self.app.add_url_rule(
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/scaffold.py", line 44, in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/app.py", line 659, in add_url_rule
+    raise AssertionError(
+AssertionError: View function mapping is overwriting an existing endpoint function: browser.clear_cookies
+2025-12-06 12:40:05,179 WARN exited: flask (exit status 1; not expected)
+2025-12-06 12:40:08,185 INFO spawned: 'flask' with pid 63
+2025-12-06 12:40:08,354 - app.config - INFO - ================================================================================
+2025-12-06 12:40:08,355 - app.config - INFO - NAS VIDEO DOWNLOADER STARTING
+2025-12-06 12:40:08,355 - app.config - INFO - ================================================================================
+2025-12-06 12:40:08,355 - app.config - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
+2025-12-06 12:40:08,355 - app.config - INFO - Working directory: /app
+2025-12-06 12:40:08,355 - app.config - INFO - DISPLAY: :99
+2025-12-06 12:40:08,355 - app.config - INFO - Download dir: /app/downloads
+2025-12-06 12:40:08,355 - app.config - INFO - Chrome data dir: /app/chrome-data
+2025-12-06 12:40:08,355 - app.services.browser_service - INFO - Checking Chrome installation...
+2025-12-06 12:40:08,379 - app.services.browser_service - INFO - Chrome: Google Chrome 143.0.7499.40
+2025-12-06 12:40:08,380 INFO reaped unknown pid 68 (exit status 0)
+2025-12-06 12:40:08,380 INFO reaped unknown pid 69 (exit status 0)
+2025-12-06 12:40:08,384 - app.services.browser_service - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
+2025-12-06 12:40:08,384 - app.services.browser_service - INFO - DISPLAY environment: :99
+2025-12-06 12:40:08,389 - app.services.browser_service - INFO - Xvfb is running ✓
+2025-12-06 12:40:08,389 - app.services.browser_service - INFO - Download dir exists: True
+2025-12-06 12:40:08,389 - app.services.browser_service - INFO - Chrome data dir exists: True
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/app.py", line 56, in <module>
+    app = create_app()
+          ^^^^^^^^^^^^
+  File "/app/app/app.py", line 34, in create_app
+    flask_app.register_blueprint(browser_bp)
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/scaffold.py", line 44, in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/app.py", line 597, in register_blueprint
+    blueprint.register(self, options)
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/blueprints.py", line 335, in register
+    deferred(state)
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/blueprints.py", line 431, in <lambda>
+    lambda s: s.add_url_rule(
+              ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/blueprints.py", line 110, in add_url_rule
+    self.app.add_url_rule(
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/scaffold.py", line 44, in wrapper_func
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/flask/sansio/app.py", line 659, in add_url_rule
+    raise AssertionError(
+AssertionError: View function mapping is overwriting an existing endpoint function: browser.clear_cookies
+2025-12-06 12:40:08,425 WARN exited: flask (exit status 1; not expected)
+2025-12-06 12:40:09,427 INFO gave up: flask entered FATAL state, too many start retries too quickly

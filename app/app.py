@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from app.config import Config
 from app.services import DownloadService, BrowserService
-from app.routes import init_browser_routes, init_download_routes, add_clear_cookies_route, add_test_chrome_route
+from app.routes import init_browser_routes, init_download_routes
 
 
 def create_app():
@@ -22,13 +22,9 @@ def create_app():
     # Check Chrome installation at startup
     browser_service.check_chrome_installation()
 
-    # Initialize and register routes
-    browser_bp = init_browser_routes(browser_service, download_service)
+    # Initialize and register routes (pass config to browser routes for test endpoint)
+    browser_bp = init_browser_routes(browser_service, download_service, config)
     download_bp = init_download_routes(download_service, config.DOWNLOAD_DIR)
-
-    # Add additional routes
-    add_clear_cookies_route(browser_bp, browser_service)
-    add_test_chrome_route(browser_bp, config)
 
     # Register blueprints
     flask_app.register_blueprint(browser_bp)

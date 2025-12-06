@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 browser_bp = Blueprint('browser', __name__, url_prefix='/api/browser')
 
 
-def init_browser_routes(browser_service, download_service):
+def init_browser_routes(browser_service, download_service, config):
     """Initialize browser routes with services"""
 
     @browser_bp.route('/start', methods=['POST'])
@@ -137,19 +137,6 @@ def init_browser_routes(browser_service, download_service):
             logger.error(f"Stream selection error: {e}")
             return jsonify({'error': str(e)}), 500
 
-    return browser_bp
-
-
-@browser_bp.route('/clear-cookies', methods=['POST'])
-def clear_cookies():
-    """Clear Chrome cookies - Note: This needs browser_service passed in"""
-    # This will be handled by init_browser_routes
-    pass
-
-
-def add_clear_cookies_route(browser_bp, browser_service):
-    """Add clear cookies route with browser service"""
-
     @browser_bp.route('/clear-cookies', methods=['POST'])
     def clear_cookies():
         """Clear Chrome cookies and profile data"""
@@ -164,10 +151,6 @@ def add_clear_cookies_route(browser_bp, browser_service):
         except Exception as e:
             logger.error(f"Clear cookies error: {e}")
             return jsonify({'error': str(e)}), 500
-
-
-def add_test_chrome_route(browser_bp, config):
-    """Add Chrome test route"""
 
     @browser_bp.route('/test/chrome', methods=['GET'])
     def test_chrome():
@@ -223,3 +206,5 @@ def add_test_chrome_route(browser_bp, config):
         except Exception as e:
             logger.error(f"Test endpoint error: {e}")
             return jsonify({'error': str(e)}), 500
+
+    return browser_bp
