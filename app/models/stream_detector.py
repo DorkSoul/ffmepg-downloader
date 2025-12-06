@@ -85,37 +85,173 @@ class StreamDetector:
                     logger.warning(f"Could not reset Chrome preferences: {prefs_error}")
 
                 # Enable remote debugging for CDP WebSocket (port 0 = auto-assign)
-            except json.JSONDecodeError as e:
-                logger.error(f"[CDP-WS] JSON decode error: {e}")
+                chrome_options.add_argument('--remote-debugging-port=0')
+                # Allow WebSocket connections to CDP from any origin
+                chrome_options.add_argument('--remote-allow-origins=*')
+
+                # GPU and rendering
+                chrome_options.add_argument('--disable-gpu')
+                chrome_options.add_argument('--disable-software-rasterizer')
+
+                # Optimization flags
+                chrome_options.add_argument('--disable-extensions')
+                chrome_options.add_argument('--disable-background-networking')
+                chrome_options.add_argument('--disable-sync')
+                chrome_options.add_argument('--disable-translate')
+                chrome_options.add_argument('--disable-default-apps')
+                chrome_options.add_argument('--disable-notifications')
+
+                # User data directory for cookie persistence
+                chrome_options.add_argument(f'--user-data-dir={self.config.CHROME_USER_DATA_DIR}')
+
+                # Logging
+                chrome_options.add_argument('--enable-logging')
+                chrome_options.add_argument('--v=1')
+
+                chrome_options.add_experimental_option('w3c', True)
+                chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+                # Enable performance logging to capture network events
+                chrome_options.set_capability('goog:loggingPrefs', {'performance': 'ALL'})
+
+                logger.info("Initializing ChromeDriver service")
+                service = Service(
+                    self.config.CHROMEDRIVER_PATH,
+                    log_output=self.config.CHROMEDRIVER_LOG_PATH
+                )
+
+                logger.info("Creating Chrome webdriver instance...")
+                logger.debug(f"Chrome options: {[arg for arg in chrome_options.arguments]}")
+
+                try:
+                    self.driver = webdriver.Chrome(service=service, options=chrome_options)
+                    logger.info("Chrome webdriver created successfully!")
+                except Exception as driver_error:
+                    logger.error(f"Failed to create Chrome webdriver: {driver_error}")
+
+                    # If this is the first attempt and error mentions "Chrome instance exited"
+                    if retry_count == 0 and "Chrome instance exited" in str(driver_error):
+                        logger.warning("Chrome failed to start with user-data-dir, cleaning lock files and retrying...")
+                        retry_count += 1
+
+                        # Clean up problematic lock files in user-data-dir
+                        try:
+                            lock_files = glob.glob(os.path.join(self.config.CHROME_USER_DATA_DIR, '**/SingletonLock'), recursive=True)
+                            lock_files.extend(glob.glob(os.path.join(self.config.CHROME_USER_DATA_DIR, '**/lockfile'), recursive=True))
+
+                            for lock_file in lock_files:
+                                try:
+                                    os.remove(lock_file)
+                                    logger.info(f"Removed lock file: {lock_file}")
+                                except Exception as remove_error:
+                                    logger.warning(f"Could not remove {lock_file}: {remove_error}")
+                        except Exception as cleanup_error:
+                            logger.warning(f"Error during lock file cleanup: {cleanup_error}")
+
+                        # Small delay to let file system catch up
+                        time.sleep(1)
+                        continue  # Retry
+                    else:
+                        raise
+
+                self.driver.set_window_size(1920, 1080)
+                break  # Success, exit retry loop
+
+            except WebDriverException as e:
+                logger.error(f"WebDriver error starting browser: {e}")
+                if retry_count < max_retries - 1:
+                    retry_count += 1
+                    logger.info(f"Retrying... attempt {retry_count + 1}/{max_retries}")
+                    time.sleep(2)
+                    continue
+                logger.error(f"Error details: {str(e)}")
+                return False
             except Exception as e:
-                logger.error(f"[CDP-WS] Error processing message: {e}")
+                logger.error(f"Unexpected error starting browser: {type(e).__name__}: {e}")
+                import traceback
+                logger.error(f"Traceback: {traceback.format_exc()}")
+                return False
 
-        def on_error(ws, error):
-            logger.error(f"[CDP-WS] WebSocket error: {error}")
+        if retry_count >= max_retries:
+            logger.error("Failed to start Chrome after all retry attempts")
+            return False
 
-        def on_close(ws, close_status_code, close_msg):
-            pass  # WebSocket closed - no need to log for normal operation
+        # Get CDP WebSocket URL for real-time event monitoring
+        self._setup_cdp()
 
-        def on_open(ws):
-            self._cdp_enable_domains(ws)
+        # Start WebSocket CDP listener BEFORE navigating to catch initial requests
+        if self.ws_url:
+            threading.Thread(target=self._cdp_websocket_listener, daemon=True).start()
+            # Give WebSocket a moment to connect
+            time.sleep(0.5)
+        else:
+            logger.warning("No WebSocket URL available, falling back to polling only")
 
+        # Start monitoring network traffic (legacy polling as backup)
+        threading.Thread(target=self._monitor_network, daemon=True).start()
+
+        logger.info(f"Loading {url}...")
+        self.driver.get(url)
+        self.is_running = True
+        return True
+
+    def _setup_cdp(self):
+        """Setup Chrome DevTools Protocol connection"""
         try:
-            # Create WebSocket connection
-            self.ws = websocket.WebSocketApp(
-                self.ws_url,
-                on_message=on_message,
-                on_error=on_error,
-                on_close=on_close,
-                on_open=on_open
-            )
+            logger.info("Getting Chrome DevTools Protocol WebSocket URL...")
 
-            # Run forever (blocking call in this thread)
-            self.ws.run_forever()
+            # Get the debugger address from Chrome
+            debugger_address = None
+            if 'goog:chromeOptions' in self.driver.capabilities:
+                debugger_address = self.driver.capabilities['goog:chromeOptions'].get('debuggerAddress')
+
+            if debugger_address:
+                logger.info(f"Chrome debugger address: {debugger_address}")
+                # Query the debugger to get WebSocket URL
+                debugger_url = f"http://{debugger_address}/json"
+                try:
+                    response = req_lib.get(debugger_url, timeout=5)
+                    if response.status_code == 200:
+                        pages = response.json()
+                        if pages and len(pages) > 0:
+                            # Get the first page's WebSocket URL
+                            self.ws_url = pages[0].get('webSocketDebuggerUrl')
+                            logger.info(f"✓ Got CDP WebSocket URL: {self.ws_url[:80]}...")
+                        else:
+                            logger.warning("No pages found in CDP debugger response")
+                    else:
+                        logger.warning(f"CDP debugger returned status {response.status_code}")
+                except Exception as e:
+                    logger.warning(f"Could not query CDP debugger: {e}")
+            else:
+                logger.warning("No debugger address in Chrome capabilities")
+
+            # Also enable Network domain via execute_cdp_cmd as backup
+            logger.info("Enabling Network domain via execute_cdp_cmd...")
+            self.driver.execute_cdp_cmd('Network.enable', {})
+            logger.info("Network domain enabled via execute_cdp_cmd")
 
         except Exception as e:
-            logger.error(f"[CDP-WS] Fatal error in WebSocket listener: {e}")
-            import traceback
-            logger.error(traceback.format_exc())
+            logger.warning(f"Could not set up CDP: {e}")
+
+    def _cdp_websocket_listener(self):
+        """Real-time CDP WebSocket listener"""
+
+        def on_message(ws, message):
+            """Handle incoming CDP messages - capture ALL network activity"""
+            try:
+                data = json.loads(message)
+                method = data.get('method', '')
+                params = data.get('params', {})
+
+                # Log ALL Network events
+                if method.startswith('Network.'):
+                    self._handle_network_event(method, params, ws)
+
+                # Handle Fetch events (modern video players use fetch/XHR)
+                elif method == 'Fetch.requestPaused':
+                    self._handle_fetch_event(params, ws)
+
 
     def _handle_network_event(self, method, params, ws):
         """Handle Network.* CDP events"""

@@ -1,100 +1,100 @@
-2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,103 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:43:27,103 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
