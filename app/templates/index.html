@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +33,7 @@
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         header p {
@@ -57,7 +58,7 @@
             background: white;
             border-radius: 12px;
             padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .card h2 {
@@ -213,10 +214,10 @@
             background: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             max-width: 500px;
             width: 90%;
-            z-index: 1000;
+            z-index: 2000;
             opacity: 0;
             pointer-events: none;
             transition: all 0.3s;
@@ -234,7 +235,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 999;
             opacity: 0;
             pointer-events: none;
@@ -317,6 +318,21 @@
             margin-bottom: 5px;
         }
 
+        .filename-error {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .filename-error.visible {
+            display: block;
+        }
+
+        .input-group input.input-error {
+            border-color: #dc3545;
+        }
+
         .icon {
             font-size: 1.3rem;
         }
@@ -325,14 +341,16 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
+            border: 3px solid rgba(255, 255, 255, .3);
             border-radius: 50%;
             border-top-color: white;
             animation: spin 1s ease-in-out infinite;
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Stream Selection Modal */
@@ -345,7 +363,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0, 0, 0, 0.7);
             animation: fadeIn 0.3s;
         }
 
@@ -354,8 +372,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-content {
@@ -367,7 +390,7 @@
             max-width: 1200px;
             max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .modal-header {
@@ -482,6 +505,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -502,18 +526,34 @@
 
                 <div class="input-group">
                     <label for="direct-filename">Filename (required)</label>
-                    <input type="text" id="direct-filename" placeholder="my_video" required>
+                    <input type="text" id="direct-filename" placeholder="video_name" required>
+                    <div class="filename-error" id="direct-filename-error">A file with this name already exists</div>
                 </div>
 
                 <div class="input-group">
                     <label for="direct-format">Output Format</label>
                     <select id="direct-format">
-                        <option value="mp4">MP4 (recommended)</option>
-                        <option value="mkv">MKV</option>
-                        <option value="avi">AVI</option>
-                        <option value="webm">WebM</option>
-                        <option value="ts">TS (Transport Stream)</option>
-                        <option value="mov">MOV</option>
+                        <optgroup label="Video Formats">
+                            <option value="mp4">MP4 (recommended)</option>
+                            <option value="mkv">MKV</option>
+                            <option value="webm">WebM</option>
+                            <option value="avi">AVI</option>
+                            <option value="mov">MOV</option>
+                            <option value="ts">TS (Transport Stream)</option>
+                            <option value="flv">FLV</option>
+                            <option value="wmv">WMV</option>
+                            <option value="m4v">M4V</option>
+                        </optgroup>
+                        <optgroup label="Audio Only">
+                            <option value="mp3">MP3</option>
+                            <option value="aac">AAC</option>
+                            <option value="m4a">M4A</option>
+                            <option value="flac">FLAC</option>
+                            <option value="wav">WAV</option>
+                            <option value="ogg">OGG</option>
+                            <option value="opus">OPUS</option>
+                            <option value="wma">WMA</option>
+                        </optgroup>
                     </select>
                 </div>
 
@@ -536,7 +576,36 @@
 
                 <div class="input-group">
                     <label for="browser-filename">Filename (optional)</label>
-                    <input type="text" id="browser-filename" placeholder="my_video (leave empty for auto-generated name)">
+                    <input type="text" id="browser-filename"
+                        placeholder="video_name (leave empty for auto-generated name)">
+                    <div class="filename-error" id="browser-filename-error">A file with this name already exists</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="browser-format">Output Format</label>
+                    <select id="browser-format">
+                        <optgroup label="Video Formats">
+                            <option value="mp4">MP4 (recommended)</option>
+                            <option value="mkv">MKV</option>
+                            <option value="webm">WebM</option>
+                            <option value="avi">AVI</option>
+                            <option value="mov">MOV</option>
+                            <option value="ts">TS (Transport Stream)</option>
+                            <option value="flv">FLV</option>
+                            <option value="wmv">WMV</option>
+                            <option value="m4v">M4V</option>
+                        </optgroup>
+                        <optgroup label="Audio Only">
+                            <option value="mp3">MP3</option>
+                            <option value="aac">AAC</option>
+                            <option value="m4a">M4A</option>
+                            <option value="flac">FLAC</option>
+                            <option value="wav">WAV</option>
+                            <option value="ogg">OGG</option>
+                            <option value="opus">OPUS</option>
+                            <option value="wma">WMA</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <div class="input-group">
@@ -550,8 +619,8 @@
                     <div class="input-group">
                         <label for="preferred-resolution">Resolution</label>
                         <select id="preferred-resolution">
-                            <option value="source">Source/Highest</option>
-                            <option value="1080p" selected>1080p</option>
+                            <option value="source" selected>Source/Highest</option>
+                            <option value="1080p">1080p</option>
                             <option value="720p">720p</option>
                             <option value="480p">480p</option>
                             <option value="360p">360p</option>
@@ -589,7 +658,8 @@
                     </button>
                 </div>
                 <p style="color: #666; margin-bottom: 10px; font-size: 0.9rem;">
-                    💡 <strong>Tip:</strong> If you see "Connect" button, it will auto-connect. Any HTTP warnings can be ignored - they're normal for local networks.
+                    💡 <strong>Tip:</strong> If you see "Connect" button, it will auto-connect. Any HTTP warnings can be
+                    ignored - they're normal for local networks.
                 </p>
                 <iframe id="vnc-frame" class="vnc-frame" src=""></iframe>
             </div>
@@ -599,6 +669,14 @@
                 <h2><span class="icon">⏬</span> Active Downloads</h2>
                 <div id="active-downloads-container">
                     <p style="color: #666; padding: 20px;">No active downloads</p>
+                </div>
+            </div>
+
+            <!-- Completed Downloads -->
+            <div class="card downloads-list">
+                <h2><span class="icon">✅</span> Completed Downloads</h2>
+                <div id="completed-downloads-container">
+                    <p style="color: #666; padding: 20px;">Loading...</p>
                 </div>
             </div>
         </div>
@@ -653,8 +731,10 @@
     <!-- Debug Stream Log Popup -->
     <div class="download-popup" id="debug-popup" style="max-width: 800px;">
         <h3>🔍 Debug: Detected Streams Log</h3>
-        <p style="margin-bottom: 10px; color: #666;">Copy this log for debugging. Updates automatically as streams are detected.</p>
-        <textarea id="debug-log" readonly style="width: 100%; height: 400px; font-family: monospace; font-size: 0.85rem; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; background: #f8f9fa; resize: vertical;"></textarea>
+        <p style="margin-bottom: 10px; color: #666;">Copy this log for debugging. Updates automatically as streams are
+            detected.</p>
+        <textarea id="debug-log" readonly
+            style="width: 100%; height: 400px; font-family: monospace; font-size: 0.85rem; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; background: #f8f9fa; resize: vertical;"></textarea>
         <div style="display: flex; gap: 10px; margin-top: 15px;">
             <button class="btn" onclick="copyDebugLog()">📋 Copy to Clipboard</button>
             <button class="btn btn-secondary" onclick="closeDebugPopup()">Close</button>
@@ -669,6 +749,42 @@
         let debugLogContent = '';
         let detectedStreamCount = 0;
         let downloadPopupShown = false;
+
+        // Validate filename doesn't already exist
+        async function validateFilename(inputId, errorId, format) {
+            const input = document.getElementById(inputId);
+            const errorDiv = document.getElementById(errorId);
+            let filename = input.value.trim();
+
+            if (!filename) {
+                input.classList.remove('input-error');
+                errorDiv.classList.remove('visible');
+                return true; // Empty is valid (will be handled by required check)
+            }
+
+            // Auto-append extension if not present
+            if (!filename.includes('.')) {
+                filename = filename + '.' + format;
+            }
+
+            try {
+                const response = await fetch(`/api/downloads/check-filename?filename=${encodeURIComponent(filename)}`);
+                const data = await response.json();
+
+                if (data.exists) {
+                    input.classList.add('input-error');
+                    errorDiv.classList.add('visible');
+                    return false;
+                } else {
+                    input.classList.remove('input-error');
+                    errorDiv.classList.remove('visible');
+                    return true;
+                }
+            } catch (error) {
+                console.error('Filename validation error:', error);
+                return true; // Allow on error
+            }
+        }
 
         // Start direct download
         async function startDirectDownload() {
@@ -688,6 +804,13 @@
                 return;
             }
 
+            // Check if filename exists
+            const isValid = await validateFilename('direct-filename', 'direct-filename-error', format);
+            if (!isValid) {
+                showStatus(statusBox, 'Please choose a different filename - this one already exists', 'error');
+                return;
+            }
+
             // Auto-append extension if not present
             if (!filename.includes('.')) {
                 filename = filename + '.' + format;
@@ -697,7 +820,7 @@
             btn.innerHTML = '<span class="spinner"></span> Starting download...';
 
             try {
-                const response = await fetch('/api/download/direct', {
+                const response = await fetch('/api/downloads/direct', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ url, filename })
@@ -726,7 +849,8 @@
         // Start browser mode
         async function startBrowser() {
             const url = document.getElementById('browser-url').value.trim();
-            const filename = document.getElementById('browser-filename').value.trim();
+            let filename = document.getElementById('browser-filename').value.trim();
+            const format = document.getElementById('browser-format').value;
             const resolution = document.getElementById('preferred-resolution').value;
             const framerate = document.getElementById('preferred-framerate').value;
             const autoDownload = document.getElementById('auto-download').checked;
@@ -738,6 +862,15 @@
                 return;
             }
 
+            // Check if filename exists (only if filename is provided)
+            if (filename) {
+                const isValid = await validateFilename('browser-filename', 'browser-filename-error', format);
+                if (!isValid) {
+                    showStatus(statusBox, 'Please choose a different filename - this one already exists', 'error');
+                    return;
+                }
+            }
+
             btn.disabled = true;
             btn.innerHTML = '<span class="spinner"></span> Starting browser...';
 
@@ -746,11 +879,15 @@
                     url,
                     resolution: resolution,
                     framerate: framerate,
-                    auto_download: autoDownload
+                    auto_download: autoDownload,
+                    format: format
                 };
 
-                // Only add filename if provided
+                // Only add filename if provided (with auto extension)
                 if (filename) {
+                    if (!filename.includes('.')) {
+                        filename = filename + '.' + format;
+                    }
                     payload.filename = filename;
                 }
 
@@ -769,19 +906,22 @@
                     const modeText = autoDownload ? 'auto-download enabled' : 'manual selection';
                     showStatus(statusBox, `✓ Browser started! Looking for ${resolutionText} (${modeText})...`, 'success');
 
-                    // Show VNC viewer with auto-connect
-                    const vncContainer = document.getElementById('vnc-container');
-                    const vncFrame = document.getElementById('vnc-frame');
+                    // Only show VNC viewer initially if NOT in auto-download mode
+                    // In auto-download mode, VNC will only show if manual selection is needed
+                    if (!autoDownload) {
+                        const vncContainer = document.getElementById('vnc-container');
+                        const vncFrame = document.getElementById('vnc-frame');
 
-                    // Auto-connect to VNC and hide toolbar
-                    const vncUrl = 'http://' + window.location.hostname + ':6080/vnc.html?autoconnect=true&resize=scale';
-                    vncFrame.src = vncUrl;
-                    vncContainer.classList.add('active');
+                        // Auto-connect to VNC and hide toolbar
+                        const vncUrl = 'http://' + window.location.hostname + ':6080/vnc.html?autoconnect=true&resize=scale';
+                        vncFrame.src = vncUrl;
+                        vncContainer.classList.add('active');
 
-                    // Scroll to VNC viewer
-                    setTimeout(() => {
-                        vncContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 500);
+                        // Scroll to VNC viewer
+                        setTimeout(() => {
+                            vncContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 500);
+                    }
 
                     // Update button to show browser is running
                     btn.disabled = false;
@@ -831,7 +971,7 @@
                     } else {
                         console.log('Direct download metadata timeout - showing without thumbnail');
                         // Show popup without thumbnail if timeout (isDirect = true)
-                        showDownloadStartedPopup({name: 'Direct Download', resolution: 'Processing...', framerate: ''}, null, true);
+                        showDownloadStartedPopup({ name: 'Direct Download', resolution: 'Processing...', framerate: '' }, null, true);
                     }
                 } catch (error) {
                     console.error('Error checking direct download status:', error);
@@ -878,6 +1018,18 @@
                             console.log('Resolution:', res.resolution);
                             console.log('Framerate:', res.framerate);
                         });
+
+                        // Show VNC browser if not already shown (needed for manual selection)
+                        const vncContainer = document.getElementById('vnc-container');
+                        if (!vncContainer.classList.contains('active')) {
+                            const vncFrame = document.getElementById('vnc-frame');
+                            const vncUrl = 'http://' + window.location.hostname + ':6080/vnc.html?autoconnect=true&resize=scale';
+                            vncFrame.src = vncUrl;
+                            vncContainer.classList.add('active');
+                            setTimeout(() => {
+                                vncContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 500);
+                        }
 
                         // Show modal with all available streams
                         showStreamModal(data.available_resolutions);
@@ -1141,6 +1293,9 @@
             const browserButtons = document.getElementById('browser-buttons');
             const directButtons = document.getElementById('direct-buttons');
 
+            // Force close stream selection modal if open
+            closeStreamModal();
+
             // Populate download info
             const resolution = streamMetadata?.resolution || 'Unknown';
             const framerate = streamMetadata?.framerate ? Math.round(parseFloat(streamMetadata.framerate)) + ' fps' : 'Unknown';
@@ -1281,7 +1436,7 @@
             showStatus(statusBox, 'Closing browsers and clearing cookies...', 'error');
 
             try {
-                const response = await fetch('/api/clear-cookies', {
+                const response = await fetch('/api/browser/clear-cookies', {
                     method: 'POST'
                 });
 
@@ -1346,7 +1501,7 @@
                                     <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Status:</strong> ${statusText}</p>
                                 </div>
                                 <div style="flex-shrink: 0;">
-                                    ${download.is_running ? `<button class="btn btn-secondary" onclick="stopDownload('${download.browser_id}')" style="background: #dc3545;">⏹ Stop</button>` : ''}
+                                    ${download.is_running ? `<button class="btn btn-secondary" onclick="stopDownload('${download.browser_id}', this)" style="background: #dc3545;">⏹ Stop</button>` : ''}
                                 </div>
                             </div>
                         `;
@@ -1361,8 +1516,14 @@
             }
         }
 
-        async function stopDownload(browserId) {
+        async function stopDownload(browserId, buttonElement) {
             try {
+                // Show deleting state
+                if (buttonElement) {
+                    buttonElement.disabled = true;
+                    buttonElement.innerHTML = '<span class="spinner"></span> Stopping...';
+                }
+
                 const response = await fetch(`/api/downloads/stop/${browserId}`, {
                     method: 'POST'
                 });
@@ -1370,9 +1531,108 @@
 
                 if (data.success) {
                     loadDownloads();
+                } else {
+                    // Restore button on failure
+                    if (buttonElement) {
+                        buttonElement.disabled = false;
+                        buttonElement.innerHTML = '⏹ Stop';
+                    }
                 }
             } catch (error) {
                 console.error('Stop download error:', error);
+                // Restore button on error
+                if (buttonElement) {
+                    buttonElement.disabled = false;
+                    buttonElement.innerHTML = '⏹ Stop';
+                }
+            }
+        }
+
+        // Load completed downloads
+        async function loadCompletedDownloads() {
+            try {
+                const response = await fetch('/api/downloads/list');
+                const data = await response.json();
+
+                const container = document.getElementById('completed-downloads-container');
+                container.innerHTML = '';
+
+                if (data.downloads && data.downloads.length > 0) {
+                    data.downloads.forEach(download => {
+                        const item = document.createElement('div');
+                        item.style.cssText = 'background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #e0e0e0;';
+                        item.id = `completed-${download.filename}`;
+
+                        const sizeMB = (download.size / (1024 * 1024)).toFixed(2);
+                        const minutes = Math.floor(download.duration / 60);
+                        const seconds = download.duration % 60;
+                        const timeStr = download.duration > 0 ? `${minutes}:${seconds.toString().padStart(2, '0')}` : 'Unknown';
+                        const resolutionStr = download.framerate ? `${download.resolution}@${download.framerate}` : download.resolution;
+
+                        item.innerHTML = `
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                ${download.thumbnail ? `
+                                    <div style="flex-shrink: 0;">
+                                        <img src="data:image/jpeg;base64,${download.thumbnail}"
+                                             style="width: 160px; height: 90px; object-fit: cover; border-radius: 8px; border: 2px solid #28a745;"
+                                             alt="Video preview">
+                                    </div>
+                                ` : `
+                                    <div style="flex-shrink: 0; width: 160px; height: 90px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px;">
+                                        🎬
+                                    </div>
+                                `}
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 8px 0; color: #28a745;">✓ ${download.filename}</h4>
+                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Resolution:</strong> ${resolutionStr}</p>
+                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Size:</strong> ${sizeMB} MB &nbsp;&nbsp; <strong>Duration:</strong> ${timeStr}</p>
+                                </div>
+                                <div style="flex-shrink: 0;">
+                                    <button class="btn btn-secondary" onclick="deleteDownload('${download.filename}', this)" style="background: #dc3545;">🗑 Delete</button>
+                                </div>
+                            </div>
+                        `;
+
+                        container.appendChild(item);
+                    });
+                } else {
+                    container.innerHTML = '<p style="color: #666; padding: 20px;">No completed downloads</p>';
+                }
+            } catch (error) {
+                console.error('Load completed downloads error:', error);
+            }
+        }
+
+        async function deleteDownload(filename, buttonElement) {
+            try {
+                // Show deleting state
+                if (buttonElement) {
+                    buttonElement.disabled = true;
+                    buttonElement.innerHTML = '<span class="spinner"></span> Deleting...';
+                }
+
+                const response = await fetch(`/api/downloads/delete/${encodeURIComponent(filename)}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    loadCompletedDownloads();
+                } else {
+                    // Restore button on failure
+                    if (buttonElement) {
+                        buttonElement.disabled = false;
+                        buttonElement.innerHTML = '🗑 Delete';
+                    }
+                    alert('Failed to delete: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Delete download error:', error);
+                // Restore button on error
+                if (buttonElement) {
+                    buttonElement.disabled = false;
+                    buttonElement.innerHTML = '🗑 Delete';
+                }
             }
         }
 
@@ -1439,9 +1699,9 @@
                 card.innerHTML = `
                     <div class="stream-thumbnail">
                         ${stream.thumbnail ?
-                            `<img src="${stream.thumbnail}" alt="${stream.name}">` :
-                            '🎬'
-                        }
+                        `<img src="${stream.thumbnail}" alt="${stream.name}">` :
+                        '🎬'
+                    }
                     </div>
                     <div class="stream-details">
                         <h3>${stream.name}</h3>
@@ -1500,15 +1760,28 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadDownloads();
-            setInterval(loadDownloads, 1000); // Refresh every 1 second
+            loadCompletedDownloads();
+            setInterval(loadDownloads, 1000); // Refresh active downloads every 1 second
+            setInterval(loadCompletedDownloads, 10000); // Refresh completed downloads every 10 seconds
 
             // Close modal when clicking outside of it
-            window.onclick = function(event) {
+            window.onclick = function (event) {
                 const modal = document.getElementById('stream-modal');
                 if (event.target === modal) {
                     closeStreamModal();
                 }
             };
+
+            // Add blur event listeners for filename validation
+            document.getElementById('direct-filename').addEventListener('blur', () => {
+                const format = document.getElementById('direct-format').value;
+                validateFilename('direct-filename', 'direct-filename-error', format);
+            });
+
+            document.getElementById('browser-filename').addEventListener('blur', () => {
+                const format = document.getElementById('browser-format').value;
+                validateFilename('browser-filename', 'browser-filename-error', format);
+            });
         });
     </script>
 
@@ -1526,4 +1799,5 @@
     </div>
 
 </body>
+
 </html>
