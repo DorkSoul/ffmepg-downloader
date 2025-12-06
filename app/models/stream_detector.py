@@ -237,32 +237,74 @@ class StreamDetector:
                 if attempt == 0:
                     logger.info("[NAV] Navigating to about:blank first to clear any restore state")
                     self.driver.get('about:blank')
-                    time.sleep(0.3)
+                    time.sleep(0.5)
+                    
+                    # Check the initial readyState
+                    try:
+                        initial_state = self.driver.execute_script('return document.readyState')
+                        logger.info(f"[NAV] Initial readyState on about:blank: {initial_state}")
+                    except Exception as e:
+                        logger.warning(f"[NAV] Could not check initial readyState: {e}")
                 
                 logger.info(f"[NAV] Attempt {attempt + 1}/{max_nav_attempts}: Loading {url}")
-                self.driver.get(url)
                 
-                # Wait for page to actually start loading
-                time.sleep(0.5)
+                # Use JavaScript navigation for more forceful control
+                # This bypasses some Chrome quirks with session restore
+                try:
+                    self.driver.execute_script(f'window.location.href = "{url}";')
+                    logger.info(f"[NAV] Used JavaScript navigation to {url}")
+                except Exception as js_err:
+                    logger.warning(f"[NAV] JS navigation failed ({js_err}), falling back to driver.get()")
+                    self.driver.get(url)
+                
+                # Wait a bit for navigation to start
+                time.sleep(1)
                 
                 # Check if URL changed from about:blank
                 current_url = self.driver.current_url
                 logger.info(f"[NAV] Current URL after navigation: {current_url}")
+                
+                # Check page state
+                try:
+                    ready_state = self.driver.execute_script('return document.readyState')
+                    page_title = self.driver.title
+                    body_exists = self.driver.execute_script('return document.body !== null')
+                    body_html_len = self.driver.execute_script('return document.body ? document.body.innerHTML.length : 0')
+                    logger.info(f"[NAV] Page state: readyState={ready_state}, title='{page_title}', body_exists={body_exists}, body_html_len={body_html_len}")
+                except Exception as state_err:
+                    logger.warning(f"[NAV] Could not check page state: {state_err}")
                 
                 # Verify we're not still on about:blank and URL contains expected domain
                 if current_url == 'about:blank' or 'about:blank' in current_url:
                     logger.warning(f"[NAV] Still on about:blank, retrying...")
                     continue
                 
-                # Try to wait for page readyState to be 'loading' or 'complete'
+                # Check if body has content (not just a blank white page)
+                try:
+                    body_len = self.driver.execute_script('return document.body ? document.body.innerHTML.length : 0')
+                    if body_len < 100:
+                        logger.warning(f"[NAV] Page body is very small ({body_len} chars), page may not have loaded properly")
+                        # Try refreshing the page
+                        logger.info("[NAV] Attempting page refresh...")
+                        self.driver.refresh()
+                        time.sleep(2)
+                        body_len_after = self.driver.execute_script('return document.body ? document.body.innerHTML.length : 0')
+                        logger.info(f"[NAV] Body length after refresh: {body_len_after} chars")
+                except Exception as body_err:
+                    logger.warning(f"[NAV] Could not check body length: {body_err}")
+                
+                # Try to wait for page readyState to be 'interactive' or 'complete'
                 try:
                     WebDriverWait(self.driver, 10).until(
                         lambda d: d.execute_script('return document.readyState') in ['interactive', 'complete']
                     )
-                    logger.info(f"[NAV] ✓ Page loaded successfully: {self.driver.current_url[:80]}")
+                    final_state = self.driver.execute_script('return document.readyState')
+                    final_body_len = self.driver.execute_script('return document.body ? document.body.innerHTML.length : 0')
+                    logger.info(f"[NAV] ✓ Page loaded: readyState={final_state}, body_len={final_body_len}, url={self.driver.current_url[:80]}")
                     break
                 except TimeoutException:
-                    logger.warning(f"[NAV] Page load timeout, but continuing (page may still be loading)")
+                    ready_state = self.driver.execute_script('return document.readyState') if self.driver else 'unknown'
+                    logger.warning(f"[NAV] Page load timeout (readyState={ready_state}), continuing anyway")
                     break
                     
             except Exception as e:

@@ -1,176 +1,197 @@
-2025-12-06 18:38:22,925 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
-2025-12-06 18:38:22,927 INFO supervisord started with pid 1
-2025-12-06 18:38:23,931 INFO spawned: 'xvfb' with pid 7
-2025-12-06 18:38:23,933 INFO spawned: 'fluxbox' with pid 8
-2025-12-06 18:38:23,936 INFO spawned: 'x11vnc' with pid 9
-2025-12-06 18:38:23,938 INFO spawned: 'novnc' with pid 10
-2025-12-06 18:38:23,941 INFO spawned: 'flask' with pid 11
-2025-12-06 18:38:24,259 - app.config - INFO - ================================================================================
-2025-12-06 18:38:24,259 - app.config - INFO - NAS VIDEO DOWNLOADER STARTING
-2025-12-06 18:38:24,259 - app.config - INFO - ================================================================================
-2025-12-06 18:38:24,259 - app.config - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
-2025-12-06 18:38:24,259 - app.config - INFO - Working directory: /app
-2025-12-06 18:38:24,259 - app.config - INFO - DISPLAY: :99
-2025-12-06 18:38:24,260 - app.config - INFO - Download dir: /app/downloads
-2025-12-06 18:38:24,260 - app.config - INFO - Chrome data dir: /app/chrome-data
-2025-12-06 18:38:24,260 - app.services.browser_service - INFO - Checking Chrome installation...
-2025-12-06 18:38:24,293 - app.services.browser_service - INFO - Chrome: Google Chrome 143.0.7499.40
-2025-12-06 18:38:24,294 INFO reaped unknown pid 30 (exit status 0)
-2025-12-06 18:38:24,294 INFO reaped unknown pid 31 (exit status 0)
-2025-12-06 18:38:24,298 - app.services.browser_service - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
-2025-12-06 18:38:24,298 - app.services.browser_service - INFO - DISPLAY environment: :99
-2025-12-06 18:38:24,303 - app.services.browser_service - INFO - Xvfb is running ✓
-2025-12-06 18:38:24,303 - app.services.browser_service - INFO - Download dir exists: True
-2025-12-06 18:38:24,303 - app.services.browser_service - INFO - Chrome data dir exists: True
-2025-12-06 18:38:24,308 - app.config - INFO - ================================================================================
-2025-12-06 18:38:24,308 - app.config - INFO - Application initialized successfully
-2025-12-06 18:38:24,308 - app.config - INFO - ================================================================================
+2025-12-06 19:25:55,817 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-12-06 19:25:55,818 INFO supervisord started with pid 1
+2025-12-06 19:25:56,822 INFO spawned: 'xvfb' with pid 7
+2025-12-06 19:25:56,824 INFO spawned: 'fluxbox' with pid 8
+2025-12-06 19:25:56,826 INFO spawned: 'x11vnc' with pid 9
+2025-12-06 19:25:56,828 INFO spawned: 'novnc' with pid 10
+2025-12-06 19:25:56,832 INFO spawned: 'flask' with pid 11
+2025-12-06 19:25:57,192 - app.config - INFO - ================================================================================
+2025-12-06 19:25:57,192 - app.config - INFO - NAS VIDEO DOWNLOADER STARTING
+2025-12-06 19:25:57,192 - app.config - INFO - ================================================================================
+2025-12-06 19:25:57,192 - app.config - INFO - Python version: 3.11.14 (main, Nov 18 2025, 05:57:35) [GCC 14.2.0]
+2025-12-06 19:25:57,192 - app.config - INFO - Working directory: /app
+2025-12-06 19:25:57,192 - app.config - INFO - DISPLAY: :99
+2025-12-06 19:25:57,193 - app.config - INFO - Download dir: /app/downloads
+2025-12-06 19:25:57,193 - app.config - INFO - Chrome data dir: /app/chrome-data
+2025-12-06 19:25:57,193 - app.services.browser_service - INFO - Checking Chrome installation...
+2025-12-06 19:25:57,226 - app.services.browser_service - INFO - Chrome: Google Chrome 143.0.7499.40
+2025-12-06 19:25:57,226 INFO reaped unknown pid 30 (exit status 0)
+2025-12-06 19:25:57,226 INFO reaped unknown pid 31 (exit status 0)
+2025-12-06 19:25:57,230 - app.services.browser_service - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
+2025-12-06 19:25:57,230 - app.services.browser_service - INFO - DISPLAY environment: :99
+2025-12-06 19:25:57,235 - app.services.browser_service - INFO - Xvfb is running ✓
+2025-12-06 19:25:57,235 - app.services.browser_service - INFO - Download dir exists: True
+2025-12-06 19:25:57,235 - app.services.browser_service - INFO - Chrome data dir exists: True
+2025-12-06 19:25:57,240 - app.config - INFO - ================================================================================
+2025-12-06 19:25:57,240 - app.config - INFO - Application initialized successfully
+2025-12-06 19:25:57,240 - app.config - INFO - ================================================================================
  * Serving Flask app 'app'
  * Debug mode: off
-2025-12-06 18:38:24,310 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+2025-12-06 19:25:57,242 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://192.168.48.2:5000
-2025-12-06 18:38:24,310 - werkzeug - INFO - Press CTRL+C to quit
-2025-12-06 18:38:24,954 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 18:38:24,954 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 18:38:24,954 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 18:38:24,954 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 18:38:24,954 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 18:38:28,365 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:28] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:29,418 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:29] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:30,789 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:30] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:31,795 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:31] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:32,795 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:32] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:33,781 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:33] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:34,784 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:34] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:35,794 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:35] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:36,797 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:36] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:37,784 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:37] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:38,793 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:38] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:39,795 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:39] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:40,785 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:40] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:41,795 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:41] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:42,787 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:42] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:43,797 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:43] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:44,785 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:44] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:45,792 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:45] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:46,785 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:46] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:47,791 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:47] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:48,783 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:48] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:49,788 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:49] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:50,780 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:50] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:51,786 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:51] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:52,790 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:52] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:53,789 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:53] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:54,561 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:54] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:55,415 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:55] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:56,417 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:56] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:57,409 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:57] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:58,410 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:58] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:38:59,176 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:59] "GET / HTTP/1.1" 200 -
-2025-12-06 18:38:59,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:38:59] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:00,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:01,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:01] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:02,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:02] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:03,282 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:03] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:04,508 - app.services.browser_service - INFO - Clear cookies requested
-2025-12-06 18:39:04,508 - app.services.browser_service - INFO - Force killing Chrome and ChromeDriver processes...
-2025-12-06 18:39:04,514 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:04] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:04,525 - app.services.browser_service - INFO - Process kill commands executed
-2025-12-06 18:39:04,526 - app.services.browser_service - INFO - Waiting for processes to terminate...
-2025-12-06 18:39:05,287 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:05] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:06,281 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:06] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:07,279 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:07] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:07,526 - app.services.browser_service - INFO - Clearing Chrome data directory: /app/chrome-data
-2025-12-06 18:39:07,554 - app.services.browser_service - INFO - Chrome data cleared: 43 items removed, 0 items failed
-2025-12-06 18:39:07,555 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:07] "POST /api/browser/clear-cookies HTTP/1.1" 200 -
-2025-12-06 18:39:08,281 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:08] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:08,334 - app.routes.browser_routes - INFO - Starting browser with resolution: source, framerate: any
-2025-12-06 18:39:08,334 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.fansly.com
-2025-12-06 18:39:08,334 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 18:39:08,335 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 18:39:08,335 - app.models.stream_detector - INFO - Initializing ChromeDriver service
-2025-12-06 18:39:08,335 - app.models.stream_detector - INFO - Creating Chrome webdriver instance...
-2025-12-06 18:39:09,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:09] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:09,280 - app.models.stream_detector - INFO - Chrome webdriver created successfully!
-2025-12-06 18:39:09,687 - app.models.stream_detector - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-06 18:39:09,687 - app.models.stream_detector - INFO - Chrome debugger address: localhost:45707
-2025-12-06 18:39:09,691 - app.models.stream_detector - INFO - ✓ Got CDP WebSocket URL: ws://localhost:45707/devtools/page/30A02B724BF91E3562742C8F1A400150...
-2025-12-06 18:39:09,692 - app.models.stream_detector - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-06 18:39:09,696 - app.models.stream_detector - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-06 18:39:09,696 - app.models.stream_detector - INFO - Connecting to CDP WebSocket: ws://localhost:45707/devtools/page/30A02B724BF91E3...
-2025-12-06 18:39:09,697 - app.models.stream_detector - INFO - CDP WebSocket OPEN CONNECTED!
-2025-12-06 18:39:09,698 - app.models.stream_detector - INFO - Network monitoring started
-2025-12-06 18:39:10,197 - app.models.stream_detector - INFO - Loading https://www.fansly.com...
-2025-12-06 18:39:10,278 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:10] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:11,280 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:11] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:12,278 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:12] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:13,279 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:13] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:14,197 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:14] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-06 18:39:14,215 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
-2025-12-06 18:39:14,292 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:14] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:15,281 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:15] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:16,221 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:16] "GET /api/browser/status/browser_1765046348 HTTP/1.1" 200 -
-2025-12-06 18:39:16,278 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:16] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:17,280 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:17] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:18,224 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:18] "GET /api/browser/status/browser_1765046348 HTTP/1.1" 200 -
-2025-12-06 18:39:18,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:18] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:19,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:19] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:20,026 - app.models.stream_detector - INFO - [CDP-WS] WebSocket closed: None - None
-2025-12-06 18:39:20,161 - app.models.stream_detector - INFO - Browser browser_1765046348 closed
-2025-12-06 18:39:20,161 INFO reaped unknown pid 99 (exit status 0)
-2025-12-06 18:39:20,161 INFO reaped unknown pid 101 (exit status 0)
-2025-12-06 18:39:20,161 INFO reaped unknown pid 106 (exit status 0)
-2025-12-06 18:39:20,161 INFO reaped unknown pid 107 (exit status 0)
-2025-12-06 18:39:20,161 INFO reaped unknown pid 192 (exit status 0)
-2025-12-06 18:39:20,161 INFO reaped unknown pid 204 (exit status 0)
-2025-12-06 18:39:20,161 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:20] "POST /api/browser/close/browser_1765046348 HTTP/1.1" 200 -
-2025-12-06 18:39:20,172 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:20] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:20,287 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:20] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:21,279 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:21] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:22,038 - app.routes.browser_routes - INFO - Starting browser with resolution: source, framerate: any
-2025-12-06 18:39:22,038 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.fansly.com
-2025-12-06 18:39:22,039 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 18:39:22,039 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 18:39:22,039 - app.models.stream_detector - INFO - Resetting Chrome crash flag and session restore settings in Preferences
-2025-12-06 18:39:22,041 - app.models.stream_detector - INFO - Initializing ChromeDriver service
-2025-12-06 18:39:22,041 - app.models.stream_detector - INFO - Creating Chrome webdriver instance...
-2025-12-06 18:39:22,278 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:22] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:22,930 - app.models.stream_detector - INFO - Chrome webdriver created successfully!
-2025-12-06 18:39:23,278 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:23] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:23,334 - app.models.stream_detector - INFO - Getting Chrome DevTools Protocol WebSocket URL...
-2025-12-06 18:39:23,334 - app.models.stream_detector - INFO - Chrome debugger address: localhost:45201
-2025-12-06 18:39:23,337 - app.models.stream_detector - INFO - ✓ Got CDP WebSocket URL: ws://localhost:45201/devtools/page/17E0486910F932D34797F4648A11AA47...
-2025-12-06 18:39:23,337 - app.models.stream_detector - INFO - Enabling Network domain via execute_cdp_cmd...
-2025-12-06 18:39:23,341 - app.models.stream_detector - INFO - Network domain enabled via execute_cdp_cmd
-2025-12-06 18:39:23,341 - app.models.stream_detector - INFO - Connecting to CDP WebSocket: ws://localhost:45201/devtools/page/17E0486910F932D...
-2025-12-06 18:39:23,343 - app.models.stream_detector - INFO - CDP WebSocket OPEN CONNECTED!
-2025-12-06 18:39:23,343 - app.models.stream_detector - INFO - Network monitoring started
-2025-12-06 18:39:23,843 - app.models.stream_detector - INFO - Loading https://www.fansly.com...
-2025-12-06 18:39:23,999 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
-2025-12-06 18:39:24,001 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:24] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-06 18:39:24,279 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:24] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:25,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:25] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:26,030 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:26] "GET /api/browser/status/browser_1765046362 HTTP/1.1" 200 -
-2025-12-06 18:39:26,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:26] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:27,203 - app.models.stream_detector - INFO - [CDP-WS] WebSocket closed: None - None
-2025-12-06 18:39:27,277 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:27] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:27,318 - app.models.stream_detector - INFO - Browser browser_1765046362 closed
-2025-12-06 18:39:27,318 INFO reaped unknown pid 258 (exit status 0)
-2025-12-06 18:39:27,318 INFO reaped unknown pid 260 (exit status 0)
-2025-12-06 18:39:27,318 INFO reaped unknown pid 265 (exit status 0)
-2025-12-06 18:39:27,318 INFO reaped unknown pid 266 (exit status 0)
-2025-12-06 18:39:27,318 INFO reaped unknown pid 350 (exit status 0)
-2025-12-06 18:39:27,318 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:27] "POST /api/browser/close/browser_1765046362 HTTP/1.1" 200 -
-2025-12-06 18:39:27,330 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:27] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:28,287 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:28] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:29,788 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:29] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:30,783 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:30] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:31,781 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:31] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:32,789 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:32] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:33,785 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:33] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:34,781 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:34] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:35,793 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:35] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:36,799 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:36] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 18:39:37,792 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 18:39:37] "GET /api/downloads/active HTTP/1.1" 200 -
+ * Running on http://192.168.64.2:5000
+2025-12-06 19:25:57,242 - werkzeug - INFO - Press CTRL+C to quit
+2025-12-06 19:25:57,850 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 19:25:57,850 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 19:25:57,850 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 19:25:57,850 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 19:25:57,850 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 19:26:00,409 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:00] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:01,306 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:01] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:02,309 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:02] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:03,448 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:03] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:04,304 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:04] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:05,305 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:05] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:06,805 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:06] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:07,809 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:07] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:08,356 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:08] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:09,300 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:09] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:10,302 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:10] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:11,302 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:11] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:12,309 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:12] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:13,300 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:13] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:14,304 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:14] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:14,742 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:14] "GET / HTTP/1.1" 200 -
+2025-12-06 19:26:14,928 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:14] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:17,243 - app.services.browser_service - INFO - Clear cookies requested
+2025-12-06 19:26:17,244 - app.services.browser_service - INFO - Force killing Chrome and ChromeDriver processes...
+2025-12-06 19:26:17,247 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:17] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:17,260 - app.services.browser_service - INFO - Process kill commands executed
+2025-12-06 19:26:17,260 - app.services.browser_service - INFO - Waiting for processes to terminate...
+2025-12-06 19:26:17,933 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:17] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:18,933 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:18] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:19,937 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:19] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:20,261 - app.services.browser_service - INFO - Clearing Chrome data directory: /app/chrome-data
+2025-12-06 19:26:20,284 - app.services.browser_service - INFO - Chrome data cleared: 42 items removed, 0 items failed
+2025-12-06 19:26:20,284 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:20] "POST /api/browser/clear-cookies HTTP/1.1" 200 -
+2025-12-06 19:26:20,933 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:20] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:21,509 - app.routes.browser_routes - INFO - Starting browser with resolution: source, framerate: any
+2025-12-06 19:26:21,510 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.fansly.com
+2025-12-06 19:26:21,510 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 19:26:21,510 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 19:26:21,510 - app.models.stream_detector - INFO - Initializing ChromeDriver service
+2025-12-06 19:26:21,510 - app.models.stream_detector - INFO - Creating Chrome webdriver instance...
+2025-12-06 19:26:21,941 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:21] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:22,441 - app.models.stream_detector - INFO - Chrome webdriver created successfully!
+2025-12-06 19:26:22,856 - app.models.stream_detector - INFO - Getting Chrome DevTools Protocol WebSocket URL...
+2025-12-06 19:26:22,856 - app.models.stream_detector - INFO - Chrome debugger address: localhost:40663
+2025-12-06 19:26:22,860 - app.models.stream_detector - INFO - ✓ Got CDP WebSocket URL: ws://localhost:40663/devtools/page/51629626399D8E4071F1342D6517DA9C...
+2025-12-06 19:26:22,860 - app.models.stream_detector - INFO - Enabling Network domain via execute_cdp_cmd...
+2025-12-06 19:26:22,863 - app.models.stream_detector - INFO - Network domain enabled via execute_cdp_cmd
+2025-12-06 19:26:22,863 - app.models.stream_detector - INFO - Connecting to CDP WebSocket: ws://localhost:40663/devtools/page/51629626399D8E4...
+2025-12-06 19:26:22,865 - app.models.stream_detector - INFO - CDP WebSocket OPEN CONNECTED!
+2025-12-06 19:26:22,865 - app.models.stream_detector - INFO - Network monitoring started
+2025-12-06 19:26:22,936 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:22] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:23,365 - app.models.stream_detector - INFO - [NAV] Starting navigation to: https://www.fansly.com
+2025-12-06 19:26:23,365 - app.models.stream_detector - INFO - [NAV] Navigating to about:blank first to clear any restore state
+2025-12-06 19:26:23,437 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:23,738 - app.models.stream_detector - INFO - [NAV] Attempt 1/3: Loading https://www.fansly.com
+2025-12-06 19:26:23,949 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:23] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:24,947 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:24] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:25,943 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:25] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:26,936 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:26] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:27,724 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:27,940 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:27] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:28,217 - app.models.stream_detector - INFO - [NAV] Current URL after navigation: https://fansly.com/
+2025-12-06 19:26:28,231 - app.models.stream_detector - INFO - [NAV] ✓ Page loaded successfully: https://fansly.com/
+2025-12-06 19:26:28,232 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:28] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-06 19:26:28,954 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:28] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:29,933 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:29] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:30,256 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:30] "GET /api/browser/status/browser_1765049181 HTTP/1.1" 200 -
+2025-12-06 19:26:30,929 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:30] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:31,934 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:31] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:32,259 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:32] "GET /api/browser/status/browser_1765049181 HTTP/1.1" 200 -
+2025-12-06 19:26:32,931 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:32] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:32,962 - app.models.stream_detector - INFO - [CDP-WS] WebSocket closed: None - None
+2025-12-06 19:26:33,128 - app.models.stream_detector - INFO - Browser browser_1765049181 closed
+2025-12-06 19:26:33,128 INFO reaped unknown pid 80 (exit status 0)
+2025-12-06 19:26:33,128 INFO reaped unknown pid 82 (exit status 0)
+2025-12-06 19:26:33,128 INFO reaped unknown pid 87 (exit status 0)
+2025-12-06 19:26:33,128 INFO reaped unknown pid 88 (exit status 0)
+2025-12-06 19:26:33,128 INFO reaped unknown pid 186 (exit status 0)
+2025-12-06 19:26:33,129 INFO reaped unknown pid 188 (exit status 0)
+2025-12-06 19:26:33,128 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:33] "POST /api/browser/close/browser_1765049181 HTTP/1.1" 200 -
+2025-12-06 19:26:33,141 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:33] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:33,947 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:33] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:34,932 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:34] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:35,936 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:35] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:36,942 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:36] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:37,671 - app.routes.browser_routes - INFO - Starting browser with resolution: source, framerate: any
+2025-12-06 19:26:37,672 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.fansly.com
+2025-12-06 19:26:37,672 - app.models.stream_detector - INFO - Debug: Created chrome_options
+2025-12-06 19:26:37,672 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 19:26:37,673 - app.models.stream_detector - INFO - Resetting Chrome crash flag and session restore settings in Preferences
+2025-12-06 19:26:37,676 - app.models.stream_detector - INFO - Initializing ChromeDriver service
+2025-12-06 19:26:37,676 - app.models.stream_detector - INFO - Creating Chrome webdriver instance...
+2025-12-06 19:26:37,937 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:37] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:38,573 - app.models.stream_detector - INFO - Chrome webdriver created successfully!
+2025-12-06 19:26:38,942 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:38] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:38,957 - app.models.stream_detector - INFO - Getting Chrome DevTools Protocol WebSocket URL...
+2025-12-06 19:26:38,957 - app.models.stream_detector - INFO - Chrome debugger address: localhost:33595
+2025-12-06 19:26:38,960 - app.models.stream_detector - INFO - ✓ Got CDP WebSocket URL: ws://localhost:33595/devtools/page/9835D87C76962A0069BF2571E5D815A7...
+2025-12-06 19:26:38,960 - app.models.stream_detector - INFO - Enabling Network domain via execute_cdp_cmd...
+2025-12-06 19:26:38,963 - app.models.stream_detector - INFO - Network domain enabled via execute_cdp_cmd
+2025-12-06 19:26:38,964 - app.models.stream_detector - INFO - Connecting to CDP WebSocket: ws://localhost:33595/devtools/page/9835D87C76962A0...
+2025-12-06 19:26:38,965 - app.models.stream_detector - INFO - CDP WebSocket OPEN CONNECTED!
+2025-12-06 19:26:38,965 - app.models.stream_detector - INFO - Network monitoring started
+2025-12-06 19:26:39,465 - app.models.stream_detector - INFO - [NAV] Starting navigation to: https://www.fansly.com
+2025-12-06 19:26:39,466 - app.models.stream_detector - INFO - [NAV] Navigating to about:blank first to clear any restore state
+2025-12-06 19:26:39,534 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:39,835 - app.models.stream_detector - INFO - [NAV] Attempt 1/3: Loading https://www.fansly.com
+2025-12-06 19:26:39,946 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:39] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:40,466 - app.models.stream_detector - INFO - [NAV] Current URL after navigation: https://fansly.com/
+2025-12-06 19:26:40,932 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:40] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:41,947 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:41] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:42,943 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:42] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:43,012 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:43,520 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:43,942 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:43] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:44,030 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:44,541 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:44,937 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:44] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:45,049 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:45,558 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:45,946 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:45] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:46,067 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:46,573 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:46,932 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:46] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:47,082 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:47,591 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:47,945 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:47] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:48,101 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:48,609 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:48,943 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:48] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:49,118 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:49,626 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:49,945 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:49] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:50,135 - urllib3.connectionpool - WARNING - Connection pool is full, discarding connection: localhost. Connection pool size: 1
+2025-12-06 19:26:50,635 - app.models.stream_detector - WARNING - [NAV] Page load timeout, but continuing (page may still be loading)
+2025-12-06 19:26:50,636 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:50] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-06 19:26:50,942 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:50] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:51,932 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:51] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:52,662 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:52] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:26:52,935 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:52] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:53,935 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:53] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:54,672 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:54] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:26:54,933 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:54] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:55,941 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:55] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:56,667 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:56] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:26:56,932 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:56] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:57,934 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:57] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:26:58,814 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:58] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:26:59,809 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:26:59] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:00,806 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:00] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:00,808 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:00] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:27:01,802 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:01] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:02,817 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:02] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:02,818 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:02] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:27:03,810 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:03] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:04,809 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:04] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:27:04,810 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:04] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:05,810 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:05] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:06,818 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:06] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:27:06,820 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:06] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:07,819 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:07] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 19:27:08,816 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:08] "GET /api/browser/status/browser_1765049197 HTTP/1.1" 200 -
+2025-12-06 19:27:08,818 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 19:27:08] "GET /api/downloads/active HTTP/1.1" 200 -
