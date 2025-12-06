@@ -266,6 +266,31 @@ class StreamDetector:
             except Exception as e:
                 logger.error(f"[CDP-WS] Error processing message: {e}")
 
+        def on_error(ws, error):
+            logger.error(f"[CDP-WS] WebSocket error: {error}")
+
+        def on_close(ws, close_status_code, close_msg):
+            logger.info(f"[CDP-WS] WebSocket closed: {close_status_code} - {close_msg}")
+
+        def on_open(ws):
+            logger.info("CDP WebSocket OPEN CONNECTED!")
+            self._cdp_enable_domains(ws)
+
+        # Connect to WebSocket
+        try:
+            logger.info(f"Connecting to CDP WebSocket: {self.ws_url[:50]}...")
+            self.ws = websocket.WebSocketApp(
+                self.ws_url,
+                on_open=on_open,
+                on_message=on_message,
+                on_error=on_error,
+                on_close=on_close
+            )
+            
+            self.ws.run_forever()
+        except Exception as e:
+            logger.error(f"Error checking stream: {e}")
+
 
     def _handle_network_event(self, method, params, ws):
         """Handle Network.* CDP events"""
