@@ -665,6 +665,33 @@
                 <iframe id="vnc-frame" class="vnc-frame" src=""></iframe>
             </div>
 
+            <!-- Monitored Streams -->
+            <div class="card">
+                <h2><span class="icon">📡</span> Monitored Streams</h2>
+                <p>Automatically download when these streamers go live</p>
+
+                <div class="input-group">
+                    <label for="monitor-url">Streamer URL</label>
+                    <input type="text" id="monitor-url" placeholder="https://www.twitch.tv/channel">
+                </div>
+
+                <div class="input-group">
+                    <label for="monitor-name">Name (optional)</label>
+                    <input type="text" id="monitor-name" placeholder="Channel Name">
+                </div>
+
+                <button class="btn" onclick="addMonitoredStream()">
+                    ➕ Add Monitored Stream
+                </button>
+
+                <div id="monitored-streams-list" style="margin-top: 20px;">
+                    <!-- Monitored streams will be loaded here -->
+                </div>
+
+                <div class="status-box" id="monitor-status"></div>
+            </div>
+
+
             <!-- Active Downloads -->
             <div class="card downloads-list">
                 <h2><span class="icon">⏬</span> Active Downloads</h2>
@@ -1455,16 +1482,132 @@
                     if (statusCheckInterval) {
                         clearInterval(statusCheckInterval);
                     }
+
+                    const btn = document.getElementById('browser-start-btn');
+                    btn.disabled = false;
+                    btn.innerHTML = 'Open Browser & Detect';
                 } else {
                     showStatus(statusBox, `Error: ${data.error}`, 'error');
                 }
             } catch (error) {
                 showStatus(statusBox, `Error: ${error.message}`, 'error');
             } finally {
+                const btn = document.getElementById('clear-cookies-btn');
                 btn.disabled = false;
                 btn.innerHTML = '🗑️ Clear Cookies';
             }
         }
+
+        // --- Stream Monitoring Functions ---
+
+        async function loadMonitoredStreams() {
+            const container = document.getElementById('monitored-streams-list');
+            try {
+                const response = await fetch('/api/monitoring/streams');
+                const data = await response.json();
+
+                if (data.streams) {
+                    container.innerHTML = '';
+
+                    if (data.streams.length === 0) {
+                        container.innerHTML = '<p style="color: #666; font-style: italic;">No streams monitored yet.</p>';
+                        return;
+                    }
+
+                    data.streams.forEach(stream => {
+                        const div = document.createElement('div');
+                        div.className = 'download-item';
+                        div.style.marginBottom = '10px';
+
+                        const statusColor = stream.is_live ? '#28a745' : '#6c757d';
+                        const statusText = stream.is_live ? 'LIVE' : 'OFFLINE';
+
+                        div.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h4 style="margin: 0 0 5px 0;">
+                                        <span style="display: inline-block; width: 10px; height: 10px; background: ${statusColor}; border-radius: 50%; margin-right: 5px;"></span>
+                                        ${stream.name}
+                                    </h4>
+                                    <p style="margin: 0; font-size: 0.8rem; color: #666;">${stream.url}</p>
+                                    <p style="margin: 5px 0 0 0; font-size: 0.8rem;">
+                                        <strong>Status:</strong> <span style="color: ${statusColor}; font-weight: bold;">${statusText}</span>
+                                        ${stream.last_live ? `(Last live: ${new Date(stream.last_live * 1000).toLocaleString()})` : ''}
+                                    </p>
+                                </div>
+                                <button class="btn btn-secondary" style="width: auto; padding: 5px 10px; font-size: 0.8rem; background: #dc3545;" onclick="removeMonitoredStream('${stream.id}')">
+                                    Remove
+                                </button>
+                            </div>
+                        `;
+                        container.appendChild(div);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading monitored streams:', error);
+                container.innerHTML = '<p style="color: #dc3545;">Error loading streams</p>';
+            }
+        }
+
+        async function addMonitoredStream() {
+            const urlInput = document.getElementById('monitor-url');
+            const nameInput = document.getElementById('monitor-name');
+            const statusBox = document.getElementById('monitor-status');
+
+            const url = urlInput.value.trim();
+            const name = nameInput.value.trim();
+
+            if (!url) {
+                showStatus(statusBox, 'Please enter a URL', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/monitoring/streams', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url, name })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showStatus(statusBox, 'Stream added successfully!', 'success');
+                    urlInput.value = '';
+                    nameInput.value = '';
+                    loadMonitoredStreams();
+                } else {
+                    showStatus(statusBox, 'Error: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showStatus(statusBox, 'Error: ' + error.message, 'error');
+            }
+        }
+
+        async function removeMonitoredStream(streamId) {
+            if (!confirm('Are you sure you want to stop monitoring this stream?')) return;
+
+            try {
+                const response = await fetch(`/api/monitoring/streams/${streamId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    loadMonitoredStreams();
+                } else {
+                    alert('Failed to remove stream');
+                }
+            } catch (error) {
+                console.error('Error removing stream:', error);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDownloads();
+            loadMonitoredStreams();
+            setInterval(loadMonitoredStreams, 15000); // Refresh monitor list every 15s
+        });
 
         // Load downloads list
         async function loadDownloads() {

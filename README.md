@@ -1,3 +1,6 @@
+> [!WARNING]
+> **Legal Disclaimer**: This software is intended for personal use only. Users must only download content they have the legal right to access and store (e.g., public domain content, content under free licenses, or content for which they have explicit permission). The developers of this software are not responsible for any misuse, copyright infringement, or violations of Terms of Service. Do not use this tool for commercial purposes or to distribute copyrighted material without permission.
+
 # NAS Video Downloader
 
 A self-hosted video downloader designed for UGREEN NAS (and other Docker environments) that downloads videos and streams using FFmpeg with browser-based authentication support.
