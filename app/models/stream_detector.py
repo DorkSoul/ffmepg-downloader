@@ -54,17 +54,6 @@ class StreamDetector:
             try:
                 logger.info(f"Starting Chrome browser for {url}")
 
-                chrome_options = Options()
-                # Essential flags for Docker
-                chrome_options.add_argument('--no-sandbox')
-                chrome_options.add_argument('--disable-setuid-sandbox')
-                chrome_options.add_argument('--disable-dev-shm-usage')
-
-                # Enable remote debugging for CDP WebSocket (port 0 = auto-assign)
-                chrome_options.add_argument('--remote-debugging-port=0')
-                # Allow WebSocket connections to CDP from any origin
-                chrome_options.add_argument('--remote-allow-origins=*')
-
                 # GPU and rendering
                 chrome_options.add_argument('--disable-gpu')
                 chrome_options.add_argument('--disable-software-rasterizer')

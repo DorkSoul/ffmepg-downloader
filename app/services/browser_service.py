@@ -18,6 +18,15 @@ class BrowserService:
 
     def start_browser(self, url, browser_id, resolution='1080p', framerate='any', auto_download=False, filename=None):
         """Start a browser instance for stream detection"""
+        # Enforce singleton: Close ALL existing browsers first to free up the profile
+        if self.active_browsers:
+            logger.info("Closing existing browsers to enforce singleton session...")
+            browsers_to_close = list(self.active_browsers.keys())
+            for bid in browsers_to_close:
+                self.close_browser(bid)
+            # Short wait to ensure processes clean up
+            time.sleep(1)
+
         detector = StreamDetector(
             browser_id,
             self.config,
