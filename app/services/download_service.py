@@ -42,8 +42,48 @@ class DownloadService:
 
         return browser_id, output_path
 
+    def _thumbnail_updater(self, browser_id, stop_event):
+        """Background thread to update thumbnails periodically"""
+        logger.info(f"Starting thumbnail updater for {browser_id}")
+        
+        while not stop_event.is_set():
+            try:
+                if browser_id not in self.download_queue:
+                    break
+                    
+                download_info = self.download_queue[browser_id]
+                file_path = download_info.get('output_path')
+                
+                # Try to extract from file
+                thumbnail = None
+                if file_path and os.path.exists(file_path):
+                    thumbnail = ThumbnailGenerator.extract_thumbnail_from_file(
+                        file_path, self.download_thumbnails, browser_id, cache_timeout=1
+                    )
+                
+                # Update the download info with the new thumbnail
+                if thumbnail:
+                    download_info['latest_thumbnail'] = thumbnail
+                    # Also update the cache dict so get_active_downloads logic remains consistent if called
+                    self.download_thumbnails[browser_id] = {
+                        'thumbnail': thumbnail,
+                        'timestamp': time.time()
+                    }
+                
+            except Exception as e:
+                logger.error(f"Error in thumbnail updater for {browser_id}: {e}")
+            
+            # Wait for 10 seconds or until stopped
+            if stop_event.wait(10):
+                break
+                
+        logger.info(f"Stopping thumbnail updater for {browser_id}")
+
     def _process_download(self, browser_id, stream_url, output_path, resolution_name, stream_metadata=None):
         """Process download in background thread"""
+        stop_thumbnail_event = threading.Event()
+        thumbnail_thread = None
+        
         try:
             logger.info(f"Starting FFmpeg download: {stream_url} -> {output_path}")
 
@@ -73,8 +113,17 @@ class DownloadService:
                 'resolution': metadata.get('resolution', 'Unknown'),
                 'framerate': metadata.get('framerate', 'Unknown'),
                 'codecs': metadata.get('codecs', 'Unknown'),
-                'filename': os.path.basename(output_path)
+                'filename': os.path.basename(output_path),
+                'latest_thumbnail': None
             }
+            
+            # Start thumbnail updater
+            thumbnail_thread = threading.Thread(
+                target=self._thumbnail_updater,
+                args=(browser_id, stop_thumbnail_event),
+                daemon=True
+            )
+            thumbnail_thread.start()
 
             # Wait for completion
             stdout, stderr = process.communicate()
@@ -94,9 +143,15 @@ class DownloadService:
             if browser_id in self.download_queue:
                 self.download_queue[browser_id]['completed_at'] = time.time()
                 self.download_queue[browser_id]['success'] = False
+        finally:
+            # Stop thumbnail updater
+            if stop_thumbnail_event:
+                stop_thumbnail_event.set()
 
     def _direct_download(self, browser_id, stream_url, output_path):
         """Execute direct download with metadata enrichment"""
+        stop_thumbnail_event = threading.Event()
+        
         try:
             logger.info(f"Starting direct download: {stream_url[:100]}...")
 
@@ -117,6 +172,13 @@ class DownloadService:
             # Generate thumbnail
             logger.info("Generating thumbnail for direct download...")
             thumbnail = ThumbnailGenerator.generate_stream_thumbnail(stream_url)
+            
+            # Clean thumbnail for storage
+            thumbnail_data = None
+            if thumbnail and thumbnail.startswith('data:image/'):
+                 thumbnail_data = thumbnail.split(',', 1)[1]
+            elif thumbnail:
+                 thumbnail_data = thumbnail
 
             # Prepare metadata
             resolution_display = stream_entry.get('resolution', 'Unknown')
@@ -129,7 +191,7 @@ class DownloadService:
                 'browser_id': browser_id,
                 'is_running': True,
                 'download_started': True,
-                'thumbnail': thumbnail.split(',', 1)[1] if thumbnail and thumbnail.startswith('data:image/') else thumbnail,
+                'thumbnail': thumbnail_data,
                 'selected_stream_metadata': stream_entry
             }
 
@@ -146,8 +208,16 @@ class DownloadService:
                 'resolution': stream_entry.get('resolution', 'Unknown'),
                 'framerate': stream_entry.get('framerate', 'Unknown'),
                 'codecs': stream_entry.get('codecs', 'Unknown'),
-                'filename': os.path.basename(output_path)
+                'filename': os.path.basename(output_path),
+                'latest_thumbnail': thumbnail_data
             }
+            
+            # Start thumbnail updater
+            threading.Thread(
+                target=self._thumbnail_updater,
+                args=(browser_id, stop_thumbnail_event),
+                daemon=True
+            ).start()
 
             stdout, stderr = process.communicate()
 
@@ -170,6 +240,8 @@ class DownloadService:
             if browser_id in self.download_queue:
                 self.download_queue[browser_id]['completed_at'] = time.time()
                 self.download_queue[browser_id]['success'] = False
+        finally:
+            stop_thumbnail_event.set()
 
     def _start_ffmpeg_process(self, stream_url, output_path):
         """Start FFmpeg process for downloading"""
@@ -209,12 +281,8 @@ class DownloadService:
             # Check if process is still running
             is_running = process.poll() is None if process else False
 
-            # Extract thumbnail
-            thumbnail = None
-            if is_running and output_path:
-                thumbnail = ThumbnailGenerator.extract_thumbnail_from_file(
-                    output_path, self.download_thumbnails, browser_id
-                )
+            # Use cached thumbnail managed by background thread
+            thumbnail = download_info.get('latest_thumbnail')
 
             active.append({
                 'browser_id': browser_id,
