@@ -296,7 +296,10 @@ class DownloadService:
                 file_size = os.path.getsize(output_path)
 
             # Calculate duration
-            duration = int(time.time() - started_at)
+            if 'completed_at' in download_info:
+                duration = int(download_info['completed_at'] - started_at)
+            else:
+                duration = int(time.time() - started_at)
 
             # Check if process is still running
             is_running = process.poll() is None if process else False
