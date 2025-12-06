@@ -1,96 +1,100 @@
-2025-12-06 14:52:02,583 - app.utils.playlist_parser - INFO -   [0] 720p30 - 1280x720 @ 30.000fps - Bandwidth: 0
-2025-12-06 14:52:02,583 - app.utils.playlist_parser - INFO -   [1] 720p30 - 1280x720 @ 30.000fps - Bandwidth: 0
-2025-12-06 14:52:02,584 - app.utils.playlist_parser - INFO -   [2] 480p30 - 852x480 @ 30.000fps - Bandwidth: 0
-2025-12-06 14:52:02,584 - app.utils.playlist_parser - INFO -   [3] 360p30 - 640x360 @ 30.000fps - Bandwidth: 0
-2025-12-06 14:52:02,584 - app.utils.playlist_parser - INFO -   [4] 160p30 - 284x160 @ 30.000fps - Bandwidth: 0
-2025-12-06 14:52:02,584 - app.models.stream_detector - INFO - Found 5 resolutions
-2025-12-06 14:52:02,584 - app.models.stream_detector - INFO - Auto-download enabled, finding matching stream...
-2025-12-06 14:52:02,584 - app.models.stream_detector - INFO - Matching stream - Resolution: source, Framerate: any
-2025-12-06 14:52:02,584 - app.models.stream_detector - INFO - Matched stream: 720p30
-2025-12-06 14:52:02,584 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw12.playlist.ttvnw.net/v1/playlist/CskGpR_xY8tpSVS1E3TWni7gRhY4ssY8HI3s4cLxa0n6yjoN7b2BaOZ...
-2025-12-06 14:52:03,064 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:03] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:04,069 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:04] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:04,217 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (262188 bytes)
-2025-12-06 14:52:04,218 - app.models.stream_detector - INFO - Added thumbnail to stream: 720p30
-2025-12-06 14:52:04,218 - app.models.stream_detector - INFO - Starting download for resolution: 720p30
-2025-12-06 14:52:04,218 - app.services.download_service - INFO - Starting FFmpeg download: https://euw12.playlist.ttvnw.net/v1/playlist/CskGpR_xY8tpSVS1E3TWni7gRhY4ssY8HI3s4cLxa0n6yjoN7b2BaOZM3WKZqpNuA3ou_oPnXOMpcl2Ka59_DOKttB4prYV3g2Q12znCbplBdQZGYV6iD4JZ_Ywy8z6P6jZhgKWOvF1Yyn84jaTDDQ45Z0-rXl8av-4VS06Prj4s0KeJ6z0IPnqWICJalkTc5KeVf0Kag5OHfWfBgM-OCRxh58QcNDHPV8lCATZ89g8ClBi2ktUyIDu8gg4agm_CzQ1nYAOHn72xv6oQb-diHARKLSBI5pZ0jTBxuqVcbcwgXFJkX39W1DVIjQrWG78hXJgKHvKVZD8Izzp1iMeyWb-m_4obXc2n0fAxxg2OjTvS93ZnEUqpbaDLF5ANaNJZVPydCBVnUfQ86SqszKIYIKOY0cJ6eOSt_4qLCQPGJ4mQLsEugXvvx1H-JxojSAsPC4ZiHY2-AZhgGBLsM8OUrxUR0rVwX4tXuoktuFilCxikzG1H83-QP4_iqQg2JIxTIR43UupfqTV8iR4D4k6gTkc96NZNiDuqCj1w9keLZCCX2tuyEKLtzDAGetGipxBQiC-IDlEYz-Oyepg6xXqnlhBzmGPJy_bhXj4Ld69xqeastwwrjtzPA67__UOyaGAVwxhpZNa62ahTqJifzKVCYgkY8CdrbiIWcVZUuehIvKoha8FzyfF1W7eOves2FKuW68S_Qa2gOlVEo6QDOf52Ycqk1oTge9sJQhal8VwNEff2_9QWVmtoFnGOsRXg6yDdOBmD3FIkMbHj_NIt36kLmhxC_nKfJh6iO40EtiRtuHJXyo4g8fu-97ZfyKeN9FzTqk5vaUVHTpZGMKskSLNDfY6CrN0c724Yg_bCgsK4mK7xVFn2sGve0jAmFyhruYFO7zPPGT1fqObNvpeSYOlhgGVUK7wl9PB8mrsfdJv59mNR6HX_8o9odvgxVn19bz-f-4fgcqzX-bchRJbq22IBL-s3sZe25MNeR1lfC0ZDadhVHkruvzWihl3VEtnQjxjodklargEwfG1oaXCVm-JI10SCQU_Q5ziTuJB_20D4TZivhf7gTCkqcSOWjKoGA6ThXMTj9o49KuIIlq9HGXv7GBOHxqB74_yYKolCihoMPzadWyXW9msjSuhlIAEqCWV1LXdlc3QtMjDxDQ.m3u8 -> /app/downloads/video_720p30_1765032724.mp4
-2025-12-06 14:52:04,218 - app.services.download_service - INFO - Starting thumbnail updater for browser_1765032719
-2025-12-06 14:52:05,064 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:05] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:06,067 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:06] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:07,071 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:07] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:08,069 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:08] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:08,865 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:08] "POST /api/browser/start HTTP/1.1" 200 -
-2025-12-06 14:52:09,084 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:09] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:10,061 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:10] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:10,924 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:10] "GET /api/browser/status/browser_1765032719 HTTP/1.1" 200 -
-2025-12-06 14:52:11,081 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:11] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:12,064 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:12] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:12,903 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:12] "GET /api/browser/status/browser_1765032719 HTTP/1.1" 200 -
-2025-12-06 14:52:12,962 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:12] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:13,076 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:13] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:13,363 - app.models.stream_detector - INFO - Browser browser_1765032719 closed
-2025-12-06 14:52:13,363 INFO reaped unknown pid 77 (exit status 0)
-2025-12-06 14:52:13,363 INFO reaped unknown pid 79 (exit status 0)
-2025-12-06 14:52:13,363 INFO reaped unknown pid 84 (exit status 0)
-2025-12-06 14:52:13,364 INFO reaped unknown pid 85 (exit status 0)
-2025-12-06 14:52:13,363 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:13] "POST /api/browser/close/browser_1765032719 HTTP/1.1" 200 -
-2025-12-06 14:52:13,382 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:13] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:14,069 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:14] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:14,219 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_720p30_1765032724.mp4 (3145776 bytes)
-2025-12-06 14:52:14,280 - app.utils.thumbnail_generator - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-06 14:52:14,280 - app.utils.thumbnail_generator - WARNING - ffmpeg stderr: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x56185e0622c0] moov atom not found
-[in#0 @ 0x56185e062000] Error opening input: Invalid data found when processing input
-Error opening input file /app/downloads/video_720p30_1765032724.mp4.
-Error opening input files: Invalid data found when processing input
-2025-12-06 14:52:15,076 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:15] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:16,073 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:16] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:17,070 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:17] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:18,075 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:18] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:19,062 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:19] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:20,064 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:20] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:21,073 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:21] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:22,062 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:22] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:23,069 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:23] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:24,074 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:24] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:24,281 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_720p30_1765032724.mp4 (7864368 bytes)
-2025-12-06 14:52:24,362 - app.utils.thumbnail_generator - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-06 14:52:24,362 - app.utils.thumbnail_generator - WARNING - ffmpeg stderr: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x557ad970e2c0] moov atom not found
-[in#0 @ 0x557ad970e000] Error opening input: Invalid data found when processing input
-Error opening input file /app/downloads/video_720p30_1765032724.mp4.
-Error opening input files: Invalid data found when processing input
-2025-12-06 14:52:25,068 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:25] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:26,073 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:26] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:27,074 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:27] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:28,075 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:28] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:29,063 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:29] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:30,077 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:30] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:31,075 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:31] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:32,077 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:32] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:33,075 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:33] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:34,069 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:34] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:34,363 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_720p30_1765032724.mp4 (11796528 bytes)
-2025-12-06 14:52:34,426 - app.utils.thumbnail_generator - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-06 14:52:34,426 - app.utils.thumbnail_generator - WARNING - ffmpeg stderr: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x55ceed7252c0] moov atom not found
-[in#0 @ 0x55ceed725000] Error opening input: Invalid data found when processing input
-Error opening input file /app/downloads/video_720p30_1765032724.mp4.
-Error opening input files: Invalid data found when processing input
-2025-12-06 14:52:35,074 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:35] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:36,068 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:36] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:37,075 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:37] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:38,064 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:38] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:39,073 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:39] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:40,067 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:40] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:41,691 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:41] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:42,686 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:42] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:43,693 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:43] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:44,426 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_720p30_1765032724.mp4 (15204400 bytes)
-2025-12-06 14:52:44,487 - app.utils.thumbnail_generator - WARNING - Thumbnail extraction failed: ffmpeg returned 183
-2025-12-06 14:52:44,488 - app.utils.thumbnail_generator - WARNING - ffmpeg stderr: [mov,mp4,m4a,3gp,3g2,mj2 @ 0x55af004d82c0] moov atom not found
-[in#0 @ 0x55af004d8000] Error opening input: Invalid data found when processing input
-Error opening input file /app/downloads/video_720p30_1765032724.mp4.
-Error opening input files: Invalid data found when processing input
-2025-12-06 14:52:44,686 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:44] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:45,695 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:45] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:46,694 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:46] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:47,689 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:47] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 14:52:48,689 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 14:52:48] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:07,647 - app.models.stream_detector - INFO - Detected master playlist: https://usher.ttvnw.net/api/v2/channel/hls/beamingeyedbunny.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNzEwZjQ2NT...
+2025-12-06 15:03:07,647 - app.models.stream_detector - INFO - ✓✓✓ TWITCH HLS API DETECTED: https://usher.ttvnw.net/api/v2/channel/hls/beamingeyedbunny.m3u8?acmb=eyJBcHBWZXJzaW9uIjoiNzEwZjQ2NTgtMzc3Mi00ZDFhLTkzNDEtZDY3OTFkMDI2NTY3In0%3D&allow...
+2025-12-06 15:03:07,648 - app.models.stream_detector - INFO - ✓ DETECTED STREAM: type=HLS
+2025-12-06 15:03:07,648 - app.models.stream_detector - INFO - Processing detected stream...
+2025-12-06 15:03:07,648 - app.models.stream_detector - INFO - Detected .m3u8 stream, checking if it's a master playlist...
+2025-12-06 15:03:07,727 - app.models.stream_detector - INFO - This is a master playlist! Parsing resolutions...
+2025-12-06 15:03:07,728 - app.utils.playlist_parser - INFO - Parsed 5 resolutions, sorted by bandwidth:
+2025-12-06 15:03:07,728 - app.utils.playlist_parser - INFO -   [0] 720p30 - 1280x720 @ 30.000fps - Bandwidth: 0
+2025-12-06 15:03:07,728 - app.utils.playlist_parser - INFO -   [1] 480p30 - 852x480 @ 30.000fps - Bandwidth: 0
+2025-12-06 15:03:07,728 - app.utils.playlist_parser - INFO -   [2] 360p30 - 640x360 @ 30.000fps - Bandwidth: 0
+2025-12-06 15:03:07,728 - app.utils.playlist_parser - INFO -   [3] 160p30 - 284x160 @ 30.000fps - Bandwidth: 0
+2025-12-06 15:03:07,728 - app.utils.playlist_parser - INFO -   [4] 720p30 - 1280x720 @ 30.000fps - Bandwidth: 0
+2025-12-06 15:03:07,728 - app.models.stream_detector - INFO - Found 5 resolutions
+2025-12-06 15:03:07,728 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/Cr8G8ywnY0pLTROcY0syDJZHb9o7FwWrTsoYWAn0mDA75Z79Bgb0Vwk...
+2025-12-06 15:03:07,728 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CrcGrkHzTz_Tj4ht6FKqQWA43DBGncsFUbj-JWmyXZuBK0DVcYDzRQ8...
+2025-12-06 15:03:07,729 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/Cq8GFLeXbOB3yfzFkKXxor5l7znKMxUE96o_MbFuozA-bV6ZHMynfTY...
+2025-12-06 15:03:07,729 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CqcGygMjM1WOkXfNHNPMG0SYkd1Ari4QU4-_l3Yxk4hBJoshAFouOZR...
+2025-12-06 15:03:07,730 - app.utils.thumbnail_generator - INFO - Generating thumbnail for stream: https://euw11.playlist.ttvnw.net/v1/playlist/CskGAMC9qjaOd0WyNLgHPlXaykm80lPG6uyq86HiRvrUqp8iuzBCw3m...
+2025-12-06 15:03:07,760 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:07] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:08,749 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:08] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:09,013 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (23528 bytes)
+2025-12-06 15:03:09,013 - app.models.stream_detector - INFO - Added thumbnail to stream: 160p30
+2025-12-06 15:03:09,293 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (85452 bytes)
+2025-12-06 15:03:09,295 - app.models.stream_detector - INFO - Added thumbnail to stream: 360p30
+2025-12-06 15:03:09,351 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (135300 bytes)
+2025-12-06 15:03:09,351 - app.models.stream_detector - INFO - Added thumbnail to stream: 480p30
+2025-12-06 15:03:09,488 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (242500 bytes)
+2025-12-06 15:03:09,488 - app.models.stream_detector - INFO - Added thumbnail to stream: 720p30
+2025-12-06 15:03:09,527 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail generated successfully (254816 bytes)
+2025-12-06 15:03:09,530 - app.models.stream_detector - INFO - Added thumbnail to stream: 720p30
+2025-12-06 15:03:09,759 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:09] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:10,487 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:10] "POST /api/browser/start HTTP/1.1" 200 -
+2025-12-06 15:03:10,746 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:10] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:11,746 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:11] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:12,322 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_160p30_1765033341.mp4 (1310989 bytes)
+2025-12-06 15:03:12,456 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail extracted successfully (127832 bytes base64)
+2025-12-06 15:03:12,523 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:12] "GET /api/browser/status/browser_1765033384 HTTP/1.1" 200 -
+2025-12-06 15:03:12,758 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:12] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:13,750 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:13] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:14,530 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:14] "GET /api/browser/status/browser_1765033384 HTTP/1.1" 200 -
+2025-12-06 15:03:14,767 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:14] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:15,765 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:15] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:16,524 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:16] "GET /api/browser/status/browser_1765033384 HTTP/1.1" 200 -
+2025-12-06 15:03:16,752 - app.models.stream_detector - INFO - Starting download for resolution: 160p30
+2025-12-06 15:03:16,752 - app.services.download_service - INFO - Starting FFmpeg download: https://euw11.playlist.ttvnw.net/v1/playlist/CqcGygMjM1WOkXfNHNPMG0SYkd1Ari4QU4-_l3Yxk4hBJoshAFouOZRYn2-mB_E9RNb9O6NMgIepcmPZqBXkW6wJyPNRlprob-w_J0WtLGW9Wj1CM_ugX_i5-L2tX07-ji7DiXICbN0pJKbLlJCR2ch8qFaFvGZ5IBEwqiVMVq4N_tZcvwMKrdTCZGxIvlpZuDSwRe-x6lVPDcclFVop8U1FuQbz_MjEGtbHBAXsNOprWHA4Lax8zO2A6LZaxmVajIzB9jtd3j-WxbRNiKGLg16naTftsVRcj-Zv3n3BBwUmtJtkvQF4tjX0HPrN5pyGyJu_5-VQ9x8dAlIEVacB9lfcpo-7v0XW8MCPizIYu4m2W7lelte-CDur1PZHRXuNG83_woN5clDE3M97Jze538iE-gEHOH9ka0d3msw1_p_d3HYVyjlucmikFTE7-YbqHcM-Ncfxm7UIcNmHGDAhJL5iVYT0UPmMqp1vjT01tjNi9DQHELgS_MpVEu12rE59ILRZO6-PuBOCx_eoQz7NRizKicXpMiwd4GfCRaKb__XcJlyGugTCnFdBV_Hgtt4z4SwmF5nocX44zi2If8oYDr1NHHPJfFSMAD2z5pLDDlYIqzmipxrUNRHwWBkoLZzcUFxq-TYkAyqgMolkPTt9EpwyQ9djhWyWJLDGW2N4EroebtkOcMi9mtFKyhRwFsv-p_dSIHIpkhjb3RNkq97--9iqMyukvd9atws8j4sT2UzEhNqOWysn4mBoLRkkbgoB5GzZv2oW_8aOhXoz4b-B9TgjTR6DwqbiF_fn8XnCB9JSd-y6bjKSpXA7hdUEyuCPyCefUV0JRygA6iH9fwLET2G6L7dVwM3dWabC5BKQKlqeCmeqpWtojKn2x-FPKQEoolcOGXWJXWmJYC8fUBcFzFk0Y-bHuBLlReRSELHH3mDhhXk8zXEPhDyPO1grU9e3oJFPGRFBxqRxK01JuFCjlLWrEr51fwRlqLEpFKVdaxAVeNl0iQjmBtbgN0UFcbh3-w0hNUx9UDLekDzSLbUXENc8IhcVtEzB9i_O6U6nN3jTw25D-_FfdiV-GgyfgSnZRdDGOyBYKoYgASoJZXUtd2VzdC0yMPEN.m3u8 -> /app/downloads/video_160p30_1765033396.mp4
+2025-12-06 15:03:16,753 - app.services.download_service - INFO - Starting thumbnail updater for browser_1765033384
+2025-12-06 15:03:16,765 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:16] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:17,757 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:17] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:18,542 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:18] "GET /api/browser/status/browser_1765033384 HTTP/1.1" 200 -
+2025-12-06 15:03:18,766 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:18] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:19,745 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:19] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:19,753 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:19] "POST /api/browser/select-stream HTTP/1.1" 200 -
+2025-12-06 15:03:20,540 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:20] "GET /api/browser/status/browser_1765033384 HTTP/1.1" 200 -
+2025-12-06 15:03:20,601 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:20] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:20,777 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:20] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:21,387 - app.models.stream_detector - INFO - Browser browser_1765033384 closed
+2025-12-06 15:03:21,387 INFO reaped unknown pid 605 (exit status 0)
+2025-12-06 15:03:21,387 INFO reaped unknown pid 607 (exit status 0)
+2025-12-06 15:03:21,387 INFO reaped unknown pid 612 (exit status 0)
+2025-12-06 15:03:21,387 INFO reaped unknown pid 613 (exit status 0)
+2025-12-06 15:03:21,387 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:21] "POST /api/browser/close/browser_1765033384 HTTP/1.1" 200 -
+2025-12-06 15:03:21,408 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:21] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:21,746 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:21] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:21,830 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:21] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:22,456 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_160p30_1765033341.mp4 (1573133 bytes)
+2025-12-06 15:03:22,542 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail extracted successfully (127832 bytes base64)
+2025-12-06 15:03:22,758 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:22] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:23,752 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:23] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:24,763 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:24] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:25,754 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:25] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:26,750 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:26] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:26,754 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_160p30_1765033396.mp4 (262180 bytes)
+2025-12-06 15:03:26,856 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail extracted successfully (128472 bytes base64)
+2025-12-06 15:03:27,757 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:27] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:28,754 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:28] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:29,750 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:29] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:30,761 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:30] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:31,756 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:31] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:32,543 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_160p30_1765033341.mp4 (1835277 bytes)
+2025-12-06 15:03:32,626 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail extracted successfully (127832 bytes base64)
+2025-12-06 15:03:32,758 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:32] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:33,751 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:33] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:34,759 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:34] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:35,749 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:35] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:36,756 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:36] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:36,856 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_160p30_1765033396.mp4 (524324 bytes)
+2025-12-06 15:03:36,948 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail extracted successfully (128472 bytes base64)
+2025-12-06 15:03:37,752 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:37] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:38,757 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:38] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:39,750 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:39] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:40,757 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:40] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:41,749 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:41] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:42,627 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_160p30_1765033341.mp4 (2097421 bytes)
+2025-12-06 15:03:42,710 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail extracted successfully (127832 bytes base64)
+2025-12-06 15:03:42,756 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:42] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:44,705 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:44] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:46,705 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:46] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:03:46,948 - app.utils.thumbnail_generator - INFO - Extracting thumbnail from /app/downloads/video_160p30_1765033396.mp4 (786468 bytes)
+2025-12-06 15:03:47,033 - app.utils.thumbnail_generator - INFO - ✓ Thumbnail extracted successfully (128472 bytes base64)
+2025-12-06 15:03:48,693 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:03:48] "GET /api/downloads/active HTTP/1.1" 200 -

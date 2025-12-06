@@ -86,7 +86,7 @@ class ThumbnailGenerator:
                     logger.debug(f"Failed to clean up temp file: {cleanup_error}")
 
     @staticmethod
-    def extract_thumbnail_from_file(file_path, cache_dict, cache_key, cache_timeout=10):
+    def extract_thumbnail_from_file(file_path, cache_dict, cache_key, cache_timeout=10, seek_time=2):
         """
         Extract a thumbnail from a partially downloaded video file.
         Returns base64 encoded image or None if extraction fails.
@@ -111,14 +111,14 @@ class ThumbnailGenerator:
                 logger.debug(f"Thumbnail: file too small ({file_size} bytes): {file_path}")
                 return None
 
-            logger.info(f"Extracting thumbnail from {file_path} ({file_size} bytes)")
+            logger.info(f"Extracting thumbnail from {file_path} ({file_size} bytes) at {seek_time}s")
 
             # Extract frame from beginning of downloaded content
             cmd = [
                 'ffmpeg',
                 '-y',  # Overwrite output
                 '-loglevel', 'error',  # Show errors only
-                '-ss', '2',  # Seek to 2 seconds from start
+                '-ss', str(seek_time),  # Seek to custom time
                 '-i', file_path,
                 '-frames:v', '1',  # Extract 1 frame
                 '-q:v', '2',  # Quality

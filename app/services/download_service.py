@@ -53,12 +53,24 @@ class DownloadService:
                     
                 download_info = self.download_queue[browser_id]
                 file_path = download_info.get('output_path')
+                started_at = download_info.get('started_at', time.time())
+                
+                # Calculate dynamic seek time (2 seconds behind live edge)
+                elapsed = max(0, time.time() - started_at)
+                seek_time = max(0, int(elapsed - 2))
                 
                 # Try to extract from file
                 thumbnail = None
                 if file_path and os.path.exists(file_path):
+                    # Force cache timeout to 0 if we are seeking to new position to ensure fresh frame,
+                    # effectively bypassing cache for updates, but maybe we want to respect loop interval.
+                    # Since we control the loop, we can just pass cache_timeout=1
                     thumbnail = ThumbnailGenerator.extract_thumbnail_from_file(
-                        file_path, self.download_thumbnails, browser_id, cache_timeout=1
+                        file_path, 
+                        self.download_thumbnails, 
+                        browser_id, 
+                        cache_timeout=1,
+                        seek_time=seek_time
                     )
                 
                 # Update the download info with the new thumbnail
@@ -70,11 +82,17 @@ class DownloadService:
                         'timestamp': time.time()
                     }
                 
+                # Smart Wait: 
+                # If we have no thumbnail yet, try eagerly (1s).
+                # If we have one, update every 10s.
+                wait_time = 10 if download_info.get('latest_thumbnail') else 1
+                
             except Exception as e:
                 logger.error(f"Error in thumbnail updater for {browser_id}: {e}")
+                wait_time = 10 # Fallback
             
-            # Wait for 10 seconds or until stopped
-            if stop_event.wait(10):
+            # Wait for calculated time or until stopped
+            if stop_event.wait(wait_time):
                 break
                 
         logger.info(f"Stopping thumbnail updater for {browser_id}")
