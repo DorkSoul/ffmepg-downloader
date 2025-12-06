@@ -250,6 +250,8 @@ class DownloadService:
             '-i', stream_url,
             '-c', 'copy',
             '-bsf:a', 'aac_adtstoasc',
+            # Use fragmented MP4 to allow reading while downloading (for thumbnails)
+            '-movflags', '+frag_keyframe+empty_moov',
             '-y',  # Overwrite output file
             output_path
         ]
