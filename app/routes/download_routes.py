@@ -82,6 +82,22 @@ def init_download_routes(download_service, download_dir):
             logger.error(f"Active downloads error: {e}")
             return jsonify({'error': str(e)}), 500
 
+    @download_bp.route('/check-filename', methods=['GET'])
+    def check_filename():
+        """Check if a filename already exists in the download directory"""
+        try:
+            filename = request.args.get('filename', '')
+            if not filename:
+                return jsonify({'exists': False})
+            
+            filepath = os.path.join(download_dir, filename)
+            exists = os.path.exists(filepath)
+            
+            return jsonify({'exists': exists, 'filename': filename})
+        except Exception as e:
+            logger.error(f"Check filename error: {e}")
+            return jsonify({'exists': False, 'error': str(e)})
+
     @download_bp.route('/stop/<browser_id>', methods=['POST'])
     def stop_download(browser_id):
         """Stop an active download"""

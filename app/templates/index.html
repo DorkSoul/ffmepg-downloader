@@ -318,6 +318,21 @@
             margin-bottom: 5px;
         }
 
+        .filename-error {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .filename-error.visible {
+            display: block;
+        }
+
+        .input-group input.input-error {
+            border-color: #dc3545;
+        }
+
         .icon {
             font-size: 1.3rem;
         }
@@ -512,6 +527,7 @@
                 <div class="input-group">
                     <label for="direct-filename">Filename (required)</label>
                     <input type="text" id="direct-filename" placeholder="video_name" required>
+                    <div class="filename-error" id="direct-filename-error">A file with this name already exists</div>
                 </div>
 
                 <div class="input-group">
@@ -562,6 +578,7 @@
                     <label for="browser-filename">Filename (optional)</label>
                     <input type="text" id="browser-filename"
                         placeholder="video_name (leave empty for auto-generated name)">
+                    <div class="filename-error" id="browser-filename-error">A file with this name already exists</div>
                 </div>
 
                 <div class="input-group">
@@ -725,6 +742,42 @@
         let detectedStreamCount = 0;
         let downloadPopupShown = false;
 
+        // Validate filename doesn't already exist
+        async function validateFilename(inputId, errorId, format) {
+            const input = document.getElementById(inputId);
+            const errorDiv = document.getElementById(errorId);
+            let filename = input.value.trim();
+
+            if (!filename) {
+                input.classList.remove('input-error');
+                errorDiv.classList.remove('visible');
+                return true; // Empty is valid (will be handled by required check)
+            }
+
+            // Auto-append extension if not present
+            if (!filename.includes('.')) {
+                filename = filename + '.' + format;
+            }
+
+            try {
+                const response = await fetch(`/api/downloads/check-filename?filename=${encodeURIComponent(filename)}`);
+                const data = await response.json();
+
+                if (data.exists) {
+                    input.classList.add('input-error');
+                    errorDiv.classList.add('visible');
+                    return false;
+                } else {
+                    input.classList.remove('input-error');
+                    errorDiv.classList.remove('visible');
+                    return true;
+                }
+            } catch (error) {
+                console.error('Filename validation error:', error);
+                return true; // Allow on error
+            }
+        }
+
         // Start direct download
         async function startDirectDownload() {
             const url = document.getElementById('direct-url').value.trim();
@@ -740,6 +793,13 @@
 
             if (!filename) {
                 showStatus(statusBox, 'Please enter a filename', 'error');
+                return;
+            }
+
+            // Check if filename exists
+            const isValid = await validateFilename('direct-filename', 'direct-filename-error', format);
+            if (!isValid) {
+                showStatus(statusBox, 'Please choose a different filename - this one already exists', 'error');
                 return;
             }
 
@@ -792,6 +852,15 @@
             if (!url) {
                 showStatus(statusBox, 'Please enter a webpage URL', 'error');
                 return;
+            }
+
+            // Check if filename exists (only if filename is provided)
+            if (filename) {
+                const isValid = await validateFilename('browser-filename', 'browser-filename-error', format);
+                if (!isValid) {
+                    showStatus(statusBox, 'Please choose a different filename - this one already exists', 'error');
+                    return;
+                }
             }
 
             btn.disabled = true;
@@ -1409,7 +1478,7 @@
                                     <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Status:</strong> ${statusText}</p>
                                 </div>
                                 <div style="flex-shrink: 0;">
-                                    ${download.is_running ? `<button class="btn btn-secondary" onclick="stopDownload('${download.browser_id}')" style="background: #dc3545;">⏹ Stop</button>` : ''}
+                                    ${download.is_running ? `<button class="btn btn-secondary" onclick="stopDownload('${download.browser_id}', this)" style="background: #dc3545;">⏹ Stop</button>` : ''}
                                 </div>
                             </div>
                         `;
@@ -1424,8 +1493,14 @@
             }
         }
 
-        async function stopDownload(browserId) {
+        async function stopDownload(browserId, buttonElement) {
             try {
+                // Show deleting state
+                if (buttonElement) {
+                    buttonElement.disabled = true;
+                    buttonElement.innerHTML = '<span class="spinner"></span> Deleting...';
+                }
+
                 const response = await fetch(`/api/downloads/stop/${browserId}`, {
                     method: 'POST'
                 });
@@ -1433,9 +1508,20 @@
 
                 if (data.success) {
                     loadDownloads();
+                } else {
+                    // Restore button on failure
+                    if (buttonElement) {
+                        buttonElement.disabled = false;
+                        buttonElement.innerHTML = '⏹ Stop';
+                    }
                 }
             } catch (error) {
                 console.error('Stop download error:', error);
+                // Restore button on error
+                if (buttonElement) {
+                    buttonElement.disabled = false;
+                    buttonElement.innerHTML = '⏹ Stop';
+                }
             }
         }
 
@@ -1572,6 +1658,17 @@
                     closeStreamModal();
                 }
             };
+
+            // Add blur event listeners for filename validation
+            document.getElementById('direct-filename').addEventListener('blur', () => {
+                const format = document.getElementById('direct-format').value;
+                validateFilename('direct-filename', 'direct-filename-error', format);
+            });
+
+            document.getElementById('browser-filename').addEventListener('blur', () => {
+                const format = document.getElementById('browser-format').value;
+                validateFilename('browser-filename', 'browser-filename-error', format);
+            });
         });
     </script>
 
