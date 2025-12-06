@@ -7,6 +7,7 @@ class Config:
 
     def __init__(self):
         # Directories
+        self.BASE_DIR = os.getenv('BASE_DIR', '/app')
         self.DOWNLOAD_DIR = os.getenv('DOWNLOAD_DIR', '/app/downloads')
         self.CHROME_USER_DATA_DIR = os.getenv('CHROME_USER_DATA_DIR', '/app/chrome-data')
 
@@ -47,7 +48,7 @@ class Config:
     def log_startup_info(self, logger):
         """Log startup information"""
         logger.info("=" * 80)
-        logger.info("NAS VIDEO DOWNLOADER STARTING")
+        logger.info("DOCKER VIDEO DOWNLOADER STARTING")
         logger.info("=" * 80)
         logger.info(f"Python version: {sys.version}")
         logger.info(f"Working directory: {os.getcwd()}")
