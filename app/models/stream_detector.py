@@ -84,8 +84,8 @@ class StreamDetector:
                 except Exception as prefs_error:
                     logger.warning(f"Could not reset Chrome preferences: {prefs_error}")
 
-                # Enable remote debugging for CDP WebSocket
-                chrome_options.add_argument('--remote-debugging-port=9222')
+                # Enable remote debugging for CDP WebSocket (port 0 = auto-assign)
+                chrome_options.add_argument('--remote-debugging-port=0')
                 # Allow WebSocket connections to CDP from any origin
                 chrome_options.add_argument('--remote-allow-origins=*')
 
