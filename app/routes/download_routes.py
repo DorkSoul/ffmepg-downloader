@@ -163,10 +163,18 @@ def init_download_routes(download_service, download_dir):
         """List all downloads with metadata"""
         try:
             downloads = []
+            
+            # Get list of filenames currently being downloaded
+            active_downloads = download_service.get_active_downloads()
+            active_filenames = {d.get('filename', '') for d in active_downloads if d.get('is_running', False)}
 
             # List completed downloads
             if os.path.exists(download_dir):
                 for filename in os.listdir(download_dir):
+                    # Skip files that are currently being downloaded
+                    if filename in active_filenames:
+                        continue
+                        
                     filepath = os.path.join(download_dir, filename)
                     if os.path.isfile(filepath):
                         stat = os.stat(filepath)

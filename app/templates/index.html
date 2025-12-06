@@ -906,19 +906,22 @@
                     const modeText = autoDownload ? 'auto-download enabled' : 'manual selection';
                     showStatus(statusBox, `✓ Browser started! Looking for ${resolutionText} (${modeText})...`, 'success');
 
-                    // Show VNC viewer with auto-connect
-                    const vncContainer = document.getElementById('vnc-container');
-                    const vncFrame = document.getElementById('vnc-frame');
+                    // Only show VNC viewer initially if NOT in auto-download mode
+                    // In auto-download mode, VNC will only show if manual selection is needed
+                    if (!autoDownload) {
+                        const vncContainer = document.getElementById('vnc-container');
+                        const vncFrame = document.getElementById('vnc-frame');
 
-                    // Auto-connect to VNC and hide toolbar
-                    const vncUrl = 'http://' + window.location.hostname + ':6080/vnc.html?autoconnect=true&resize=scale';
-                    vncFrame.src = vncUrl;
-                    vncContainer.classList.add('active');
+                        // Auto-connect to VNC and hide toolbar
+                        const vncUrl = 'http://' + window.location.hostname + ':6080/vnc.html?autoconnect=true&resize=scale';
+                        vncFrame.src = vncUrl;
+                        vncContainer.classList.add('active');
 
-                    // Scroll to VNC viewer
-                    setTimeout(() => {
-                        vncContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 500);
+                        // Scroll to VNC viewer
+                        setTimeout(() => {
+                            vncContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 500);
+                    }
 
                     // Update button to show browser is running
                     btn.disabled = false;
@@ -1015,6 +1018,18 @@
                             console.log('Resolution:', res.resolution);
                             console.log('Framerate:', res.framerate);
                         });
+
+                        // Show VNC browser if not already shown (needed for manual selection)
+                        const vncContainer = document.getElementById('vnc-container');
+                        if (!vncContainer.classList.contains('active')) {
+                            const vncFrame = document.getElementById('vnc-frame');
+                            const vncUrl = 'http://' + window.location.hostname + ':6080/vnc.html?autoconnect=true&resize=scale';
+                            vncFrame.src = vncUrl;
+                            vncContainer.classList.add('active');
+                            setTimeout(() => {
+                                vncContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 500);
+                        }
 
                         // Show modal with all available streams
                         showStreamModal(data.available_resolutions);
