@@ -629,12 +629,59 @@ class StreamDetector:
         if not resolutions:
             return None
 
+        def get_resolution_height(res):
+            """Extract height from resolution string like '1920x1080' or from name like '1080p60'"""
+            resolution_str = res.get('resolution', '')
+            name = res.get('name', '').lower()
+            
+            # Try to extract from resolution field (e.g., "1920x1080")
+            if 'x' in resolution_str:
+                try:
+                    return int(resolution_str.split('x')[1])
+                except (ValueError, IndexError):
+                    pass
+            
+            # Try to extract from name (e.g., "1080p60" -> 1080)
+            import re
+            match = re.search(r'(\d+)p', name)
+            if match:
+                return int(match.group(1))
+            
+            # Fallback to bandwidth as a proxy for quality
+            return res.get('bandwidth', 0) // 1000000  # Convert to rough resolution estimate
+
+        def get_framerate(res):
+            """Extract framerate as a number"""
+            fr = res.get('framerate', '')
+            if fr:
+                try:
+                    return float(str(fr).split('.')[0])
+                except (ValueError, AttributeError):
+                    pass
+            
+            # Try to extract from name (e.g., "1080p60" -> 60)
+            name = res.get('name', '').lower()
+            import re
+            match = re.search(r'p(\d+)', name)
+            if match:
+                return float(match.group(1))
+            
+            return 0.0
+
         # Extract target resolution
         target_res = self.resolution.lower().replace('p', '')
 
-        # Special case: "source" means highest quality
+        # Special case: "source" means highest quality - sort by resolution height, then framerate
         if target_res == 'source':
-            return resolutions[0]
+            # Sort by resolution height (descending), then by framerate (descending)
+            sorted_streams = sorted(
+                resolutions,
+                key=lambda x: (get_resolution_height(x), get_framerate(x)),
+                reverse=True
+            )
+            best = sorted_streams[0]
+            logger.info(f"Source requested: selected {best.get('name', 'unknown')} - {best.get('resolution', '?')}@{best.get('framerate', '?')}fps")
+            return best
 
         # Filter by resolution first
         matching_res = [r for r in resolutions
@@ -642,19 +689,38 @@ class StreamDetector:
                           target_res in r.get('name', '').lower()]
 
         if not matching_res:
-            return resolutions[0]
+            # No exact match - return highest quality overall
+            sorted_streams = sorted(
+                resolutions,
+                key=lambda x: (get_resolution_height(x), get_framerate(x)),
+                reverse=True
+            )
+            logger.info(f"No match for {self.resolution}, falling back to highest: {sorted_streams[0].get('name', 'unknown')}")
+            return sorted_streams[0]
 
-        # Filter by framerate
+        # Sort matching streams by framerate (highest first)
+        sorted_matching = sorted(matching_res, key=lambda x: get_framerate(x), reverse=True)
+
+        # Filter by framerate preference
         if self.framerate == 'any':
-            return matching_res[0]
+            # Return highest framerate at the target resolution
+            best = sorted_matching[0]
+            logger.info(f"Matched {self.resolution} with highest framerate: {best.get('name', 'unknown')}@{best.get('framerate', '?')}fps")
+            return best
         elif self.framerate == '60':
-            fps_60 = [r for r in matching_res if '60' in str(r.get('framerate', ''))]
-            return fps_60[0] if fps_60 else None
+            fps_60 = [r for r in sorted_matching if get_framerate(r) >= 55]  # Allow some tolerance
+            if fps_60:
+                return fps_60[0]
+            logger.info(f"No 60fps stream found for {self.resolution}")
+            return None
         elif self.framerate == '30':
-            fps_30 = [r for r in matching_res if '30' in str(r.get('framerate', ''))]
-            return fps_30[0] if fps_30 else None
+            fps_30 = [r for r in sorted_matching if 25 <= get_framerate(r) <= 35]  # Allow some tolerance
+            if fps_30:
+                return fps_30[0]
+            logger.info(f"No 30fps stream found for {self.resolution}")
+            return None
 
-        return matching_res[0]
+        return sorted_matching[0]
 
     def _enrich_and_add_thumbnail(self, stream_dict):
         """Enrich stream metadata and add thumbnail"""
