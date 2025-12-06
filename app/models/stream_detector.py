@@ -62,7 +62,7 @@ class StreamDetector:
                 chrome_options.add_argument('--disable-setuid-sandbox')
                 chrome_options.add_argument('--disable-dev-shm-usage')
 
-                # Fix "Chrome did not shut down correctly"
+                # Fix "Chrome did not shut down correctly" and session restore issues
                 logger.info(f"Debug: Checking prefs in {self.config.CHROME_USER_DATA_DIR}")
                 try:
                     prefs_path = os.path.join(self.config.CHROME_USER_DATA_DIR, 'Default', 'Preferences')
@@ -70,15 +70,33 @@ class StreamDetector:
                         with open(prefs_path, 'r', encoding='utf-8') as f:
                             prefs = json.load(f)
                         
-                        # Reset crash flags
+                        # Reset crash flags and session restore settings
                         changed = False
-                        if 'profile' in prefs and 'exit_type' in prefs['profile']:
-                            if prefs['profile']['exit_type'] != 'Normal':
+                        
+                        # Reset exit_type to Normal
+                        if 'profile' in prefs:
+                            if prefs['profile'].get('exit_type') != 'Normal':
                                 prefs['profile']['exit_type'] = 'Normal'
+                                changed = True
+                            # Also reset exited_cleanly flag
+                            if prefs['profile'].get('exited_cleanly') != True:
+                                prefs['profile']['exited_cleanly'] = True
+                                changed = True
+                        
+                        # Disable session restore (prevents blank window with highlighted URL)
+                        if 'session' in prefs:
+                            if prefs['session'].get('restore_on_startup') != 5:  # 5 = don't restore
+                                prefs['session']['restore_on_startup'] = 5
+                                changed = True
+                        
+                        # Also clear the startup URLs (another session restore mechanism)
+                        if 'session' in prefs and 'startup_urls' in prefs['session']:
+                            if prefs['session']['startup_urls']:
+                                prefs['session']['startup_urls'] = []
                                 changed = True
                         
                         if changed:
-                            logger.info("Resetting Chrome crash flag in Preferences")
+                            logger.info("Resetting Chrome crash flag and session restore settings in Preferences")
                             with open(prefs_path, 'w', encoding='utf-8') as f:
                                 json.dump(prefs, f)
                 except Exception as prefs_error:
@@ -100,6 +118,11 @@ class StreamDetector:
                 chrome_options.add_argument('--disable-translate')
                 chrome_options.add_argument('--disable-default-apps')
                 chrome_options.add_argument('--disable-notifications')
+                
+                # Prevent session restore issues (blank window with highlighted URL)
+                chrome_options.add_argument('--disable-session-crashed-bubble')
+                chrome_options.add_argument('--disable-infobars')
+                chrome_options.add_argument('--no-first-run')
 
                 # User data directory for cookie persistence
                 chrome_options.add_argument(f'--user-data-dir={self.config.CHROME_USER_DATA_DIR}')
