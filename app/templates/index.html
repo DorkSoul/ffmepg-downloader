@@ -525,8 +525,9 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="direct-filename">Filename (required)</label>
-                    <input type="text" id="direct-filename" placeholder="video_name" required>
+                    <label for="direct-filename">Filename (optional)</label>
+                    <input type="text" id="direct-filename"
+                        placeholder="video_name (leave empty for auto-generated name)">
                     <div class="filename-error" id="direct-filename-error">A file with this name already exists</div>
                 </div>
 
@@ -799,21 +800,22 @@
                 return;
             }
 
+            // Auto-generate filename if empty
             if (!filename) {
-                showStatus(statusBox, 'Please enter a filename', 'error');
-                return;
-            }
+                const timestamp = Date.now();
+                filename = `video_${timestamp}.${format}`;
+            } else {
+                // Check if filename exists (only if user provided one)
+                const isValid = await validateFilename('direct-filename', 'direct-filename-error', format);
+                if (!isValid) {
+                    showStatus(statusBox, 'Please choose a different filename - this one already exists', 'error');
+                    return;
+                }
 
-            // Check if filename exists
-            const isValid = await validateFilename('direct-filename', 'direct-filename-error', format);
-            if (!isValid) {
-                showStatus(statusBox, 'Please choose a different filename - this one already exists', 'error');
-                return;
-            }
-
-            // Auto-append extension if not present
-            if (!filename.includes('.')) {
-                filename = filename + '.' + format;
+                // Auto-append extension if not present
+                if (!filename.includes('.')) {
+                    filename = filename + '.' + format;
+                }
             }
 
             btn.disabled = true;
