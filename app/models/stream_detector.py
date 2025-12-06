@@ -183,6 +183,8 @@ class StreamDetector:
         # Get CDP WebSocket URL for real-time event monitoring
         self._setup_cdp()
 
+        self.is_running = True
+
         # Start WebSocket CDP listener BEFORE navigating to catch initial requests
         if self.ws_url:
             threading.Thread(target=self._cdp_websocket_listener, daemon=True).start()
@@ -200,7 +202,6 @@ class StreamDetector:
         except Exception as e:
              logger.error(f"Error loading URL {url}: {e}")
              
-        self.is_running = True
         return True
 
     def _setup_cdp(self):
