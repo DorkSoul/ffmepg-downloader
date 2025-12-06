@@ -471,7 +471,7 @@ class StreamDetector:
         if url.lower().endswith('.ts') or url.lower().endswith('.m4s') or '/segment/' in url.lower():
             return False
 
-        # HIGH PRIORITY: Twitch HLS API endpoint
+        # HIGH PRIORITY: HLS API endpoints
         if 'usher.ttvnw.net' in url.lower() and '.m3u8' in url.lower():
             return True
 

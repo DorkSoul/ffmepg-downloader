@@ -1,9 +1,9 @@
 > [!WARNING]
 > **Legal Disclaimer**: This software is intended for personal use only. Users must only download content they have the legal right to access and store (e.g., public domain content, content under free licenses, or content for which they have explicit permission). The developers of this software are not responsible for any misuse, copyright infringement, or violations of Terms of Service. Do not use this tool for commercial purposes or to distribute copyrighted material without permission.
 
-# NAS Video Downloader
+# Docker Video Downloader
 
-A self-hosted video downloader designed for UGREEN NAS (and other Docker environments) that downloads videos and streams using FFmpeg with browser-based authentication support.
+A self-hosted, browser-based video downloader running in Docker. Downloads videos and streams using FFmpeg with full browser automation for sites requiring authentication.
 
 ## Features
 
@@ -25,7 +25,7 @@ A self-hosted video downloader designed for UGREEN NAS (and other Docker environ
 - **System**
   - **Background Processing**: Downloads run in the background with progress tracking.
   - **Thumbnail Generation**: Visual confirmation of the content being downloaded.
-  - **Dockerized**: specific optimization for NAS deployment with hardware acceleration support potential.
+  - **Dockerized**: Optimized for easy deployment in any Docker environment.
 
 ## Quick Start
 
@@ -53,8 +53,10 @@ docker-compose logs -f
 
 ## Access
 
-- **Web Interface**: `http://your-nas-ip:5000`
-- **Internal VNC**: Accessed via the "View Browser" button in the web interface (port 6080 internally).
+## Access
+
+- **Web Interface**: `http://localhost:5000` (or your server's IP:5000)
+- **Internal VNC**: Accessed via the "View Browser" button in the web interface.
 
 ## Usage
 
@@ -89,11 +91,18 @@ docker-compose logs -f
 
 ## Volume Mapping
 
-The `docker-compose.yml` is pre-configured for a typical NAS setup but can be adjusted:
+## Volume Mapping
 
-- `/volume1/media/downloads` -> `/app/downloads`: Where finished files are saved.
-- `/volume2/Dockerssd/video-downloader/chrome-data` -> `/app/chrome-data`: Persistence for Chrome user profile (cookies, sessions).
-- `/volume2/Dockerssd/video-downloader/logs` -> `/app/logs`: Application logs.
+The `docker-compose.yml` is configured for easy persistence. Map the following volumes to folders on your host machine:
+
+- `/app/downloads`: Where finished files are saved.
+- `/app/chrome-data`: Persistence for Chrome user profile (cookies, sessions).
+- `/app/logs`: Application logs.
+
+**Example mappings:**
+- `./downloads:/app/downloads`
+- `./chrome-data:/app/chrome-data`
+- `./logs:/app/logs`
 
 ## Configuration
 
