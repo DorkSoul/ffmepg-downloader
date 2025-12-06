@@ -7,7 +7,9 @@ import requests as req_lib
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import WebDriverException, TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import os
 import glob
 
@@ -123,6 +125,12 @@ class StreamDetector:
                 chrome_options.add_argument('--disable-session-crashed-bubble')
                 chrome_options.add_argument('--disable-infobars')
                 chrome_options.add_argument('--no-first-run')
+                # Additional flags to prevent session/tab restore
+                chrome_options.add_argument('--no-default-browser-check')
+                chrome_options.add_argument('--disable-restore-session-state')
+                chrome_options.add_argument('--disable-background-timer-throttling')
+                # Start with about:blank to prevent session restore race condition
+                chrome_options.add_argument('about:blank')
 
                 # User data directory for cookie persistence
                 chrome_options.add_argument(f'--user-data-dir={self.config.CHROME_USER_DATA_DIR}')
@@ -219,11 +227,51 @@ class StreamDetector:
         # Start monitoring network traffic (legacy polling as backup)
         threading.Thread(target=self._monitor_network, daemon=True).start()
 
-        logger.info(f"Loading {url}...")
-        try:
-            self.driver.get(url)
-        except Exception as e:
-             logger.error(f"Error loading URL {url}: {e}")
+        # Navigate to URL with explicit wait and retry logic
+        # This fixes a race condition where session restore interferes with navigation
+        logger.info(f"[NAV] Starting navigation to: {url}")
+        max_nav_attempts = 3
+        for attempt in range(max_nav_attempts):
+            try:
+                # First, navigate to about:blank to reset any session restore state
+                if attempt == 0:
+                    logger.info("[NAV] Navigating to about:blank first to clear any restore state")
+                    self.driver.get('about:blank')
+                    time.sleep(0.3)
+                
+                logger.info(f"[NAV] Attempt {attempt + 1}/{max_nav_attempts}: Loading {url}")
+                self.driver.get(url)
+                
+                # Wait for page to actually start loading
+                time.sleep(0.5)
+                
+                # Check if URL changed from about:blank
+                current_url = self.driver.current_url
+                logger.info(f"[NAV] Current URL after navigation: {current_url}")
+                
+                # Verify we're not still on about:blank and URL contains expected domain
+                if current_url == 'about:blank' or 'about:blank' in current_url:
+                    logger.warning(f"[NAV] Still on about:blank, retrying...")
+                    continue
+                
+                # Try to wait for page readyState to be 'loading' or 'complete'
+                try:
+                    WebDriverWait(self.driver, 10).until(
+                        lambda d: d.execute_script('return document.readyState') in ['interactive', 'complete']
+                    )
+                    logger.info(f"[NAV] ✓ Page loaded successfully: {self.driver.current_url[:80]}")
+                    break
+                except TimeoutException:
+                    logger.warning(f"[NAV] Page load timeout, but continuing (page may still be loading)")
+                    break
+                    
+            except Exception as e:
+                logger.error(f"[NAV] Error on attempt {attempt + 1}: {e}")
+                if attempt < max_nav_attempts - 1:
+                    logger.info(f"[NAV] Retrying navigation...")
+                    time.sleep(1)
+                else:
+                    logger.error(f"[NAV] All navigation attempts failed")
              
         return True
 
