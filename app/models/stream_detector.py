@@ -55,12 +55,15 @@ class StreamDetector:
                 logger.info(f"Starting Chrome browser for {url}")
 
                 chrome_options = Options()
+                logger.info("Debug: Created chrome_options")
+                
                 # Essential flags for Docker
                 chrome_options.add_argument('--no-sandbox')
                 chrome_options.add_argument('--disable-setuid-sandbox')
                 chrome_options.add_argument('--disable-dev-shm-usage')
 
                 # Fix "Chrome did not shut down correctly"
+                logger.info(f"Debug: Checking prefs in {self.config.CHROME_USER_DATA_DIR}")
                 try:
                     prefs_path = os.path.join(self.config.CHROME_USER_DATA_DIR, 'Default', 'Preferences')
                     if os.path.exists(prefs_path):

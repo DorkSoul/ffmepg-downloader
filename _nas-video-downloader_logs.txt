@@ -1,98 +1,100 @@
-2025-12-06 15:36:14,062 INFO reaped unknown pid 30 (exit status 0)
-2025-12-06 15:36:14,062 INFO reaped unknown pid 31 (exit status 0)
-2025-12-06 15:36:14,065 - app.services.browser_service - INFO - ChromeDriver: ChromeDriver 143.0.7499.40 (c23ff452476d1b6322d73b9b629420ef119d0388-refs/branch-heads/7499@{#2388})
-2025-12-06 15:36:14,066 - app.services.browser_service - INFO - DISPLAY environment: :99
-2025-12-06 15:36:14,071 - app.services.browser_service - INFO - Xvfb is running ✓
-2025-12-06 15:36:14,071 - app.services.browser_service - INFO - Download dir exists: True
-2025-12-06 15:36:14,071 - app.services.browser_service - INFO - Chrome data dir exists: True
-2025-12-06 15:36:14,076 - app.config - INFO - ================================================================================
-2025-12-06 15:36:14,076 - app.config - INFO - Application initialized successfully
-2025-12-06 15:36:14,076 - app.config - INFO - ================================================================================
- * Serving Flask app 'app'
- * Debug mode: off
-2025-12-06 15:36:14,078 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:5000
- * Running on http://172.31.0.2:5000
-2025-12-06 15:36:14,078 - werkzeug - INFO - Press CTRL+C to quit
-2025-12-06 15:36:14,567 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:14] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:14,577 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:14] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:14,587 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:14] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:14,607 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:14] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:14,725 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 15:36:14,725 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 15:36:14,725 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 15:36:14,725 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 15:36:14,725 INFO success: flask entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-2025-12-06 15:36:15,608 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:15] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:16,603 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:16] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:17,618 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:17] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:18,608 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:18] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:19,602 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:19] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:20,605 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:20] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:21,618 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:21] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:22,613 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:22] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:23,616 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:23] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:24,304 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:24] "GET / HTTP/1.1" 200 -
-2025-12-06 15:36:24,486 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:24] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:25,495 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:25] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:26,492 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:26] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:26,878 - app.routes.browser_routes - INFO - Starting browser with resolution: source, framerate: any
-2025-12-06 15:36:26,878 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
-2025-12-06 15:36:26,878 - app.models.stream_detector - ERROR - Unexpected error starting browser: NameError: name 'chrome_options' is not defined
-2025-12-06 15:36:26,880 - app.models.stream_detector - ERROR - Traceback: Traceback (most recent call last):
-  File "/app/app/models/stream_detector.py", line 58, in start_browser
-    chrome_options.add_argument('--disable-gpu')
-    ^^^^^^^^^^^^^^
-NameError: name 'chrome_options' is not defined
-2025-12-06 15:36:26,880 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:26] "POST /api/browser/start HTTP/1.1" 500 -
-2025-12-06 15:36:27,490 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:27] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:28,502 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:28] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:29,497 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:29] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:30,501 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:30] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:31,510 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:31] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:32,499 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:32] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:33,710 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:33] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:34,724 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:34] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:35,721 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:35] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:36,716 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:36] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:37,714 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:37] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:38,725 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:38] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:39,715 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:39] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:40,715 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:40] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:41,720 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:41] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:42,712 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:42] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:43,710 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:43] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:44,721 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:44] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:45,715 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:45] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:46,720 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:46] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:47,714 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:47] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:48,714 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:48] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:49,716 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:49] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:50,721 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:50] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:51,715 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:51] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:52,718 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:52] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:53,732 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:53] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:54,717 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:54] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:55,715 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:55] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:56,713 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:56] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:57,728 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:57] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:58,719 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:58] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:36:59,728 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:36:59] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:37:00,716 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:00] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:37:01,727 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:01] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:37:02,492 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:02] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:37:03,496 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:03] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:37:04,494 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:04] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:37:04,868 - app.routes.browser_routes - INFO - Starting browser with resolution: source, framerate: any
-2025-12-06 15:37:04,868 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:37:04,868 - app.models.stream_detector - ERROR - Unexpected error starting browser: NameError: name 'chrome_options' is not defined
-2025-12-06 15:37:04,869 - app.models.stream_detector - ERROR - Traceback: Traceback (most recent call last):
-  File "/app/app/models/stream_detector.py", line 58, in start_browser
-    chrome_options.add_argument('--disable-gpu')
-    ^^^^^^^^^^^^^^
-NameError: name 'chrome_options' is not defined
-2025-12-06 15:37:04,869 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:04] "POST /api/browser/start HTTP/1.1" 500 -
-2025-12-06 15:37:05,503 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:05] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:37:06,501 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:06] "GET /api/downloads/active HTTP/1.1" 200 -
-2025-12-06 15:37:07,711 - werkzeug - INFO - 192.168.0.88 - - [06/Dec/2025 15:37:07] "GET /api/downloads/active HTTP/1.1" 200 -
+2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,088 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,089 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,090 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,091 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,092 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,093 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,094 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,095 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,096 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,097 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,098 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,099 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,100 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,101 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,102 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,103 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
+2025-12-06 15:43:27,103 - app.models.stream_detector - INFO - Starting Chrome browser for fansly.com
