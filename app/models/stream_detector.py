@@ -84,8 +84,8 @@ class StreamDetector:
                 except Exception as prefs_error:
                     logger.warning(f"Could not reset Chrome preferences: {prefs_error}")
 
-                # Enable remote debugging for CDP WebSocket (port 0 = auto-assign)
-                chrome_options.add_argument('--remote-debugging-port=0')
+                # Enable remote debugging for CDP WebSocket
+                chrome_options.add_argument('--remote-debugging-port=9222')
                 # Allow WebSocket connections to CDP from any origin
                 chrome_options.add_argument('--remote-allow-origins=*')
 
@@ -126,6 +126,10 @@ class StreamDetector:
                 try:
                     self.driver = webdriver.Chrome(service=service, options=chrome_options)
                     logger.info("Chrome webdriver created successfully!")
+                    
+                    # Set page load timeout to prevent hangs
+                    self.driver.set_page_load_timeout(60)
+                    
                 except Exception as driver_error:
                     logger.error(f"Failed to create Chrome webdriver: {driver_error}")
 
@@ -191,7 +195,11 @@ class StreamDetector:
         threading.Thread(target=self._monitor_network, daemon=True).start()
 
         logger.info(f"Loading {url}...")
-        self.driver.get(url)
+        try:
+            self.driver.get(url)
+        except Exception as e:
+             logger.error(f"Error loading URL {url}: {e}")
+             
         self.is_running = True
         return True
 
