@@ -141,21 +141,16 @@ class BrowserService:
 
             # Force kill Chrome processes
             try:
-                logger.info("Force killing Chrome and ChromeDriver processes...")
                 subprocess.run(['pkill', '-9', 'chrome'], check=False, timeout=5)
                 subprocess.run(['pkill', '-9', 'chromedriver'], check=False, timeout=5)
-                logger.info("Process kill commands executed")
-            except Exception as e:
-                logger.warning(f"Error killing processes: {e}")
+            except Exception:
+                pass
 
             # Wait for processes to terminate
-            logger.info("Waiting for processes to terminate...")
             time.sleep(3)
 
-            # Clear Chrome user data directory
             if os.path.exists(self.config.CHROME_USER_DATA_DIR):
                 try:
-                    logger.info(f"Clearing Chrome data directory: {self.config.CHROME_USER_DATA_DIR}")
 
                     cleared_count = 0
                     failed_count = 0
@@ -188,10 +183,9 @@ class BrowserService:
                             logger.error(f"Failed to remove {item}: {item_error}")
                             failed_count += 1
 
-                    logger.info(f"Chrome data cleared: {cleared_count} items removed, {failed_count} items failed")
+                    logger.info(f"Chrome data cleared: {cleared_count} items")
 
-                    return True, f'Cookies cleared: {cleared_count} items removed' + \
-                               (f', {failed_count} items could not be removed (may be in use)' if failed_count > 0 else '')
+                    return True, f'Cookies cleared: {cleared_count} items removed'
 
                 except Exception as e:
                     logger.error(f"Error clearing Chrome data: {e}")

@@ -57,7 +57,6 @@ class StreamDetector:
                 logger.info(f"Starting Chrome browser for {url}")
 
                 chrome_options = Options()
-                logger.info("Debug: Created chrome_options")
                 
                 # Essential flags for Docker
                 chrome_options.add_argument('--no-sandbox')
@@ -65,7 +64,6 @@ class StreamDetector:
                 chrome_options.add_argument('--disable-dev-shm-usage')
 
                 # Fix "Chrome did not shut down correctly" and session restore issues
-                logger.info(f"Debug: Checking prefs in {self.config.CHROME_USER_DATA_DIR}")
                 try:
                     prefs_path = os.path.join(self.config.CHROME_USER_DATA_DIR, 'Default', 'Preferences')
                     if os.path.exists(prefs_path):
@@ -145,18 +143,15 @@ class StreamDetector:
                 # Enable performance logging to capture network events
                 chrome_options.set_capability('goog:loggingPrefs', {'performance': 'ALL'})
 
-                logger.info("Initializing ChromeDriver service")
+                logger.info("Initializing ChromeDriver...")
                 service = Service(
                     self.config.CHROMEDRIVER_PATH,
                     log_output=self.config.CHROMEDRIVER_LOG_PATH
                 )
 
-                logger.info("Creating Chrome webdriver instance...")
-                logger.debug(f"Chrome options: {[arg for arg in chrome_options.arguments]}")
-
                 try:
                     self.driver = webdriver.Chrome(service=service, options=chrome_options)
-                    logger.info("Chrome webdriver created successfully!")
+                    logger.info("Chrome started successfully")
                     
                     # Set page load timeout to prevent hangs
                     self.driver.set_page_load_timeout(60)
@@ -227,108 +222,65 @@ class StreamDetector:
         # Start monitoring network traffic (legacy polling as backup)
         threading.Thread(target=self._monitor_network, daemon=True).start()
 
-        # Navigate to URL with explicit wait and retry logic
-        # This fixes a race condition where session restore interferes with navigation
-        logger.info(f"[NAV] Starting navigation to: {url}")
+        # Navigate to URL with JS navigation to avoid session restore issues
+        logger.info(f"Navigating to {url}")
         max_nav_attempts = 3
         for attempt in range(max_nav_attempts):
             try:
                 # First, navigate to about:blank to reset any session restore state
                 if attempt == 0:
-                    logger.info("[NAV] Navigating to about:blank first to clear any restore state")
                     self.driver.get('about:blank')
                     time.sleep(0.5)
-                    
-                    # Check the initial readyState
-                    try:
-                        initial_state = self.driver.execute_script('return document.readyState')
-                        logger.info(f"[NAV] Initial readyState on about:blank: {initial_state}")
-                    except Exception as e:
-                        logger.warning(f"[NAV] Could not check initial readyState: {e}")
-                
-                logger.info(f"[NAV] Attempt {attempt + 1}/{max_nav_attempts}: Loading {url}")
                 
                 # Use JavaScript navigation for more forceful control
-                # This bypasses some Chrome quirks with session restore
                 try:
                     self.driver.execute_script(f'window.location.href = "{url}";')
-                    logger.info(f"[NAV] Used JavaScript navigation to {url}")
-                except Exception as js_err:
-                    logger.warning(f"[NAV] JS navigation failed ({js_err}), falling back to driver.get()")
+                except Exception:
                     self.driver.get(url)
                 
-                # Wait a bit for navigation to start
                 time.sleep(1)
-                
-                # Check if URL changed from about:blank
                 current_url = self.driver.current_url
-                logger.info(f"[NAV] Current URL after navigation: {current_url}")
                 
-                # Check page state
-                try:
-                    ready_state = self.driver.execute_script('return document.readyState')
-                    page_title = self.driver.title
-                    body_exists = self.driver.execute_script('return document.body !== null')
-                    body_html_len = self.driver.execute_script('return document.body ? document.body.innerHTML.length : 0')
-                    logger.info(f"[NAV] Page state: readyState={ready_state}, title='{page_title}', body_exists={body_exists}, body_html_len={body_html_len}")
-                except Exception as state_err:
-                    logger.warning(f"[NAV] Could not check page state: {state_err}")
-                
-                # Verify we're not still on about:blank and URL contains expected domain
+                # Verify we're not still on about:blank
                 if current_url == 'about:blank' or 'about:blank' in current_url:
-                    logger.warning(f"[NAV] Still on about:blank, retrying...")
                     continue
                 
                 # Check if body has content (not just a blank white page)
                 try:
                     body_len = self.driver.execute_script('return document.body ? document.body.innerHTML.length : 0')
                     if body_len < 100:
-                        logger.warning(f"[NAV] Page body is very small ({body_len} chars), page may not have loaded properly")
-                        # Try refreshing the page
-                        logger.info("[NAV] Attempting page refresh...")
                         self.driver.refresh()
                         time.sleep(2)
-                        body_len_after = self.driver.execute_script('return document.body ? document.body.innerHTML.length : 0')
-                        logger.info(f"[NAV] Body length after refresh: {body_len_after} chars")
-                except Exception as body_err:
-                    logger.warning(f"[NAV] Could not check body length: {body_err}")
+                except Exception:
+                    pass
                 
-                # Try to wait for page readyState to be 'interactive' or 'complete'
+                # Wait for page to be ready
                 try:
                     WebDriverWait(self.driver, 10).until(
                         lambda d: d.execute_script('return document.readyState') in ['interactive', 'complete']
                     )
-                    final_state = self.driver.execute_script('return document.readyState')
-                    final_body_len = self.driver.execute_script('return document.body ? document.body.innerHTML.length : 0')
-                    logger.info(f"[NAV] ✓ Page loaded: readyState={final_state}, body_len={final_body_len}, url={self.driver.current_url[:80]}")
-                    break
                 except TimeoutException:
-                    ready_state = self.driver.execute_script('return document.readyState') if self.driver else 'unknown'
-                    logger.warning(f"[NAV] Page load timeout (readyState={ready_state}), continuing anyway")
-                    break
+                    pass
+                break
                     
             except Exception as e:
-                logger.error(f"[NAV] Error on attempt {attempt + 1}: {e}")
+                logger.error(f"Navigation error on attempt {attempt + 1}: {e}")
                 if attempt < max_nav_attempts - 1:
-                    logger.info(f"[NAV] Retrying navigation...")
                     time.sleep(1)
                 else:
-                    logger.error(f"[NAV] All navigation attempts failed")
+                    logger.error("All navigation attempts failed")
              
         return True
 
     def _setup_cdp(self):
         """Setup Chrome DevTools Protocol connection"""
         try:
-            logger.info("Getting Chrome DevTools Protocol WebSocket URL...")
-
             # Get the debugger address from Chrome
             debugger_address = None
             if 'goog:chromeOptions' in self.driver.capabilities:
                 debugger_address = self.driver.capabilities['goog:chromeOptions'].get('debuggerAddress')
 
             if debugger_address:
-                logger.info(f"Chrome debugger address: {debugger_address}")
                 # Query the debugger to get WebSocket URL
                 debugger_url = f"http://{debugger_address}/json"
                 try:
@@ -336,22 +288,12 @@ class StreamDetector:
                     if response.status_code == 200:
                         pages = response.json()
                         if pages and len(pages) > 0:
-                            # Get the first page's WebSocket URL
                             self.ws_url = pages[0].get('webSocketDebuggerUrl')
-                            logger.info(f"✓ Got CDP WebSocket URL: {self.ws_url[:80]}...")
-                        else:
-                            logger.warning("No pages found in CDP debugger response")
-                    else:
-                        logger.warning(f"CDP debugger returned status {response.status_code}")
-                except Exception as e:
-                    logger.warning(f"Could not query CDP debugger: {e}")
-            else:
-                logger.warning("No debugger address in Chrome capabilities")
+                except Exception:
+                    pass
 
-            # Also enable Network domain via execute_cdp_cmd as backup
-            logger.info("Enabling Network domain via execute_cdp_cmd...")
+            # Enable Network domain via execute_cdp_cmd
             self.driver.execute_cdp_cmd('Network.enable', {})
-            logger.info("Network domain enabled via execute_cdp_cmd")
 
         except Exception as e:
             logger.warning(f"Could not set up CDP: {e}")
@@ -360,38 +302,32 @@ class StreamDetector:
         """Real-time CDP WebSocket listener"""
 
         def on_message(ws, message):
-            """Handle incoming CDP messages - capture ALL network activity"""
+            """Handle incoming CDP messages"""
             try:
                 data = json.loads(message)
                 method = data.get('method', '')
                 params = data.get('params', {})
 
-                # Log ALL Network events
                 if method.startswith('Network.'):
                     self._handle_network_event(method, params, ws)
-
-                # Handle Fetch events (modern video players use fetch/XHR)
                 elif method == 'Fetch.requestPaused':
                     self._handle_fetch_event(params, ws)
 
-            except json.JSONDecodeError as e:
-                logger.error(f"[CDP-WS] JSON decode error: {e}")
+            except json.JSONDecodeError:
+                pass
             except Exception as e:
-                logger.error(f"[CDP-WS] Error processing message: {e}")
+                logger.error(f"CDP error: {e}")
 
         def on_error(ws, error):
-            logger.error(f"[CDP-WS] WebSocket error: {error}")
+            logger.error(f"CDP WebSocket error: {error}")
 
         def on_close(ws, close_status_code, close_msg):
-            logger.info(f"[CDP-WS] WebSocket closed: {close_status_code} - {close_msg}")
+            pass
 
         def on_open(ws):
-            logger.info("CDP WebSocket OPEN CONNECTED!")
             self._cdp_enable_domains(ws)
 
-        # Connect to WebSocket
         try:
-            logger.info(f"Connecting to CDP WebSocket: {self.ws_url[:50]}...")
             self.ws = websocket.WebSocketApp(
                 self.ws_url,
                 on_open=on_open,
@@ -399,10 +335,9 @@ class StreamDetector:
                 on_error=on_error,
                 on_close=on_close
             )
-            
             self.ws.run_forever()
         except Exception as e:
-            logger.error(f"Error checking stream: {e}")
+            logger.error(f"CDP WebSocket error: {e}")
 
 
     def _handle_network_event(self, method, params, ws):
@@ -410,29 +345,13 @@ class StreamDetector:
         url = None
         mime_type = ''
 
-        if method == 'Network.requestWillBeSent':
-            request = params.get('request', {})
-            url = request.get('url', '')
-            request_method = request.get('method', '')
-            request_id = params.get('requestId', '')
-
-            if 'm3u8' in url.lower():
-                logger.info(f"[CDP-WS] 🔍 REQUEST (m3u8): {request_method} {url}")
-                logger.info(f"[CDP-WS]   └─ RequestID: {request_id}")
-
-        elif method == 'Network.responseReceived':
+        if method == 'Network.responseReceived':
             response = params.get('response', {})
             url = response.get('url', '')
             mime_type = response.get('mimeType', '')
-            status = response.get('status', '')
 
-            if 'm3u8' in url.lower() or 'mpegurl' in mime_type.lower():
-                logger.info(f"[CDP-WS] 🎯 RESPONSE (m3u8): Status={status} | MIME={mime_type}")
-                logger.info(f"[CDP-WS]   └─ URL: {url}")
-
-                # Process this as a detected stream
-                if self._is_video_stream(url, mime_type):
-                    self._add_detected_stream(url, mime_type)
+            if self._is_video_stream(url, mime_type):
+                self._add_detected_stream(url, mime_type)
 
     def _handle_fetch_event(self, params, ws):
         """Handle Fetch.requestPaused CDP events"""
@@ -440,21 +359,16 @@ class StreamDetector:
         url = request.get('url', '')
         request_id = params.get('requestId', '')
 
-        # Check for m3u8 playlists
         if 'm3u8' in url.lower():
             is_likely_master = self._is_likely_master_playlist(url)
             is_likely_media = self._is_likely_media_playlist(url)
 
-            # Only process master playlists
             if not is_likely_media and (is_likely_master or not self.detected_streams):
-                logger.info(f"Detected master playlist: {url[:100]}...")
-
-                # Process this as a detected stream
                 mime_type = 'application/vnd.apple.mpegurl'
                 if self._is_video_stream(url, mime_type):
                     self._add_detected_stream(url, mime_type, stream_type='HLS')
 
-        # Continue the request (don't block it)
+        # Continue the request
         try:
             continue_cmd = {
                 "id": self.cdp_session_id,
@@ -463,13 +377,13 @@ class StreamDetector:
             }
             self.cdp_session_id += 1
             ws.send(json.dumps(continue_cmd))
-        except Exception as e:
-            logger.error(f"[CDP-WS] Error continuing fetch request: {e}")
+        except Exception:
+            pass
 
     def _cdp_enable_domains(self, ws):
-        """Enable all CDP domains for network monitoring"""
+        """Enable CDP domains for network monitoring"""
         try:
-            # Network domain - CRITICAL for capturing network requests
+            # Network domain
             enable_cmd = {
                 "id": self.cdp_session_id,
                 "method": "Network.enable",
@@ -511,23 +425,14 @@ class StreamDetector:
             self.cdp_session_id += 1
             ws.send(json.dumps(runtime_enable_cmd))
 
-            logger.info("Network monitoring started")
-
         except Exception as e:
-            logger.error(f"[CDP-WS] Error sending enable commands: {e}")
+            logger.error(f"CDP enable error: {e}")
 
     def _monitor_network(self):
         """Monitor network traffic for video streams (legacy backup)"""
-        loop_count = 0
-
         while self.is_running and self.driver:
             try:
                 logs = self.driver.get_log('performance')
-                loop_count += 1
-
-                # Log every 2 minutes to show we're alive
-                if loop_count % 240 == 0:
-                    logger.info(f"[LEGACY-POLL] Loop #{loop_count}, monitoring active")
 
                 for entry in logs:
                     try:
@@ -535,30 +440,23 @@ class StreamDetector:
                         message = log_data.get('message', {})
                         method = message.get('method', '')
 
-                        # Check Network.responseReceived events
                         if method == 'Network.responseReceived':
                             params = message.get('params', {})
                             response = params.get('response', {})
                             url = response.get('url', '')
                             mime_type = response.get('mimeType', '')
 
-                            # Only log .m3u8 files
-                            if '.m3u8' in url.lower() or 'mpegurl' in mime_type.lower():
-                                logger.info(f"[LEGACY-POLL] 🔍 Found .m3u8: {url[:200]}...")
-
-                            # Detect video streams
                             if self._is_video_stream(url, mime_type):
                                 self._add_detected_stream(url, mime_type)
 
                     except json.JSONDecodeError:
                         continue
-                    except Exception as e:
-                        logger.error(f"Error processing log entry: {e}")
+                    except Exception:
+                        pass
 
                 time.sleep(0.5)
 
-            except Exception as e:
-                logger.error(f"Error in network monitoring: {e}")
+            except Exception:
                 break
 
     def _is_video_stream(self, url, mime_type):
@@ -574,7 +472,6 @@ class StreamDetector:
 
         # HIGH PRIORITY: Twitch HLS API endpoint
         if 'usher.ttvnw.net' in url.lower() and '.m3u8' in url.lower():
-            logger.info(f"✓✓✓ TWITCH HLS API DETECTED: {url[:150]}...")
             return True
 
         # Check for playlist extensions
@@ -648,21 +545,14 @@ class StreamDetector:
         """Handle detected stream - check if it's a master playlist"""
         stream_url = stream_info['url']
 
-        # Check if this is an HLS stream
         if '.m3u8' in stream_url.lower():
-            logger.info(f"Detected .m3u8 stream, checking if it's a master playlist...")
-
-            # Fetch and check if it's a master playlist
             content = PlaylistParser.fetch_master_playlist(stream_url)
 
             if content and '#EXT-X-STREAM-INF:' in content:
-                logger.info("This is a master playlist! Parsing resolutions...")
                 self._process_master_playlist(stream_url, content)
             else:
-                # Not a master playlist
                 self._process_single_stream(stream_url, stream_info)
         else:
-            # Not HLS
             self._process_single_stream(stream_url, stream_info)
 
     def _process_master_playlist(self, stream_url, content):
@@ -670,10 +560,7 @@ class StreamDetector:
         resolutions = PlaylistParser.parse_master_playlist(content)
 
         if resolutions:
-            logger.info(f"Found {len(resolutions)} resolutions")
-
             if self.auto_download:
-                logger.info("Auto-download enabled, finding matching stream...")
                 matched_stream = self._match_stream(resolutions)
 
                 if matched_stream:
@@ -681,18 +568,14 @@ class StreamDetector:
                     self._enrich_and_add_thumbnail(matched_stream)
                     self._start_download_with_stream(matched_stream)
                 else:
-                    logger.warning("No matching stream found, showing all streams")
                     self._show_stream_selection(resolutions)
             else:
-                # Manual mode
                 self._show_stream_selection(resolutions)
         else:
-            # Couldn't parse resolutions
             self._show_unparsed_stream(stream_url)
 
     def _process_single_stream(self, stream_url, stream_info):
         """Process a single stream (not a master playlist)"""
-        logger.info("Treating as single stream")
         stream_entry = {
             'url': stream_url,
             'bandwidth': 0,
@@ -703,11 +586,9 @@ class StreamDetector:
         }
 
         if self.auto_download:
-            logger.info("Auto-download enabled, downloading single stream")
             self._enrich_and_add_thumbnail(stream_entry)
             self._start_download_with_url(stream_url, stream_info['type'], stream_entry)
         else:
-            logger.info("Manual mode, showing single stream for selection")
             self._show_stream_selection([stream_entry])
 
     def _show_stream_selection(self, resolutions):
@@ -747,8 +628,6 @@ class StreamDetector:
         if not resolutions:
             return None
 
-        logger.info(f"Matching stream - Resolution: {self.resolution}, Framerate: {self.framerate}")
-
         # Extract target resolution
         target_res = self.resolution.lower().replace('p', '')
 
@@ -762,7 +641,6 @@ class StreamDetector:
                           target_res in r.get('name', '').lower()]
 
         if not matching_res:
-            logger.warning(f"No streams found matching resolution {self.resolution}")
             return resolutions[0]
 
         # Filter by framerate
@@ -789,9 +667,8 @@ class StreamDetector:
                 thumbnail = ThumbnailGenerator.generate_stream_thumbnail(stream_url)
                 if thumbnail:
                     stream_dict['thumbnail'] = thumbnail
-                    logger.info(f"Added thumbnail to stream: {stream_dict.get('name', 'unknown')}")
-        except Exception as e:
-            logger.error(f"Error enriching stream data: {e}")
+        except Exception:
+            pass
 
     def _start_download_with_stream(self, stream):
         """Start download with stream object"""
