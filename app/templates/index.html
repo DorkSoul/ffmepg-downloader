@@ -671,6 +671,14 @@
                     <p style="color: #666; padding: 20px;">No active downloads</p>
                 </div>
             </div>
+
+            <!-- Completed Downloads -->
+            <div class="card downloads-list">
+                <h2><span class="icon">✅</span> Completed Downloads</h2>
+                <div id="completed-downloads-container">
+                    <p style="color: #666; padding: 20px;">Loading...</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1498,7 +1506,7 @@
                 // Show deleting state
                 if (buttonElement) {
                     buttonElement.disabled = true;
-                    buttonElement.innerHTML = '<span class="spinner"></span> Deleting...';
+                    buttonElement.innerHTML = '<span class="spinner"></span> Stopping...';
                 }
 
                 const response = await fetch(`/api/downloads/stop/${browserId}`, {
@@ -1521,6 +1529,94 @@
                 if (buttonElement) {
                     buttonElement.disabled = false;
                     buttonElement.innerHTML = '⏹ Stop';
+                }
+            }
+        }
+
+        // Load completed downloads
+        async function loadCompletedDownloads() {
+            try {
+                const response = await fetch('/api/downloads/list');
+                const data = await response.json();
+
+                const container = document.getElementById('completed-downloads-container');
+                container.innerHTML = '';
+
+                if (data.downloads && data.downloads.length > 0) {
+                    data.downloads.forEach(download => {
+                        const item = document.createElement('div');
+                        item.style.cssText = 'background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #e0e0e0;';
+                        item.id = `completed-${download.filename}`;
+
+                        const sizeMB = (download.size / (1024 * 1024)).toFixed(2);
+                        const minutes = Math.floor(download.duration / 60);
+                        const seconds = download.duration % 60;
+                        const timeStr = download.duration > 0 ? `${minutes}:${seconds.toString().padStart(2, '0')}` : 'Unknown';
+                        const resolutionStr = download.framerate ? `${download.resolution}@${download.framerate}` : download.resolution;
+
+                        item.innerHTML = `
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                ${download.thumbnail ? `
+                                    <div style="flex-shrink: 0;">
+                                        <img src="data:image/jpeg;base64,${download.thumbnail}"
+                                             style="width: 160px; height: 90px; object-fit: cover; border-radius: 8px; border: 2px solid #28a745;"
+                                             alt="Video preview">
+                                    </div>
+                                ` : `
+                                    <div style="flex-shrink: 0; width: 160px; height: 90px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px;">
+                                        🎬
+                                    </div>
+                                `}
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 8px 0; color: #28a745;">✓ ${download.filename}</h4>
+                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Resolution:</strong> ${resolutionStr}</p>
+                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Size:</strong> ${sizeMB} MB &nbsp;&nbsp; <strong>Duration:</strong> ${timeStr}</p>
+                                </div>
+                                <div style="flex-shrink: 0;">
+                                    <button class="btn btn-secondary" onclick="deleteDownload('${download.filename}', this)" style="background: #dc3545;">🗑 Delete</button>
+                                </div>
+                            </div>
+                        `;
+
+                        container.appendChild(item);
+                    });
+                } else {
+                    container.innerHTML = '<p style="color: #666; padding: 20px;">No completed downloads</p>';
+                }
+            } catch (error) {
+                console.error('Load completed downloads error:', error);
+            }
+        }
+
+        async function deleteDownload(filename, buttonElement) {
+            try {
+                // Show deleting state
+                if (buttonElement) {
+                    buttonElement.disabled = true;
+                    buttonElement.innerHTML = '<span class="spinner"></span> Deleting...';
+                }
+
+                const response = await fetch(`/api/downloads/delete/${encodeURIComponent(filename)}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    loadCompletedDownloads();
+                } else {
+                    // Restore button on failure
+                    if (buttonElement) {
+                        buttonElement.disabled = false;
+                        buttonElement.innerHTML = '🗑 Delete';
+                    }
+                    alert('Failed to delete: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Delete download error:', error);
+                // Restore button on error
+                if (buttonElement) {
+                    buttonElement.disabled = false;
+                    buttonElement.innerHTML = '🗑 Delete';
                 }
             }
         }
@@ -1649,7 +1745,9 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadDownloads();
-            setInterval(loadDownloads, 1000); // Refresh every 1 second
+            loadCompletedDownloads();
+            setInterval(loadDownloads, 1000); // Refresh active downloads every 1 second
+            setInterval(loadCompletedDownloads, 10000); // Refresh completed downloads every 10 seconds
 
             // Close modal when clicking outside of it
             window.onclick = function (event) {
