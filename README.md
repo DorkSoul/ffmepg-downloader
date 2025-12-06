@@ -1,22 +1,32 @@
 # NAS Video Downloader
 
-A self-hosted video downloader designed for UGREEN NAS that downloads videos and streams using FFmpeg with browser-based authentication support.
+A self-hosted video downloader designed for UGREEN NAS (and other Docker environments) that downloads videos and streams using FFmpeg with browser-based authentication support.
 
 ## Features
 
 - **Dual Download Modes**
-  - Direct Download: Download from known stream URLs (.m3u8, .mpd, .mp4)
-  - Browser Mode: Automated stream detection with Chrome browser
+  - **Direct Download**: Download directly from URLs (.m3u8, .mpd, .mp4) with support for format conversion.
+  - **Browser Mode**: Interactive Chrome browser to navigate, log in, and automatically detect video streams.
 
-- **Cookie Persistence** - Log in once, stay logged in forever
-- **Visual Confirmation** - See thumbnail before download completes
-- **Stream Detection** - Automatically detects HLS, DASH, and MP4 streams
-- **Network Accessible** - Access from any device on your network
-- **Modern Web Interface** - Clean, responsive design
+- **Format Conversion**
+  - **Video**: MP4, MKV, WebM, MOV, AVI, FLV, WMV, TS
+  - **Audio Extraction**: MP3, AAC, M4A, FLAC, WAV, OGG, OPUS, WMA
+
+- **Advanced Browser Capabilities**
+  - **Cookie Persistence**: Log in once, stay logged in specifically for sites requiring authentication.
+  - **Stream Detection**: Automatically detects HLS, DASH, and progressive streams.
+  - **Manual Control**: Options to select specific resolutions or streams if multiple are detected.
+  - **Clear Cookies**: Built-in tool to clear browser data if needed.
+  - **noVNC Integration**: View and interact with the browser directly within the web interface.
+
+- **System**
+  - **Background Processing**: Downloads run in the background with progress tracking.
+  - **Thumbnail Generation**: Visual confirmation of the content being downloaded.
+  - **Dockerized**: specific optimization for NAS deployment with hardware acceleration support potential.
 
 ## Quick Start
 
-### Deploy with Portainer
+### Deploy with Portainer (Recommended)
 
 1. In Portainer, go to **Stacks** > **Add Stack**
 2. Choose **Repository** deployment method
@@ -40,99 +50,71 @@ docker-compose logs -f
 
 ## Access
 
-- **Web Interface**: http://your-nas-ip:5000
-- **noVNC Browser**: http://your-nas-ip:6080 (embedded in interface)
+- **Web Interface**: `http://your-nas-ip:5000`
+- **Internal VNC**: Accessed via the "View Browser" button in the web interface (port 6080 internally).
 
 ## Usage
 
 ### Direct Download Mode
 
-1. Open the web interface
-2. Paste a direct stream URL (e.g., `https://example.com/stream.m3u8`)
-3. Optionally enter a custom filename
-4. Click "Download Now"
+1. Open the web interface.
+2. Select **Direct Download** tab.
+3. Paste a stream URL (e.g., `.m3u8` or `.mp4`).
+4. (Optional) Enter a custom filename.
+5. Select the **Output Format** (Video or Audio).
+6. Click **Download**.
 
 ### Browser Mode (Find Link)
 
 **First time on a new site:**
 
-1. Select "Find Link" mode
-2. Paste the webpage URL (e.g., `https://videosite.com/watch/12345`)
-3. Click "Open Browser & Detect"
-4. Chrome window appears - log in to the site
-5. Navigate to the video and play it
-6. Download starts automatically when stream is detected
-7. Popup shows thumbnail and confirms download
-8. Browser closes after 15 seconds
+1. Select **Browser Mode** tab.
+2. Enter the webpage URL (e.g., `https://videosite.com/watch/12345`).
+3. Select desired **Output Format**.
+4. Click **Launch Browser**.
+5. The browser view will appear. **Log in** to the site if necessary.
+6. Navigate to the video and play it.
+7. The system will detect the stream and offer to download it.
+8. Confirm the download (or it will auto-start if configured).
 
 **Next time on the same site:**
 
-1. Paste a new video URL from the same site
-2. Click "Open Browser & Detect"
-3. You're already logged in (cookies saved!)
-4. Video plays automatically
-5. Download starts immediately
+1. Paste a new video URL.
+2. Click **Launch Browser**.
+3. You should still be logged in (cookies are persisted).
+4. Video plays, stream is detected, download starts.
 
 ## Volume Mapping
 
-The docker-compose.yml maps:
+The `docker-compose.yml` is pre-configured for a typical NAS setup but can be adjusted:
 
-- `/volume1/media/downloads` - Downloaded videos (HDD)
-- `/volume2/Dockerssd/video-downloader/chrome-data` - Chrome cookies & session (SSD)
-- `/volume2/Dockerssd/video-downloader/logs` - Application logs (SSD)
+- `/volume1/media/downloads` -> `/app/downloads`: Where finished files are saved.
+- `/volume2/Dockerssd/video-downloader/chrome-data` -> `/app/chrome-data`: Persistence for Chrome user profile (cookies, sessions).
+- `/volume2/Dockerssd/video-downloader/logs` -> `/app/logs`: Application logs.
 
 ## Configuration
 
 Environment variables in `docker-compose.yml`:
 
-- `AUTO_CLOSE_DELAY` - Seconds before auto-closing browser (default: 15)
-- `DOWNLOAD_DIR` - Where to save videos
-- `CHROME_USER_DATA_DIR` - Chrome profile location
+- `DOWNLOAD_DIR`: Internal path for downloads (Default: `/app/downloads`)
+- `CHROME_USER_DATA_DIR`: Internal path for Chrome data (Default: `/app/chrome-data`)
+- `AUTO_CLOSE_DELAY`: Seconds to wait before closing browser after detection (Default: 15)
+- `DISPLAY`: Xvfb display number (Default: `:99`)
 
 ## Troubleshooting
 
-### Browser doesn't open
-- Check that port 6080 is not blocked
-- Verify Chrome installed: `docker exec -it nas-video-downloader google-chrome --version`
+### Browser doesn't open / White screen
+- Ensure `shm_size: 2gb` is set in your docker-compose file (Chrome needs shared memory).
+- Check logs for "Chrome did not shut down correctly" - use the **Clear Cookies** button in the UI to reset the profile.
 
 ### Stream not detected
-- Ensure video is actually playing in the browser
-- Some sites use protected streams that can't be detected
-- Check logs: `docker-compose logs -f`
+- Ensure the video is actually playing in the embedded browser.
+- Some DRM-protected content (Widevine) cannot be downloaded by FFmpeg.
 
-### Downloads not appearing
-- Verify volume mount exists: `/volume1/media/downloads`
-- Check container logs for FFmpeg errors
-- Ensure sufficient disk space
-
-### Cookie persistence not working
-- Check `/volume2/Dockerssd/video-downloader/chrome-data` exists and is writable
-- Don't use incognito/private mode in the browser view
-
-## Architecture
-
-- **Flask** - Web server and API
-- **Selenium** - Chrome automation
-- **Chrome DevTools Protocol** - Network traffic monitoring
-- **FFmpeg** - Video downloading
-- **noVNC** - Browser embedding
-- **Xvfb** - Virtual display
-- **Supervisor** - Process management
-
-## Security Notes
-
-- This tool is designed for **personal use on a local network**
-- Do not expose ports to the internet without proper authentication
-- Respect copyright laws and terms of service
-- Only download content you have rights to
-
-## Support
-
-For issues, please create a GitHub issue with:
-- Error messages from logs
-- Steps to reproduce
-- Browser/OS information
+### Cookies not saving
+- Verify the `chrome-data` volume is writable.
+- Avoid using "Incognito" or similar features inside the embedded browser (standard session is used by default).
 
 ## License
 
-MIT License - See LICENSE file for details
+MIT License - See LICENSE file for details.
