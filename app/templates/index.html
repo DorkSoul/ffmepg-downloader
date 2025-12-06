@@ -710,7 +710,7 @@
             btn.innerHTML = '<span class="spinner"></span> Starting download...';
 
             try {
-                const response = await fetch('/api/download/direct', {
+                const response = await fetch('/api/downloads/direct', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ url, filename })
