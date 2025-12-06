@@ -252,6 +252,11 @@ class StreamDetector:
                 elif method == 'Fetch.requestPaused':
                     self._handle_fetch_event(params, ws)
 
+            except json.JSONDecodeError as e:
+                logger.error(f"[CDP-WS] JSON decode error: {e}")
+            except Exception as e:
+                logger.error(f"[CDP-WS] Error processing message: {e}")
+
 
     def _handle_network_event(self, method, params, ws):
         """Handle Network.* CDP events"""

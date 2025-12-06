@@ -1,100 +1,75 @@
-2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,302 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,303 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,304 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,305 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,306 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,307 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Starting Chrome browser for https://www.twitch.tv/yuukikoubyou
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Created chrome_options
-2025-12-06 15:47:46,308 - app.models.stream_detector - INFO - Debug: Checking prefs in /app/chrome-data
+2025-12-06 15:51:11,643 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-12-06 15:51:11,645 INFO supervisord started with pid 1
+2025-12-06 15:51:12,648 INFO spawned: 'xvfb' with pid 7
+2025-12-06 15:51:12,650 INFO spawned: 'fluxbox' with pid 8
+2025-12-06 15:51:12,651 INFO spawned: 'x11vnc' with pid 9
+2025-12-06 15:51:12,652 INFO spawned: 'novnc' with pid 10
+2025-12-06 15:51:12,654 INFO spawned: 'flask' with pid 11
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/app.py", line 3, in <module>
+    from app.services import DownloadService, BrowserService
+  File "/app/app/services/__init__.py", line 2, in <module>
+    from .browser_service import BrowserService
+  File "/app/app/services/browser_service.py", line 6, in <module>
+    from app.models import StreamDetector
+  File "/app/app/models/__init__.py", line 1, in <module>
+    from .stream_detector import StreamDetector
+  File "/app/app/models/stream_detector.py", line 256
+    def _handle_network_event(self, method, params, ws):
+SyntaxError: expected 'except' or 'finally' block
+2025-12-06 15:51:12,912 WARN exited: flask (exit status 1; not expected)
+2025-12-06 15:51:13,664 INFO success: xvfb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 15:51:13,664 INFO success: fluxbox entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 15:51:13,664 INFO success: x11vnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 15:51:13,664 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-12-06 15:51:14,518 INFO spawned: 'flask' with pid 29
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/app.py", line 3, in <module>
+    from app.services import DownloadService, BrowserService
+  File "/app/app/services/__init__.py", line 2, in <module>
+    from .browser_service import BrowserService
+  File "/app/app/services/browser_service.py", line 6, in <module>
+    from app.models import StreamDetector
+  File "/app/app/models/__init__.py", line 1, in <module>
+    from .stream_detector import StreamDetector
+  File "/app/app/models/stream_detector.py", line 256
+    def _handle_network_event(self, method, params, ws):
+SyntaxError: expected 'except' or 'finally' block
+2025-12-06 15:51:14,706 WARN exited: flask (exit status 1; not expected)
+2025-12-06 15:51:16,711 INFO spawned: 'flask' with pid 38
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/app.py", line 3, in <module>
+    from app.services import DownloadService, BrowserService
+  File "/app/app/services/__init__.py", line 2, in <module>
+    from .browser_service import BrowserService
+  File "/app/app/services/browser_service.py", line 6, in <module>
+    from app.models import StreamDetector
+  File "/app/app/models/__init__.py", line 1, in <module>
+    from .stream_detector import StreamDetector
+  File "/app/app/models/stream_detector.py", line 256
+    def _handle_network_event(self, method, params, ws):
+SyntaxError: expected 'except' or 'finally' block
+2025-12-06 15:51:16,890 WARN exited: flask (exit status 1; not expected)
+2025-12-06 15:51:19,896 INFO spawned: 'flask' with pid 39
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/app.py", line 3, in <module>
+    from app.services import DownloadService, BrowserService
+  File "/app/app/services/__init__.py", line 2, in <module>
+    from .browser_service import BrowserService
+  File "/app/app/services/browser_service.py", line 6, in <module>
+    from app.models import StreamDetector
+  File "/app/app/models/__init__.py", line 1, in <module>
+    from .stream_detector import StreamDetector
+  File "/app/app/models/stream_detector.py", line 256
+    def _handle_network_event(self, method, params, ws):
+SyntaxError: expected 'except' or 'finally' block
+2025-12-06 15:51:20,091 WARN exited: flask (exit status 1; not expected)
+2025-12-06 15:51:21,093 INFO gave up: flask entered FATAL state, too many start retries too quickly
