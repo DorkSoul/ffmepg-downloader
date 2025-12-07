@@ -13,6 +13,9 @@ class Config:
         # Timing
         self.AUTO_CLOSE_DELAY = int(os.getenv('AUTO_CLOSE_DELAY', '15'))
 
+        # Schedules
+        self.SCHEDULES_FILE = os.path.join(self.CHROME_USER_DATA_DIR, 'schedules.json')
+
         # Chrome paths
         self.CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
         self.CHROMEDRIVER_LOG_PATH = '/app/logs/chromedriver.log'

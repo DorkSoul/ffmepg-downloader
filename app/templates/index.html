@@ -665,6 +665,76 @@
                 <iframe id="vnc-frame" class="vnc-frame" src=""></iframe>
             </div>
 
+            <!-- Scheduled Downloads -->
+            <!-- Scheduled Downloads -->
+            <!-- Scheduled Downloads -->
+            <div class="card">
+                <h2><span class="icon">📅</span> Scheduled Downloads</h2>
+                <p>Schedule automatic stream checks. The browser will open the page and search for video streams.</p>
+
+                <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #333;">Add New Schedule</h3>
+
+                <div class="input-group">
+                    <label for="sched-url">Webpage URL</label>
+                    <input type="text" id="sched-url" placeholder="https://www.twitch.tv/channel">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label for="sched-start">Start Time</label>
+                        <input type="datetime-local" id="sched-start">
+                    </div>
+                    <div class="input-group">
+                        <label for="sched-end">End Time</label>
+                        <input type="datetime-local" id="sched-end">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label for="sched-resolution">Target Resolution</label>
+                        <select id="sched-resolution" class="select-input">
+                            <option value="source">Source (Best)</option>
+                            <option value="2160p">4K (2160p)</option>
+                            <option value="1440p">1440p</option>
+                            <option value="1080p" selected>1080p</option>
+                            <option value="720p">720p</option>
+                            <option value="480p">480p</option>
+                            <option value="360p">360p</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="sched-framerate">Target FPS</label>
+                        <select id="sched-framerate" class="select-input">
+                            <option value="any" selected>Any</option>
+                            <option value="60">60 FPS</option>
+                            <option value="30">30 FPS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="sched-repeat" style="width: auto; margin-right: 8px;">
+                        Repeat Weekly (Same time next week)
+                    </label>
+                </div>
+
+                <button class="btn" onclick="addSchedule()">
+                    Add Schedule
+                </button>
+
+                <div class="status-box" id="sched-status" style="margin-top: 15px;"></div>
+            </div>
+
+            <!-- Active Schedules -->
+            <div class="card">
+                <h2><span class="icon">📋</span> Active Schedules</h2>
+                <div id="schedules-list" style="display: grid; gap: 10px; max-height: 400px; overflow-y: auto;">
+                    <!-- Schedules will be loaded here -->
+                </div>
+            </div>
+
             <!-- Active Downloads -->
             <div class="card downloads-list">
                 <h2><span class="icon">⏬</span> Active Downloads</h2>
@@ -1759,10 +1829,119 @@
             }
         }
 
+        // Schedules
+        async function loadSchedules() {
+            try {
+                const response = await fetch('/api/schedules/');
+                const schedules = await response.json();
+
+                const container = document.getElementById('schedules-list');
+                container.innerHTML = '';
+
+                if (schedules.length === 0) {
+                    container.innerHTML = '<p style="color: #666; font-size: 0.9rem;">No active schedules</p>';
+                    return;
+                }
+
+                schedules.forEach(sched => {
+                    const item = document.createElement('div');
+                    item.className = 'download-item';
+
+                    const start = new Date(sched.start_time).toLocaleString();
+                    const end = new Date(sched.end_time).toLocaleString();
+                    const nextCheck = sched.next_check ? new Date(sched.next_check).toLocaleTimeString() : 'Pending window';
+
+                    let statusColor = '#666';
+                    if (sched.status === 'active') statusColor = '#28a745';
+                    if (sched.status === 'download_started') statusColor = '#17a2b8';
+
+                    item.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;">
+                            <div style="overflow: hidden;">
+                                <h4 title="${sched.url}">${sched.name || sched.url}</h4>
+                                <p><strong>Window:</strong> <br>${start} <br>to ${end}</p>
+                                <p><strong>Repeat:</strong> ${sched.repeat ? 'Yes' : 'No'}</p>
+                                <p style="color: ${statusColor}"><strong>Status:</strong> ${sched.status} ${sched.next_check ? `(Next check: ${nextCheck})` : ''}</p>
+                            </div>
+                            <button class="btn btn-secondary" style="width: auto; padding: 5px 10px; font-size: 0.8rem; background: #dc3545;" onclick="deleteSchedule('${sched.id}', this)">DELETE</button>
+                        </div>
+                    `;
+                    container.appendChild(item);
+                });
+
+            } catch (error) {
+                console.error('Error loading schedules:', error);
+            }
+        }
+
+        async function addSchedule() {
+            const url = document.getElementById('sched-url').value.trim();
+            const start = document.getElementById('sched-start').value;
+            const end = document.getElementById('sched-end').value;
+            const repeat = document.getElementById('sched-repeat').checked;
+            const resolution = document.getElementById('sched-resolution').value;
+            const framerate = document.getElementById('sched-framerate').value;
+            const statusBox = document.getElementById('sched-status');
+
+            if (!url || !start || !end) {
+                showStatus(statusBox, 'Please fill all fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/schedules/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        url: url,
+                        start_time: start,
+                        end_time: end,
+                        repeat: repeat,
+                        resolution: resolution,
+                        framerate: framerate,
+                        name: url.substring(0, 30) + '...'
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showStatus(statusBox, 'Schedule added!', 'success');
+                    document.getElementById('sched-url').value = '';
+                    loadSchedules();
+                } else {
+                    showStatus(statusBox, 'Error: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showStatus(statusBox, 'Error: ' + error.message, 'error');
+            }
+        }
+
+        async function deleteSchedule(id, btn) {
+            if (!confirm('Delete this schedule?')) return;
+
+            try {
+                btn.disabled = true;
+                const response = await fetch(`/api/schedules/${id}`, { method: 'DELETE' });
+                const data = await response.json();
+
+                if (data.success) {
+                    loadSchedules();
+                } else {
+                    alert('Error: ' + data.error);
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                console.error(error);
+                btn.disabled = false;
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadDownloads();
+            loadSchedules();
             loadCompletedDownloads();
+            setInterval(loadSchedules, 10000); // Refresh schedules every 10s
             setInterval(loadDownloads, 1000); // Refresh active downloads every 1 second
             setInterval(loadCompletedDownloads, 10000); // Refresh completed downloads every 10 seconds
 

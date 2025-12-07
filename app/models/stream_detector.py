@@ -625,102 +625,104 @@ class StreamDetector:
         ).start()
 
     def _match_stream(self, resolutions):
-        """Find best matching stream based on resolution and framerate preferences"""
+        """Find best matching stream with cascade fallback logic"""
         if not resolutions:
             return None
 
+        # Helper to get numeric values
         def get_resolution_height(res):
-            """Extract height from resolution string like '1920x1080' or from name like '1080p60'"""
             resolution_str = res.get('resolution', '')
             name = res.get('name', '').lower()
-            
-            # Try to extract from resolution field (e.g., "1920x1080")
             if 'x' in resolution_str:
                 try:
                     return int(resolution_str.split('x')[1])
-                except (ValueError, IndexError):
-                    pass
-            
-            # Try to extract from name (e.g., "1080p60" -> 1080)
+                except: pass
             import re
             match = re.search(r'(\d+)p', name)
             if match:
                 return int(match.group(1))
-            
-            # Fallback to bandwidth as a proxy for quality
-            return res.get('bandwidth', 0) // 1000000  # Convert to rough resolution estimate
+            return res.get('bandwidth', 0) // 1000000
 
         def get_framerate(res):
-            """Extract framerate as a number"""
             fr = res.get('framerate', '')
             if fr:
                 try:
                     return float(str(fr).split('.')[0])
-                except (ValueError, AttributeError):
-                    pass
-            
-            # Try to extract from name (e.g., "1080p60" -> 60)
+                except: pass
             name = res.get('name', '').lower()
             import re
             match = re.search(r'p(\d+)', name)
             if match:
                 return float(match.group(1))
-            
             return 0.0
 
-        # Extract target resolution
-        target_res = self.resolution.lower().replace('p', '')
+        # Sort all streams by quality (Resolution DESC, Framerate DESC)
+        sorted_streams = sorted(
+            resolutions,
+            key=lambda x: (get_resolution_height(x), get_framerate(x)),
+            reverse=True
+        )
 
-        # Special case: "source" means highest quality - sort by resolution height, then framerate
-        if target_res == 'source':
-            # Sort by resolution height (descending), then by framerate (descending)
-            sorted_streams = sorted(
-                resolutions,
-                key=lambda x: (get_resolution_height(x), get_framerate(x)),
-                reverse=True
-            )
-            best = sorted_streams[0]
-            logger.info(f"Source requested: selected {best.get('name', 'unknown')} - {best.get('resolution', '?')}@{best.get('framerate', '?')}fps")
-            return best
-
-        # Filter by resolution first
-        matching_res = [r for r in resolutions
-                       if target_res in r.get('resolution', '').lower() or
-                          target_res in r.get('name', '').lower()]
-
-        if not matching_res:
-            # No exact match - return highest quality overall
-            sorted_streams = sorted(
-                resolutions,
-                key=lambda x: (get_resolution_height(x), get_framerate(x)),
-                reverse=True
-            )
-            logger.info(f"No match for {self.resolution}, falling back to highest: {sorted_streams[0].get('name', 'unknown')}")
+        target_res_str = self.resolution.lower().replace('p', '')
+        
+        # 0. Source/Highest Request
+        if target_res_str == 'source':
+            logger.info("Match: Source requested, using highest quality.")
             return sorted_streams[0]
 
-        # Sort matching streams by framerate (highest first)
-        sorted_matching = sorted(matching_res, key=lambda x: get_framerate(x), reverse=True)
+        try:
+            target_height = int(target_res_str)
+        except ValueError:
+            target_height = 1080 # Default if parsing fails
 
-        # Filter by framerate preference
-        if self.framerate == 'any':
-            # Return highest framerate at the target resolution
-            best = sorted_matching[0]
-            logger.info(f"Matched {self.resolution} with highest framerate: {best.get('name', 'unknown')}@{best.get('framerate', '?')}fps")
-            return best
-        elif self.framerate == '60':
-            fps_60 = [r for r in sorted_matching if get_framerate(r) >= 55]  # Allow some tolerance
-            if fps_60:
-                return fps_60[0]
-            logger.info(f"No 60fps stream found for {self.resolution}")
-            return None
-        elif self.framerate == '30':
-            fps_30 = [r for r in sorted_matching if 25 <= get_framerate(r) <= 35]  # Allow some tolerance
-            if fps_30:
-                return fps_30[0]
-            logger.info(f"No 30fps stream found for {self.resolution}")
-            return None
+        target_fps = None
+        if self.framerate in ['60', '30']:
+            target_fps = float(self.framerate)
 
-        return sorted_matching[0]
+        # 1. Try Perfect Match (Resolution + FPS)
+        if target_fps:
+            perfect_candidates = []
+            for res in sorted_streams:
+                h = get_resolution_height(res)
+                f = get_framerate(res)
+                # Allow small tolerance
+                if abs(h - target_height) < 10 and abs(f - target_fps) < 5:
+                    perfect_candidates.append(res)
+            
+            if perfect_candidates:
+                logger.info(f"Match: Found perfect match {perfect_candidates[0].get('name')}")
+                return perfect_candidates[0]
+
+        # 2. Try Match Resolution (Any FPS)
+        res_candidates = []
+        for res in sorted_streams:
+            h = get_resolution_height(res)
+            if abs(h - target_height) < 10:
+                res_candidates.append(res)
+        
+        if res_candidates:
+            # Pick highest FPS among matching resolution
+            best_res = sorted(res_candidates, key=lambda x: get_framerate(x), reverse=True)[0]
+            logger.info(f"Match: Found resolution match {best_res.get('name')} (FPS mismatch or any)")
+            return best_res
+
+        # 3. Try Next Resolution Down
+        # Find highest resolution that is LOWER than target
+        lower_candidates = []
+        for res in sorted_streams:
+            h = get_resolution_height(res)
+            if h < target_height:
+                lower_candidates.append(res)
+        
+        if lower_candidates:
+            # Already sorted by quality, so first one is the "highest of the lower"
+            best_lower = lower_candidates[0]
+            logger.info(f"Match: Fallback to lower resolution {best_lower.get('name')}")
+            return best_lower
+
+        # 4. Fallback to Any (Highest Available)
+        logger.info(f"Match: Fallback to highest available {sorted_streams[0].get('name')}")
+        return sorted_streams[0]
 
     def _enrich_and_add_thumbnail(self, stream_dict):
         """Enrich stream metadata and add thumbnail"""
