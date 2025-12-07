@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from app.config import Config
+from app.services import DownloadService, BrowserService
 from app.scheduler import Scheduler
 from app.routes import init_browser_routes, init_download_routes
 from app.routes.scheduler_routes import init_scheduler_routes
