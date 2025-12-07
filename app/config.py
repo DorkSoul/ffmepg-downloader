@@ -47,7 +47,7 @@ class Config:
     def log_startup_info(self, logger):
         """Log startup information"""
         logger.info("=" * 80)
-        logger.info("NAS VIDEO DOWNLOADER STARTING")
+        logger.info("UNIVERSAL VIDEO DOWNLOADER STARTING")
         logger.info("=" * 80)
         logger.info(f"Python version: {sys.version}")
         logger.info(f"Working directory: {os.getcwd()}")
