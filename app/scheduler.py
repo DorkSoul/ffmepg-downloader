@@ -42,13 +42,15 @@ class Scheduler:
         except Exception as e:
             logger.error(f"Error saving schedules: {e}")
 
-    def add_schedule(self, url, start_time, end_time, repeat=False, name=None):
+    def add_schedule(self, url, start_time, end_time, repeat=False, name=None, resolution='1080p', framerate='any'):
         """Add a new schedule"""
         with self.lock:
             schedule = {
                 'id': str(int(time.time() * 1000)),
                 'url': url,
                 'name': name or url,
+                'resolution': resolution,
+                'framerate': framerate,
                 'start_time': start_time, # ISO format string
                 'end_time': end_time,     # ISO format string
                 'repeat': repeat,
@@ -203,7 +205,9 @@ class Scheduler:
                 url=schedule['url'],
                 browser_id=browser_id,
                 auto_download=True, # Important!
-                filename=None # Auto name
+                filename=None, # Auto name
+                resolution=schedule.get('resolution', '1080p'),
+                framerate=schedule.get('framerate', 'any')
             )
             
             if not success:

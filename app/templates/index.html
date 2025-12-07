@@ -666,43 +666,75 @@
             </div>
 
             <!-- Scheduled Downloads -->
+            <!-- Scheduled Downloads -->
             <div class="card">
                 <h2><span class="icon">📅</span> Scheduled Downloads</h2>
                 <p>Schedule automatic stream checks. The browser will open the page and search for video streams.</p>
 
-                <div class="input-group">
-                    <label for="sched-url">Webpage URL</label>
-                    <input type="text" id="sched-url" placeholder="https://www.twitch.tv/channel">
-                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <!-- Left Column: Add Schedule Form -->
+                    <div>
+                        <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #333;">Add New Schedule</h3>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div class="input-group">
-                        <label for="sched-start">Start Time</label>
-                        <input type="datetime-local" id="sched-start">
+                        <div class="input-group">
+                            <label for="sched-url">Webpage URL</label>
+                            <input type="text" id="sched-url" placeholder="https://www.twitch.tv/channel">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="input-group">
+                                <label for="sched-start">Start Time</label>
+                                <input type="datetime-local" id="sched-start">
+                            </div>
+                            <div class="input-group">
+                                <label for="sched-end">End Time</label>
+                                <input type="datetime-local" id="sched-end">
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="input-group">
+                                <label for="sched-resolution">Target Resolution</label>
+                                <select id="sched-resolution" class="select-input">
+                                    <option value="source">Source (Best)</option>
+                                    <option value="2160p">4K (2160p)</option>
+                                    <option value="1440p">1440p</option>
+                                    <option value="1080p" selected>1080p</option>
+                                    <option value="720p">720p</option>
+                                    <option value="480p">480p</option>
+                                    <option value="360p">360p</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="sched-framerate">Target FPS</label>
+                                <select id="sched-framerate" class="select-input">
+                                    <option value="any" selected>Any</option>
+                                    <option value="60">60 FPS</option>
+                                    <option value="30">30 FPS</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>
+                                <input type="checkbox" id="sched-repeat" style="width: auto; margin-right: 8px;">
+                                Repeat Weekly (Same time next week)
+                            </label>
+                        </div>
+
+                        <button class="btn" onclick="addSchedule()">
+                            Add Schedule
+                        </button>
+
+                        <div class="status-box" id="sched-status" style="margin-top: 15px;"></div>
                     </div>
-                    <div class="input-group">
-                        <label for="sched-end">End Time</label>
-                        <input type="datetime-local" id="sched-end">
-                    </div>
-                </div>
 
-                <div class="input-group">
-                    <label>
-                        <input type="checkbox" id="sched-repeat" style="width: auto; margin-right: 8px;">
-                        Repeat Weekly (Same time next week)
-                    </label>
-                </div>
-
-                <button class="btn" onclick="addSchedule()">
-                    Add Schedule
-                </button>
-
-                <div class="status-box" id="sched-status"></div>
-
-                <div style="margin-top: 20px;">
-                    <h3 style="margin-bottom: 10px; font-size: 1.1rem; color: #333;">Active Schedules</h3>
-                    <div id="schedules-list" style="display: grid; gap: 10px;">
-                        <!-- Schedules will be loaded here -->
+                    <!-- Right Column: Active Schedules -->
+                    <div style="border-left: 1px solid #eee; padding-left: 30px;">
+                        <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #333;">Active Schedules</h3>
+                        <div id="schedules-list" style="display: grid; gap: 10px; max-height: 400px; overflow-y: auto;">
+                            <!-- Schedules will be loaded here -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1851,6 +1883,8 @@
             const start = document.getElementById('sched-start').value;
             const end = document.getElementById('sched-end').value;
             const repeat = document.getElementById('sched-repeat').checked;
+            const resolution = document.getElementById('sched-resolution').value;
+            const framerate = document.getElementById('sched-framerate').value;
             const statusBox = document.getElementById('sched-status');
 
             if (!url || !start || !end) {
@@ -1867,6 +1901,8 @@
                         start_time: start,
                         end_time: end,
                         repeat: repeat,
+                        resolution: resolution,
+                        framerate: framerate,
                         name: url.substring(0, 30) + '...'
                     })
                 });

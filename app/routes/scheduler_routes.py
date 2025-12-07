@@ -28,11 +28,13 @@ def init_scheduler_routes(scheduler):
             end_time = data.get('end_time')
             repeat = data.get('repeat', False)
             name = data.get('name')
+            resolution = data.get('resolution', '1080p')
+            framerate = data.get('framerate', 'any')
 
             if not all([url, start_time, end_time]):
                 return jsonify({'error': 'Missing required fields'}), 400
 
-            schedule = scheduler.add_schedule(url, start_time, end_time, repeat, name)
+            schedule = scheduler.add_schedule(url, start_time, end_time, repeat, name, resolution, framerate)
             
             return jsonify({
                 'success': True, 
