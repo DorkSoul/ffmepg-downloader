@@ -156,8 +156,8 @@ class Scheduler:
             self.save_schedules()
 
     def _update_next_check(self, schedule):
-        """Calculate next random check time (7-11 mins from now)"""
-        minutes = random.uniform(7, 11)
+        """Calculate next random check time (5-8 mins from now)"""
+        minutes = random.uniform(5, 8)
         next_dt = datetime.now() + timedelta(minutes=minutes)
         schedule['next_check'] = next_dt.isoformat()
 
