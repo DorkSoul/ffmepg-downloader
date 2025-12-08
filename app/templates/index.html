@@ -1847,9 +1847,25 @@
                     const item = document.createElement('div');
                     item.className = 'download-item';
 
-                    const start = new Date(sched.start_time).toLocaleString();
-                    const end = new Date(sched.end_time).toLocaleString();
-                    const nextCheck = sched.next_check ? new Date(sched.next_check).toLocaleTimeString() : 'Pending window';
+                    // Format dates as RFC 2822 without seconds (e.g., "Mon, 08 Dec 2025 14:03")
+                    const formatRFC2822 = (dateStr) => {
+                        const date = new Date(dateStr);
+                        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                        const day = days[date.getDay()];
+                        const dateNum = String(date.getDate()).padStart(2, '0');
+                        const month = months[date.getMonth()];
+                        const year = date.getFullYear();
+                        const hours = String(date.getHours()).padStart(2, '0');
+                        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+                        return `${day}, ${dateNum} ${month} ${year} ${hours}:${minutes}`;
+                    };
+
+                    const start = formatRFC2822(sched.start_time);
+                    const end = formatRFC2822(sched.end_time);
+                    const nextCheck = sched.next_check ? formatRFC2822(sched.next_check) : 'Pending window';
 
                     let statusColor = '#666';
                     if (sched.status === 'active') statusColor = '#28a745';
@@ -1857,8 +1873,8 @@
 
                     item.innerHTML = `
                         <div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;">
-                            <div style="overflow: hidden;">
-                                <h4 title="${sched.url}">${sched.name || sched.url}</h4>
+                            <div style="flex: 1; min-width: 0;">
+                                <h4 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${sched.url}">${sched.url}</h4>
                                 <p><strong>Window:</strong> <br>${start} <br>to ${end}</p>
                                 <p><strong>Repeat:</strong> ${sched.repeat ? 'Yes' : 'No'}</p>
                                 <p style="color: ${statusColor}"><strong>Status:</strong> ${sched.status} ${sched.next_check ? `(Next check: ${nextCheck})` : ''}</p>
