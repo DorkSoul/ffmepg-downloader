@@ -42,7 +42,7 @@ class Scheduler:
         except Exception as e:
             logger.error(f"Error saving schedules: {e}")
 
-    def add_schedule(self, url, start_time, end_time, repeat=False, name=None, resolution='1080p', framerate='any'):
+    def add_schedule(self, url, start_time, end_time, repeat=False, name=None, resolution='1080p', framerate='any', format='mp4'):
         """Add a new schedule"""
         with self.lock:
             schedule = {
@@ -51,6 +51,7 @@ class Scheduler:
                 'name': name or url,
                 'resolution': resolution,
                 'framerate': framerate,
+                'format': format,
                 'start_time': start_time, # ISO format string
                 'end_time': end_time,     # ISO format string
                 'repeat': repeat,
@@ -61,7 +62,7 @@ class Scheduler:
             }
             # Initialize next check
             self._update_next_check(schedule)
-            
+
             self.schedules.append(schedule)
             self.save_schedules()
             return schedule
@@ -207,7 +208,8 @@ class Scheduler:
                 auto_download=True, # Important!
                 filename=None, # Auto name
                 resolution=schedule.get('resolution', '1080p'),
-                framerate=schedule.get('framerate', 'any')
+                framerate=schedule.get('framerate', 'any'),
+                format=schedule.get('format', 'mp4')
             )
             
             if not success:
