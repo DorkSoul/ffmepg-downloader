@@ -209,7 +209,7 @@ class Scheduler:
                 filename=None, # Auto name
                 resolution=schedule.get('resolution', '1080p'),
                 framerate=schedule.get('framerate', 'any'),
-                format=schedule.get('format', 'mp4')
+                output_format=schedule.get('format', 'mp4')
             )
             
             if not success:
