@@ -1957,7 +1957,10 @@
                                 <p><strong>Repeat:</strong> ${sched.repeat ? 'Yes' : 'No'}</p>
                                 <p style="color: ${statusColor}"><strong>Status:</strong> ${sched.status} ${sched.next_check ? `(Next check: ${nextCheck})` : ''}</p>
                             </div>
-                            <button class="btn btn-secondary" style="width: auto; padding: 5px 10px; font-size: 0.8rem; background: #dc3545;" onclick="deleteSchedule('${sched.id}', this)">DELETE</button>
+                            <div style="display: flex; flex-direction: column; gap: 5px;">
+                                <button class="btn btn-secondary" style="width: auto; padding: 5px 10px; font-size: 0.8rem; background: #7e8ce0;" onclick='editSchedule(${JSON.stringify(sched)})'>EDIT</button>
+                                <button class="btn btn-secondary" style="width: auto; padding: 5px 10px; font-size: 0.8rem; background: #dc3545;" onclick="deleteSchedule('${sched.id}', this)">DELETE</button>
+                            </div>
                         </div>
                     `;
                     container.appendChild(item);
@@ -2054,6 +2057,90 @@
             }
         }
 
+        let currentEditScheduleId = null;
+
+        function editSchedule(schedule) {
+            // Store the schedule ID
+            currentEditScheduleId = schedule.id;
+
+            // Populate the form fields
+            document.getElementById('edit-sched-url').value = schedule.url;
+            document.getElementById('edit-sched-start').value = schedule.start_time;
+            document.getElementById('edit-sched-end').value = schedule.end_time;
+            document.getElementById('edit-sched-resolution').value = schedule.resolution || 'source';
+            document.getElementById('edit-sched-framerate').value = schedule.framerate || 'any';
+            document.getElementById('edit-sched-format').value = schedule.format || 'mp4';
+            document.getElementById('edit-sched-repeat').checked = schedule.repeat || false;
+
+            // Clear status
+            const statusBox = document.getElementById('edit-sched-status');
+            statusBox.classList.remove('active', 'success', 'error');
+
+            // Show modal
+            document.getElementById('edit-schedule-modal').classList.add('active');
+        }
+
+        function closeEditScheduleModal() {
+            document.getElementById('edit-schedule-modal').classList.remove('active');
+            currentEditScheduleId = null;
+        }
+
+        async function updateSchedule() {
+            if (!currentEditScheduleId) {
+                alert('Error: No schedule selected for editing');
+                return;
+            }
+
+            let url = document.getElementById('edit-sched-url').value.trim();
+            const start = document.getElementById('edit-sched-start').value;
+            const end = document.getElementById('edit-sched-end').value;
+            const repeat = document.getElementById('edit-sched-repeat').checked;
+            const resolution = document.getElementById('edit-sched-resolution').value;
+            const framerate = document.getElementById('edit-sched-framerate').value;
+            const format = document.getElementById('edit-sched-format').value;
+            const statusBox = document.getElementById('edit-sched-status');
+
+            if (!url || !start || !end) {
+                showStatus(statusBox, 'Please fill all fields', 'error');
+                return;
+            }
+
+            // Add https:// if no protocol specified
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+
+            try {
+                const response = await fetch(`/api/schedules/${currentEditScheduleId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        url: url,
+                        start_time: start,
+                        end_time: end,
+                        repeat: repeat,
+                        resolution: resolution,
+                        framerate: framerate,
+                        format: format,
+                        name: url.substring(0, 30) + '...'
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showStatus(statusBox, 'Schedule updated!', 'success');
+                    setTimeout(() => {
+                        closeEditScheduleModal();
+                        loadSchedules();
+                    }, 1000);
+                } else {
+                    showStatus(statusBox, 'Error: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showStatus(statusBox, 'Error: ' + error.message, 'error');
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             // Set default schedule times to now and +1 hour
@@ -2082,9 +2169,15 @@
 
             // Close modal when clicking outside of it
             window.onclick = function (event) {
-                const modal = document.getElementById('stream-modal');
-                if (event.target === modal) {
+                const streamModal = document.getElementById('stream-modal');
+                const editScheduleModal = document.getElementById('edit-schedule-modal');
+
+                if (event.target === streamModal) {
                     closeStreamModal();
+                }
+
+                if (event.target === editScheduleModal) {
+                    closeEditScheduleModal();
                 }
             };
 
@@ -2110,6 +2203,95 @@
             </div>
             <div id="streams-container" class="streams-grid">
                 <!-- Streams will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Schedule Modal -->
+    <div id="edit-schedule-modal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>✏️ Edit Schedule</h2>
+                <span class="close-modal" onclick="closeEditScheduleModal()">&times;</span>
+            </div>
+            <div style="padding: 10px 0;">
+                <div class="input-group">
+                    <label for="edit-sched-url">URL</label>
+                    <input type="text" id="edit-sched-url" placeholder="https://example.com/stream">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label for="edit-sched-start">Start Time</label>
+                        <input type="datetime-local" id="edit-sched-start">
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-sched-end">End Time</label>
+                        <input type="datetime-local" id="edit-sched-end">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label for="edit-sched-resolution">Target Resolution</label>
+                        <select id="edit-sched-resolution" class="select-input">
+                            <option value="source">Highest</option>
+                            <option value="2160p">4K (2160p)</option>
+                            <option value="1440p">1440p</option>
+                            <option value="1080p">1080p</option>
+                            <option value="720p">720p</option>
+                            <option value="480p">480p</option>
+                            <option value="360p">360p</option>
+                            <option value="160p">160p</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-sched-framerate">Target FPS</label>
+                        <select id="edit-sched-framerate" class="select-input">
+                            <option value="any">Any</option>
+                            <option value="60">60 FPS</option>
+                            <option value="30">30 FPS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="edit-sched-format">Output Format</label>
+                    <select id="edit-sched-format">
+                        <optgroup label="Video Formats">
+                            <option value="mp4">MP4 (recommended)</option>
+                            <option value="mkv">MKV</option>
+                            <option value="webm">WebM</option>
+                            <option value="avi">AVI</option>
+                            <option value="mov">MOV</option>
+                            <option value="ts">TS (Transport Stream)</option>
+                            <option value="flv">FLV</option>
+                            <option value="wmv">WMV</option>
+                            <option value="m4v">M4V</option>
+                        </optgroup>
+                        <optgroup label="Audio Only">
+                            <option value="mp3">MP3</option>
+                            <option value="aac">AAC</option>
+                            <option value="m4a">M4A</option>
+                            <option value="flac">FLAC</option>
+                            <option value="wav">WAV</option>
+                            <option value="ogg">OGG</option>
+                            <option value="opus">OPUS</option>
+                            <option value="wma">WMA</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="edit-sched-repeat" style="width: auto; margin-right: 8px;">
+                        Repeat weekly
+                    </label>
+                </div>
+
+                <button class="btn" onclick="updateSchedule()">Update Schedule</button>
+
+                <div class="status-box" id="edit-sched-status" style="margin-top: 15px;"></div>
             </div>
         </div>
     </div>

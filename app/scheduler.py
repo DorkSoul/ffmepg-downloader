@@ -74,6 +74,33 @@ class Scheduler:
             self.save_schedules()
             return True
 
+    def update_schedule(self, schedule_id, url, start_time, end_time, repeat=False, name=None, resolution='1080p', framerate='any', format='mp4'):
+        """Update an existing schedule"""
+        with self.lock:
+            for schedule in self.schedules:
+                if schedule['id'] == schedule_id:
+                    # Update fields
+                    schedule['url'] = url
+                    schedule['name'] = name or url
+                    schedule['start_time'] = start_time
+                    schedule['end_time'] = end_time
+                    schedule['repeat'] = repeat
+                    schedule['resolution'] = resolution
+                    schedule['framerate'] = framerate
+                    schedule['format'] = format
+
+                    # Reset status if times changed
+                    schedule['status'] = 'pending'
+
+                    # Update next check time
+                    self._update_next_check(schedule)
+
+                    self.save_schedules()
+                    logger.info(f"Updated schedule {schedule_id}")
+                    return schedule
+
+            return None
+
     def get_schedules(self):
         """Get all schedules"""
         return self.schedules
