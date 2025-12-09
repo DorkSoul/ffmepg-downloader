@@ -892,7 +892,7 @@
 
         // Start direct download
         async function startDirectDownload() {
-            const url = document.getElementById('direct-url').value.trim();
+            let url = document.getElementById('direct-url').value.trim();
             let filename = document.getElementById('direct-filename').value.trim();
             const format = document.getElementById('direct-format').value;
             const statusBox = document.getElementById('direct-status');
@@ -901,6 +901,11 @@
             if (!url) {
                 showStatus(statusBox, 'Please enter a stream URL', 'error');
                 return;
+            }
+
+            // Add https:// if no protocol specified
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
             }
 
             // Auto-generate filename if empty
@@ -953,7 +958,7 @@
 
         // Start browser mode
         async function startBrowser() {
-            const url = document.getElementById('browser-url').value.trim();
+            let url = document.getElementById('browser-url').value.trim();
             let filename = document.getElementById('browser-filename').value.trim();
             const format = document.getElementById('browser-format').value;
             const resolution = document.getElementById('preferred-resolution').value;
@@ -965,6 +970,11 @@
             if (!url) {
                 showStatus(statusBox, 'Please enter a webpage URL', 'error');
                 return;
+            }
+
+            // Add https:// if no protocol specified
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
             }
 
             // Check if filename exists (only if filename is provided)
@@ -1876,6 +1886,13 @@
                     return;
                 }
 
+                // Sort schedules by start_time (soonest first)
+                schedules.sort((a, b) => {
+                    const timeA = new Date(a.start_time).getTime();
+                    const timeB = new Date(b.start_time).getTime();
+                    return timeA - timeB;
+                });
+
                 schedules.forEach(sched => {
                     const item = document.createElement('div');
                     item.className = 'download-item';
@@ -1924,7 +1941,7 @@
         }
 
         async function addSchedule() {
-            const url = document.getElementById('sched-url').value.trim();
+            let url = document.getElementById('sched-url').value.trim();
             const start = document.getElementById('sched-start').value;
             const end = document.getElementById('sched-end').value;
             const repeat = document.getElementById('sched-repeat').checked;
@@ -1936,6 +1953,11 @@
             if (!url || !start || !end) {
                 showStatus(statusBox, 'Please fill all fields', 'error');
                 return;
+            }
+
+            // Add https:// if no protocol specified
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
             }
 
             try {
