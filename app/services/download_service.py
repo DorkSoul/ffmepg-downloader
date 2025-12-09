@@ -384,10 +384,10 @@ class DownloadService:
             process = download_info.get('process')
 
             if process and process.poll() is None:
-                logger.info(f"Stopping download for browser {browser_id}")
+                logger.debug(f"Stopping download for browser {browser_id}")
                 process.terminate()
                 process.wait(timeout=5)
-                logger.info(f"Download stopped for browser {browser_id}")
+                logger.debug(f"Download stopped for browser {browser_id}")
 
             del self.download_queue[browser_id]
             return True
