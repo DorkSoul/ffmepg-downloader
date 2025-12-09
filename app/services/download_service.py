@@ -44,21 +44,31 @@ class DownloadService:
 
     def _thumbnail_updater(self, browser_id, stop_event):
         """Background thread to update thumbnails periodically"""
-        logger.info(f"Starting thumbnail updater for {browser_id}")
-        
+        logger.debug(f"Starting thumbnail updater for {browser_id}")
+
+        # Check if this is an audio format - skip thumbnails for audio
+        if browser_id in self.download_queue:
+            file_path = self.download_queue[browser_id].get('output_path')
+            if file_path:
+                ext = os.path.splitext(file_path)[1].lower().lstrip('.')
+                audio_formats = ['mp3', 'aac', 'm4a', 'flac', 'wav', 'ogg', 'opus', 'wma']
+                if ext in audio_formats:
+                    logger.debug(f"Skipping thumbnail generation for audio format: {ext}")
+                    return
+
         while not stop_event.is_set():
             try:
                 if browser_id not in self.download_queue:
                     break
-                    
+
                 download_info = self.download_queue[browser_id]
                 file_path = download_info.get('output_path')
                 started_at = download_info.get('started_at', time.time())
-                
+
                 # Calculate dynamic seek time (2 seconds behind live edge)
                 elapsed = max(0, time.time() - started_at)
                 seek_time = max(0, int(elapsed - 2))
-                
+
                 # Try to extract from file
                 thumbnail = None
                 if file_path and os.path.exists(file_path):
@@ -66,13 +76,13 @@ class DownloadService:
                     # effectively bypassing cache for updates, but maybe we want to respect loop interval.
                     # Since we control the loop, we can just pass cache_timeout=1
                     thumbnail = ThumbnailGenerator.extract_thumbnail_from_file(
-                        file_path, 
-                        self.download_thumbnails, 
-                        browser_id, 
+                        file_path,
+                        self.download_thumbnails,
+                        browser_id,
                         cache_timeout=1,
                         seek_time=seek_time
                     )
-                
+
                 # Update the download info with the new thumbnail
                 if thumbnail:
                     download_info['latest_thumbnail'] = thumbnail
@@ -81,8 +91,8 @@ class DownloadService:
                         'thumbnail': thumbnail,
                         'timestamp': time.time()
                     }
-                
-                # Smart Wait: 
+
+                # Smart Wait:
                 # If we have no thumbnail yet, try eagerly (1s).
                 # If we have one, update every 10s.
                 wait_time = 10 if download_info.get('latest_thumbnail') else 1
@@ -94,8 +104,8 @@ class DownloadService:
             # Wait for calculated time or until stopped
             if stop_event.wait(wait_time):
                 break
-                
-        logger.info(f"Stopping thumbnail updater for {browser_id}")
+
+        logger.debug(f"Stopping thumbnail updater for {browser_id}")
 
     def _process_download(self, browser_id, stream_url, output_path, resolution_name, stream_metadata=None):
         """Process download in background thread"""
@@ -184,11 +194,11 @@ class DownloadService:
             }
 
             # Enrich metadata
-            logger.info("Enriching stream metadata for direct download...")
+            logger.debug("Enriching stream metadata for direct download...")
             MetadataExtractor.enrich_stream_metadata(stream_entry)
 
             # Generate thumbnail
-            logger.info("Generating thumbnail for direct download...")
+            logger.debug("Generating thumbnail for direct download...")
             thumbnail = ThumbnailGenerator.generate_stream_thumbnail(stream_url)
             
             # Clean thumbnail for storage
@@ -265,14 +275,15 @@ class DownloadService:
         """Start FFmpeg process for downloading"""
         # Determine output format from extension
         ext = os.path.splitext(output_path)[1].lower().lstrip('.')
-        
+
         # Audio-only formats
         audio_formats = ['mp3', 'aac', 'm4a', 'flac', 'wav', 'ogg', 'opus', 'wma']
-        
+
         if ext in audio_formats:
             # Audio extraction - need to encode
             cmd = [
                 'ffmpeg',
+                '-loglevel', 'error',  # Only show errors
                 '-i', stream_url,
                 '-vn',  # No video
             ]
@@ -300,6 +311,7 @@ class DownloadService:
             # Video formats - try stream copy first
             cmd = [
                 'ffmpeg',
+                '-loglevel', 'error',  # Only show errors
                 '-i', stream_url,
             ]
             

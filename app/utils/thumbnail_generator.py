@@ -17,7 +17,7 @@ class ThumbnailGenerator:
         """Extract a single frame from a stream URL for thumbnail"""
         temp_file = None
         try:
-            logger.info(f"Generating thumbnail for stream: {stream_url[:100]}...")
+            logger.debug(f"Generating thumbnail for stream: {stream_url[:100]}...")
 
             # Create temporary output file
             temp_file = f"/tmp/thumb_{int(time.time())}_{os.getpid()}.jpg"
@@ -53,7 +53,7 @@ class ThumbnailGenerator:
                 # Clean up temp file
                 os.remove(temp_file)
 
-                logger.info(f"✓ Thumbnail generated successfully ({len(thumbnail_data)} bytes)")
+                logger.debug(f"✓ Thumbnail generated successfully ({len(thumbnail_data)} bytes)")
                 return f"data:image/jpeg;base64,{thumbnail_data}"
             else:
                 if os.path.exists(temp_file):
@@ -111,7 +111,7 @@ class ThumbnailGenerator:
                 logger.debug(f"Thumbnail: file too small ({file_size} bytes): {file_path}")
                 return None
 
-            logger.info(f"Extracting thumbnail from {file_path} ({file_size} bytes) at {seek_time}s")
+            logger.debug(f"Extracting thumbnail from {file_path} ({file_size} bytes) at {seek_time}s")
 
             # Extract frame from beginning of downloaded content
             cmd = [
@@ -139,7 +139,7 @@ class ThumbnailGenerator:
                     'timestamp': current_time
                 }
 
-                logger.info(f"✓ Thumbnail extracted successfully ({len(thumbnail_base64)} bytes base64)")
+                logger.debug(f"✓ Thumbnail extracted successfully ({len(thumbnail_base64)} bytes base64)")
                 return thumbnail_base64
 
             logger.warning(f"Thumbnail extraction failed: ffmpeg returned {result.returncode}")
@@ -170,7 +170,7 @@ class ThumbnailGenerator:
                 image.save(buffered, format="PNG")
                 thumbnail_data = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
-                logger.info("Thumbnail captured successfully")
+                logger.debug("Thumbnail captured successfully")
                 return thumbnail_data
         except Exception as e:
             logger.error(f"Failed to capture thumbnail: {e}")
