@@ -688,7 +688,7 @@
                         Close Browser
                     </button>
                 </div>
-                <p style="color: #666; margin-bottom: 10px; font-size: 0.9rem;">
+                <p style="color: #b8b8d1; margin-bottom: 10px; font-size: 0.9rem;">
                     💡 <strong>Tip:</strong> If you see "Connect" button, it will auto-connect. Any HTTP warnings can be
                     ignored - they're normal for local networks.
                 </p>
@@ -702,7 +702,7 @@
                 <h2><span class="icon">📅</span> Scheduled Downloads</h2>
                 <p>Schedule automatic stream checks. The browser will open the page and search for video streams.</p>
 
-                <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #333;">Add New Schedule</h3>
+                <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #e0e0e0;">Add New Schedule</h3>
 
                 <div class="input-group">
                     <label for="sched-url">Webpage URL</label>
@@ -800,7 +800,7 @@
             <div class="card downloads-list">
                 <h2><span class="icon">⏬</span> Active Downloads</h2>
                 <div id="active-downloads-container">
-                    <p style="color: #666; padding: 20px;">No active downloads</p>
+                    <p style="color: #b8b8d1; padding: 20px;">No active downloads</p>
                 </div>
             </div>
 
@@ -808,7 +808,7 @@
             <div class="card downloads-list">
                 <h2><span class="icon">✅</span> Completed Downloads</h2>
                 <div id="completed-downloads-container">
-                    <p style="color: #666; padding: 20px;">Loading...</p>
+                    <p style="color: #b8b8d1; padding: 20px;">Loading...</p>
                 </div>
             </div>
         </div>
@@ -845,10 +845,10 @@
     <!-- Download Started Popup -->
     <div class="download-popup" id="download-started-popup" style="max-width: 600px;">
         <h3>✅ Download Started</h3>
-        <div id="download-info" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0;">
+        <div id="download-info" style="background: #1e1e30; padding: 15px; border-radius: 8px; margin: 15px 0; border: 1px solid #4a4a6a;">
             <!-- Download info will be dynamically added here -->
         </div>
-        <p id="countdown-text" style="text-align: center; color: #666; margin: 15px 0;">
+        <p id="countdown-text" style="text-align: center; color: #b8b8d1; margin: 15px 0;">
             Browser will close automatically in <strong id="countdown">15</strong> seconds
         </p>
         <div id="browser-buttons" style="display: flex; gap: 10px; justify-content: center;">
@@ -863,10 +863,10 @@
     <!-- Debug Stream Log Popup -->
     <div class="download-popup" id="debug-popup" style="max-width: 800px;">
         <h3>🔍 Debug: Detected Streams Log</h3>
-        <p style="margin-bottom: 10px; color: #666;">Copy this log for debugging. Updates automatically as streams are
+        <p style="margin-bottom: 10px; color: #b8b8d1;">Copy this log for debugging. Updates automatically as streams are
             detected.</p>
         <textarea id="debug-log" readonly
-            style="width: 100%; height: 400px; font-family: monospace; font-size: 0.85rem; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; background: #f8f9fa; resize: vertical;"></textarea>
+            style="width: 100%; height: 400px; font-family: monospace; font-size: 0.85rem; padding: 10px; border: 2px solid #4a4a6a; border-radius: 8px; background: #1e1e30; color: #e0e0e0; resize: vertical;"></textarea>
         <div style="display: flex; gap: 10px; margin-top: 15px;">
             <button class="btn" onclick="copyDebugLog()">📋 Copy to Clipboard</button>
             <button class="btn btn-secondary" onclick="closeDebugPopup()">Close</button>
@@ -1301,17 +1301,17 @@
             // Add resolution buttons with detailed info
             resolutions.forEach(res => {
                 const card = document.createElement('div');
-                card.style.cssText = 'background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid #e0e0e0; transition: all 0.2s;';
-                card.onmouseover = () => card.style.borderColor = '#667eea';
-                card.onmouseout = () => card.style.borderColor = '#e0e0e0';
+                card.style.cssText = 'background: #1e1e30; padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 2px solid #4a4a6a; transition: all 0.2s;';
+                card.onmouseover = () => card.style.borderColor = '#7e8ce0';
+                card.onmouseout = () => card.style.borderColor = '#4a4a6a';
                 card.onclick = () => selectResolution(res);
 
                 const title = document.createElement('h4');
-                title.style.cssText = 'margin: 0 0 8px 0; color: #667eea; font-size: 1.1rem;';
+                title.style.cssText = 'margin: 0 0 8px 0; color: #7e8ce0; font-size: 1.1rem;';
                 title.textContent = res.name || 'Unknown';
 
                 const details = document.createElement('div');
-                details.style.cssText = 'font-size: 0.9rem; color: #666;';
+                details.style.cssText = 'font-size: 0.9rem; color: #b8b8d1;';
 
                 const resolution = res.resolution || 'Unknown';
                 const framerate = res.framerate ? Math.round(parseFloat(res.framerate)) + ' fps' : 'Unknown';
@@ -1445,7 +1445,7 @@
             const name = streamMetadata?.name || 'Video';
 
             let infoHTML = `
-                <h4 style="margin: 0 0 10px 0; color: #667eea;">${name}</h4>
+                <h4 style="margin: 0 0 10px 0; color: #7e8ce0;">${name}</h4>
                 <p style="margin: 4px 0;"><strong>Resolution:</strong> ${resolution}</p>
                 <p style="margin: 4px 0;"><strong>Framerate:</strong> ${framerate}</p>
             `;
@@ -1619,7 +1619,7 @@
                 if (data.active_downloads && data.active_downloads.length > 0) {
                     data.active_downloads.forEach(download => {
                         const item = document.createElement('div');
-                        item.style.cssText = 'background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #e0e0e0;';
+                        item.style.cssText = 'background: #1e1e30; padding: 15px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #4a4a6a;';
 
                         const sizeMB = (download.size / (1024 * 1024)).toFixed(2);
                         const minutes = Math.floor(download.duration / 60);
@@ -1638,10 +1638,10 @@
                                     </div>
                                 ` : ''}
                                 <div style="flex: 1;">
-                                    <h4 style="margin: 0 0 8px 0; color: #667eea;">${statusIcon} ${download.filename}</h4>
-                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Resolution:</strong> ${download.resolution}</p>
-                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Size:</strong> ${sizeMB} MB &nbsp;&nbsp; <strong>Duration:</strong> ${timeStr}</p>
-                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Status:</strong> ${statusText}</p>
+                                    <h4 style="margin: 0 0 8px 0; color: #7e8ce0;">${statusIcon} ${download.filename}</h4>
+                                    <p style="margin: 4px 0; color: #b8b8d1; font-size: 0.9rem;"><strong>Resolution:</strong> ${download.resolution}</p>
+                                    <p style="margin: 4px 0; color: #b8b8d1; font-size: 0.9rem;"><strong>Size:</strong> ${sizeMB} MB &nbsp;&nbsp; <strong>Duration:</strong> ${timeStr}</p>
+                                    <p style="margin: 4px 0; color: #b8b8d1; font-size: 0.9rem;"><strong>Status:</strong> ${statusText}</p>
                                 </div>
                                 <div style="flex-shrink: 0;">
                                     ${download.is_running ? `<button class="btn btn-secondary" onclick="stopDownload('${download.browser_id}', this)" style="background: #dc3545;">⏹ Stop</button>` : ''}
@@ -1652,7 +1652,7 @@
                         container.appendChild(item);
                     });
                 } else {
-                    container.innerHTML = '<p style="color: #666; padding: 20px;">No active downloads</p>';
+                    container.innerHTML = '<p style="color: #b8b8d1; padding: 20px;">No active downloads</p>';
                 }
             } catch (error) {
                 console.error('Load downloads error:', error);
@@ -1703,7 +1703,7 @@
                 if (data.downloads && data.downloads.length > 0) {
                     data.downloads.forEach(download => {
                         const item = document.createElement('div');
-                        item.style.cssText = 'background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #e0e0e0;';
+                        item.style.cssText = 'background: #1e1e30; padding: 15px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #4a4a6a;';
                         item.id = `completed-${download.filename}`;
 
                         const sizeMB = (download.size / (1024 * 1024)).toFixed(2);
@@ -1721,14 +1721,14 @@
                                              alt="Video preview">
                                     </div>
                                 ` : `
-                                    <div style="flex-shrink: 0; width: 160px; height: 90px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px;">
+                                    <div style="flex-shrink: 0; width: 160px; height: 90px; background: linear-gradient(135deg, #3d3d5c 0%, #4a4a6a 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #b8b8d1; font-size: 32px;">
                                         🎬
                                     </div>
                                 `}
                                 <div style="flex: 1;">
                                     <h4 style="margin: 0 0 8px 0; color: #28a745;">✓ ${download.filename}</h4>
-                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Resolution:</strong> ${resolutionStr}</p>
-                                    <p style="margin: 4px 0; color: #666; font-size: 0.9rem;"><strong>Size:</strong> ${sizeMB} MB &nbsp;&nbsp; <strong>Duration:</strong> ${timeStr}</p>
+                                    <p style="margin: 4px 0; color: #b8b8d1; font-size: 0.9rem;"><strong>Resolution:</strong> ${resolutionStr}</p>
+                                    <p style="margin: 4px 0; color: #b8b8d1; font-size: 0.9rem;"><strong>Size:</strong> ${sizeMB} MB &nbsp;&nbsp; <strong>Duration:</strong> ${timeStr}</p>
                                 </div>
                                 <div style="flex-shrink: 0;">
                                     <button class="btn btn-secondary" onclick="deleteDownload('${download.filename}', this)" style="background: #dc3545;">🗑 Delete</button>
@@ -1739,7 +1739,7 @@
                         container.appendChild(item);
                     });
                 } else {
-                    container.innerHTML = '<p style="color: #666; padding: 20px;">No completed downloads</p>';
+                    container.innerHTML = '<p style="color: #b8b8d1; padding: 20px;">No completed downloads</p>';
                 }
             } catch (error) {
                 console.error('Load completed downloads error:', error);
@@ -1910,7 +1910,7 @@
                 container.innerHTML = '';
 
                 if (schedules.length === 0) {
-                    container.innerHTML = '<p style="color: #666; font-size: 0.9rem;">No active schedules</p>';
+                    container.innerHTML = '<p style="color: #b8b8d1; font-size: 0.9rem;">No active schedules</p>';
                     return;
                 }
 
