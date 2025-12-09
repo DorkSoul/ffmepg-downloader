@@ -78,6 +78,17 @@ class Scheduler:
         """Get all schedules"""
         return self.schedules
 
+    def refresh_all_schedule_times(self):
+        """Force refresh all schedule next_check times"""
+        with self.lock:
+            count = 0
+            for schedule in self.schedules:
+                self._update_next_check(schedule)
+                count += 1
+            self.save_schedules()
+            logger.info(f"Refreshed {count} schedule next_check times")
+            return count
+
     def start(self):
         """Start the scheduler loop"""
         if self.running:
@@ -150,6 +161,10 @@ class Scheduler:
                     
                     elif now < start_dt:
                          schedule['status'] = 'pending'
+                         # Ensure next_check is set correctly (at window start)
+                         next_check = schedule.get('next_check')
+                         if not next_check or datetime.fromisoformat(next_check) != start_dt:
+                             self._update_next_check(schedule)
 
                 except Exception as e:
                     logger.error(f"Error processing schedule {schedule['id']}: {e}")
@@ -157,25 +172,44 @@ class Scheduler:
             self.save_schedules()
 
     def _update_next_check(self, schedule):
-        """Calculate next random check time (5-8 mins from now)"""
-        minutes = random.uniform(5, 8)
-        next_dt = datetime.now() + timedelta(minutes=minutes)
-        schedule['next_check'] = next_dt.isoformat()
+        """Calculate next check time based on schedule window"""
+        now = datetime.now()
+        start_dt = datetime.fromisoformat(schedule['start_time'])
+        end_dt = datetime.fromisoformat(schedule['end_time'])
+
+        # If window hasn't started yet, schedule check for start of window
+        if now < start_dt:
+            schedule['next_check'] = start_dt.isoformat()
+            logger.debug(f"Schedule {schedule['id']}: next check set to window start: {start_dt}")
+        # If we're in the window, schedule random check in 5-8 minutes
+        elif start_dt <= now <= end_dt:
+            minutes = random.uniform(5, 8)
+            next_dt = now + timedelta(minutes=minutes)
+            # Make sure we don't schedule past the end of the window
+            if next_dt > end_dt:
+                next_dt = end_dt
+            schedule['next_check'] = next_dt.isoformat()
+            logger.debug(f"Schedule {schedule['id']}: next check in {minutes:.1f} mins: {next_dt}")
+        # If window has passed, clear next_check (will be rescheduled)
+        else:
+            schedule['next_check'] = None
+            logger.debug(f"Schedule {schedule['id']}: window passed, clearing next_check")
 
     def _reschedule_next_week(self, schedule):
         """Move schedule to next week"""
         start_dt = datetime.fromisoformat(schedule['start_time'])
         end_dt = datetime.fromisoformat(schedule['end_time'])
-        
+
         new_start = start_dt + timedelta(days=7)
         new_end = end_dt + timedelta(days=7)
-        
+
         schedule['start_time'] = new_start.isoformat()
         schedule['end_time'] = new_end.isoformat()
         schedule['status'] = 'pending'
-        schedule['next_check'] = None # Will be set when it becomes pending/active? 
-        # Actually better to clear it so it resets when window approaches or enter
-        
+
+        # Update next_check to the new window start
+        self._update_next_check(schedule)
+
         logger.info(f"Rescheduled {schedule['id']} to next week: {new_start}")
 
     def _perform_check(self, schedule):

@@ -759,7 +759,10 @@
 
             <!-- Active Schedules -->
             <div class="card">
-                <h2><span class="icon">📋</span> Active Schedules</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 style="margin: 0;"><span class="icon">📋</span> Active Schedules</h2>
+                    <button class="btn btn-secondary" style="width: auto; padding: 8px 16px; font-size: 0.9rem;" onclick="refreshScheduleTimes()">🔄 Refresh Times</button>
+                </div>
                 <div id="schedules-list" style="display: grid; gap: 10px; min-height: 200px; max-height: 70vh; overflow-y: auto;">
                     <!-- Schedules will be loaded here -->
                 </div>
@@ -1981,6 +1984,23 @@
             } catch (error) {
                 console.error(error);
                 btn.disabled = false;
+            }
+        }
+
+        async function refreshScheduleTimes() {
+            try {
+                const response = await fetch('/api/schedules/refresh', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.success) {
+                    alert(`✓ Refreshed ${data.count} schedule(s)`);
+                    loadSchedules();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Error refreshing schedules: ' + error.message);
             }
         }
 

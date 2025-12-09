@@ -59,4 +59,18 @@ def init_scheduler_routes(scheduler):
             logger.error(f"Error deleting schedule: {e}")
             return jsonify({'error': str(e)}), 500
 
+    @scheduler_bp.route('/refresh', methods=['POST'])
+    def refresh_schedules():
+        """Force refresh all schedule next_check times"""
+        try:
+            count = scheduler.refresh_all_schedule_times()
+            return jsonify({
+                'success': True,
+                'message': f'Refreshed {count} schedules',
+                'count': count
+            })
+        except Exception as e:
+            logger.error(f"Error refreshing schedules: {e}")
+            return jsonify({'error': str(e)}), 500
+
     return scheduler_bp
