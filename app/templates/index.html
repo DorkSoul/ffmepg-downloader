@@ -1921,10 +1921,38 @@
                     return;
                 }
 
-                // Sort schedules by start_time (soonest first)
+                // Sort schedules by next_check time (soonest first)
+                // For schedules without next_check, use start_time
                 schedules.sort((a, b) => {
-                    const timeA = new Date(a.start_time).getTime();
-                    const timeB = new Date(b.start_time).getTime();
+                    // Helper function to get sortable timestamp
+                    const getSortTime = (sched) => {
+                        // If next_check exists, use it (it's already calculated by backend)
+                        if (sched.next_check) {
+                            return new Date(sched.next_check).getTime();
+                        }
+
+                        // Fallback to start_time for schedules without next_check
+                        if (sched.daily) {
+                            // Daily schedule - calculate next occurrence from time string
+                            const now = new Date();
+                            const [hours, minutes] = sched.start_time.split(':').map(Number);
+                            const nextRun = new Date();
+                            nextRun.setHours(hours, minutes, 0, 0);
+
+                            // If the time has passed today, schedule for tomorrow
+                            if (nextRun <= now) {
+                                nextRun.setDate(nextRun.getDate() + 1);
+                            }
+
+                            return nextRun.getTime();
+                        } else {
+                            // Regular schedule - use start_time directly
+                            return new Date(sched.start_time).getTime();
+                        }
+                    };
+
+                    const timeA = getSortTime(a);
+                    const timeB = getSortTime(b);
                     return timeA - timeB;
                 });
 
