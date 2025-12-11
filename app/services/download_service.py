@@ -176,6 +176,19 @@ class DownloadService:
             if stop_thumbnail_event:
                 stop_thumbnail_event.set()
 
+            # Clean up completed download from queue after a short delay
+            # This allows get_download_status() to work for scheduler, then removes it
+            def cleanup_after_delay():
+                time.sleep(30)  # Wait 30 seconds
+                if browser_id in self.download_queue and 'completed_at' in self.download_queue[browser_id]:
+                    logger.debug(f"Cleaning up completed download from queue: {browser_id}")
+                    del self.download_queue[browser_id]
+                    # Also clean up thumbnail cache
+                    if browser_id in self.download_thumbnails:
+                        del self.download_thumbnails[browser_id]
+
+            threading.Thread(target=cleanup_after_delay, daemon=True).start()
+
     def _direct_download(self, browser_id, stream_url, output_path):
         """Execute direct download with metadata enrichment"""
         stop_thumbnail_event = threading.Event()
@@ -271,6 +284,19 @@ class DownloadService:
         finally:
             stop_thumbnail_event.set()
 
+            # Clean up completed download from queue after a short delay
+            # This allows get_download_status() to work for scheduler, then removes it
+            def cleanup_after_delay():
+                time.sleep(30)  # Wait 30 seconds
+                if browser_id in self.download_queue and 'completed_at' in self.download_queue[browser_id]:
+                    logger.debug(f"Cleaning up completed download from queue: {browser_id}")
+                    del self.download_queue[browser_id]
+                    # Also clean up thumbnail cache
+                    if browser_id in self.download_thumbnails:
+                        del self.download_thumbnails[browser_id]
+
+            threading.Thread(target=cleanup_after_delay, daemon=True).start()
+
     def _start_ffmpeg_process(self, stream_url, output_path):
         """Start FFmpeg process for downloading"""
         # Determine output format from extension
@@ -353,6 +379,10 @@ class DownloadService:
         active = []
 
         for browser_id, download_info in list(self.download_queue.items()):
+            # Skip completed downloads
+            if 'completed_at' in download_info:
+                continue
+
             process = download_info.get('process')
             output_path = download_info.get('output_path')
             started_at = download_info.get('started_at')
@@ -363,10 +393,7 @@ class DownloadService:
                 file_size = os.path.getsize(output_path)
 
             # Calculate duration
-            if 'completed_at' in download_info:
-                duration = int(download_info['completed_at'] - started_at)
-            else:
-                duration = int(time.time() - started_at)
+            duration = int(time.time() - started_at)
 
             # Check if process is still running
             is_running = process.poll() is None if process else False

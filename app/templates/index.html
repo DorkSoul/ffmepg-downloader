@@ -709,13 +709,20 @@
                     <input type="text" id="sched-url" placeholder="https://www.twitch.tv/channel">
                 </div>
 
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="sched-daily" style="width: auto; margin-right: 8px;" onchange="toggleDailySchedule()">
+                        Run Daily (Repeat every day at the same time)
+                    </label>
+                </div>
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div class="input-group">
-                        <label for="sched-start">Start Time</label>
+                        <label for="sched-start" id="sched-start-label">Start Time</label>
                         <input type="datetime-local" id="sched-start">
                     </div>
                     <div class="input-group">
-                        <label for="sched-end">End Time</label>
+                        <label for="sched-end" id="sched-end-label">End Time</label>
                         <input type="datetime-local" id="sched-end">
                     </div>
                 </div>
@@ -1941,8 +1948,21 @@
                         return `${day}, ${dateNum} ${month} ${year} ${hours}:${minutes}`;
                     };
 
-                    const start = formatRFC2822(sched.start_time);
-                    const end = formatRFC2822(sched.end_time);
+                    let windowText = '';
+                    let repeatText = '';
+
+                    if (sched.daily) {
+                        // Daily schedule - just show times
+                        windowText = `${sched.start_time} - ${sched.end_time} (Daily)`;
+                        repeatText = 'Daily';
+                    } else {
+                        // Regular schedule - show full datetime
+                        const start = formatRFC2822(sched.start_time);
+                        const end = formatRFC2822(sched.end_time);
+                        windowText = `${start} - ${end}`;
+                        repeatText = sched.repeat ? 'Weekly' : 'Once';
+                    }
+
                     const nextCheck = sched.next_check ? formatRFC2822(sched.next_check) : 'Pending window';
 
                     let statusColor = '#666';
@@ -1953,8 +1973,8 @@
                         <div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;">
                             <div style="flex: 1; min-width: 0;">
                                 <h4 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${sched.url}">${sched.url}</h4>
-                                <p><strong>Window:</strong> ${start} - ${end}</p>
-                                <p><strong>Repeat:</strong> ${sched.repeat ? 'Yes' : 'No'}</p>
+                                <p><strong>Window:</strong> ${windowText}</p>
+                                <p><strong>Repeat:</strong> ${repeatText}</p>
                                 <p style="color: ${statusColor}"><strong>Status:</strong> ${sched.status} ${sched.next_check ? `(Next check: ${nextCheck})` : ''}</p>
                             </div>
                             <div style="display: flex; flex-direction: column; gap: 5px;">
@@ -1971,11 +1991,58 @@
             }
         }
 
+        function toggleDailySchedule() {
+            const daily = document.getElementById('sched-daily').checked;
+            const startInput = document.getElementById('sched-start');
+            const endInput = document.getElementById('sched-end');
+            const startLabel = document.getElementById('sched-start-label');
+            const endLabel = document.getElementById('sched-end-label');
+
+            if (daily) {
+                // Convert to time inputs
+                startInput.type = 'time';
+                endInput.type = 'time';
+                startLabel.textContent = 'Start Time (Daily)';
+                endLabel.textContent = 'End Time (Daily)';
+
+                // Set default time values if empty
+                if (!startInput.value) {
+                    const now = new Date();
+                    startInput.value = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                }
+                if (!endInput.value) {
+                    const oneHourLater = new Date(new Date().getTime() + 60 * 60 * 1000);
+                    endInput.value = `${String(oneHourLater.getHours()).padStart(2, '0')}:${String(oneHourLater.getMinutes()).padStart(2, '0')}`;
+                }
+            } else {
+                // Convert to datetime-local inputs
+                startInput.type = 'datetime-local';
+                endInput.type = 'datetime-local';
+                startLabel.textContent = 'Start Time';
+                endLabel.textContent = 'End Time';
+
+                // Set default datetime values
+                const now = new Date();
+                const oneHourLater = new Date(now.getTime() + 60 * 60 * 1000);
+                const formatDateTime = (date) => {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const hours = String(date.getHours()).padStart(2, '0');
+                    const minutes = String(date.getMinutes()).padStart(2, '0');
+                    return `${year}-${month}-${day}T${hours}:${minutes}`;
+                };
+                startInput.value = formatDateTime(now);
+                endInput.value = formatDateTime(oneHourLater);
+            }
+        }
+
         async function addSchedule() {
             let url = document.getElementById('sched-url').value.trim();
             const start = document.getElementById('sched-start').value;
             const end = document.getElementById('sched-end').value;
             const repeat = document.getElementById('sched-repeat').checked;
+            const daily = document.getElementById('sched-daily').checked;
             const resolution = document.getElementById('sched-resolution').value;
             const framerate = document.getElementById('sched-framerate').value;
             const format = document.getElementById('sched-format').value;
@@ -2000,6 +2067,7 @@
                         start_time: start,
                         end_time: end,
                         repeat: repeat,
+                        daily: daily,
                         resolution: resolution,
                         framerate: framerate,
                         format: format,
@@ -2065,12 +2133,35 @@
 
             // Populate the form fields
             document.getElementById('edit-sched-url').value = schedule.url;
-            document.getElementById('edit-sched-start').value = schedule.start_time;
-            document.getElementById('edit-sched-end').value = schedule.end_time;
             document.getElementById('edit-sched-resolution').value = schedule.resolution || 'source';
             document.getElementById('edit-sched-framerate').value = schedule.framerate || 'any';
             document.getElementById('edit-sched-format').value = schedule.format || 'mp4';
             document.getElementById('edit-sched-repeat').checked = schedule.repeat || false;
+            document.getElementById('edit-sched-daily').checked = schedule.daily || false;
+
+            // Set up time inputs based on whether it's a daily schedule
+            const startInput = document.getElementById('edit-sched-start');
+            const endInput = document.getElementById('edit-sched-end');
+            const startLabel = document.getElementById('edit-sched-start-label');
+            const endLabel = document.getElementById('edit-sched-end-label');
+
+            if (schedule.daily) {
+                // Daily schedule - use time inputs
+                startInput.type = 'time';
+                endInput.type = 'time';
+                startLabel.textContent = 'Start Time (Daily)';
+                endLabel.textContent = 'End Time (Daily)';
+                startInput.value = schedule.start_time;
+                endInput.value = schedule.end_time;
+            } else {
+                // Regular schedule - use datetime-local inputs
+                startInput.type = 'datetime-local';
+                endInput.type = 'datetime-local';
+                startLabel.textContent = 'Start Time';
+                endLabel.textContent = 'End Time';
+                startInput.value = schedule.start_time;
+                endInput.value = schedule.end_time;
+            }
 
             // Clear status
             const statusBox = document.getElementById('edit-sched-status');
@@ -2078,6 +2169,52 @@
 
             // Show modal
             document.getElementById('edit-schedule-modal').classList.add('active');
+        }
+
+        function toggleEditDailySchedule() {
+            const daily = document.getElementById('edit-sched-daily').checked;
+            const startInput = document.getElementById('edit-sched-start');
+            const endInput = document.getElementById('edit-sched-end');
+            const startLabel = document.getElementById('edit-sched-start-label');
+            const endLabel = document.getElementById('edit-sched-end-label');
+
+            if (daily) {
+                // Convert to time inputs
+                startInput.type = 'time';
+                endInput.type = 'time';
+                startLabel.textContent = 'Start Time (Daily)';
+                endLabel.textContent = 'End Time (Daily)';
+
+                // If values are datetime, extract time part
+                if (startInput.value && startInput.value.includes('T')) {
+                    startInput.value = startInput.value.split('T')[1];
+                }
+                if (endInput.value && endInput.value.includes('T')) {
+                    endInput.value = endInput.value.split('T')[1];
+                }
+            } else {
+                // Convert to datetime-local inputs
+                startInput.type = 'datetime-local';
+                endInput.type = 'datetime-local';
+                startLabel.textContent = 'Start Time';
+                endLabel.textContent = 'End Time';
+
+                // If values are just times, convert to datetime
+                if (startInput.value && !startInput.value.includes('T')) {
+                    const now = new Date();
+                    const year = now.getFullYear();
+                    const month = String(now.getMonth() + 1).padStart(2, '0');
+                    const day = String(now.getDate()).padStart(2, '0');
+                    startInput.value = `${year}-${month}-${day}T${startInput.value}`;
+                }
+                if (endInput.value && !endInput.value.includes('T')) {
+                    const now = new Date();
+                    const year = now.getFullYear();
+                    const month = String(now.getMonth() + 1).padStart(2, '0');
+                    const day = String(now.getDate()).padStart(2, '0');
+                    endInput.value = `${year}-${month}-${day}T${endInput.value}`;
+                }
+            }
         }
 
         function closeEditScheduleModal() {
@@ -2095,6 +2232,7 @@
             const start = document.getElementById('edit-sched-start').value;
             const end = document.getElementById('edit-sched-end').value;
             const repeat = document.getElementById('edit-sched-repeat').checked;
+            const daily = document.getElementById('edit-sched-daily').checked;
             const resolution = document.getElementById('edit-sched-resolution').value;
             const framerate = document.getElementById('edit-sched-framerate').value;
             const format = document.getElementById('edit-sched-format').value;
@@ -2119,6 +2257,7 @@
                         start_time: start,
                         end_time: end,
                         repeat: repeat,
+                        daily: daily,
                         resolution: resolution,
                         framerate: framerate,
                         format: format,
@@ -2220,13 +2359,20 @@
                     <input type="text" id="edit-sched-url" placeholder="https://example.com/stream">
                 </div>
 
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="edit-sched-daily" style="width: auto; margin-right: 8px;" onchange="toggleEditDailySchedule()">
+                        Run Daily (Repeat every day at the same time)
+                    </label>
+                </div>
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div class="input-group">
-                        <label for="edit-sched-start">Start Time</label>
+                        <label for="edit-sched-start" id="edit-sched-start-label">Start Time</label>
                         <input type="datetime-local" id="edit-sched-start">
                     </div>
                     <div class="input-group">
-                        <label for="edit-sched-end">End Time</label>
+                        <label for="edit-sched-end" id="edit-sched-end-label">End Time</label>
                         <input type="datetime-local" id="edit-sched-end">
                     </div>
                 </div>

@@ -42,7 +42,7 @@ class Scheduler:
         except Exception as e:
             logger.error(f"Error saving schedules: {e}")
 
-    def add_schedule(self, url, start_time, end_time, repeat=False, name=None, resolution='1080p', framerate='any', format='mp4'):
+    def add_schedule(self, url, start_time, end_time, repeat=False, daily=False, name=None, resolution='1080p', framerate='any', format='mp4'):
         """Add a new schedule"""
         with self.lock:
             schedule = {
@@ -52,9 +52,10 @@ class Scheduler:
                 'resolution': resolution,
                 'framerate': framerate,
                 'format': format,
-                'start_time': start_time, # ISO format string
-                'end_time': end_time,     # ISO format string
+                'start_time': start_time, # ISO format string or HH:MM for daily
+                'end_time': end_time,     # ISO format string or HH:MM for daily
                 'repeat': repeat,
+                'daily': daily,           # If true, start_time and end_time are HH:MM format
                 'status': 'pending',      # pending, active, completed, download_started
                 'next_check': None,
                 'last_check': None,
@@ -74,7 +75,7 @@ class Scheduler:
             self.save_schedules()
             return True
 
-    def update_schedule(self, schedule_id, url, start_time, end_time, repeat=False, name=None, resolution='1080p', framerate='any', format='mp4'):
+    def update_schedule(self, schedule_id, url, start_time, end_time, repeat=False, daily=False, name=None, resolution='1080p', framerate='any', format='mp4'):
         """Update an existing schedule"""
         with self.lock:
             for schedule in self.schedules:
@@ -85,6 +86,7 @@ class Scheduler:
                     schedule['start_time'] = start_time
                     schedule['end_time'] = end_time
                     schedule['repeat'] = repeat
+                    schedule['daily'] = daily
                     schedule['resolution'] = resolution
                     schedule['framerate'] = framerate
                     schedule['format'] = format
@@ -152,75 +154,171 @@ class Scheduler:
     def _check_schedules(self):
         """Check all schedules and run tasks if needed"""
         now = datetime.now()
-        
+
         with self.lock:
             for schedule in self.schedules:
-                if schedule['status'] == 'completed':
+                if schedule['status'] == 'completed' and not schedule.get('daily'):
+                    # Skip completed non-daily schedules
                     continue
 
                 try:
-                    start_dt = datetime.fromisoformat(schedule['start_time'])
-                    end_dt = datetime.fromisoformat(schedule['end_time'])
-                    
-                    # Check if window passed
-                    if now > end_dt:
-                        if schedule['repeat']:
-                            # Move to next week
-                            self._reschedule_next_week(schedule)
-                        else:
-                            if schedule['status'] != 'download_started':
-                                schedule['status'] = 'completed'
-                        continue
+                    if schedule.get('daily'):
+                        # Daily schedule - handle time-based windows
+                        self._check_daily_schedule(schedule, now)
+                    else:
+                        # Regular schedule - handle datetime-based windows
+                        start_dt = datetime.fromisoformat(schedule['start_time'])
+                        end_dt = datetime.fromisoformat(schedule['end_time'])
 
-                    # Check if currently active window
-                    if start_dt <= now <= end_dt:
-                        if schedule['status'] == 'download_started':
-                            # Already downloaded for this window
+                        # Check if window passed
+                        if now > end_dt:
+                            if schedule['repeat']:
+                                # Move to next week
+                                self._reschedule_next_week(schedule)
+                            else:
+                                if schedule['status'] != 'download_started':
+                                    schedule['status'] = 'completed'
                             continue
-                        
-                        schedule['status'] = 'active'
-                        
-                        # Check if it's time to check stream
-                        next_check = schedule.get('next_check')
-                        if not next_check or now >= datetime.fromisoformat(next_check):
-                            # It's time!
-                            self._perform_check(schedule)
-                    
-                    elif now < start_dt:
-                         schedule['status'] = 'pending'
-                         # Ensure next_check is set correctly (at window start)
-                         next_check = schedule.get('next_check')
-                         if not next_check or datetime.fromisoformat(next_check) != start_dt:
-                             self._update_next_check(schedule)
+
+                        # Check if currently active window
+                        if start_dt <= now <= end_dt:
+                            if schedule['status'] == 'download_started':
+                                # Already downloaded for this window
+                                continue
+
+                            schedule['status'] = 'active'
+
+                            # Check if it's time to check stream
+                            next_check = schedule.get('next_check')
+                            if not next_check or now >= datetime.fromisoformat(next_check):
+                                # It's time!
+                                self._perform_check(schedule)
+
+                        elif now < start_dt:
+                             schedule['status'] = 'pending'
+                             # Ensure next_check is set correctly (at window start)
+                             next_check = schedule.get('next_check')
+                             if not next_check or datetime.fromisoformat(next_check) != start_dt:
+                                 self._update_next_check(schedule)
 
                 except Exception as e:
                     logger.error(f"Error processing schedule {schedule['id']}: {e}")
-            
+
             self.save_schedules()
+
+    def _check_daily_schedule(self, schedule, now):
+        """Check a daily schedule (time-based, repeats every day)"""
+        # Parse the time strings (format: "HH:MM")
+        start_time_str = schedule['start_time']
+        end_time_str = schedule['end_time']
+
+        # Get today's date
+        today = now.date()
+
+        # Create datetime objects for today's window
+        start_hour, start_min = map(int, start_time_str.split(':'))
+        end_hour, end_min = map(int, end_time_str.split(':'))
+
+        start_dt = datetime.combine(today, datetime.min.time().replace(hour=start_hour, minute=start_min))
+        end_dt = datetime.combine(today, datetime.min.time().replace(hour=end_hour, minute=end_min))
+
+        # Handle case where end time is past midnight (e.g., 23:00 - 01:00)
+        if end_dt <= start_dt:
+            end_dt = end_dt + timedelta(days=1)
+
+        # Check if we're currently in the active window
+        if start_dt <= now <= end_dt:
+            if schedule['status'] == 'download_started':
+                # Already downloaded for today's window
+                return
+
+            schedule['status'] = 'active'
+
+            # Check if it's time to check stream
+            next_check = schedule.get('next_check')
+            if not next_check or now >= datetime.fromisoformat(next_check):
+                # It's time!
+                self._perform_check(schedule)
+
+        elif now < start_dt:
+            # Window hasn't started yet today
+            schedule['status'] = 'pending'
+            # Ensure next_check is set correctly (at window start)
+            next_check = schedule.get('next_check')
+            if not next_check or datetime.fromisoformat(next_check) != start_dt:
+                self._update_next_check(schedule)
+
+        else:
+            # Window has passed for today
+            # Reset status for tomorrow if needed
+            if schedule['status'] == 'download_started':
+                # Reset for next day
+                schedule['status'] = 'pending'
+                schedule['last_check'] = None
+                self._update_next_check(schedule)
 
     def _update_next_check(self, schedule):
         """Calculate next check time based on schedule window"""
         now = datetime.now()
-        start_dt = datetime.fromisoformat(schedule['start_time'])
-        end_dt = datetime.fromisoformat(schedule['end_time'])
 
-        # If window hasn't started yet, schedule check for start of window
-        if now < start_dt:
-            schedule['next_check'] = start_dt.isoformat()
-            logger.debug(f"Schedule {schedule['id']}: next check set to window start: {start_dt}")
-        # If we're in the window, schedule random check in 5-8 minutes
-        elif start_dt <= now <= end_dt:
-            minutes = random.uniform(5, 8)
-            next_dt = now + timedelta(minutes=minutes)
-            # Make sure we don't schedule past the end of the window
-            if next_dt > end_dt:
-                next_dt = end_dt
-            schedule['next_check'] = next_dt.isoformat()
-            logger.debug(f"Schedule {schedule['id']}: next check in {minutes:.1f} mins: {next_dt}")
-        # If window has passed, clear next_check (will be rescheduled)
+        if schedule.get('daily'):
+            # Daily schedule - calculate based on time
+            start_time_str = schedule['start_time']
+            end_time_str = schedule['end_time']
+
+            today = now.date()
+            start_hour, start_min = map(int, start_time_str.split(':'))
+            end_hour, end_min = map(int, end_time_str.split(':'))
+
+            start_dt = datetime.combine(today, datetime.min.time().replace(hour=start_hour, minute=start_min))
+            end_dt = datetime.combine(today, datetime.min.time().replace(hour=end_hour, minute=end_min))
+
+            # Handle case where end time is past midnight
+            if end_dt <= start_dt:
+                end_dt = end_dt + timedelta(days=1)
+
+            # If window hasn't started yet today, schedule check for start of window
+            if now < start_dt:
+                schedule['next_check'] = start_dt.isoformat()
+                logger.debug(f"Schedule {schedule['id']}: next check set to today's window start: {start_dt}")
+            # If we're in the window, schedule random check in 5-8 minutes
+            elif start_dt <= now <= end_dt:
+                minutes = random.uniform(5, 8)
+                next_dt = now + timedelta(minutes=minutes)
+                # Make sure we don't schedule past the end of the window
+                if next_dt > end_dt:
+                    next_dt = end_dt
+                schedule['next_check'] = next_dt.isoformat()
+                logger.debug(f"Schedule {schedule['id']}: next check in {minutes:.1f} mins: {next_dt}")
+            # If window has passed for today, schedule for tomorrow
+            else:
+                tomorrow = today + timedelta(days=1)
+                start_dt_tomorrow = datetime.combine(tomorrow, datetime.min.time().replace(hour=start_hour, minute=start_min))
+                schedule['next_check'] = start_dt_tomorrow.isoformat()
+                logger.debug(f"Schedule {schedule['id']}: next check set to tomorrow's window start: {start_dt_tomorrow}")
+
         else:
-            schedule['next_check'] = None
-            logger.debug(f"Schedule {schedule['id']}: window passed, clearing next_check")
+            # Regular schedule - calculate based on datetime
+            start_dt = datetime.fromisoformat(schedule['start_time'])
+            end_dt = datetime.fromisoformat(schedule['end_time'])
+
+            # If window hasn't started yet, schedule check for start of window
+            if now < start_dt:
+                schedule['next_check'] = start_dt.isoformat()
+                logger.debug(f"Schedule {schedule['id']}: next check set to window start: {start_dt}")
+            # If we're in the window, schedule random check in 5-8 minutes
+            elif start_dt <= now <= end_dt:
+                minutes = random.uniform(5, 8)
+                next_dt = now + timedelta(minutes=minutes)
+                # Make sure we don't schedule past the end of the window
+                if next_dt > end_dt:
+                    next_dt = end_dt
+                schedule['next_check'] = next_dt.isoformat()
+                logger.debug(f"Schedule {schedule['id']}: next check in {minutes:.1f} mins: {next_dt}")
+            # If window has passed, clear next_check (will be rescheduled)
+            else:
+                schedule['next_check'] = None
+                logger.debug(f"Schedule {schedule['id']}: window passed, clearing next_check")
 
     def _reschedule_next_week(self, schedule):
         """Move schedule to next week"""
