@@ -1991,11 +1991,27 @@
                         repeatText = sched.repeat ? 'Weekly' : 'Once';
                     }
 
-                    const nextCheck = sched.next_check ? formatRFC2822(sched.next_check) : 'Pending window';
-
                     let statusColor = '#666';
-                    if (sched.status === 'active') statusColor = '#28a745';
-                    if (sched.status === 'download_started') statusColor = '#17a2b8';
+                    let statusText = sched.status;
+
+                    if (sched.status === 'active') {
+                        statusColor = '#28a745';
+                        const nextCheck = sched.next_check ? formatRFC2822(sched.next_check) : 'Pending window';
+                        statusText = `${sched.status} (Next check: ${nextCheck})`;
+                    } else if (sched.status === 'download_started') {
+                        statusColor = '#17a2b8';
+                        statusText = 'Download started (Recording in progress)';
+                    } else if (sched.status === 'pending') {
+                        statusColor = '#666';
+                        if (sched.next_check) {
+                            const nextCheck = formatRFC2822(sched.next_check);
+                            statusText = `${sched.status} (Next check: ${nextCheck})`;
+                        } else {
+                            statusText = sched.status;
+                        }
+                    } else {
+                        statusText = sched.status;
+                    }
 
                     item.innerHTML = `
                         <div style="display: flex; justify-content: space-between; align-items: start; gap: 10px;">
@@ -2003,7 +2019,7 @@
                                 <h4 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${sched.url}">${sched.url}</h4>
                                 <p><strong>Window:</strong> ${windowText}</p>
                                 <p><strong>Repeat:</strong> ${repeatText}</p>
-                                <p style="color: ${statusColor}"><strong>Status:</strong> ${sched.status} ${sched.next_check ? `(Next check: ${nextCheck})` : ''}</p>
+                                <p style="color: ${statusColor}"><strong>Status:</strong> ${statusText}</p>
                             </div>
                             <div style="display: flex; flex-direction: column; gap: 5px;">
                                 <button class="btn btn-secondary" style="width: auto; padding: 5px 10px; font-size: 0.8rem; background: #7e8ce0;" onclick='editSchedule(${JSON.stringify(sched)})'>EDIT</button>

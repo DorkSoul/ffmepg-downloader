@@ -449,6 +449,8 @@ class Scheduler:
                          for s in self.schedules:
                              if s['id'] == schedule['id']:
                                  s['status'] = 'download_started'
+                                 # Clear next_check - no more checks needed until next window
+                                 s['next_check'] = None
                                  self.save_schedules()
                                  break
                     
