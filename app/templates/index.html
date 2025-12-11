@@ -778,7 +778,7 @@
                     </select>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" id="sched-repeat-container">
                     <label>
                         <input type="checkbox" id="sched-repeat" style="width: auto; margin-right: 8px;">
                         Repeat Weekly (Same time next week)
@@ -1997,8 +1997,14 @@
             const endInput = document.getElementById('sched-end');
             const startLabel = document.getElementById('sched-start-label');
             const endLabel = document.getElementById('sched-end-label');
+            const repeatContainer = document.getElementById('sched-repeat-container');
+            const repeatCheckbox = document.getElementById('sched-repeat');
 
             if (daily) {
+                // Hide weekly repeat option (daily already repeats)
+                repeatContainer.style.display = 'none';
+                repeatCheckbox.checked = false;
+
                 // Convert to time inputs
                 startInput.type = 'time';
                 endInput.type = 'time';
@@ -2015,6 +2021,9 @@
                     endInput.value = `${String(oneHourLater.getHours()).padStart(2, '0')}:${String(oneHourLater.getMinutes()).padStart(2, '0')}`;
                 }
             } else {
+                // Show weekly repeat option
+                repeatContainer.style.display = 'block';
+
                 // Convert to datetime-local inputs
                 startInput.type = 'datetime-local';
                 endInput.type = 'datetime-local';
@@ -2144,23 +2153,26 @@
             const endInput = document.getElementById('edit-sched-end');
             const startLabel = document.getElementById('edit-sched-start-label');
             const endLabel = document.getElementById('edit-sched-end-label');
+            const repeatContainer = document.getElementById('edit-sched-repeat-container');
 
             if (schedule.daily) {
-                // Daily schedule - use time inputs
+                // Daily schedule - use time inputs and hide weekly repeat
                 startInput.type = 'time';
                 endInput.type = 'time';
                 startLabel.textContent = 'Start Time (Daily)';
                 endLabel.textContent = 'End Time (Daily)';
                 startInput.value = schedule.start_time;
                 endInput.value = schedule.end_time;
+                repeatContainer.style.display = 'none';
             } else {
-                // Regular schedule - use datetime-local inputs
+                // Regular schedule - use datetime-local inputs and show weekly repeat
                 startInput.type = 'datetime-local';
                 endInput.type = 'datetime-local';
                 startLabel.textContent = 'Start Time';
                 endLabel.textContent = 'End Time';
                 startInput.value = schedule.start_time;
                 endInput.value = schedule.end_time;
+                repeatContainer.style.display = 'block';
             }
 
             // Clear status
@@ -2177,8 +2189,14 @@
             const endInput = document.getElementById('edit-sched-end');
             const startLabel = document.getElementById('edit-sched-start-label');
             const endLabel = document.getElementById('edit-sched-end-label');
+            const repeatContainer = document.getElementById('edit-sched-repeat-container');
+            const repeatCheckbox = document.getElementById('edit-sched-repeat');
 
             if (daily) {
+                // Hide weekly repeat option (daily already repeats)
+                repeatContainer.style.display = 'none';
+                repeatCheckbox.checked = false;
+
                 // Convert to time inputs
                 startInput.type = 'time';
                 endInput.type = 'time';
@@ -2193,6 +2211,9 @@
                     endInput.value = endInput.value.split('T')[1];
                 }
             } else {
+                // Show weekly repeat option
+                repeatContainer.style.display = 'block';
+
                 // Convert to datetime-local inputs
                 startInput.type = 'datetime-local';
                 endInput.type = 'datetime-local';
@@ -2428,7 +2449,7 @@
                     </select>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" id="edit-sched-repeat-container">
                     <label>
                         <input type="checkbox" id="edit-sched-repeat" style="width: auto; margin-right: 8px;">
                         Repeat weekly
