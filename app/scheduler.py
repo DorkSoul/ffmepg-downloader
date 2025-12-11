@@ -222,14 +222,30 @@ class Scheduler:
         start_dt = datetime.combine(today, datetime.min.time().replace(hour=start_hour, minute=start_min))
         end_dt = datetime.combine(today, datetime.min.time().replace(hour=end_hour, minute=end_min))
 
-        # Handle case where end time is past midnight (e.g., 23:00 - 01:00)
-        if end_dt <= start_dt:
-            end_dt = end_dt + timedelta(days=1)
+        # Detect if this is a midnight-spanning window (e.g., 23:00 - 01:00)
+        spans_midnight = end_hour < start_hour or (end_hour == start_hour and end_min < start_min)
+
+        if spans_midnight:
+            # For midnight-spanning windows, we need to check if we're in yesterday's window
+            # that extends into today, OR in today's window that extends into tomorrow
+
+            # Check if we're in yesterday's window (before today's start time)
+            if now.time() < datetime.min.time().replace(hour=start_hour, minute=start_min):
+                # We're in the early morning hours - check if yesterday's window extends to now
+                yesterday = today - timedelta(days=1)
+                start_dt = datetime.combine(yesterday, datetime.min.time().replace(hour=start_hour, minute=start_min))
+                end_dt = datetime.combine(today, datetime.min.time().replace(hour=end_hour, minute=end_min))
+            else:
+                # We're after start time today - window extends into tomorrow
+                end_dt = end_dt + timedelta(days=1)
+        else:
+            # Normal same-day window
+            pass
 
         # Check if we're currently in the active window
         if start_dt <= now <= end_dt:
             if schedule['status'] == 'download_started':
-                # Already downloaded for today's window
+                # Already downloaded for this window
                 return
 
             schedule['status'] = 'active'
@@ -241,7 +257,7 @@ class Scheduler:
                 self._perform_check(schedule)
 
         elif now < start_dt:
-            # Window hasn't started yet today
+            # Window hasn't started yet
             schedule['status'] = 'pending'
             # Ensure next_check is set correctly (at window start)
             next_check = schedule.get('next_check')
@@ -249,8 +265,8 @@ class Scheduler:
                 self._update_next_check(schedule)
 
         else:
-            # Window has passed for today
-            # Reset status for tomorrow if needed
+            # Window has passed
+            # Reset status for next day if needed
             if schedule['status'] == 'download_started':
                 # Reset for next day
                 schedule['status'] = 'pending'
@@ -273,14 +289,24 @@ class Scheduler:
             start_dt = datetime.combine(today, datetime.min.time().replace(hour=start_hour, minute=start_min))
             end_dt = datetime.combine(today, datetime.min.time().replace(hour=end_hour, minute=end_min))
 
-            # Handle case where end time is past midnight
-            if end_dt <= start_dt:
-                end_dt = end_dt + timedelta(days=1)
+            # Detect if this is a midnight-spanning window (e.g., 23:00 - 01:00)
+            spans_midnight = end_hour < start_hour or (end_hour == start_hour and end_min < start_min)
 
-            # If window hasn't started yet today, schedule check for start of window
+            if spans_midnight:
+                # For midnight-spanning windows, determine which window we're checking
+                if now.time() < datetime.min.time().replace(hour=start_hour, minute=start_min):
+                    # We're in the early morning hours - check if yesterday's window extends to now
+                    yesterday = today - timedelta(days=1)
+                    start_dt = datetime.combine(yesterday, datetime.min.time().replace(hour=start_hour, minute=start_min))
+                    end_dt = datetime.combine(today, datetime.min.time().replace(hour=end_hour, minute=end_min))
+                else:
+                    # We're after start time today - window extends into tomorrow
+                    end_dt = end_dt + timedelta(days=1)
+
+            # If window hasn't started yet, schedule check for start of window
             if now < start_dt:
                 schedule['next_check'] = start_dt.isoformat()
-                logger.debug(f"Schedule {schedule['id']}: next check set to today's window start: {start_dt}")
+                logger.debug(f"Schedule {schedule['id']}: next check set to window start: {start_dt}")
             # If we're in the window, schedule random check in 5-8 minutes
             elif start_dt <= now <= end_dt:
                 minutes = random.uniform(5, 8)
@@ -290,12 +316,20 @@ class Scheduler:
                     next_dt = end_dt
                 schedule['next_check'] = next_dt.isoformat()
                 logger.debug(f"Schedule {schedule['id']}: next check in {minutes:.1f} mins: {next_dt}")
-            # If window has passed for today, schedule for tomorrow
+            # If window has passed, schedule for next occurrence
             else:
-                tomorrow = today + timedelta(days=1)
-                start_dt_tomorrow = datetime.combine(tomorrow, datetime.min.time().replace(hour=start_hour, minute=start_min))
-                schedule['next_check'] = start_dt_tomorrow.isoformat()
-                logger.debug(f"Schedule {schedule['id']}: next check set to tomorrow's window start: {start_dt_tomorrow}")
+                # For midnight-spanning, if we're past end time but before start time,
+                # the next window is today (later). Otherwise it's tomorrow.
+                if spans_midnight and now.time() < datetime.min.time().replace(hour=start_hour, minute=start_min):
+                    # We're past yesterday's window end, next window is today
+                    next_start = datetime.combine(today, datetime.min.time().replace(hour=start_hour, minute=start_min))
+                else:
+                    # Next window is tomorrow
+                    tomorrow = today + timedelta(days=1)
+                    next_start = datetime.combine(tomorrow, datetime.min.time().replace(hour=start_hour, minute=start_min))
+
+                schedule['next_check'] = next_start.isoformat()
+                logger.debug(f"Schedule {schedule['id']}: next check set to next window start: {next_start}")
 
         else:
             # Regular schedule - calculate based on datetime
