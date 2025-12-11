@@ -186,12 +186,14 @@ class Scheduler:
                                 # Already downloaded for this window
                                 continue
 
+                            # Check if transitioning from pending to active (first time in window)
+                            was_pending = schedule['status'] == 'pending'
                             schedule['status'] = 'active'
 
                             # Check if it's time to check stream
                             next_check = schedule.get('next_check')
-                            if not next_check or now >= datetime.fromisoformat(next_check):
-                                # It's time!
+                            if was_pending or not next_check or now >= datetime.fromisoformat(next_check):
+                                # It's time! (immediately on window start, or when next_check time arrives)
                                 self._perform_check(schedule)
 
                         elif now < start_dt:
@@ -248,12 +250,14 @@ class Scheduler:
                 # Already downloaded for this window
                 return
 
+            # Check if transitioning from pending to active (first time in window)
+            was_pending = schedule['status'] == 'pending'
             schedule['status'] = 'active'
 
             # Check if it's time to check stream
             next_check = schedule.get('next_check')
-            if not next_check or now >= datetime.fromisoformat(next_check):
-                # It's time!
+            if was_pending or not next_check or now >= datetime.fromisoformat(next_check):
+                # It's time! (immediately on window start, or when next_check time arrives)
                 self._perform_check(schedule)
 
         elif now < start_dt:
