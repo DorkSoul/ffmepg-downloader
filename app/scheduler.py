@@ -104,8 +104,17 @@ class Scheduler:
             return None
 
     def get_schedules(self):
-        """Get all schedules"""
-        return self.schedules
+        """Get all schedules, sorted by next_check time"""
+        # Sort schedules by next_check time (soonest first)
+        # Schedules without next_check go to the end
+        sorted_schedules = sorted(
+            self.schedules,
+            key=lambda s: (
+                s.get('next_check') is None,  # False (0) for schedules with next_check, True (1) for those without
+                s.get('next_check') or ''      # Sort by next_check if it exists
+            )
+        )
+        return sorted_schedules
 
     def refresh_all_schedule_times(self):
         """Force refresh all schedule next_check times"""
@@ -269,9 +278,8 @@ class Scheduler:
                 self._update_next_check(schedule)
 
         else:
-            # Window has passed
-            # Reset status for next day if needed
-            if schedule['status'] == 'download_started':
+            # Window has passed - always reset to pending for next day
+            if schedule['status'] in ['active', 'download_started']:
                 # Reset for next day
                 schedule['status'] = 'pending'
                 schedule['last_check'] = None
