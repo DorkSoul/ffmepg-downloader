@@ -141,6 +141,21 @@ class StreamDetector:
                 chrome_options.add_experimental_option('w3c', True)
                 chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
+                # Set preferences for cookie persistence
+                chrome_prefs = {
+                    # Enable cookies and set to keep them
+                    "profile.default_content_setting_values.cookies": 1,  # 1 = allow all cookies
+                    "profile.block_third_party_cookies": False,
+                    # Ensure session is saved on exit
+                    "profile.exit_type": "Normal",
+                    "profile.exited_cleanly": True,
+                    # Don't clear cookies on exit
+                    "profile.default_content_settings.cookies": 1,
+                    # Keep cookies after browser closes
+                    "profile.cookie_controls_mode": 0,  # 0 = allow all
+                }
+                chrome_options.add_experimental_option('prefs', chrome_prefs)
+
                 # Enable performance logging to capture network events
                 chrome_options.set_capability('goog:loggingPrefs', {'performance': 'ALL'})
 
@@ -784,7 +799,7 @@ class StreamDetector:
             self.thumbnail_data = ThumbnailGenerator.capture_screenshot(self.driver)
 
     def close(self):
-        """Close the browser"""
+        """Close the browser gracefully"""
         self.is_running = False
 
         # Close WebSocket connection
@@ -796,8 +811,74 @@ class StreamDetector:
 
         if self.driver:
             try:
+                # Graceful shutdown process to prevent "Chrome did not shut down correctly" message
+                logger.info(f"Gracefully shutting down browser {self.browser_id}...")
+
+                # Step 1: Navigate to about:blank to stop any active page loading/streaming
+                try:
+                    self.driver.get('about:blank')
+                    time.sleep(0.5)
+                except Exception:
+                    pass
+
+                # Step 2: Execute JavaScript to clear any local storage or session data that might cause issues
+                try:
+                    self.driver.execute_script("""
+                        try {
+                            // Clear any pending timers or intervals
+                            var highestTimeoutId = setTimeout(";");
+                            for (var i = 0; i < highestTimeoutId; i++) {
+                                clearTimeout(i);
+                            }
+                            var highestIntervalId = setInterval(";");
+                            for (var i = 0; i < highestIntervalId; i++) {
+                                clearInterval(i);
+                            }
+                        } catch(e) {}
+                    """)
+                except Exception:
+                    pass
+
+                # Step 3: Quit the driver and wait for Chrome to fully exit
                 self.driver.quit()
-                logger.info(f"Browser {self.browser_id} closed")
+                # Give Chrome time to fully terminate and write its preferences
+                time.sleep(0.8)
+
+                # Step 4: AFTER Chrome has quit, fix the preferences file for next startup
+                try:
+                    prefs_path = os.path.join(self.config.CHROME_USER_DATA_DIR, 'Default', 'Preferences')
+                    if os.path.exists(prefs_path):
+                        # Read and update preferences
+                        max_retries = 3
+                        for retry in range(max_retries):
+                            try:
+                                with open(prefs_path, 'r', encoding='utf-8') as f:
+                                    prefs = json.load(f)
+
+                                # Mark as clean exit for next startup
+                                if 'profile' not in prefs:
+                                    prefs['profile'] = {}
+                                prefs['profile']['exit_type'] = 'Normal'
+                                prefs['profile']['exited_cleanly'] = True
+
+                                with open(prefs_path, 'w', encoding='utf-8') as f:
+                                    json.dump(prefs, f)
+                                logger.info("Set Chrome exit flags to Normal for next startup")
+                                break
+                            except (IOError, OSError) as file_error:
+                                # File might be locked, wait and retry
+                                if retry < max_retries - 1:
+                                    time.sleep(0.3)
+                                    continue
+                                else:
+                                    raise file_error
+                    else:
+                        logger.warning(f"Preferences file not found at {prefs_path}")
+                except Exception as prefs_error:
+                    logger.warning(f"Could not set Chrome exit flags: {prefs_error}")
+
+                logger.info(f"Browser {self.browser_id} closed gracefully")
+
             except Exception as e:
                 logger.error(f"Error closing browser: {e}")
 
