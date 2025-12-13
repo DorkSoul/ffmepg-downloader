@@ -14,11 +14,11 @@ import os
 import glob
 
 from app.utils import PlaylistParser, MetadataExtractor, ThumbnailGenerator
-from app.models.stream_detector.cdp_mixin import CDPMixin
-from app.models.stream_detector.network_monitor_mixin import NetworkMonitorMixin
-from app.models.stream_detector.stream_parser_mixin import StreamParserMixin
-from app.models.stream_detector.stream_matcher_mixin import StreamMatcherMixin
-from app.models.stream_detector.download_handler_mixin import DownloadHandlerMixin
+from .cdp_mixin import CDPMixin
+from .network_monitor_mixin import NetworkMonitorMixin
+from .stream_parser_mixin import StreamParserMixin
+from .stream_matcher_mixin import StreamMatcherMixin
+from .download_handler_mixin import DownloadHandlerMixin
 
 logger = logging.getLogger(__name__)
 
