@@ -113,5 +113,3 @@ class StreamMatcherMixin:
         # 4. Fallback to Any (Highest Available)
         logger.info(f"Match: Fallback to highest available {sorted_streams[0].get('name')}")
         return sorted_streams[0]
-
-    def _enrich_and_add_thumbnail(self, stream_dict):

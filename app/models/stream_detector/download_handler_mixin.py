@@ -9,6 +9,8 @@ import threading
 import websocket
 import requests as req_lib
 
+from app.utils import MetadataExtractor, ThumbnailGenerator
+
 logger = logging.getLogger(__name__)
 
 

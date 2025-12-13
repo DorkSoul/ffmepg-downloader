@@ -9,6 +9,8 @@ import threading
 import websocket
 import requests as req_lib
 
+from app.utils import PlaylistParser
+
 logger = logging.getLogger(__name__)
 
 
